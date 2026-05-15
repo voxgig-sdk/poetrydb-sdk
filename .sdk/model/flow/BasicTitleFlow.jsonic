@@ -1,0 +1,44 @@
+# BasicTitleFlow
+
+main: kit: flow: BasicTitleFlow:
+{
+  entity: "title",
+  kind: "basic",
+  name: "BasicTitleFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "title_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "title_ref01",
+        srcdatavar: "title_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "title01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-title_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTitleFlow"
+}

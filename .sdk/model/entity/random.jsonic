@@ -1,0 +1,132 @@
+# Entity: random
+
+main: kit: entity: random: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "author"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "line"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "linecount"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "random"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: 5
+                kind: "param"
+                name: "count"
+                orig: "count"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+              {
+                example: "author,title"
+                kind: "param"
+                name: "output_field"
+                orig: "output_field"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/random/{count}/{outputFields}"
+          parts: [
+            "random"
+            "{count}"
+            "{output_field}"
+          ]
+          rename: {
+            param: {
+              outputFields: "output_field"
+            }
+          }
+          select: {
+            exist: [
+              "count"
+              "output_field"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: 5
+                kind: "param"
+                name: "id"
+                orig: "count"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/random/{count}"
+          parts: [
+            "random"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              count: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "random"
+      ]
+    ]
+  }
+
+
+
+}

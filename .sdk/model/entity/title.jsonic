@@ -1,0 +1,196 @@
+# Entity: title
+
+main: kit: entity: title: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "author"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "line"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "linecount"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "title"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "text"
+                kind: "param"
+                name: "format"
+                orig: "format"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "title,lines"
+                kind: "param"
+                name: "output_field"
+                orig: "output_field"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "Ozymandias"
+                kind: "param"
+                name: "title"
+                orig: "title"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/title/{title}/{outputFields}.{format}"
+          parts: [
+            "title"
+            "{title}"
+            "{output_fields}_{format}"
+          ]
+          rename: {
+            param: {
+              "outputFields}.{format": "output_fields}_{format"
+            }
+          }
+          select: {
+            exist: [
+              "format"
+              "output_field"
+              "title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "author,title,linecount"
+                kind: "param"
+                name: "output_field"
+                orig: "output_field"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "Ozymandias"
+                kind: "param"
+                name: "title"
+                orig: "title"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/title/{title}/{outputFields}"
+          parts: [
+            "title"
+            "{title}"
+            "{output_field}"
+          ]
+          rename: {
+            param: {
+              outputFields: "output_field"
+            }
+          }
+          select: {
+            exist: [
+              "output_field"
+              "title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/title"
+          parts: [
+            "title"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "Ozymandias"
+                kind: "param"
+                name: "id"
+                orig: "title"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/title/{title}"
+          parts: [
+            "title"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              title: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "title"
+      ]
+    ]
+  }
+
+
+
+}

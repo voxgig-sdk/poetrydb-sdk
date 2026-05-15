@@ -1,0 +1,63 @@
+# Poetrydb SDK utility registration
+require_relative '../core/utility_type'
+require_relative 'clean'
+require_relative 'done'
+require_relative 'make_error'
+require_relative 'feature_add'
+require_relative 'feature_hook'
+require_relative 'feature_init'
+require_relative 'fetcher'
+require_relative 'make_fetch_def'
+require_relative 'make_context'
+require_relative 'make_options'
+require_relative 'make_request'
+require_relative 'make_response'
+require_relative 'make_result'
+require_relative 'make_point'
+require_relative 'make_spec'
+require_relative 'make_url'
+require_relative 'param'
+require_relative 'prepare_auth'
+require_relative 'prepare_body'
+require_relative 'prepare_headers'
+require_relative 'prepare_method'
+require_relative 'prepare_params'
+require_relative 'prepare_path'
+require_relative 'prepare_query'
+require_relative 'result_basic'
+require_relative 'result_body'
+require_relative 'result_headers'
+require_relative 'transform_request'
+require_relative 'transform_response'
+
+PoetrydbUtility.registrar = ->(u) {
+  u.clean = PoetrydbUtilities::Clean
+  u.done = PoetrydbUtilities::Done
+  u.make_error = PoetrydbUtilities::MakeError
+  u.feature_add = PoetrydbUtilities::FeatureAdd
+  u.feature_hook = PoetrydbUtilities::FeatureHook
+  u.feature_init = PoetrydbUtilities::FeatureInit
+  u.fetcher = PoetrydbUtilities::Fetcher
+  u.make_fetch_def = PoetrydbUtilities::MakeFetchDef
+  u.make_context = PoetrydbUtilities::MakeContext
+  u.make_options = PoetrydbUtilities::MakeOptions
+  u.make_request = PoetrydbUtilities::MakeRequest
+  u.make_response = PoetrydbUtilities::MakeResponse
+  u.make_result = PoetrydbUtilities::MakeResult
+  u.make_point = PoetrydbUtilities::MakePoint
+  u.make_spec = PoetrydbUtilities::MakeSpec
+  u.make_url = PoetrydbUtilities::MakeUrl
+  u.param = PoetrydbUtilities::Param
+  u.prepare_auth = PoetrydbUtilities::PrepareAuth
+  u.prepare_body = PoetrydbUtilities::PrepareBody
+  u.prepare_headers = PoetrydbUtilities::PrepareHeaders
+  u.prepare_method = PoetrydbUtilities::PrepareMethod
+  u.prepare_params = PoetrydbUtilities::PrepareParams
+  u.prepare_path = PoetrydbUtilities::PreparePath
+  u.prepare_query = PoetrydbUtilities::PrepareQuery
+  u.result_basic = PoetrydbUtilities::ResultBasic
+  u.result_body = PoetrydbUtilities::ResultBody
+  u.result_headers = PoetrydbUtilities::ResultHeaders
+  u.transform_request = PoetrydbUtilities::TransformRequest
+  u.transform_response = PoetrydbUtilities::TransformResponse
+}

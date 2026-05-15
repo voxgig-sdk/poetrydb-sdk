@@ -1,0 +1,123 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 10
+  metrics: count: path: 21
+  metrics: count: method: 21
+
+  entity: author: {
+    path: "/author": {
+      op: list: method: *GET
+    }
+    path: "/author/{author}": {
+      rename: param: "author": *"id"
+      op: load: method: *GET
+    }
+    path: "/author/{author}/{outputFields}": {
+      rename: param: "outputFields": *"output_field"
+      op: list: method: *GET
+    }
+    path: "/author/{author}/{outputFields}.{format}": {
+      rename: param: "outputFields}.{format": *"output_fields}_{format"
+      op: list: method: *GET
+    }
+  }
+
+  entity: authorab: {
+    path: "/author/{author}:abs": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: combined_search: {
+    path: "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}": {
+      rename: param: "inputField1},{inputField2": *"input_field1},{input_field2"
+      rename: param: "searchTerm1};{searchTerm2": *"search_term1};{search_term2"
+      op: list: method: *GET
+    }
+  }
+
+  entity: combined_search_with_field: {
+    path: "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputFields}": {
+      rename: param: "inputField1},{inputField2": *"input_field1},{input_field2"
+      rename: param: "outputFields": *"output_field"
+      rename: param: "searchTerm1};{searchTerm2": *"search_term1};{search_term2"
+      op: list: method: *GET
+    }
+  }
+
+  entity: line: {
+    path: "/lines/{lines}": {
+      rename: param: "lines": *"id"
+      op: load: method: *GET
+    }
+    path: "/lines/{lines}/{outputFields}": {
+      rename: param: "lines": *"line"
+      rename: param: "outputFields": *"output_field"
+      op: list: method: *GET
+    }
+    path: "/lines/{lines}/{outputFields}.{format}": {
+      rename: param: "lines": *"line"
+      rename: param: "outputFields}.{format": *"output_fields}_{format"
+      op: list: method: *GET
+    }
+  }
+
+  entity: linecount: {
+    path: "/linecount/{linecount}": {
+      rename: param: "linecount": *"id"
+      op: load: method: *GET
+    }
+    path: "/linecount/{linecount}/{outputFields}": {
+      rename: param: "outputFields": *"output_field"
+      op: list: method: *GET
+    }
+    path: "/linecount/{linecount}/{outputFields}.{format}": {
+      rename: param: "outputFields}.{format": *"output_fields}_{format"
+      op: list: method: *GET
+    }
+  }
+
+  entity: poemcount: {
+    path: "/poemcount/{count}": {
+      rename: param: "count": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: random: {
+    path: "/random/{count}": {
+      rename: param: "count": *"id"
+      op: load: method: *GET
+    }
+    path: "/random/{count}/{outputFields}": {
+      rename: param: "outputFields": *"output_field"
+      op: list: method: *GET
+    }
+  }
+
+  entity: title: {
+    path: "/title": {
+      op: list: method: *GET
+    }
+    path: "/title/{title}": {
+      rename: param: "title": *"id"
+      op: load: method: *GET
+    }
+    path: "/title/{title}/{outputFields}": {
+      rename: param: "outputFields": *"output_field"
+      op: list: method: *GET
+    }
+    path: "/title/{title}/{outputFields}.{format}": {
+      rename: param: "outputFields}.{format": *"output_fields}_{format"
+      op: list: method: *GET
+    }
+  }
+
+  entity: titleab: {
+    path: "/title/{title}:abs": {
+      op: list: method: *GET
+    }
+  }
+
+}

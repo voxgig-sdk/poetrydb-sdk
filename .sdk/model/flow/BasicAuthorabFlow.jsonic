@@ -1,0 +1,26 @@
+# BasicAuthorabFlow
+
+main: kit: flow: BasicAuthorabFlow:
+{
+  entity: "authorab",
+  kind: "basic",
+  name: "BasicAuthorabFlow",
+  step: [
+    {
+      match: {
+        author: "author01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "authorab_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAuthorabFlow"
+}

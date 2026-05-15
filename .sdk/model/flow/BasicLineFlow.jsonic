@@ -1,0 +1,49 @@
+# BasicLineFlow
+
+main: kit: flow: BasicLineFlow:
+{
+  entity: "line",
+  kind: "basic",
+  name: "BasicLineFlow",
+  step: [
+    {
+      match: {
+        line: "line01",
+        output_field: "output_field01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "line_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "line_ref01",
+        srcdatavar: "line_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "line01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-line_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLineFlow"
+}

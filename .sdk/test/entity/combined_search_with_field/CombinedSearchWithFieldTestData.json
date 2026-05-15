@@ -1,0 +1,32 @@
+{
+  "existing": {
+    "combined_search_with_field": {
+      "COMBINED_SEARCH_WITH_FIELD00": {
+        "input_field1": "INPUT_FIELD101",
+        "input_field2": "INPUT_FIELD201",
+        "output_field": "OUTPUT_FIELD01",
+        "search_term1": "SEARCH_TERM101",
+        "search_term2": "SEARCH_TERM201"
+      },
+      "COMBINED_SEARCH_WITH_FIELD01": {
+        "input_field1": "INPUT_FIELD101",
+        "input_field2": "INPUT_FIELD201",
+        "output_field": "OUTPUT_FIELD01",
+        "search_term1": "SEARCH_TERM101",
+        "search_term2": "SEARCH_TERM201"
+      },
+      "COMBINED_SEARCH_WITH_FIELD02": {
+        "input_field1": "INPUT_FIELD101",
+        "input_field2": "INPUT_FIELD201",
+        "output_field": "OUTPUT_FIELD01",
+        "search_term1": "SEARCH_TERM101",
+        "search_term2": "SEARCH_TERM201"
+      }
+    }
+  },
+  "new": {
+    "combined_search_with_field": {
+      "combined_search_with_field_ref01": {}
+    }
+  }
+}

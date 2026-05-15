@@ -1,0 +1,49 @@
+# BasicLinecountFlow
+
+main: kit: flow: BasicLinecountFlow:
+{
+  entity: "linecount",
+  kind: "basic",
+  name: "BasicLinecountFlow",
+  step: [
+    {
+      match: {
+        linecount: "linecount01",
+        output_field: "output_field01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "linecount_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "linecount_ref01",
+        srcdatavar: "linecount_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "linecount01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-linecount_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLinecountFlow"
+}

@@ -1,0 +1,187 @@
+# Entity: line
+
+main: kit: entity: line: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "author"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "line"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "linecount"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "line"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "text"
+                kind: "param"
+                name: "format"
+                orig: "format"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "Latitudeless Place"
+                kind: "param"
+                name: "line"
+                orig: "line"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "author,title,linecount"
+                kind: "param"
+                name: "output_field"
+                orig: "output_field"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/lines/{lines}/{outputFields}.{format}"
+          parts: [
+            "lines"
+            "{line}"
+            "{output_fields}_{format}"
+          ]
+          rename: {
+            param: {
+              lines: "line"
+              "outputFields}.{format": "output_fields}_{format"
+            }
+          }
+          select: {
+            exist: [
+              "format"
+              "line"
+              "output_field"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "Latitudeless Place"
+                kind: "param"
+                name: "line"
+                orig: "line"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "author,title,linecount"
+                kind: "param"
+                name: "output_field"
+                orig: "output_field"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/lines/{lines}/{outputFields}"
+          parts: [
+            "lines"
+            "{line}"
+            "{output_field}"
+          ]
+          rename: {
+            param: {
+              lines: "line"
+              outputFields: "output_field"
+            }
+          }
+          select: {
+            exist: [
+              "line"
+              "output_field"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "Latitudeless Place"
+                kind: "param"
+                name: "id"
+                orig: "line"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/lines/{lines}"
+          parts: [
+            "lines"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              lines: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "line"
+      ]
+    ]
+  }
+
+
+
+}

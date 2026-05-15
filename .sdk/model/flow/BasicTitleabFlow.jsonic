@@ -1,0 +1,26 @@
+# BasicTitleabFlow
+
+main: kit: flow: BasicTitleabFlow:
+{
+  entity: "titleab",
+  kind: "basic",
+  name: "BasicTitleabFlow",
+  step: [
+    {
+      match: {
+        title: "title01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "titleab_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTitleabFlow"
+}

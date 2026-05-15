@@ -1,0 +1,78 @@
+# Entity: authorab
+
+main: kit: entity: authorab: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "author"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "line"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "linecount"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "authorab"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "Ernest Dowson"
+                kind: "param"
+                name: "author"
+                orig: "author"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/author/{author}:abs"
+          parts: [
+            "author"
+            "{author}:abs"
+          ]
+          select: {
+            exist: [
+              "author"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "author"
+      ]
+    ]
+  }
+
+
+
+}

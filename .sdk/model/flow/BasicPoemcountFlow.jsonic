@@ -1,0 +1,32 @@
+# BasicPoemcountFlow
+
+main: kit: flow: BasicPoemcountFlow:
+{
+  entity: "poemcount",
+  kind: "basic",
+  name: "BasicPoemcountFlow",
+  step: [
+    {
+      input: {
+        ref: "poemcount_ref01",
+        srcdatavar: "poemcount_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "poemcount01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-poemcount_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPoemcountFlow"
+}

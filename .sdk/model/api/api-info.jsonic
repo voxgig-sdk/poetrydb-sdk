@@ -1,0 +1,27 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://github.com/thundercomb/poetrydb"
+      }
+      description: "An API for internet poets to access and retrieve poetry data. Users can search for poems by title, author, lines, line count, and more, and receive the results in JSON format."
+      license: {
+        name: "GPL-2.0"
+        url: "https://github.com/thundercomb/poetrydb/blob/master/LICENSE.txt"
+      }
+      servers: [
+        {
+          description: "Production server"
+          url: "https://poetrydb.org"
+        }
+      ]
+      title: "PoetryDB API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

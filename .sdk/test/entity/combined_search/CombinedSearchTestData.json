@@ -1,0 +1,46 @@
+{
+  "existing": {
+    "combined_search": {
+      "COMBINED_SEARCH00": {
+        "author": "s28",
+        "line": [],
+        "linecount": "s2a",
+        "title": "s2b",
+        "input_field1": "INPUT_FIELD101",
+        "input_field2": "INPUT_FIELD201",
+        "search_term1": "SEARCH_TERM101",
+        "search_term2": "SEARCH_TERM201"
+      },
+      "COMBINED_SEARCH01": {
+        "author": "s50",
+        "line": [],
+        "linecount": "s52",
+        "title": "s53",
+        "input_field1": "INPUT_FIELD101",
+        "input_field2": "INPUT_FIELD201",
+        "search_term1": "SEARCH_TERM101",
+        "search_term2": "SEARCH_TERM201"
+      },
+      "COMBINED_SEARCH02": {
+        "author": "s78",
+        "line": [],
+        "linecount": "s7a",
+        "title": "s7b",
+        "input_field1": "INPUT_FIELD101",
+        "input_field2": "INPUT_FIELD201",
+        "search_term1": "SEARCH_TERM101",
+        "search_term2": "SEARCH_TERM201"
+      }
+    }
+  },
+  "new": {
+    "combined_search": {
+      "combined_search_ref01": {
+        "author": "sa0",
+        "line": [],
+        "linecount": "sa2",
+        "title": "sa3"
+      }
+    }
+  }
+}

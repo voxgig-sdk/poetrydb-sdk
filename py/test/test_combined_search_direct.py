@@ -1,0 +1,127 @@
+# CombinedSearch direct test
+
+import json
+import pytest
+
+from utility.voxgig_struct import voxgig_struct as vs
+from poetrydb_sdk import PoetrydbSDK
+from core import helpers
+from test import runner
+
+
+class TestCombinedSearchDirect:
+
+    def test_should_direct_list_combined_search(self):
+        setup = _combined_search_direct_setup([
+            {"id": "direct01"},
+            {"id": "direct02"},
+        ])
+        _skip, _reason = runner.is_control_skipped("direct", "direct-list-combined_search", "live" if setup["live"] else "unit")
+        if _skip:
+            # pytest already imported at module scope
+            pytest.skip(_reason or "skipped via sdk-test-control.json")
+            return
+        if setup["live"]:
+            for _live_key in ["input_field101", "input_field201", "search_term101", "search_term201"]:
+                if setup["idmap"].get(_live_key) is None:
+                    # pytest already imported at module scope
+                    pytest.skip(f"live test needs {_live_key} via *_ENTID env var (synthetic IDs only)")
+                    return
+
+        client = setup["client"]
+
+        params = {}
+        if setup["live"]:
+            params["input_field1"] = setup["idmap"]["input_field101"]
+        else:
+            params["input_field1"] = "direct01"
+        if setup["live"]:
+            params["input_field2"] = setup["idmap"]["input_field201"]
+        else:
+            params["input_field2"] = "direct01"
+        if setup["live"]:
+            params["search_term1"] = setup["idmap"]["search_term101"]
+        else:
+            params["search_term1"] = "direct01"
+        if setup["live"]:
+            params["search_term2"] = setup["idmap"]["search_term201"]
+        else:
+            params["search_term2"] = "direct01"
+
+        result, err = client.direct({
+            "path": "{input_field1},{input_field2}/{search_term1};{search_term2}",
+            "method": "GET",
+            "params": params,
+        })
+        if setup["live"]:
+            # Live mode is lenient: synthetic IDs frequently 4xx and the
+            # list-response shape varies wildly across public APIs. Skip
+            # rather than fail when the call doesn't return a usable list.
+            if err is not None:
+                pytest.skip(f"list call failed (likely synthetic IDs against live API): {err}")
+                return
+            if not result.get("ok"):
+                pytest.skip("list call not ok (likely synthetic IDs against live API)")
+                return
+            status = helpers.to_int(result["status"])
+            if status < 200 or status >= 300:
+                pytest.skip(f"expected 2xx status, got {status}")
+                return
+        else:
+            assert err is None
+            assert result["ok"] is True
+            assert helpers.to_int(result["status"]) == 200
+            assert isinstance(result["data"], list)
+            assert len(result["data"]) == 2
+            assert len(setup["calls"]) == 1
+
+
+
+def _combined_search_direct_setup(mockres):
+    runner.load_env_local()
+
+    calls = []
+
+    env = runner.env_override({
+        "POETRYDB_TEST_COMBINED_SEARCH_ENTID": {},
+        "POETRYDB_TEST_LIVE": "FALSE",
+        "POETRYDB_APIKEY": "NONE",
+    })
+
+    live = env.get("POETRYDB_TEST_LIVE") == "TRUE"
+
+    if live:
+        merged_opts = {
+            "apikey": env.get("POETRYDB_APIKEY"),
+        }
+        client = PoetrydbSDK(merged_opts)
+        return {
+            "client": client,
+            "calls": calls,
+            "live": True,
+            "idmap": {},
+        }
+
+    def mock_fetch(url, init):
+        calls.append({"url": url, "init": init})
+        return {
+            "status": 200,
+            "statusText": "OK",
+            "headers": {},
+            "json": lambda: mockres if mockres is not None else {"id": "direct01"},
+            "body": "mock",
+        }, None
+
+    client = PoetrydbSDK({
+        "base": "http://localhost:8080",
+        "system": {
+            "fetch": mock_fetch,
+        },
+    })
+
+    return {
+        "client": client,
+        "calls": calls,
+        "live": False,
+        "idmap": {},
+    }

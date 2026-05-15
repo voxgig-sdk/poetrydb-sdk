@@ -1,0 +1,103 @@
+# Entity: combined_search
+
+main: kit: entity: combined_search: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "author"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "line"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "linecount"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "combined_search"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "author"
+                kind: "param"
+                name: "input_field1"
+                orig: "input_field1"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "linecount"
+                kind: "param"
+                name: "input_field2"
+                orig: "input_field2"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "Shakespeare"
+                kind: "param"
+                name: "search_term1"
+                orig: "search_term1"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "14"
+                kind: "param"
+                name: "search_term2"
+                orig: "search_term2"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}"
+          parts: [
+            "{input_field1},{input_field2}"
+            "{search_term1};{search_term2}"
+          ]
+          rename: {
+            param: {
+              "inputField1},{inputField2": "input_field1},{input_field2"
+              "searchTerm1};{searchTerm2": "search_term1};{search_term2"
+            }
+          }
+          select: {
+            exist: [
+              "input_field1"
+              "input_field2"
+              "search_term1"
+              "search_term2"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

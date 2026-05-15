@@ -1,0 +1,29 @@
+# BasicCombinedSearchFlow
+
+main: kit: flow: BasicCombinedSearchFlow:
+{
+  entity: "combined_search",
+  kind: "basic",
+  name: "BasicCombinedSearchFlow",
+  step: [
+    {
+      match: {
+        input_field1: "input_field101",
+        input_field2: "input_field201",
+        search_term1: "search_term101",
+        search_term2: "search_term201"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "combined_search_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCombinedSearchFlow"
+}

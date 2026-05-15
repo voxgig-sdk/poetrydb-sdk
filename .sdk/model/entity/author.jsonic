@@ -1,0 +1,196 @@
+# Entity: author
+
+main: kit: entity: author: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "author"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "line"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "linecount"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "author"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "Ernest Dowson"
+                kind: "param"
+                name: "author"
+                orig: "author"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "text"
+                kind: "param"
+                name: "format"
+                orig: "format"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "author,title,linecount"
+                kind: "param"
+                name: "output_field"
+                orig: "output_field"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/author/{author}/{outputFields}.{format}"
+          parts: [
+            "author"
+            "{author}"
+            "{output_fields}_{format}"
+          ]
+          rename: {
+            param: {
+              "outputFields}.{format": "output_fields}_{format"
+            }
+          }
+          select: {
+            exist: [
+              "author"
+              "format"
+              "output_field"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: "Ernest Dowson"
+                kind: "param"
+                name: "author"
+                orig: "author"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "author,title,linecount"
+                kind: "param"
+                name: "output_field"
+                orig: "output_field"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/author/{author}/{outputFields}"
+          parts: [
+            "author"
+            "{author}"
+            "{output_field}"
+          ]
+          rename: {
+            param: {
+              outputFields: "output_field"
+            }
+          }
+          select: {
+            exist: [
+              "author"
+              "output_field"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/author"
+          parts: [
+            "author"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "Ernest Dowson"
+                kind: "param"
+                name: "id"
+                orig: "author"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/author/{author}"
+          parts: [
+            "author"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              author: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "author"
+      ]
+    ]
+  }
+
+
+
+}

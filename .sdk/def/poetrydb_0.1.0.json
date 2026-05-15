@@ -1,0 +1,1305 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "PoetryDB API",
+    "description": "An API for internet poets to access and retrieve poetry data. Users can search for poems by title, author, lines, line count, and more, and receive the results in JSON format.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://github.com/thundercomb/poetrydb"
+    },
+    "license": {
+      "name": "GPL-2.0",
+      "url": "https://github.com/thundercomb/poetrydb/blob/master/LICENSE.txt"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://poetrydb.org",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/author": {
+      "get": {
+        "summary": "Get all authors",
+        "description": "Returns a list of all available authors in the database",
+        "operationId": "getAllAuthors",
+        "tags": [
+          "Author"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "authors": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "authors": [
+                    "Adam Lindsay Gordon",
+                    "Alan Seeger",
+                    "Alexander Pope",
+                    "William Shakespeare",
+                    "William Wordsworth"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/author/{author}": {
+      "get": {
+        "summary": "Search poems by author",
+        "description": "Returns poems by the specified author (partial match by default)",
+        "operationId": "searchByAuthor",
+        "tags": [
+          "Author"
+        ],
+        "parameters": [
+          {
+            "name": "author",
+            "in": "path",
+            "required": true,
+            "description": "The name or part of the name of the author",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Ernest Dowson"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Poem"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/author/{author}:abs": {
+      "get": {
+        "summary": "Search poems by exact author name",
+        "description": "Returns poems by the specified author (exact match)",
+        "operationId": "searchByAuthorExact",
+        "tags": [
+          "Author"
+        ],
+        "parameters": [
+          {
+            "name": "author",
+            "in": "path",
+            "required": true,
+            "description": "The exact name of the author",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Ernest Dowson"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Poem"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/author/{author}/{outputFields}": {
+      "get": {
+        "summary": "Search poems by author with specific output fields",
+        "description": "Returns specific fields from poems by the specified author",
+        "operationId": "searchByAuthorWithFields",
+        "tags": [
+          "Author"
+        ],
+        "parameters": [
+          {
+            "name": "author",
+            "in": "path",
+            "required": true,
+            "description": "The name or part of the name of the author",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Ernest Dowson"
+          },
+          {
+            "name": "outputFields",
+            "in": "path",
+            "required": true,
+            "description": "Comma-separated list of output fields (author, title, lines, linecount, all)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "author,title,linecount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/author/{author}/{outputFields}.{format}": {
+      "get": {
+        "summary": "Search poems by author with specific output fields and format",
+        "description": "Returns specific fields from poems by the specified author in the requested format",
+        "operationId": "searchByAuthorWithFieldsAndFormat",
+        "tags": [
+          "Author"
+        ],
+        "parameters": [
+          {
+            "name": "author",
+            "in": "path",
+            "required": true,
+            "description": "The name or part of the name of the author",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Ernest Dowson"
+          },
+          {
+            "name": "outputFields",
+            "in": "path",
+            "required": true,
+            "description": "Comma-separated list of output fields (author, title, lines, linecount, all)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "author,title,linecount"
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "required": true,
+            "description": "Output format (json or text)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "text"
+              ]
+            },
+            "example": "text"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/title": {
+      "get": {
+        "summary": "Get all titles",
+        "description": "Returns a list of all available poem titles in the database",
+        "operationId": "getAllTitles",
+        "tags": [
+          "Title"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "titles": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "titles": [
+                    "A Baby's Death",
+                    "A Ballad Of The Trees And The Master",
+                    "Ozymandias",
+                    "Youth And Age"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/title/{title}": {
+      "get": {
+        "summary": "Search poems by title",
+        "description": "Returns poems with the specified title (partial match by default)",
+        "operationId": "searchByTitle",
+        "tags": [
+          "Title"
+        ],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "path",
+            "required": true,
+            "description": "The title or part of the title of the poem",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Ozymandias"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Poem"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/title/{title}:abs": {
+      "get": {
+        "summary": "Search poems by exact title",
+        "description": "Returns poems with the exact title specified",
+        "operationId": "searchByTitleExact",
+        "tags": [
+          "Title"
+        ],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "path",
+            "required": true,
+            "description": "The exact title of the poem",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Ozymandias"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Poem"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/title/{title}/{outputFields}": {
+      "get": {
+        "summary": "Search poems by title with specific output fields",
+        "description": "Returns specific fields from poems with the specified title",
+        "operationId": "searchByTitleWithFields",
+        "tags": [
+          "Title"
+        ],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "path",
+            "required": true,
+            "description": "The title or part of the title of the poem",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Ozymandias"
+          },
+          {
+            "name": "outputFields",
+            "in": "path",
+            "required": true,
+            "description": "Comma-separated list of output fields (author, title, lines, linecount, all)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "author,title,linecount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/title/{title}/{outputFields}.{format}": {
+      "get": {
+        "summary": "Search poems by title with specific output fields and format",
+        "description": "Returns specific fields from poems with the specified title in the requested format",
+        "operationId": "searchByTitleWithFieldsAndFormat",
+        "tags": [
+          "Title"
+        ],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "path",
+            "required": true,
+            "description": "The title or part of the title of the poem",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Ozymandias"
+          },
+          {
+            "name": "outputFields",
+            "in": "path",
+            "required": true,
+            "description": "Comma-separated list of output fields (author, title, lines, linecount, all)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "title,lines"
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "required": true,
+            "description": "Output format (json or text)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "text"
+              ]
+            },
+            "example": "text"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lines/{lines}": {
+      "get": {
+        "summary": "Search poems by line content",
+        "description": "Returns poems containing the specified line or part of a line",
+        "operationId": "searchByLines",
+        "tags": [
+          "Lines"
+        ],
+        "parameters": [
+          {
+            "name": "lines",
+            "in": "path",
+            "required": true,
+            "description": "Part of a line or lines of a poem",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Latitudeless Place"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Poem"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lines/{lines}/{outputFields}": {
+      "get": {
+        "summary": "Search poems by line content with specific output fields",
+        "description": "Returns specific fields from poems containing the specified line or part of a line",
+        "operationId": "searchByLinesWithFields",
+        "tags": [
+          "Lines"
+        ],
+        "parameters": [
+          {
+            "name": "lines",
+            "in": "path",
+            "required": true,
+            "description": "Part of a line or lines of a poem",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Latitudeless Place"
+          },
+          {
+            "name": "outputFields",
+            "in": "path",
+            "required": true,
+            "description": "Comma-separated list of output fields (author, title, lines, linecount, all)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "author,title,linecount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lines/{lines}/{outputFields}.{format}": {
+      "get": {
+        "summary": "Search poems by line content with specific output fields and format",
+        "description": "Returns specific fields from poems containing the specified line or part of a line in the requested format",
+        "operationId": "searchByLinesWithFieldsAndFormat",
+        "tags": [
+          "Lines"
+        ],
+        "parameters": [
+          {
+            "name": "lines",
+            "in": "path",
+            "required": true,
+            "description": "Part of a line or lines of a poem",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Latitudeless Place"
+          },
+          {
+            "name": "outputFields",
+            "in": "path",
+            "required": true,
+            "description": "Comma-separated list of output fields (author, title, lines, linecount, all)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "author,title,linecount"
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "required": true,
+            "description": "Output format (json or text)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "text"
+              ]
+            },
+            "example": "text"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linecount/{linecount}": {
+      "get": {
+        "summary": "Search poems by line count",
+        "description": "Returns poems with the exact number of lines specified",
+        "operationId": "searchByLinecount",
+        "tags": [
+          "Linecount"
+        ],
+        "parameters": [
+          {
+            "name": "linecount",
+            "in": "path",
+            "required": true,
+            "description": "The exact number of lines in the poem",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 14
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Poem"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linecount/{linecount}/{outputFields}": {
+      "get": {
+        "summary": "Search poems by line count with specific output fields",
+        "description": "Returns specific fields from poems with the exact number of lines specified",
+        "operationId": "searchByLinecountWithFields",
+        "tags": [
+          "Linecount"
+        ],
+        "parameters": [
+          {
+            "name": "linecount",
+            "in": "path",
+            "required": true,
+            "description": "The exact number of lines in the poem",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 14
+          },
+          {
+            "name": "outputFields",
+            "in": "path",
+            "required": true,
+            "description": "Comma-separated list of output fields (author, title, lines, linecount, all)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "author,title"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linecount/{linecount}/{outputFields}.{format}": {
+      "get": {
+        "summary": "Search poems by line count with specific output fields and format",
+        "description": "Returns specific fields from poems with the exact number of lines specified in the requested format",
+        "operationId": "searchByLinecountWithFieldsAndFormat",
+        "tags": [
+          "Linecount"
+        ],
+        "parameters": [
+          {
+            "name": "linecount",
+            "in": "path",
+            "required": true,
+            "description": "The exact number of lines in the poem",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 14
+          },
+          {
+            "name": "outputFields",
+            "in": "path",
+            "required": true,
+            "description": "Comma-separated list of output fields (author, title, lines, linecount, all)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "author,title"
+          },
+          {
+            "name": "format",
+            "in": "path",
+            "required": true,
+            "description": "Output format (json or text)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "text"
+              ]
+            },
+            "example": "text"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/poemcount/{count}": {
+      "get": {
+        "summary": "Get a specific number of poems",
+        "description": "Returns the specified number of poems from the database",
+        "operationId": "getPoemCount",
+        "tags": [
+          "Poemcount"
+        ],
+        "parameters": [
+          {
+            "name": "count",
+            "in": "path",
+            "required": true,
+            "description": "The number of poems to return",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "example": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Poem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/random/{count}": {
+      "get": {
+        "summary": "Get random poems",
+        "description": "Returns the specified number of random poems from the database",
+        "operationId": "getRandomPoems",
+        "tags": [
+          "Random"
+        ],
+        "parameters": [
+          {
+            "name": "count",
+            "in": "path",
+            "required": true,
+            "description": "The number of random poems to return",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "example": 5
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Poem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/random/{count}/{outputFields}": {
+      "get": {
+        "summary": "Get random poems with specific output fields",
+        "description": "Returns the specified number of random poems with only the requested fields",
+        "operationId": "getRandomPoemsWithFields",
+        "tags": [
+          "Random"
+        ],
+        "parameters": [
+          {
+            "name": "count",
+            "in": "path",
+            "required": true,
+            "description": "The number of random poems to return",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "example": 5
+          },
+          {
+            "name": "outputFields",
+            "in": "path",
+            "required": true,
+            "description": "Comma-separated list of output fields (author, title, lines, linecount, all)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "author,title"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}": {
+      "get": {
+        "summary": "Combined search with multiple input fields",
+        "description": "Search poems using multiple input fields with corresponding search terms separated by semicolons",
+        "operationId": "combinedSearch",
+        "tags": [
+          "Combined Search"
+        ],
+        "parameters": [
+          {
+            "name": "inputField1",
+            "in": "path",
+            "required": true,
+            "description": "First input field (author, title, lines, linecount)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "author",
+                "title",
+                "lines",
+                "linecount"
+              ]
+            },
+            "example": "author"
+          },
+          {
+            "name": "inputField2",
+            "in": "path",
+            "required": true,
+            "description": "Second input field (author, title, lines, linecount)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "author",
+                "title",
+                "lines",
+                "linecount"
+              ]
+            },
+            "example": "linecount"
+          },
+          {
+            "name": "searchTerm1",
+            "in": "path",
+            "required": true,
+            "description": "Search term for first input field",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Shakespeare"
+          },
+          {
+            "name": "searchTerm2",
+            "in": "path",
+            "required": true,
+            "description": "Search term for second input field",
+            "schema": {
+              "type": "string"
+            },
+            "example": "14"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Poem"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputFields}": {
+      "get": {
+        "summary": "Combined search with multiple input fields and specific output fields",
+        "description": "Search poems using multiple input fields with corresponding search terms and return specific output fields",
+        "operationId": "combinedSearchWithFields",
+        "tags": [
+          "Combined Search"
+        ],
+        "parameters": [
+          {
+            "name": "inputField1",
+            "in": "path",
+            "required": true,
+            "description": "First input field (author, title, lines, linecount)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "author",
+                "title",
+                "lines",
+                "linecount"
+              ]
+            },
+            "example": "author"
+          },
+          {
+            "name": "inputField2",
+            "in": "path",
+            "required": true,
+            "description": "Second input field (author, title, lines, linecount)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "author",
+                "title",
+                "lines",
+                "linecount"
+              ]
+            },
+            "example": "linecount"
+          },
+          {
+            "name": "searchTerm1",
+            "in": "path",
+            "required": true,
+            "description": "Search term for first input field",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Shakespeare"
+          },
+          {
+            "name": "searchTerm2",
+            "in": "path",
+            "required": true,
+            "description": "Search term for second input field",
+            "schema": {
+              "type": "string"
+            },
+            "example": "14"
+          },
+          {
+            "name": "outputFields",
+            "in": "path",
+            "required": true,
+            "description": "Comma-separated list of output fields (author, title, lines, linecount, all)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "lines"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No poems found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Poem": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "The title of the poem",
+            "example": "Ozymandias"
+          },
+          "author": {
+            "type": "string",
+            "description": "The author of the poem",
+            "example": "Percy Bysshe Shelley"
+          },
+          "lines": {
+            "type": "array",
+            "description": "The lines of the poem",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "I met a traveller from an antique land",
+              "Who said: \"Two vast and trunkless legs of stone",
+              "Stand in the desert. Near them on the sand,"
+            ]
+          },
+          "linecount": {
+            "type": "integer",
+            "description": "The number of lines in the poem (including section headings, excluding empty lines)",
+            "example": 14
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "example": 404
+          },
+          "reason": {
+            "type": "string",
+            "example": "Not found"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Author",
+      "description": "Operations related to searching poems by author"
+    },
+    {
+      "name": "Title",
+      "description": "Operations related to searching poems by title"
+    },
+    {
+      "name": "Lines",
+      "description": "Operations related to searching poems by line content"
+    },
+    {
+      "name": "Linecount",
+      "description": "Operations related to searching poems by line count"
+    },
+    {
+      "name": "Poemcount",
+      "description": "Operations related to retrieving a specific number of poems"
+    },
+    {
+      "name": "Random",
+      "description": "Operations related to retrieving random poems"
+    },
+    {
+      "name": "Combined Search",
+      "description": "Operations using multiple search criteria"
+    }
+  ]
+}

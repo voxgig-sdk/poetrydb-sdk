@@ -1,0 +1,40 @@
+{
+  "existing": {
+    "random": {
+      "RANDOM00": {
+        "author": "s28",
+        "line": [],
+        "linecount": "s2a",
+        "title": "s2b",
+        "count": "COUNT01",
+        "output_field": "OUTPUT_FIELD01"
+      },
+      "RANDOM01": {
+        "author": "s50",
+        "line": [],
+        "linecount": "s52",
+        "title": "s53",
+        "count": "COUNT01",
+        "output_field": "OUTPUT_FIELD01"
+      },
+      "RANDOM02": {
+        "author": "s78",
+        "line": [],
+        "linecount": "s7a",
+        "title": "s7b",
+        "count": "COUNT01",
+        "output_field": "OUTPUT_FIELD01"
+      }
+    }
+  },
+  "new": {
+    "random": {
+      "random_ref01": {
+        "author": "sa0",
+        "line": [],
+        "linecount": "sa2",
+        "title": "sa3"
+      }
+    }
+  }
+}

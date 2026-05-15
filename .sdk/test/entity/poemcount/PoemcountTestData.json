@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "poemcount": {
+      "POEMCOUNT00": {
+        "author": "s28",
+        "line": [],
+        "linecount": "s2a",
+        "title": "s2b"
+      },
+      "POEMCOUNT01": {
+        "author": "s50",
+        "line": [],
+        "linecount": "s52",
+        "title": "s53"
+      },
+      "POEMCOUNT02": {
+        "author": "s78",
+        "line": [],
+        "linecount": "s7a",
+        "title": "s7b"
+      }
+    }
+  },
+  "new": {
+    "poemcount": {
+      "poemcount_ref01": {
+        "author": "sa0",
+        "line": [],
+        "linecount": "sa2",
+        "title": "sa3"
+      }
+    }
+  }
+}

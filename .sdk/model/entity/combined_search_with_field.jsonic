@@ -1,0 +1,91 @@
+# Entity: combined_search_with_field
+
+main: kit: entity: combined_search_with_field: {
+
+  alias: field: {}
+
+  name: "combined_search_with_field"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "author"
+                kind: "param"
+                name: "input_field1"
+                orig: "input_field1"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "linecount"
+                kind: "param"
+                name: "input_field2"
+                orig: "input_field2"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "lines"
+                kind: "param"
+                name: "output_field"
+                orig: "output_field"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "Shakespeare"
+                kind: "param"
+                name: "search_term1"
+                orig: "search_term1"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "14"
+                kind: "param"
+                name: "search_term2"
+                orig: "search_term2"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputFields}"
+          parts: [
+            "{input_field1},{input_field2}"
+            "{search_term1};{search_term2}"
+            "{output_field}"
+          ]
+          rename: {
+            param: {
+              "inputField1},{inputField2": "input_field1},{input_field2"
+              outputFields: "output_field"
+              "searchTerm1};{searchTerm2": "search_term1};{search_term2"
+            }
+          }
+          select: {
+            exist: [
+              "input_field1"
+              "input_field2"
+              "output_field"
+              "search_term1"
+              "search_term2"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

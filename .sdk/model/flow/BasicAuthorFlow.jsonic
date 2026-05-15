@@ -1,0 +1,44 @@
+# BasicAuthorFlow
+
+main: kit: flow: BasicAuthorFlow:
+{
+  entity: "author",
+  kind: "basic",
+  name: "BasicAuthorFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "author_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "author_ref01",
+        srcdatavar: "author_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "author01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-author_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAuthorFlow"
+}

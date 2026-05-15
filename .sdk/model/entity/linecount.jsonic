@@ -1,0 +1,185 @@
+# Entity: linecount
+
+main: kit: entity: linecount: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "author"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "line"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "linecount"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "linecount"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "text"
+                kind: "param"
+                name: "format"
+                orig: "format"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: 14
+                kind: "param"
+                name: "linecount"
+                orig: "linecount"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+              {
+                example: "author,title"
+                kind: "param"
+                name: "output_field"
+                orig: "output_field"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/linecount/{linecount}/{outputFields}.{format}"
+          parts: [
+            "linecount"
+            "{linecount}"
+            "{output_fields}_{format}"
+          ]
+          rename: {
+            param: {
+              "outputFields}.{format": "output_fields}_{format"
+            }
+          }
+          select: {
+            exist: [
+              "format"
+              "linecount"
+              "output_field"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: 14
+                kind: "param"
+                name: "linecount"
+                orig: "linecount"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+              {
+                example: "author,title"
+                kind: "param"
+                name: "output_field"
+                orig: "output_field"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/linecount/{linecount}/{outputFields}"
+          parts: [
+            "linecount"
+            "{linecount}"
+            "{output_field}"
+          ]
+          rename: {
+            param: {
+              outputFields: "output_field"
+            }
+          }
+          select: {
+            exist: [
+              "linecount"
+              "output_field"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: 14
+                kind: "param"
+                name: "id"
+                orig: "linecount"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/linecount/{linecount}"
+          parts: [
+            "linecount"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              linecount: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "linecount"
+      ]
+    ]
+  }
+
+
+
+}
