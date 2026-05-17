@@ -7,7 +7,8 @@
         "linecount": "s2a",
         "title": "s2b",
         "format": "FORMAT01",
-        "output_field": "OUTPUT_FIELD01"
+        "output_field": "OUTPUT_FIELD01",
+        "id": "LINE00"
       },
       "LINE01": {
         "author": "s50",
@@ -15,7 +16,8 @@
         "linecount": "s52",
         "title": "s53",
         "format": "FORMAT01",
-        "output_field": "OUTPUT_FIELD01"
+        "output_field": "OUTPUT_FIELD01",
+        "id": "LINE01"
       },
       "LINE02": {
         "author": "s78",
@@ -23,7 +25,8 @@
         "linecount": "s7a",
         "title": "s7b",
         "format": "FORMAT01",
-        "output_field": "OUTPUT_FIELD01"
+        "output_field": "OUTPUT_FIELD01",
+        "id": "LINE02"
       }
     }
   },

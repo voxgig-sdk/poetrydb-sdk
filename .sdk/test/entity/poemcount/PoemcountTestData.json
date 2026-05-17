@@ -5,19 +5,22 @@
         "author": "s28",
         "line": [],
         "linecount": "s2a",
-        "title": "s2b"
+        "title": "s2b",
+        "id": "POEMCOUNT00"
       },
       "POEMCOUNT01": {
         "author": "s50",
         "line": [],
         "linecount": "s52",
-        "title": "s53"
+        "title": "s53",
+        "id": "POEMCOUNT01"
       },
       "POEMCOUNT02": {
         "author": "s78",
         "line": [],
         "linecount": "s7a",
-        "title": "s7b"
+        "title": "s7b",
+        "id": "POEMCOUNT02"
       }
     }
   },

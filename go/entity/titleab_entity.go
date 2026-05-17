@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/poetrydb-sdk/core"
+	"github.com/voxgig-sdk/poetrydb-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/poetrydb-sdk/go/utility/struct"
 )
 
 type TitleabEntity struct {

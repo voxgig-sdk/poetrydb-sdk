@@ -1,9 +1,9 @@
 package utility
 
 import (
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/poetrydb-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/poetrydb-sdk/core"
+	"github.com/voxgig-sdk/poetrydb-sdk/go/core"
 )
 
 func transformRequestUtil(ctx *core.Context) any {

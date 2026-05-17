@@ -1,10 +1,10 @@
 package voxgigpoetrydbsdk
 
 import (
-	"github.com/voxgig-sdk/poetrydb-sdk/core"
-	"github.com/voxgig-sdk/poetrydb-sdk/entity"
-	"github.com/voxgig-sdk/poetrydb-sdk/feature"
-	_ "github.com/voxgig-sdk/poetrydb-sdk/utility"
+	"github.com/voxgig-sdk/poetrydb-sdk/go/core"
+	"github.com/voxgig-sdk/poetrydb-sdk/go/entity"
+	"github.com/voxgig-sdk/poetrydb-sdk/go/feature"
+	_ "github.com/voxgig-sdk/poetrydb-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

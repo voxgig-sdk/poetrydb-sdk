@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/poetrydb-sdk"
-	"github.com/voxgig-sdk/poetrydb-sdk/core"
+	sdk "github.com/voxgig-sdk/poetrydb-sdk/go"
+	"github.com/voxgig-sdk/poetrydb-sdk/go/core"
 )
 
 func TestAuthorabDirect(t *testing.T) {

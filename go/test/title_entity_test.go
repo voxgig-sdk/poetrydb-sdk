@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/poetrydb-sdk"
-	"github.com/voxgig-sdk/poetrydb-sdk/core"
+	sdk "github.com/voxgig-sdk/poetrydb-sdk/go"
+	"github.com/voxgig-sdk/poetrydb-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/poetrydb-sdk/go/utility/struct"
 )
 
 func TestTitleEntity(t *testing.T) {

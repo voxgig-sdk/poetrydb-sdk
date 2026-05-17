@@ -7,7 +7,8 @@
         "linecount": "s2a",
         "title": "s2b",
         "count": "COUNT01",
-        "output_field": "OUTPUT_FIELD01"
+        "output_field": "OUTPUT_FIELD01",
+        "id": "RANDOM00"
       },
       "RANDOM01": {
         "author": "s50",
@@ -15,7 +16,8 @@
         "linecount": "s52",
         "title": "s53",
         "count": "COUNT01",
-        "output_field": "OUTPUT_FIELD01"
+        "output_field": "OUTPUT_FIELD01",
+        "id": "RANDOM01"
       },
       "RANDOM02": {
         "author": "s78",
@@ -23,7 +25,8 @@
         "linecount": "s7a",
         "title": "s7b",
         "count": "COUNT01",
-        "output_field": "OUTPUT_FIELD01"
+        "output_field": "OUTPUT_FIELD01",
+        "id": "RANDOM02"
       }
     }
   },
