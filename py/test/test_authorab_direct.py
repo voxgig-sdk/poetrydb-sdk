@@ -73,14 +73,12 @@ def _authorab_direct_setup(mockres):
     env = runner.env_override({
         "POETRYDB_TEST_AUTHORAB_ENTID": {},
         "POETRYDB_TEST_LIVE": "FALSE",
-        "POETRYDB_APIKEY": "NONE",
     })
 
     live = env.get("POETRYDB_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("POETRYDB_APIKEY"),
         }
         client = PoetrydbSDK(merged_opts)
         return {

@@ -216,14 +216,12 @@ func linecountDirectSetup(mockres any) *linecountDirectSetupResult {
 	env := envOverride(map[string]any{
 		"POETRYDB_TEST_LINECOUNT_ENTID": map[string]any{},
 		"POETRYDB_TEST_LIVE":    "FALSE",
-		"POETRYDB_APIKEY":       "NONE",
 	})
 
 	live := env["POETRYDB_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["POETRYDB_APIKEY"],
 		}
 		client := sdk.NewPoetrydbSDK(mergedOpts)
 

@@ -20,7 +20,26 @@
           }
         ],
         "title": "PoetryDB API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Search and retrieve classic poetry by author, title, lines, or line count, with JSON results",
+        "homepage": "https://poetrydb.org",
+        "docs_url": "https://github.com/thundercomb/poetrydb/blob/master/README.md",
+        "license_short": "GNU General Public License v2.0",
+        "license_md": "- Released under the [GNU General Public License v2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).\n- The Ruby source code for the API is open source and available on [GitHub](https://github.com/thundercomb/poetrydb).\n- Attribution to the PoetryDB project (concept and code by [@thundercomb](https://twitter.com/thundercomb)) is appreciated when redistributing data.",
+        "about_md": "[PoetryDB](https://poetrydb.org) is a free, public API that exposes a curated collection of classic English-language poetry as JSON. The project's concept and code are by [@thundercomb](https://twitter.com/thundercomb), with the poems stored in a MongoDB database and served by an open-source Ruby application.\n\nWhat you get from the API:\n- Search poems by `author`, `title`, `lines` (full-text match against the body), or exact `linecount`.\n- Combine multiple search fields in a single request, with optional `:abs` modifier for exact matches.\n- Retrieve random poems via `/random[/<count>]`.\n- For each poem, the API returns the fields `title`, `author`, `lines` (array of strings) and `linecount`.\n- Results are available in `.json` (default) or `.text` format.\n\nThe service has CORS enabled and requires no authentication or API key. The README does not document a rate limit, but as a free community service it should be used courteously.",
+        "entity_desc": {
+          "author": "Search poems by author name; path `/author/<author>[/<output field>][.<format>]`.",
+          "authorab": "Exact-match (`:abs`) variant for author searches; path `/author/<author>:abs[/<output field>][.<format>]`.",
+          "combined_search": "Combine multiple input fields (e.g. author and title) in one query, separated by semicolons.",
+          "combined_search_with_field": "Combined search that also selects which output field(s) to return per poem.",
+          "line": "Full-text search against the lines of poems; path `/lines/<lines>[:abs][/<output field>][.<format>]`.",
+          "linecount": "Find poems with an exact number of lines; path `/linecount/<linecount>[/<output field>][.<format>]`.",
+          "poemcount": "Limit or count results when combined with other search fields.",
+          "random": "Return one or more randomly chosen poems; path `/random[/<count>][/<output field>][.<format>]`.",
+          "title": "Search poems by title; path `/title/<title>[:abs][/<output field>][.<format>]`.",
+          "titleab": "Exact-match (`:abs`) variant for title searches; path `/title/<title>:abs[/<output field>][.<format>]`."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -28,7 +47,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "author": {

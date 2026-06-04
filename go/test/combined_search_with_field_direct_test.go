@@ -150,14 +150,12 @@ func combined_search_with_fieldDirectSetup(mockres any) *combined_search_with_fi
 	env := envOverride(map[string]any{
 		"POETRYDB_TEST_COMBINED_SEARCH_WITH_FIELD_ENTID": map[string]any{},
 		"POETRYDB_TEST_LIVE":    "FALSE",
-		"POETRYDB_APIKEY":       "NONE",
 	})
 
 	live := env["POETRYDB_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["POETRYDB_APIKEY"],
 		}
 		client := sdk.NewPoetrydbSDK(mergedOpts)
 

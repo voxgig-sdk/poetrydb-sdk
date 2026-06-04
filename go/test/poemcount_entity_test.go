@@ -117,7 +117,6 @@ func poemcountBasicSetup(extra map[string]any) *entityTestSetup {
 		"POETRYDB_TEST_POEMCOUNT_ENTID": idmap,
 		"POETRYDB_TEST_LIVE":      "FALSE",
 		"POETRYDB_TEST_EXPLAIN":   "FALSE",
-		"POETRYDB_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["POETRYDB_TEST_POEMCOUNT_ENTID"])
@@ -128,7 +127,6 @@ func poemcountBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["POETRYDB_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["POETRYDB_APIKEY"],
 			},
 			extra,
 		})
