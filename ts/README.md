@@ -10,7 +10,7 @@ The TypeScript SDK for the Poetrydb API — a type-safe, entity-oriented client 
 
 ## Install
 ```bash
-npm install poetrydb
+npm install @voxgig-sdk/poetrydb
 ```
 ## Tutorial: your first API call
 

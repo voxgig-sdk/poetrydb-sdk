@@ -10,7 +10,7 @@ The PHP SDK for the Poetrydb API — an entity-oriented client using PHP convent
 
 ## Install
 ```bash
-composer require voxgig/poetrydb-sdk
+composer require voxgig-sdk/poetrydb
 ```
 
 

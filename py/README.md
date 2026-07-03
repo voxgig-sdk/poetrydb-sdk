@@ -10,7 +10,7 @@ The Python SDK for the Poetrydb API — an entity-oriented client following Pyth
 
 ## Install
 ```bash
-pip install poetrydb-sdk
+pip install voxgig-sdk-poetrydb
 ```
 
 Or install from source:

@@ -10,7 +10,7 @@ The Lua SDK for the Poetrydb API — an entity-oriented client using Lua convent
 
 ## Install
 ```bash
-luarocks install poetrydb-sdk
+luarocks install voxgig-sdk-poetrydb
 ```
 
 If the module is not yet published, add the source directory to

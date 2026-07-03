@@ -10,13 +10,13 @@ The Ruby SDK for the Poetrydb API — an entity-oriented client using idiomatic 
 
 ## Install
 ```bash
-gem install poetrydb-sdk
+gem install voxgig-sdk-poetrydb
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "poetrydb-sdk"
+gem "voxgig-sdk-poetrydb"
 ```
 
 Then run:
