@@ -92,12 +92,14 @@ function combined_search_direct_setup(mockres)
   local env = runner.env_override({
     ["POETRYDB_TEST_COMBINED_SEARCH_ENTID"] = {},
     ["POETRYDB_TEST_LIVE"] = "FALSE",
+    ["POETRYDB_APIKEY"] = "NONE",
   })
 
   local live = env["POETRYDB_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["POETRYDB_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

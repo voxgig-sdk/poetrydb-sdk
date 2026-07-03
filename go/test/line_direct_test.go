@@ -216,12 +216,14 @@ func lineDirectSetup(mockres any) *lineDirectSetupResult {
 	env := envOverride(map[string]any{
 		"POETRYDB_TEST_LINE_ENTID": map[string]any{},
 		"POETRYDB_TEST_LIVE":    "FALSE",
+		"POETRYDB_APIKEY":       "NONE",
 	})
 
 	live := env["POETRYDB_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["POETRYDB_APIKEY"],
 		}
 		client := sdk.NewPoetrydbSDK(mergedOpts)
 

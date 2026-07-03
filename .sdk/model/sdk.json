@@ -1,52 +1,13 @@
 {
-  "name": "poetrydb",
-  "origin": "voxgig-sdk",
   "def": "poetrydb_0.1.0.json",
   "main": {
+    "def": {
+      "desc": ""
+    },
     "kit": {
-      "info": {
-        "contact": {
-          "url": "https://github.com/thundercomb/poetrydb"
-        },
-        "description": "An API for internet poets to access and retrieve poetry data. Users can search for poems by title, author, lines, line count, and more, and receive the results in JSON format.",
-        "license": {
-          "name": "GPL-2.0",
-          "url": "https://github.com/thundercomb/poetrydb/blob/master/LICENSE.txt"
-        },
-        "servers": [
-          {
-            "description": "Production server",
-            "url": "https://poetrydb.org"
-          }
-        ],
-        "title": "PoetryDB API",
-        "version": "1.0.0",
-        "tagline": "Search and retrieve classic poetry by author, title, lines, or line count, with JSON results",
-        "homepage": "https://poetrydb.org",
-        "docs_url": "https://github.com/thundercomb/poetrydb/blob/master/README.md",
-        "license_short": "GNU General Public License v2.0",
-        "license_md": "- Released under the [GNU General Public License v2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).\n- The Ruby source code for the API is open source and available on [GitHub](https://github.com/thundercomb/poetrydb).\n- Attribution to the PoetryDB project (concept and code by [@thundercomb](https://twitter.com/thundercomb)) is appreciated when redistributing data.",
-        "about_md": "[PoetryDB](https://poetrydb.org) is a free, public API that exposes a curated collection of classic English-language poetry as JSON. The project's concept and code are by [@thundercomb](https://twitter.com/thundercomb), with the poems stored in a MongoDB database and served by an open-source Ruby application.\n\nWhat you get from the API:\n- Search poems by `author`, `title`, `lines` (full-text match against the body), or exact `linecount`.\n- Combine multiple search fields in a single request, with optional `:abs` modifier for exact matches.\n- Retrieve random poems via `/random[/<count>]`.\n- For each poem, the API returns the fields `title`, `author`, `lines` (array of strings) and `linecount`.\n- Results are available in `.json` (default) or `.text` format.\n\nThe service has CORS enabled and requires no authentication or API key. The README does not document a rate limit, but as a free community service it should be used courteously.",
-        "entity_desc": {
-          "author": "Search poems by author name; path `/author/<author>[/<output field>][.<format>]`.",
-          "authorab": "Exact-match (`:abs`) variant for author searches; path `/author/<author>:abs[/<output field>][.<format>]`.",
-          "combined_search": "Combine multiple input fields (e.g. author and title) in one query, separated by semicolons.",
-          "combined_search_with_field": "Combined search that also selects which output field(s) to return per poem.",
-          "line": "Full-text search against the lines of poems; path `/lines/<lines>[:abs][/<output field>][.<format>]`.",
-          "linecount": "Find poems with an exact number of lines; path `/linecount/<linecount>[/<output field>][.<format>]`.",
-          "poemcount": "Limit or count results when combined with other search fields.",
-          "random": "Return one or more randomly chosen poems; path `/random[/<count>][/<output field>][.<format>]`.",
-          "title": "Search poems by title; path `/title/<title>[:abs][/<output field>][.<format>]`.",
-          "titleab": "Exact-match (`:abs`) variant for title searches; path `/title/<title>:abs[/<output field>][.<format>]`."
-        },
-        "auth": false
-      },
       "config": {
         "auth": {
           "prefix": "Bearer"
-        },
-        "headers": {
-          "content-type": "application/json"
         },
         "docs_order": [
           "ts",
@@ -55,73 +16,79 @@
           "go",
           "rb",
           "lua"
-        ]
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
       },
       "entity": {
         "author": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "author",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "line",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "linecount",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "title",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             }
           ],
           "name": "author",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "Ernest Dowson",
                         "kind": "param",
                         "name": "author",
                         "orig": "author",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "text",
                         "kind": "param",
                         "name": "format",
                         "orig": "format",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "author,title,linecount",
                         "kind": "param",
                         "name": "output_field",
                         "orig": "output_field",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -147,29 +114,29 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 },
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "Ernest Dowson",
                         "kind": "param",
                         "name": "author",
                         "orig": "author",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "author,title,linecount",
                         "kind": "param",
                         "name": "output_field",
                         "orig": "output_field",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -194,40 +161,40 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 },
                 {
+                  "active": true,
+                  "args": {},
                   "method": "GET",
                   "orig": "/author",
                   "parts": [
                     "author"
                   ],
+                  "select": {},
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true,
-                  "args": {},
-                  "select": {}
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             },
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "Ernest Dowson",
                         "kind": "param",
                         "name": "id",
                         "orig": "author",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -250,11 +217,9 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
           "relations": {
@@ -263,55 +228,57 @@
                 "author"
               ]
             ]
-          },
-          "active": true
+          }
         },
         "authorab": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "author",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "line",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "linecount",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "title",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             }
           ],
           "name": "authorab",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "Ernest Dowson",
                         "kind": "param",
                         "name": "author",
                         "orig": "author",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -329,11 +296,9 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
           "relations": {
@@ -342,82 +307,84 @@
                 "author"
               ]
             ]
-          },
-          "active": true
+          }
         },
         "combined_search": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "author",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "line",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "linecount",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "title",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             }
           ],
           "name": "combined_search",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "author",
                         "kind": "param",
                         "name": "input_field1",
                         "orig": "input_field1",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "linecount",
                         "kind": "param",
                         "name": "input_field2",
                         "orig": "input_field2",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "Shakespeare",
                         "kind": "param",
                         "name": "search_term1",
                         "orig": "search_term1",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "14",
                         "kind": "param",
                         "name": "search_term2",
                         "orig": "search_term2",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -444,74 +411,75 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
         },
         "combined_search_with_field": {
+          "active": true,
           "alias": {
             "field": {}
           },
+          "fields": [],
           "name": "combined_search_with_field",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "author",
                         "kind": "param",
                         "name": "input_field1",
                         "orig": "input_field1",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "linecount",
                         "kind": "param",
                         "name": "input_field2",
                         "orig": "input_field2",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "lines",
                         "kind": "param",
                         "name": "output_field",
                         "orig": "output_field",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "Shakespeare",
                         "kind": "param",
                         "name": "search_term1",
                         "orig": "search_term1",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "14",
                         "kind": "param",
                         "name": "search_term2",
                         "orig": "search_term2",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -541,83 +509,82 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
-          "fields": [],
           "relations": {
             "ancestors": []
           }
         },
         "line": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "author",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "line",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "linecount",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "title",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             }
           ],
           "name": "line",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "text",
                         "kind": "param",
                         "name": "format",
                         "orig": "format",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "Latitudeless Place",
                         "kind": "param",
                         "name": "line",
                         "orig": "line",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "author,title,linecount",
                         "kind": "param",
                         "name": "output_field",
                         "orig": "output_field",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -644,29 +611,29 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 },
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "Latitudeless Place",
                         "kind": "param",
                         "name": "line",
                         "orig": "line",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "author,title,linecount",
                         "kind": "param",
                         "name": "output_field",
                         "orig": "output_field",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -692,26 +659,26 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             },
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "Latitudeless Place",
                         "kind": "param",
                         "name": "id",
                         "orig": "line",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -734,11 +701,9 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
           "relations": {
@@ -747,73 +712,75 @@
                 "line"
               ]
             ]
-          },
-          "active": true
+          }
         },
         "linecount": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "author",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "line",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "linecount",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "title",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             }
           ],
           "name": "linecount",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "text",
                         "kind": "param",
                         "name": "format",
                         "orig": "format",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": 14,
                         "kind": "param",
                         "name": "linecount",
                         "orig": "linecount",
                         "reqd": true,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       },
                       {
+                        "active": true,
                         "example": "author,title",
                         "kind": "param",
                         "name": "output_field",
                         "orig": "output_field",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -839,29 +806,29 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 },
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": 14,
                         "kind": "param",
                         "name": "linecount",
                         "orig": "linecount",
                         "reqd": true,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       },
                       {
+                        "active": true,
                         "example": "author,title",
                         "kind": "param",
                         "name": "output_field",
                         "orig": "output_field",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -886,26 +853,26 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             },
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": 14,
                         "kind": "param",
                         "name": "id",
                         "orig": "linecount",
                         "reqd": true,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       }
                     ]
                   },
@@ -928,11 +895,9 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
           "relations": {
@@ -941,55 +906,57 @@
                 "linecount"
               ]
             ]
-          },
-          "active": true
+          }
         },
         "poemcount": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "author",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "line",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "linecount",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "title",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             }
           ],
           "name": "poemcount",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": 10,
                         "kind": "param",
                         "name": "id",
                         "orig": "count",
                         "reqd": true,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       }
                     ]
                   },
@@ -1012,73 +979,73 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
         },
         "random": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "author",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "line",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "linecount",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "title",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             }
           ],
           "name": "random",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": 5,
                         "kind": "param",
                         "name": "count",
                         "orig": "count",
                         "reqd": true,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       },
                       {
+                        "active": true,
                         "example": "author,title",
                         "kind": "param",
                         "name": "output_field",
                         "orig": "output_field",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -1103,26 +1070,26 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             },
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": 5,
                         "kind": "param",
                         "name": "id",
                         "orig": "count",
                         "reqd": true,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       }
                     ]
                   },
@@ -1145,11 +1112,9 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
           "relations": {
@@ -1158,73 +1123,75 @@
                 "random"
               ]
             ]
-          },
-          "active": true
+          }
         },
         "title": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "author",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "line",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "linecount",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "title",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             }
           ],
           "name": "title",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "text",
                         "kind": "param",
                         "name": "format",
                         "orig": "format",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "title,lines",
                         "kind": "param",
                         "name": "output_field",
                         "orig": "output_field",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "Ozymandias",
                         "kind": "param",
                         "name": "title",
                         "orig": "title",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -1250,29 +1217,29 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 },
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "author,title,linecount",
                         "kind": "param",
                         "name": "output_field",
                         "orig": "output_field",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "example": "Ozymandias",
                         "kind": "param",
                         "name": "title",
                         "orig": "title",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -1297,40 +1264,40 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 },
                 {
+                  "active": true,
+                  "args": {},
                   "method": "GET",
                   "orig": "/title",
                   "parts": [
                     "title"
                   ],
+                  "select": {},
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true,
-                  "args": {},
-                  "select": {}
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             },
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "Ozymandias",
                         "kind": "param",
                         "name": "id",
                         "orig": "title",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -1353,11 +1320,9 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
           "relations": {
@@ -1366,55 +1331,57 @@
                 "title"
               ]
             ]
-          },
-          "active": true
+          }
         },
         "titleab": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "author",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "line",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "linecount",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "title",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             }
           ],
           "name": "titleab",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "Ozymandias",
                         "kind": "param",
                         "name": "title",
                         "orig": "title",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -1432,11 +1399,9 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
           "relations": {
@@ -1445,15 +1410,11 @@
                 "title"
               ]
             ]
-          },
-          "active": true
+          }
         }
       },
       "feature": {
         "test": {
-          "name": "test",
-          "title": "In-memory mock transport for testing without a live server",
-          "version": "0.0.1",
           "active": true,
           "config": {
             "options": {
@@ -1461,6 +1422,14 @@
             }
           },
           "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
             "PostConstruct": {
               "active": true,
               "await": false
@@ -1469,25 +1438,11 @@
               "active": true,
               "await": false
             },
-            "SetData": {
-              "active": true,
-              "await": false
-            },
-            "GetData": {
-              "active": true,
-              "await": false
-            },
-            "SetMatch": {
-              "active": true
-            },
-            "GetMatch": {
-              "active": true,
+            "PostOperation": {
+              "active": false,
               "await": false
             },
             "PrePoint": {
-              "active": true
-            },
-            "PreSpec": {
               "active": true,
               "await": false
             },
@@ -1503,20 +1458,32 @@
               "active": true,
               "await": false
             },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
             "PreTarget": {
               "active": false,
               "await": false
             },
-            "PostOperation": {
-              "active": false,
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
               "await": false
             }
           },
+          "name": "test",
           "target": {
-            "ts": {
+            "go": {
               "deps": {}
             },
-            "go": {
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
               "deps": {}
             },
             "lua": {
@@ -1531,23 +1498,30 @@
             "rb": {
               "deps": {}
             },
-            "go-cli": {
-              "deps": {}
-            },
-            "go-mcp": {
+            "ts": {
               "deps": {}
             }
-          }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
         }
       },
       "flow": {
         "BasicAuthorFlow": {
+          "active": true,
           "entity": "author",
+          "key$": "BasicAuthorFlow",
           "kind": "basic",
           "name": "BasicAuthorFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -1555,14 +1529,11 @@
                     "ref": "author_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             },
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "author_ref01",
                 "srcdatavar": "author_ref01_data",
@@ -1572,6 +1543,7 @@
                 "id": "author01"
               },
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1579,26 +1551,27 @@
                     "mark": "Mark01-author_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicAuthorFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicAuthorabFlow": {
+          "active": true,
           "entity": "authorab",
+          "key$": "BasicAuthorabFlow",
           "kind": "basic",
           "name": "BasicAuthorabFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
               "match": {
                 "author": "author01"
               },
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -1606,23 +1579,22 @@
                     "ref": "authorab_ref01"
                   }
                 }
-              ],
+              ]
+            }
+          ]
+        },
+        "BasicCombinedSearchFlow": {
+          "active": true,
+          "entity": "combined_search",
+          "key$": "BasicCombinedSearchFlow",
+          "kind": "basic",
+          "name": "BasicCombinedSearchFlow",
+          "param": {},
+          "step": [
+            {
               "active": true,
               "data": {},
               "input": {},
-              "spec": []
-            }
-          ],
-          "key$": "BasicAuthorabFlow",
-          "active": true,
-          "param": {}
-        },
-        "BasicCombinedSearchFlow": {
-          "entity": "combined_search",
-          "kind": "basic",
-          "name": "BasicCombinedSearchFlow",
-          "step": [
-            {
               "match": {
                 "input_field1": "input_field101",
                 "input_field2": "input_field201",
@@ -1630,6 +1602,7 @@
                 "search_term2": "search_term201"
               },
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -1637,23 +1610,22 @@
                     "ref": "combined_search_ref01"
                   }
                 }
-              ],
+              ]
+            }
+          ]
+        },
+        "BasicCombinedSearchWithFieldFlow": {
+          "active": true,
+          "entity": "combined_search_with_field",
+          "key$": "BasicCombinedSearchWithFieldFlow",
+          "kind": "basic",
+          "name": "BasicCombinedSearchWithFieldFlow",
+          "param": {},
+          "step": [
+            {
               "active": true,
               "data": {},
               "input": {},
-              "spec": []
-            }
-          ],
-          "key$": "BasicCombinedSearchFlow",
-          "active": true,
-          "param": {}
-        },
-        "BasicCombinedSearchWithFieldFlow": {
-          "entity": "combined_search_with_field",
-          "kind": "basic",
-          "name": "BasicCombinedSearchWithFieldFlow",
-          "step": [
-            {
               "match": {
                 "input_field1": "input_field101",
                 "input_field2": "input_field201",
@@ -1662,6 +1634,7 @@
                 "search_term2": "search_term201"
               },
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -1669,28 +1642,28 @@
                     "ref": "combined_search_with_field_ref01"
                   }
                 }
-              ],
+              ]
+            }
+          ]
+        },
+        "BasicLineFlow": {
+          "active": true,
+          "entity": "line",
+          "key$": "BasicLineFlow",
+          "kind": "basic",
+          "name": "BasicLineFlow",
+          "param": {},
+          "step": [
+            {
               "active": true,
               "data": {},
               "input": {},
-              "spec": []
-            }
-          ],
-          "key$": "BasicCombinedSearchWithFieldFlow",
-          "active": true,
-          "param": {}
-        },
-        "BasicLineFlow": {
-          "entity": "line",
-          "kind": "basic",
-          "name": "BasicLineFlow",
-          "step": [
-            {
               "match": {
                 "line": "line01",
                 "output_field": "output_field01"
               },
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -1698,13 +1671,11 @@
                     "ref": "line_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             },
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "line_ref01",
                 "srcdatavar": "line_ref01_data",
@@ -1714,6 +1685,7 @@
                 "id": "line01"
               },
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1721,27 +1693,28 @@
                     "mark": "Mark01-line_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicLineFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicLinecountFlow": {
+          "active": true,
           "entity": "linecount",
+          "key$": "BasicLinecountFlow",
           "kind": "basic",
           "name": "BasicLinecountFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
               "match": {
                 "linecount": "linecount01",
                 "output_field": "output_field01"
               },
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -1749,13 +1722,11 @@
                     "ref": "linecount_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             },
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "linecount_ref01",
                 "srcdatavar": "linecount_ref01_data",
@@ -1765,6 +1736,7 @@
                 "id": "linecount01"
               },
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1772,22 +1744,21 @@
                     "mark": "Mark01-linecount_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicLinecountFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicPoemcountFlow": {
+          "active": true,
           "entity": "poemcount",
+          "key$": "BasicPoemcountFlow",
           "kind": "basic",
           "name": "BasicPoemcountFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "poemcount_ref01",
                 "srcdatavar": "poemcount_ref01_data",
@@ -1797,6 +1768,7 @@
                 "id": "poemcount01"
               },
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1804,27 +1776,28 @@
                     "mark": "Mark01-poemcount_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicPoemcountFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicRandomFlow": {
+          "active": true,
           "entity": "random",
+          "key$": "BasicRandomFlow",
           "kind": "basic",
           "name": "BasicRandomFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
               "match": {
                 "count": "count01",
                 "output_field": "output_field01"
               },
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -1832,13 +1805,11 @@
                     "ref": "random_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             },
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "random_ref01",
                 "srcdatavar": "random_ref01_data",
@@ -1848,6 +1819,7 @@
                 "id": "random01"
               },
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1855,23 +1827,25 @@
                     "mark": "Mark01-random_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicRandomFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicTitleFlow": {
+          "active": true,
           "entity": "title",
+          "key$": "BasicTitleFlow",
           "kind": "basic",
           "name": "BasicTitleFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -1879,14 +1853,11 @@
                     "ref": "title_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             },
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "title_ref01",
                 "srcdatavar": "title_ref01_data",
@@ -1896,6 +1867,7 @@
                 "id": "title01"
               },
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -1903,26 +1875,27 @@
                     "mark": "Mark01-title_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicTitleFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicTitleabFlow": {
+          "active": true,
           "entity": "titleab",
+          "key$": "BasicTitleabFlow",
           "kind": "basic",
           "name": "BasicTitleabFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
               "match": {
                 "title": "title01"
               },
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -1930,28 +1903,56 @@
                     "ref": "titleab_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicTitleabFlow",
-          "active": true,
-          "param": {}
+          ]
         }
       },
+      "info": {
+        "contact": {
+          "url": "https://github.com/thundercomb/poetrydb"
+        },
+        "description": "An API for internet poets to access and retrieve poetry data. Users can search for poems by title, author, lines, line count, and more, and receive the results in JSON format.",
+        "license": {
+          "name": "GPL-2.0",
+          "url": "https://github.com/thundercomb/poetrydb/blob/master/LICENSE.txt"
+        },
+        "servers": [
+          {
+            "description": "Production server",
+            "url": "https://poetrydb.org"
+          }
+        ],
+        "title": "PoetryDB API",
+        "version": "1.0.0"
+      },
+      "option": {},
       "target": {
-        "go-cli": {
-          "title": "Go CLI",
-          "ext": "go",
+        "go": {
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "poetrydb"
           },
+          "name": "go",
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "poetrydb"
+          },
+          "name": "go-cli",
           "phase": {
             "entity": {
               "active": false
@@ -1966,19 +1967,19 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-cli",
-          "active": true
+          "title": "Go CLI"
         },
         "go-mcp": {
-          "title": "Go MCP server",
-          "ext": "go",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "poetrydb"
           },
+          "name": "go-mcp",
           "phase": {
             "entity": {
               "active": false
@@ -1993,138 +1994,120 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-mcp",
-          "active": true
-        },
-        "ts": {
-          "title": "TypeScript",
-          "ext": "ts",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "poetrydb"
-          },
-          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
-          "deps": {
-            "dotenv": {
-              "active": true,
-              "version": "^17.4.2",
-              "kind": "dev"
-            },
-            "typescript": {
-              "active": true,
-              "version": "^5.9.3",
-              "kind": "dev"
-            },
-            "@types/node": {
-              "active": true,
-              "version": "^25.6.0",
-              "kind": "dev"
-            }
-          },
-          "name": "ts",
-          "active": true
-        },
-        "go": {
-          "title": "Golang",
-          "ext": "go",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "poetrydb"
-          },
-          "srcfeature": false,
-          "deps": {},
-          "name": "go",
-          "active": true
+          "title": "Go MCP server"
         },
         "lua": {
-          "title": "Lua",
-          "ext": "lua",
+          "active": true,
           "comment": {
             "line": "--"
           },
-          "module": {
-            "name": "poetrydb"
-          },
-          "srcfeature": false,
           "deps": {
             "dkjson": {
               "active": true,
-              "version": "2.5",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.5"
             }
           },
+          "ext": "lua",
+          "module": {
+            "name": "poetrydb"
+          },
           "name": "lua",
-          "active": true
+          "srcfeature": false,
+          "title": "Lua"
         },
         "php": {
-          "title": "PHP",
-          "ext": "php",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "php",
           "module": {
             "name": "poetrydb"
           },
-          "srcfeature": false,
-          "deps": {},
           "name": "php",
-          "active": true
+          "srcfeature": false,
+          "title": "PHP"
         },
         "py": {
-          "title": "Python",
-          "ext": "py",
+          "active": true,
           "comment": {
             "line": "#"
           },
-          "module": {
-            "name": "poetrydb"
-          },
-          "srcfeature": false,
           "deps": {
             "requests": {
               "active": true,
-              "version": "2.33",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.33"
             }
           },
-          "name": "py",
-          "active": true
-        },
-        "rb": {
-          "title": "Ruby",
-          "ext": "rb",
-          "comment": {
-            "line": "#"
-          },
+          "ext": "py",
           "module": {
             "name": "poetrydb"
           },
+          "name": "py",
           "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
           "deps": {
-            "voxgig-struct": {
-              "active": true,
-              "version": "0.0.10",
-              "kind": "prod"
-            },
             "json": {
               "active": true,
-              "version": "0",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
             }
           },
+          "ext": "rb",
+          "module": {
+            "name": "poetrydb"
+          },
           "name": "rb",
-          "active": true
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "poetrydb"
+          },
+          "name": "ts",
+          "title": "TypeScript"
         }
-      },
-      "option": {}
-    },
-    "def": {
-      "desc": ""
+      }
     }
-  }
+  },
+  "name": "poetrydb",
+  "origin": "voxgig-sdk"
 }

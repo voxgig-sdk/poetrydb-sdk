@@ -89,6 +89,7 @@ def author_basic_setup(extra)
     "POETRYDB_TEST_AUTHOR_ENTID" => idmap,
     "POETRYDB_TEST_LIVE" => "FALSE",
     "POETRYDB_TEST_EXPLAIN" => "FALSE",
+    "POETRYDB_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -100,6 +101,7 @@ def author_basic_setup(extra)
   if env["POETRYDB_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
+        "apikey" => env["POETRYDB_APIKEY"],
       },
       extra || {},
     ])

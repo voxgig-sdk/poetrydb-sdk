@@ -1,6 +1,11 @@
 # Poetrydb Ruby SDK
 
-The Ruby SDK for the Poetrydb API. Provides an entity-oriented interface using idiomatic Ruby conventions.
+
+
+The Ruby SDK for the Poetrydb API — an entity-oriented client using idiomatic Ruby conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -31,13 +36,15 @@ loading a specific record.
 ```ruby
 require_relative "Poetrydb_sdk"
 
-client = PoetrydbSDK.new({})
+client = PoetrydbSDK.new({
+  "apikey" => ENV["POETRYDB_APIKEY"],
+})
 ```
 
 ### 2. List authors
 
 ```ruby
-result, err = client.Author(nil).list(nil, nil)
+result, err = client.Author().list
 raise err if err
 
 if result.is_a?(Array)
@@ -51,7 +58,7 @@ end
 ### 3. Load a author
 
 ```ruby
-result, err = client.Author(nil).load({ "id" => "example_id" }, nil)
+result, err = client.Author().load({ "id" => "example_id" })
 raise err if err
 puts result
 ```
@@ -97,11 +104,9 @@ puts fetchdef["headers"]
 Create a mock client for unit testing — no server required:
 
 ```ruby
-client = PoetrydbSDK.test(nil, nil)
+client = PoetrydbSDK.test
 
-result, err = client.Poetrydb(nil).load(
-  { "id" => "test01" }, nil
-)
+result, err = client.Poetrydb().load({ "id" => "test01" })
 # result contains mock response data
 ```
 
@@ -133,6 +138,7 @@ Create a `.env.local` file at the project root:
 
 ```
 POETRYDB_TEST_LIVE=TRUE
+POETRYDB_APIKEY=<your-key>
 ```
 
 Then run:
@@ -155,6 +161,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |

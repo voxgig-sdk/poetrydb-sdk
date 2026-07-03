@@ -86,12 +86,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'POETRYDB_TEST_TITLEAB_ENTID': {},
     'POETRYDB_TEST_LIVE': 'FALSE',
+    'POETRYDB_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.POETRYDB_TEST_LIVE
 
   if (live) {
     const client = new PoetrydbSDK({
+      apikey: env.POETRYDB_APIKEY,
     })
 
     let idmap: any = env['POETRYDB_TEST_TITLEAB_ENTID']

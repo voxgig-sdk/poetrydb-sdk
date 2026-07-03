@@ -97,12 +97,14 @@ function combined_search_direct_setup($mockres)
     $env = Runner::env_override([
         "POETRYDB_TEST_COMBINED_SEARCH_ENTID" => [],
         "POETRYDB_TEST_LIVE" => "FALSE",
+        "POETRYDB_APIKEY" => "NONE",
     ]);
 
     $live = $env["POETRYDB_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["POETRYDB_APIKEY"],
         ];
         $client = new PoetrydbSDK($merged_opts);
         return [

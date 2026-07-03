@@ -1,21 +1,8 @@
 # Poetrydb SDK
 
-Search and retrieve classic poetry by author, title, lines, or line count, with JSON results
+PoetryDB API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About PoetryDB API
-
-[PoetryDB](https://poetrydb.org) is a free, public API that exposes a curated collection of classic English-language poetry as JSON. The project's concept and code are by [@thundercomb](https://twitter.com/thundercomb), with the poems stored in a MongoDB database and served by an open-source Ruby application.
-
-What you get from the API:
-- Search poems by `author`, `title`, `lines` (full-text match against the body), or exact `linecount`.
-- Combine multiple search fields in a single request, with optional `:abs` modifier for exact matches.
-- Retrieve random poems via `/random[/<count>]`.
-- For each poem, the API returns the fields `title`, `author`, `lines` (array of strings) and `linecount`.
-- Results are available in `.json` (default) or `.text` format.
-
-The service has CORS enabled and requires no authentication or API key. The README does not document a rate limit, but as a free community service it should be used courteously.
 
 ## Try it
 
@@ -49,29 +36,31 @@ gem install poetrydb-sdk
 luarocks install poetrydb-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { PoetrydbSDK } from 'poetrydb'
 
-const client = new PoetrydbSDK({})
+const client = new PoetrydbSDK({
+  apikey: process.env.POETRYDB_APIKEY,
+})
 
 // List all authors
 const authors = await client.Author().list()
+console.log(authors.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,16 +90,16 @@ The API exposes 10 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Author** | Search poems by author name; path `/author/<author>[/<output field>][.<format>]`. | `/author/{author}/{outputFields}.{format}` |
-| **Authorab** | Exact-match (`:abs`) variant for author searches; path `/author/<author>:abs[/<output field>][.<format>]`. | `/author/{author}:abs` |
-| **CombinedSearch** | Combine multiple input fields (e.g. author and title) in one query, separated by semicolons. | `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}` |
-| **CombinedSearchWithField** | Combined search that also selects which output field(s) to return per poem. | `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputFields}` |
-| **Line** | Full-text search against the lines of poems; path `/lines/<lines>[:abs][/<output field>][.<format>]`. | `/lines/{lines}/{outputFields}.{format}` |
-| **Linecount** | Find poems with an exact number of lines; path `/linecount/<linecount>[/<output field>][.<format>]`. | `/linecount/{linecount}/{outputFields}.{format}` |
-| **Poemcount** | Limit or count results when combined with other search fields. | `/poemcount/{count}` |
-| **Random** | Return one or more randomly chosen poems; path `/random[/<count>][/<output field>][.<format>]`. | `/random/{count}/{outputFields}` |
-| **Title** | Search poems by title; path `/title/<title>[:abs][/<output field>][.<format>]`. | `/title/{title}/{outputFields}.{format}` |
-| **Titleab** | Exact-match (`:abs`) variant for title searches; path `/title/<title>:abs[/<output field>][.<format>]`. | `/title/{title}:abs` |
+| **Author** |  | `/author/{author}/{outputFields}.{format}` |
+| **Authorab** |  | `/author/{author}:abs` |
+| **CombinedSearch** |  | `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}` |
+| **CombinedSearchWithField** |  | `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputFields}` |
+| **Line** |  | `/lines/{lines}/{outputFields}.{format}` |
+| **Linecount** |  | `/linecount/{linecount}/{outputFields}.{format}` |
+| **Poemcount** |  | `/poemcount/{count}` |
+| **Random** |  | `/random/{count}/{outputFields}` |
+| **Title** |  | `/title/{title}/{outputFields}.{format}` |
+| **Titleab** |  | `/title/{title}:abs` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -120,17 +109,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from poetrydb_sdk import PoetrydbSDK
 
-client = PoetrydbSDK({})
+client = PoetrydbSDK({
+    "apikey": os.environ.get("POETRYDB_APIKEY"),
+})
 
 # List all authors
-authors, err = client.Author(None).list(None, None)
+authors, err = client.Author().list()
+print(authors)
 
 # Load a specific author
-author, err = client.Author(None).load(
-    {"id": "example_id"}, None
-)
+author, err = client.Author().load({"id": "example_id"})
+print(author)
 ```
 
 ### PHP
@@ -139,15 +131,17 @@ author, err = client.Author(None).load(
 <?php
 require_once 'poetrydb_sdk.php';
 
-$client = new PoetrydbSDK([]);
+$client = new PoetrydbSDK([
+    "apikey" => getenv("POETRYDB_APIKEY"),
+]);
 
 // List all authors
-[$authors, $err] = $client->Author(null)->list(null, null);
+[$authors, $err] = $client->Author()->list();
+print_r($authors);
 
 // Load a specific author
-[$author, $err] = $client->Author(null)->load(
-    ["id" => "example_id"], null
-);
+[$author, $err] = $client->Author()->load(["id" => "example_id"]);
+print_r($author);
 ```
 
 ### Golang
@@ -155,10 +149,13 @@ $client = new PoetrydbSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/poetrydb-sdk/go"
 
-client := sdk.NewPoetrydbSDK(map[string]any{})
+client := sdk.NewPoetrydbSDK(map[string]any{
+    "apikey": os.Getenv("POETRYDB_APIKEY"),
+})
 
 // List all authors
 authors, err := client.Author(nil).List(nil, nil)
+fmt.Println(authors)
 ```
 
 ### Ruby
@@ -166,15 +163,17 @@ authors, err := client.Author(nil).List(nil, nil)
 ```ruby
 require_relative "Poetrydb_sdk"
 
-client = PoetrydbSDK.new({})
+client = PoetrydbSDK.new({
+  "apikey" => ENV["POETRYDB_APIKEY"],
+})
 
 # List all authors
-authors, err = client.Author(nil).list(nil, nil)
+authors, err = client.Author().list
+puts authors
 
 # Load a specific author
-author, err = client.Author(nil).load(
-  { "id" => "example_id" }, nil
-)
+author, err = client.Author().load({ "id" => "example_id" })
+puts author
 ```
 
 ### Lua
@@ -182,15 +181,17 @@ author, err = client.Author(nil).load(
 ```lua
 local sdk = require("poetrydb_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("POETRYDB_APIKEY"),
+})
 
 -- List all authors
-local authors, err = client:Author(nil):list(nil, nil)
+local authors, err = client:Author():list()
+print(authors)
 
 -- Load a specific author
-local author, err = client:Author(nil):load(
-  { id = "example_id" }, nil
-)
+local author, err = client:Author():load({ id = "example_id" })
+print(author)
 ```
 
 ## Unit testing in offline mode
@@ -209,25 +210,21 @@ const result = await client.Author().load({ id: 'test01' })
 ### Python
 
 ```python
-client = PoetrydbSDK.test(None, None)
-result, err = client.Author(None).load(
-    {"id": "test01"}, None
-)
+client = PoetrydbSDK.test()
+result, err = client.Author().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = PoetrydbSDK::test(null, null);
-[$result, $err] = $client->Author(null)->load(
-    ["id" => "test01"], null
-);
+$client = PoetrydbSDK::test();
+[$result, $err] = $client->Author()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Author(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -236,19 +233,15 @@ result, err := client.Author(nil).Load(
 ### Ruby
 
 ```ruby
-client = PoetrydbSDK.test(nil, nil)
-result, err = client.Author(nil).load(
-  { "id" => "test01" }, nil
-)
+client = PoetrydbSDK.test
+result, err = client.Author().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Author(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Author():load({ id = "test01" })
 ```
 
 ## How it works
@@ -352,15 +345,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the PoetryDB API
-
-- Upstream: [https://poetrydb.org](https://poetrydb.org)
-- API docs: [https://github.com/thundercomb/poetrydb/blob/master/README.md](https://github.com/thundercomb/poetrydb/blob/master/README.md)
-
-- Released under the [GNU General Public License v2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
-- The Ruby source code for the API is open source and available on [GitHub](https://github.com/thundercomb/poetrydb).
-- Attribution to the PoetryDB project (concept and code by [@thundercomb](https://twitter.com/thundercomb)) is appreciated when redistributing data.
 
 ---
 

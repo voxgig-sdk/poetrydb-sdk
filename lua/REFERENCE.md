@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -139,7 +139,7 @@ local author = client:Author(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Author(nil):list(nil, nil)
+local results, err = client:Author():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -147,7 +147,7 @@ local results, err = client:Author(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Author(nil):load({ id = "author_id" }, nil)
+local result, err = client:Author():load({ id = "author_id" })
 ```
 
 ### Common Methods
@@ -202,7 +202,7 @@ local authorab = client:Authorab(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Authorab(nil):list(nil, nil)
+local results, err = client:Authorab():list()
 ```
 
 ### Common Methods
@@ -257,7 +257,7 @@ local combined_search = client:CombinedSearch(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:CombinedSearch(nil):list(nil, nil)
+local results, err = client:CombinedSearch():list()
 ```
 
 ### Common Methods
@@ -303,7 +303,7 @@ local combined_search_with_field = client:CombinedSearchWithField(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:CombinedSearchWithField(nil):list(nil, nil)
+local results, err = client:CombinedSearchWithField():list()
 ```
 
 ### Common Methods
@@ -358,7 +358,7 @@ local line = client:Line(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Line(nil):list(nil, nil)
+local results, err = client:Line():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -366,7 +366,7 @@ local results, err = client:Line(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Line(nil):load({ id = "line_id" }, nil)
+local result, err = client:Line():load({ id = "line_id" })
 ```
 
 ### Common Methods
@@ -421,7 +421,7 @@ local linecount = client:Linecount(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Linecount(nil):list(nil, nil)
+local results, err = client:Linecount():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -429,7 +429,7 @@ local results, err = client:Linecount(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Linecount(nil):load({ id = "linecount_id" }, nil)
+local result, err = client:Linecount():load({ id = "linecount_id" })
 ```
 
 ### Common Methods
@@ -484,7 +484,7 @@ local poemcount = client:Poemcount(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Poemcount(nil):load({ id = "poemcount_id" }, nil)
+local result, err = client:Poemcount():load({ id = "poemcount_id" })
 ```
 
 ### Common Methods
@@ -539,7 +539,7 @@ local random = client:Random(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Random(nil):list(nil, nil)
+local results, err = client:Random():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -547,7 +547,7 @@ local results, err = client:Random(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Random(nil):load({ id = "random_id" }, nil)
+local result, err = client:Random():load({ id = "random_id" })
 ```
 
 ### Common Methods
@@ -602,7 +602,7 @@ local title = client:Title(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Title(nil):list(nil, nil)
+local results, err = client:Title():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -610,7 +610,7 @@ local results, err = client:Title(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Title(nil):load({ id = "title_id" }, nil)
+local result, err = client:Title():load({ id = "title_id" })
 ```
 
 ### Common Methods
@@ -665,7 +665,7 @@ local titleab = client:Titleab(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Titleab(nil):list(nil, nil)
+local results, err = client:Titleab():list()
 ```
 
 ### Common Methods
