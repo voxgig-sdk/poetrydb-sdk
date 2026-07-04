@@ -116,7 +116,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## AuthorEntity
 
 ```python
-author = client.author
+author = client.Author()
 ```
 
 ### Fields
@@ -135,7 +135,9 @@ author = client.author
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.author.list({})
+results = client.Author().list({})
+for author in results:
+    print(author)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -143,7 +145,7 @@ results = client.author.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.author.load({"id": "author_id"})
+result = client.Author().load({"id": "author_id"})
 ```
 
 ### Common Methods
@@ -178,7 +180,7 @@ Return the entity name.
 ## AuthorabEntity
 
 ```python
-authorab = client.authorab
+authorab = client.Authorab()
 ```
 
 ### Fields
@@ -197,7 +199,9 @@ authorab = client.authorab
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.authorab.list({})
+results = client.Authorab().list({})
+for authorab in results:
+    print(authorab)
 ```
 
 ### Common Methods
@@ -232,7 +236,7 @@ Return the entity name.
 ## CombinedSearchEntity
 
 ```python
-combined_search = client.combined_search
+combined_search = client.CombinedSearch()
 ```
 
 ### Fields
@@ -251,7 +255,9 @@ combined_search = client.combined_search
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.combined_search.list({})
+results = client.CombinedSearch().list({})
+for combined_search in results:
+    print(combined_search)
 ```
 
 ### Common Methods
@@ -286,7 +292,7 @@ Return the entity name.
 ## CombinedSearchWithFieldEntity
 
 ```python
-combined_search_with_field = client.combined_search_with_field
+combined_search_with_field = client.CombinedSearchWithField()
 ```
 
 ### Operations
@@ -296,7 +302,9 @@ combined_search_with_field = client.combined_search_with_field
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.combined_search_with_field.list({})
+results = client.CombinedSearchWithField().list({})
+for combined_search_with_field in results:
+    print(combined_search_with_field)
 ```
 
 ### Common Methods
@@ -331,7 +339,7 @@ Return the entity name.
 ## LineEntity
 
 ```python
-line = client.line
+line = client.Line()
 ```
 
 ### Fields
@@ -350,7 +358,9 @@ line = client.line
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.line.list({})
+results = client.Line().list({})
+for line in results:
+    print(line)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -358,7 +368,7 @@ results = client.line.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.line.load({"id": "line_id"})
+result = client.Line().load({"id": "line_id"})
 ```
 
 ### Common Methods
@@ -393,7 +403,7 @@ Return the entity name.
 ## LinecountEntity
 
 ```python
-linecount = client.linecount
+linecount = client.Linecount()
 ```
 
 ### Fields
@@ -412,7 +422,9 @@ linecount = client.linecount
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.linecount.list({})
+results = client.Linecount().list({})
+for linecount in results:
+    print(linecount)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -420,7 +432,7 @@ results = client.linecount.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.linecount.load({"id": "linecount_id"})
+result = client.Linecount().load({"id": "linecount_id"})
 ```
 
 ### Common Methods
@@ -455,7 +467,7 @@ Return the entity name.
 ## PoemcountEntity
 
 ```python
-poemcount = client.poemcount
+poemcount = client.Poemcount()
 ```
 
 ### Fields
@@ -474,7 +486,7 @@ poemcount = client.poemcount
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.poemcount.load({"id": "poemcount_id"})
+result = client.Poemcount().load({"id": "poemcount_id"})
 ```
 
 ### Common Methods
@@ -509,7 +521,7 @@ Return the entity name.
 ## RandomEntity
 
 ```python
-random = client.random
+random = client.Random()
 ```
 
 ### Fields
@@ -528,7 +540,9 @@ random = client.random
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.random.list({})
+results = client.Random().list({})
+for random in results:
+    print(random)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -536,7 +550,7 @@ results = client.random.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.random.load({"id": "random_id"})
+result = client.Random().load({"id": "random_id"})
 ```
 
 ### Common Methods
@@ -571,7 +585,7 @@ Return the entity name.
 ## TitleEntity
 
 ```python
-title = client.title
+title = client.Title()
 ```
 
 ### Fields
@@ -590,7 +604,9 @@ title = client.title
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.title.list({})
+results = client.Title().list({})
+for title in results:
+    print(title)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -598,7 +614,7 @@ results = client.title.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.title.load({"id": "title_id"})
+result = client.Title().load({"id": "title_id"})
 ```
 
 ### Common Methods
@@ -633,7 +649,7 @@ Return the entity name.
 ## TitleabEntity
 
 ```python
-titleab = client.titleab
+titleab = client.Titleab()
 ```
 
 ### Fields
@@ -652,7 +668,9 @@ titleab = client.titleab
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.titleab.list({})
+results = client.Titleab().list({})
+for titleab in results:
+    print(titleab)
 ```
 
 ### Common Methods

@@ -4,69 +4,65 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Author:
-    author: Optional[str] = None
-    line: Optional[list] = None
-    linecount: Optional[int] = None
-    title: Optional[str] = None
+class Author(TypedDict, total=False):
+    author: str
+    line: list
+    linecount: int
+    title: str
 
 
-@dataclass
-class AuthorLoadMatch:
+class AuthorLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class AuthorListMatch:
+class AuthorListMatch(TypedDict):
     author: str
     format: str
     output_field: str
 
 
-@dataclass
-class Authorab:
-    author: Optional[str] = None
-    line: Optional[list] = None
-    linecount: Optional[int] = None
-    title: Optional[str] = None
+class Authorab(TypedDict, total=False):
+    author: str
+    line: list
+    linecount: int
+    title: str
 
 
-@dataclass
-class AuthorabListMatch:
+class AuthorabListMatch(TypedDict):
     author: str
 
 
-@dataclass
-class CombinedSearch:
-    author: Optional[str] = None
-    line: Optional[list] = None
-    linecount: Optional[int] = None
-    title: Optional[str] = None
+class CombinedSearch(TypedDict, total=False):
+    author: str
+    line: list
+    linecount: int
+    title: str
 
 
-@dataclass
-class CombinedSearchListMatch:
+class CombinedSearchListMatch(TypedDict):
     input_field1: str
     input_field2: str
     search_term1: str
     search_term2: str
 
 
-@dataclass
-class CombinedSearchWithField:
+class CombinedSearchWithField(TypedDict):
     pass
 
 
-@dataclass
-class CombinedSearchWithFieldListMatch:
+class CombinedSearchWithFieldListMatch(TypedDict):
     input_field1: str
     input_field2: str
     output_field: str
@@ -74,107 +70,90 @@ class CombinedSearchWithFieldListMatch:
     search_term2: str
 
 
-@dataclass
-class Line:
-    author: Optional[str] = None
-    line: Optional[list] = None
-    linecount: Optional[int] = None
-    title: Optional[str] = None
+class Line(TypedDict, total=False):
+    author: str
+    line: list
+    linecount: int
+    title: str
 
 
-@dataclass
-class LineLoadMatch:
+class LineLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class LineListMatch:
+class LineListMatch(TypedDict):
     format: str
     line: str
     output_field: str
 
 
-@dataclass
-class Linecount:
-    author: Optional[str] = None
-    line: Optional[list] = None
-    linecount: Optional[int] = None
-    title: Optional[str] = None
+class Linecount(TypedDict, total=False):
+    author: str
+    line: list
+    linecount: int
+    title: str
 
 
-@dataclass
-class LinecountLoadMatch:
+class LinecountLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class LinecountListMatch:
+class LinecountListMatch(TypedDict):
     format: str
     linecount: int
     output_field: str
 
 
-@dataclass
-class Poemcount:
-    author: Optional[str] = None
-    line: Optional[list] = None
-    linecount: Optional[int] = None
-    title: Optional[str] = None
+class Poemcount(TypedDict, total=False):
+    author: str
+    line: list
+    linecount: int
+    title: str
 
 
-@dataclass
-class PoemcountLoadMatch:
+class PoemcountLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class Random:
-    author: Optional[str] = None
-    line: Optional[list] = None
-    linecount: Optional[int] = None
-    title: Optional[str] = None
+class Random(TypedDict, total=False):
+    author: str
+    line: list
+    linecount: int
+    title: str
 
 
-@dataclass
-class RandomLoadMatch:
+class RandomLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class RandomListMatch:
+class RandomListMatch(TypedDict):
     count: int
     output_field: str
 
 
-@dataclass
-class Title:
-    author: Optional[str] = None
-    line: Optional[list] = None
-    linecount: Optional[int] = None
-    title: Optional[str] = None
+class Title(TypedDict, total=False):
+    author: str
+    line: list
+    linecount: int
+    title: str
 
 
-@dataclass
-class TitleLoadMatch:
+class TitleLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class TitleListMatch:
+class TitleListMatch(TypedDict):
     format: str
     output_field: str
     title: str
 
 
-@dataclass
-class Titleab:
-    author: Optional[str] = None
-    line: Optional[list] = None
-    linecount: Optional[int] = None
-    title: Optional[str] = None
-
-
-@dataclass
-class TitleabListMatch:
+class Titleab(TypedDict, total=False):
+    author: str
+    line: list
+    linecount: int
     title: str
 
+
+class TitleabListMatch(TypedDict):
+    title: str

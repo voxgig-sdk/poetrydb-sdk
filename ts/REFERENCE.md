@@ -217,7 +217,7 @@ Alias for `PoetrydbSDK.test()`.
 ## AuthorEntity
 
 ```ts
-const author = client.author
+const author = client.Author()
 ```
 
 ### Fields
@@ -236,7 +236,7 @@ const author = client.author
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.author.list()
+const results = await client.Author().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -244,7 +244,7 @@ const results = await client.author.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.author.load({ id: 'author_id' })
+const result = await client.Author().load({ id: 'author_id' })
 ```
 
 ### Common Methods
@@ -278,7 +278,7 @@ Return a copy of the entity options.
 ## AuthorabEntity
 
 ```ts
-const authorab = client.authorab
+const authorab = client.Authorab()
 ```
 
 ### Fields
@@ -297,7 +297,7 @@ const authorab = client.authorab
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.authorab.list()
+const results = await client.Authorab().list()
 ```
 
 ### Common Methods
@@ -331,7 +331,7 @@ Return a copy of the entity options.
 ## CombinedSearchEntity
 
 ```ts
-const combined_search = client.combined_search
+const combined_search = client.CombinedSearch()
 ```
 
 ### Fields
@@ -350,7 +350,7 @@ const combined_search = client.combined_search
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.combined_search.list()
+const results = await client.CombinedSearch().list()
 ```
 
 ### Common Methods
@@ -384,7 +384,7 @@ Return a copy of the entity options.
 ## CombinedSearchWithFieldEntity
 
 ```ts
-const combined_search_with_field = client.combined_search_with_field
+const combined_search_with_field = client.CombinedSearchWithField()
 ```
 
 ### Operations
@@ -394,7 +394,7 @@ const combined_search_with_field = client.combined_search_with_field
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.combined_search_with_field.list()
+const results = await client.CombinedSearchWithField().list()
 ```
 
 ### Common Methods
@@ -428,7 +428,7 @@ Return a copy of the entity options.
 ## LineEntity
 
 ```ts
-const line = client.line
+const line = client.Line()
 ```
 
 ### Fields
@@ -447,7 +447,7 @@ const line = client.line
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.line.list()
+const results = await client.Line().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -455,7 +455,7 @@ const results = await client.line.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.line.load({ id: 'line_id' })
+const result = await client.Line().load({ id: 'line_id' })
 ```
 
 ### Common Methods
@@ -489,7 +489,7 @@ Return a copy of the entity options.
 ## LinecountEntity
 
 ```ts
-const linecount = client.linecount
+const linecount = client.Linecount()
 ```
 
 ### Fields
@@ -508,7 +508,7 @@ const linecount = client.linecount
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.linecount.list()
+const results = await client.Linecount().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -516,7 +516,7 @@ const results = await client.linecount.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.linecount.load({ id: 'linecount_id' })
+const result = await client.Linecount().load({ id: 'linecount_id' })
 ```
 
 ### Common Methods
@@ -550,7 +550,7 @@ Return a copy of the entity options.
 ## PoemcountEntity
 
 ```ts
-const poemcount = client.poemcount
+const poemcount = client.Poemcount()
 ```
 
 ### Fields
@@ -569,7 +569,7 @@ const poemcount = client.poemcount
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.poemcount.load({ id: 'poemcount_id' })
+const result = await client.Poemcount().load({ id: 'poemcount_id' })
 ```
 
 ### Common Methods
@@ -603,7 +603,7 @@ Return a copy of the entity options.
 ## RandomEntity
 
 ```ts
-const random = client.random
+const random = client.Random()
 ```
 
 ### Fields
@@ -622,7 +622,7 @@ const random = client.random
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.random.list()
+const results = await client.Random().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -630,7 +630,7 @@ const results = await client.random.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.random.load({ id: 'random_id' })
+const result = await client.Random().load({ id: 'random_id' })
 ```
 
 ### Common Methods
@@ -664,7 +664,7 @@ Return a copy of the entity options.
 ## TitleEntity
 
 ```ts
-const title = client.title
+const title = client.Title()
 ```
 
 ### Fields
@@ -683,7 +683,7 @@ const title = client.title
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.title.list()
+const results = await client.Title().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -691,7 +691,7 @@ const results = await client.title.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.title.load({ id: 'title_id' })
+const result = await client.Title().load({ id: 'title_id' })
 ```
 
 ### Common Methods
@@ -725,7 +725,7 @@ Return a copy of the entity options.
 ## TitleabEntity
 
 ```ts
-const titleab = client.titleab
+const titleab = client.Titleab()
 ```
 
 ### Fields
@@ -744,7 +744,7 @@ const titleab = client.titleab
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.titleab.list()
+const results = await client.Titleab().list()
 ```
 
 ### Common Methods

@@ -208,130 +208,70 @@ class PoetrydbSDK
   end
 
 
-  # Idiomatic facade: client.author.list / client.author.load({ "id" => ... })
-  def author
-    require_relative 'entity/author_entity'
-    @author ||= AuthorEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.author instead.
+  # Canonical facade: client.Author.list / client.Author.load({ "id" => ... })
   def Author(data = nil)
     require_relative 'entity/author_entity'
     AuthorEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.authorab.list / client.authorab.load({ "id" => ... })
-  def authorab
-    require_relative 'entity/authorab_entity'
-    @authorab ||= AuthorabEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.authorab instead.
+  # Canonical facade: client.Authorab.list / client.Authorab.load({ "id" => ... })
   def Authorab(data = nil)
     require_relative 'entity/authorab_entity'
     AuthorabEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.combined_search.list / client.combined_search.load({ "id" => ... })
-  def combined_search
-    require_relative 'entity/combined_search_entity'
-    @combined_search ||= CombinedSearchEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.combined_search instead.
+  # Canonical facade: client.CombinedSearch.list / client.CombinedSearch.load({ "id" => ... })
   def CombinedSearch(data = nil)
     require_relative 'entity/combined_search_entity'
     CombinedSearchEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.combined_search_with_field.list / client.combined_search_with_field.load({ "id" => ... })
-  def combined_search_with_field
-    require_relative 'entity/combined_search_with_field_entity'
-    @combined_search_with_field ||= CombinedSearchWithFieldEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.combined_search_with_field instead.
+  # Canonical facade: client.CombinedSearchWithField.list / client.CombinedSearchWithField.load({ "id" => ... })
   def CombinedSearchWithField(data = nil)
     require_relative 'entity/combined_search_with_field_entity'
     CombinedSearchWithFieldEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.line.list / client.line.load({ "id" => ... })
-  def line
-    require_relative 'entity/line_entity'
-    @line ||= LineEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.line instead.
+  # Canonical facade: client.Line.list / client.Line.load({ "id" => ... })
   def Line(data = nil)
     require_relative 'entity/line_entity'
     LineEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.linecount.list / client.linecount.load({ "id" => ... })
-  def linecount
-    require_relative 'entity/linecount_entity'
-    @linecount ||= LinecountEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.linecount instead.
+  # Canonical facade: client.Linecount.list / client.Linecount.load({ "id" => ... })
   def Linecount(data = nil)
     require_relative 'entity/linecount_entity'
     LinecountEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.poemcount.list / client.poemcount.load({ "id" => ... })
-  def poemcount
-    require_relative 'entity/poemcount_entity'
-    @poemcount ||= PoemcountEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.poemcount instead.
+  # Canonical facade: client.Poemcount.list / client.Poemcount.load({ "id" => ... })
   def Poemcount(data = nil)
     require_relative 'entity/poemcount_entity'
     PoemcountEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.random.list / client.random.load({ "id" => ... })
-  def random
-    require_relative 'entity/random_entity'
-    @random ||= RandomEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.random instead.
+  # Canonical facade: client.Random.list / client.Random.load({ "id" => ... })
   def Random(data = nil)
     require_relative 'entity/random_entity'
     RandomEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.title.list / client.title.load({ "id" => ... })
-  def title
-    require_relative 'entity/title_entity'
-    @title ||= TitleEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.title instead.
+  # Canonical facade: client.Title.list / client.Title.load({ "id" => ... })
   def Title(data = nil)
     require_relative 'entity/title_entity'
     TitleEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.titleab.list / client.titleab.load({ "id" => ... })
-  def titleab
-    require_relative 'entity/titleab_entity'
-    @titleab ||= TitleabEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.titleab instead.
+  # Canonical facade: client.Titleab.list / client.Titleab.load({ "id" => ... })
   def Titleab(data = nil)
     require_relative 'entity/titleab_entity'
     TitleabEntity.new(self, data)

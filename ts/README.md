@@ -28,25 +28,28 @@ import { PoetrydbSDK } from '@voxgig-sdk/poetrydb'
 const client = new PoetrydbSDK()
 ```
 
-### 2. List authors
+### 2. List author records
+
+`list()` resolves to an array of Author objects — iterate it directly:
 
 ```ts
-const result = await client.author.list()
+const authors = await client.Author().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const author of authors) {
+  console.log(author)
 }
 ```
 
 ### 3. Load an author
 
-```ts
-const result = await client.author.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const author = await client.Author().load({ id: 'example_id' })
+  console.log(author)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -64,6 +67,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -92,9 +98,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = PoetrydbSDK.test()
 
-const result = await client.author.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const author = await client.Author().load({ id: 'test01' })
+// author is a bare entity populated with mock response data
+console.log(author)
 ```
 
 You can also use the instance method:
@@ -109,7 +115,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.author
+const entity = client.Author()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -187,8 +193,8 @@ new PoetrydbSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `Author(data?)` | `AuthorEntity` | Create a Author entity instance. |
-| `Authorab(data?)` | `AuthorabEntity` | Create a Authorab entity instance. |
+| `Author(data?)` | `AuthorEntity` | Create an Author entity instance. |
+| `Authorab(data?)` | `AuthorabEntity` | Create an Authorab entity instance. |
 | `CombinedSearch(data?)` | `CombinedSearchEntity` | Create a CombinedSearch entity instance. |
 | `CombinedSearchWithField(data?)` | `CombinedSearchWithFieldEntity` | Create a CombinedSearchWithField entity instance. |
 | `Line(data?)` | `LineEntity` | Create a Line entity instance. |
@@ -213,29 +219,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): PoetrydbSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -400,7 +407,7 @@ API path: `/title/{title}:abs`
 
 ### Author
 
-Create an instance: `const author = client.author`
+Create an instance: `const author = client.Author()`
 
 #### Operations
 
@@ -421,19 +428,19 @@ Create an instance: `const author = client.author`
 #### Example: Load
 
 ```ts
-const author = await client.author.load({ id: 'author_id' })
+const author = await client.Author().load({ id: 'author_id' })
 ```
 
 #### Example: List
 
 ```ts
-const authors = await client.author.list()
+const authors = await client.Author().list()
 ```
 
 
 ### Authorab
 
-Create an instance: `const authorab = client.authorab`
+Create an instance: `const authorab = client.Authorab()`
 
 #### Operations
 
@@ -453,13 +460,13 @@ Create an instance: `const authorab = client.authorab`
 #### Example: List
 
 ```ts
-const authorabs = await client.authorab.list()
+const authorabs = await client.Authorab().list()
 ```
 
 
 ### CombinedSearch
 
-Create an instance: `const combined_search = client.combined_search`
+Create an instance: `const combined_search = client.CombinedSearch()`
 
 #### Operations
 
@@ -479,13 +486,13 @@ Create an instance: `const combined_search = client.combined_search`
 #### Example: List
 
 ```ts
-const combined_searchs = await client.combined_search.list()
+const combined_searchs = await client.CombinedSearch().list()
 ```
 
 
 ### CombinedSearchWithField
 
-Create an instance: `const combined_search_with_field = client.combined_search_with_field`
+Create an instance: `const combined_search_with_field = client.CombinedSearchWithField()`
 
 #### Operations
 
@@ -496,13 +503,13 @@ Create an instance: `const combined_search_with_field = client.combined_search_w
 #### Example: List
 
 ```ts
-const combined_search_with_fields = await client.combined_search_with_field.list()
+const combined_search_with_fields = await client.CombinedSearchWithField().list()
 ```
 
 
 ### Line
 
-Create an instance: `const line = client.line`
+Create an instance: `const line = client.Line()`
 
 #### Operations
 
@@ -523,19 +530,19 @@ Create an instance: `const line = client.line`
 #### Example: Load
 
 ```ts
-const line = await client.line.load({ id: 'line_id' })
+const line = await client.Line().load({ id: 'line_id' })
 ```
 
 #### Example: List
 
 ```ts
-const lines = await client.line.list()
+const lines = await client.Line().list()
 ```
 
 
 ### Linecount
 
-Create an instance: `const linecount = client.linecount`
+Create an instance: `const linecount = client.Linecount()`
 
 #### Operations
 
@@ -556,19 +563,19 @@ Create an instance: `const linecount = client.linecount`
 #### Example: Load
 
 ```ts
-const linecount = await client.linecount.load({ id: 'linecount_id' })
+const linecount = await client.Linecount().load({ id: 'linecount_id' })
 ```
 
 #### Example: List
 
 ```ts
-const linecounts = await client.linecount.list()
+const linecounts = await client.Linecount().list()
 ```
 
 
 ### Poemcount
 
-Create an instance: `const poemcount = client.poemcount`
+Create an instance: `const poemcount = client.Poemcount()`
 
 #### Operations
 
@@ -588,13 +595,13 @@ Create an instance: `const poemcount = client.poemcount`
 #### Example: Load
 
 ```ts
-const poemcount = await client.poemcount.load({ id: 'poemcount_id' })
+const poemcount = await client.Poemcount().load({ id: 'poemcount_id' })
 ```
 
 
 ### Random
 
-Create an instance: `const random = client.random`
+Create an instance: `const random = client.Random()`
 
 #### Operations
 
@@ -615,19 +622,19 @@ Create an instance: `const random = client.random`
 #### Example: Load
 
 ```ts
-const random = await client.random.load({ id: 'random_id' })
+const random = await client.Random().load({ id: 'random_id' })
 ```
 
 #### Example: List
 
 ```ts
-const randoms = await client.random.list()
+const randoms = await client.Random().list()
 ```
 
 
 ### Title
 
-Create an instance: `const title = client.title`
+Create an instance: `const title = client.Title()`
 
 #### Operations
 
@@ -648,19 +655,19 @@ Create an instance: `const title = client.title`
 #### Example: Load
 
 ```ts
-const title = await client.title.load({ id: 'title_id' })
+const title = await client.Title().load({ id: 'title_id' })
 ```
 
 #### Example: List
 
 ```ts
-const titles = await client.title.list()
+const titles = await client.Title().list()
 ```
 
 
 ### Titleab
 
-Create an instance: `const titleab = client.titleab`
+Create an instance: `const titleab = client.Titleab()`
 
 #### Operations
 
@@ -680,7 +687,7 @@ Create an instance: `const titleab = client.titleab`
 #### Example: List
 
 ```ts
-const titleabs = await client.titleab.list()
+const titleabs = await client.Titleab().list()
 ```
 
 
@@ -751,7 +758,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const author = client.author
+const author = client.Author()
 await author.load({ id: "example_id" })
 
 // author.data() now returns the loaded author data

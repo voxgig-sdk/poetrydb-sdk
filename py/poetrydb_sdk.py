@@ -220,169 +220,69 @@ class PoetrydbSDK:
         }
 
 
-    @property
-    def author(self):
-        """Idiomatic facade: client.author.list() / client.author.load({"id": ...})."""
-        from entity.author_entity import AuthorEntity
-        cached = getattr(self, "_author", None)
-        if cached is None:
-            cached = AuthorEntity(self, None)
-            self._author = cached
-        return cached
-
-    def Author(self, data=None):
-        # Deprecated: use client.author instead.
+    def Author(self, data=None) -> "AuthorEntity":
+        """Entity factory: client.Author().list({}) / client.Author().load({"id": ...})."""
         from entity.author_entity import AuthorEntity
         return AuthorEntity(self, data)
 
 
-    @property
-    def authorab(self):
-        """Idiomatic facade: client.authorab.list() / client.authorab.load({"id": ...})."""
-        from entity.authorab_entity import AuthorabEntity
-        cached = getattr(self, "_authorab", None)
-        if cached is None:
-            cached = AuthorabEntity(self, None)
-            self._authorab = cached
-        return cached
-
-    def Authorab(self, data=None):
-        # Deprecated: use client.authorab instead.
+    def Authorab(self, data=None) -> "AuthorabEntity":
+        """Entity factory: client.Authorab().list({}) / client.Authorab().load({"id": ...})."""
         from entity.authorab_entity import AuthorabEntity
         return AuthorabEntity(self, data)
 
 
-    @property
-    def combined_search(self):
-        """Idiomatic facade: client.combined_search.list() / client.combined_search.load({"id": ...})."""
-        from entity.combined_search_entity import CombinedSearchEntity
-        cached = getattr(self, "_combined_search", None)
-        if cached is None:
-            cached = CombinedSearchEntity(self, None)
-            self._combined_search = cached
-        return cached
-
-    def CombinedSearch(self, data=None):
-        # Deprecated: use client.combined_search instead.
+    def CombinedSearch(self, data=None) -> "CombinedSearchEntity":
+        """Entity factory: client.CombinedSearch().list({}) / client.CombinedSearch().load({"id": ...})."""
         from entity.combined_search_entity import CombinedSearchEntity
         return CombinedSearchEntity(self, data)
 
 
-    @property
-    def combined_search_with_field(self):
-        """Idiomatic facade: client.combined_search_with_field.list() / client.combined_search_with_field.load({"id": ...})."""
-        from entity.combined_search_with_field_entity import CombinedSearchWithFieldEntity
-        cached = getattr(self, "_combined_search_with_field", None)
-        if cached is None:
-            cached = CombinedSearchWithFieldEntity(self, None)
-            self._combined_search_with_field = cached
-        return cached
-
-    def CombinedSearchWithField(self, data=None):
-        # Deprecated: use client.combined_search_with_field instead.
+    def CombinedSearchWithField(self, data=None) -> "CombinedSearchWithFieldEntity":
+        """Entity factory: client.CombinedSearchWithField().list({}) / client.CombinedSearchWithField().load({"id": ...})."""
         from entity.combined_search_with_field_entity import CombinedSearchWithFieldEntity
         return CombinedSearchWithFieldEntity(self, data)
 
 
-    @property
-    def line(self):
-        """Idiomatic facade: client.line.list() / client.line.load({"id": ...})."""
-        from entity.line_entity import LineEntity
-        cached = getattr(self, "_line", None)
-        if cached is None:
-            cached = LineEntity(self, None)
-            self._line = cached
-        return cached
-
-    def Line(self, data=None):
-        # Deprecated: use client.line instead.
+    def Line(self, data=None) -> "LineEntity":
+        """Entity factory: client.Line().list({}) / client.Line().load({"id": ...})."""
         from entity.line_entity import LineEntity
         return LineEntity(self, data)
 
 
-    @property
-    def linecount(self):
-        """Idiomatic facade: client.linecount.list() / client.linecount.load({"id": ...})."""
-        from entity.linecount_entity import LinecountEntity
-        cached = getattr(self, "_linecount", None)
-        if cached is None:
-            cached = LinecountEntity(self, None)
-            self._linecount = cached
-        return cached
-
-    def Linecount(self, data=None):
-        # Deprecated: use client.linecount instead.
+    def Linecount(self, data=None) -> "LinecountEntity":
+        """Entity factory: client.Linecount().list({}) / client.Linecount().load({"id": ...})."""
         from entity.linecount_entity import LinecountEntity
         return LinecountEntity(self, data)
 
 
-    @property
-    def poemcount(self):
-        """Idiomatic facade: client.poemcount.list() / client.poemcount.load({"id": ...})."""
-        from entity.poemcount_entity import PoemcountEntity
-        cached = getattr(self, "_poemcount", None)
-        if cached is None:
-            cached = PoemcountEntity(self, None)
-            self._poemcount = cached
-        return cached
-
-    def Poemcount(self, data=None):
-        # Deprecated: use client.poemcount instead.
+    def Poemcount(self, data=None) -> "PoemcountEntity":
+        """Entity factory: client.Poemcount().list({}) / client.Poemcount().load({"id": ...})."""
         from entity.poemcount_entity import PoemcountEntity
         return PoemcountEntity(self, data)
 
 
-    @property
-    def random(self):
-        """Idiomatic facade: client.random.list() / client.random.load({"id": ...})."""
-        from entity.random_entity import RandomEntity
-        cached = getattr(self, "_random", None)
-        if cached is None:
-            cached = RandomEntity(self, None)
-            self._random = cached
-        return cached
-
-    def Random(self, data=None):
-        # Deprecated: use client.random instead.
+    def Random(self, data=None) -> "RandomEntity":
+        """Entity factory: client.Random().list({}) / client.Random().load({"id": ...})."""
         from entity.random_entity import RandomEntity
         return RandomEntity(self, data)
 
 
-    @property
-    def title(self):
-        """Idiomatic facade: client.title.list() / client.title.load({"id": ...})."""
-        from entity.title_entity import TitleEntity
-        cached = getattr(self, "_title", None)
-        if cached is None:
-            cached = TitleEntity(self, None)
-            self._title = cached
-        return cached
-
-    def Title(self, data=None):
-        # Deprecated: use client.title instead.
+    def Title(self, data=None) -> "TitleEntity":
+        """Entity factory: client.Title().list({}) / client.Title().load({"id": ...})."""
         from entity.title_entity import TitleEntity
         return TitleEntity(self, data)
 
 
-    @property
-    def titleab(self):
-        """Idiomatic facade: client.titleab.list() / client.titleab.load({"id": ...})."""
-        from entity.titleab_entity import TitleabEntity
-        cached = getattr(self, "_titleab", None)
-        if cached is None:
-            cached = TitleabEntity(self, None)
-            self._titleab = cached
-        return cached
-
-    def Titleab(self, data=None):
-        # Deprecated: use client.titleab instead.
+    def Titleab(self, data=None) -> "TitleabEntity":
+        """Entity factory: client.Titleab().list({}) / client.Titleab().load({"id": ...})."""
         from entity.titleab_entity import TitleabEntity
         return TitleabEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "PoetrydbSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -402,3 +302,18 @@ class PoetrydbSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.author_entity import AuthorEntity
+    from entity.authorab_entity import AuthorabEntity
+    from entity.combined_search_entity import CombinedSearchEntity
+    from entity.combined_search_with_field_entity import CombinedSearchWithFieldEntity
+    from entity.line_entity import LineEntity
+    from entity.linecount_entity import LinecountEntity
+    from entity.poemcount_entity import PoemcountEntity
+    from entity.random_entity import RandomEntity
+    from entity.title_entity import TitleEntity
+    from entity.titleab_entity import TitleabEntity

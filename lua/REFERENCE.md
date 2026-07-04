@@ -119,7 +119,7 @@ same parameters as `direct()`.
 ## AuthorEntity
 
 ```lua
-local author = client:author(nil)
+local author = client:Author(nil)
 ```
 
 ### Fields
@@ -138,7 +138,7 @@ local author = client:author(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:author():list()
+local results, err = client:Author():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -146,7 +146,7 @@ local results, err = client:author():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:author():load({ id = "author_id" })
+local result, err = client:Author():load({ id = "author_id" })
 ```
 
 ### Common Methods
@@ -182,7 +182,7 @@ Return the entity name.
 ## AuthorabEntity
 
 ```lua
-local authorab = client:authorab(nil)
+local authorab = client:Authorab(nil)
 ```
 
 ### Fields
@@ -201,7 +201,7 @@ local authorab = client:authorab(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:authorab():list()
+local results, err = client:Authorab():list()
 ```
 
 ### Common Methods
@@ -237,7 +237,7 @@ Return the entity name.
 ## CombinedSearchEntity
 
 ```lua
-local combined_search = client:combined_search(nil)
+local combined_search = client:CombinedSearch(nil)
 ```
 
 ### Fields
@@ -256,7 +256,7 @@ local combined_search = client:combined_search(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:combined_search():list()
+local results, err = client:CombinedSearch():list()
 ```
 
 ### Common Methods
@@ -292,7 +292,7 @@ Return the entity name.
 ## CombinedSearchWithFieldEntity
 
 ```lua
-local combined_search_with_field = client:combined_search_with_field(nil)
+local combined_search_with_field = client:CombinedSearchWithField(nil)
 ```
 
 ### Operations
@@ -302,7 +302,7 @@ local combined_search_with_field = client:combined_search_with_field(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:combined_search_with_field():list()
+local results, err = client:CombinedSearchWithField():list()
 ```
 
 ### Common Methods
@@ -338,7 +338,7 @@ Return the entity name.
 ## LineEntity
 
 ```lua
-local line = client:line(nil)
+local line = client:Line(nil)
 ```
 
 ### Fields
@@ -357,7 +357,7 @@ local line = client:line(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:line():list()
+local results, err = client:Line():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -365,7 +365,7 @@ local results, err = client:line():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:line():load({ id = "line_id" })
+local result, err = client:Line():load({ id = "line_id" })
 ```
 
 ### Common Methods
@@ -401,7 +401,7 @@ Return the entity name.
 ## LinecountEntity
 
 ```lua
-local linecount = client:linecount(nil)
+local linecount = client:Linecount(nil)
 ```
 
 ### Fields
@@ -420,7 +420,7 @@ local linecount = client:linecount(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:linecount():list()
+local results, err = client:Linecount():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -428,7 +428,7 @@ local results, err = client:linecount():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:linecount():load({ id = "linecount_id" })
+local result, err = client:Linecount():load({ id = "linecount_id" })
 ```
 
 ### Common Methods
@@ -464,7 +464,7 @@ Return the entity name.
 ## PoemcountEntity
 
 ```lua
-local poemcount = client:poemcount(nil)
+local poemcount = client:Poemcount(nil)
 ```
 
 ### Fields
@@ -483,7 +483,7 @@ local poemcount = client:poemcount(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:poemcount():load({ id = "poemcount_id" })
+local result, err = client:Poemcount():load({ id = "poemcount_id" })
 ```
 
 ### Common Methods
@@ -519,7 +519,7 @@ Return the entity name.
 ## RandomEntity
 
 ```lua
-local random = client:random(nil)
+local random = client:Random(nil)
 ```
 
 ### Fields
@@ -538,7 +538,7 @@ local random = client:random(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:random():list()
+local results, err = client:Random():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -546,7 +546,7 @@ local results, err = client:random():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:random():load({ id = "random_id" })
+local result, err = client:Random():load({ id = "random_id" })
 ```
 
 ### Common Methods
@@ -582,7 +582,7 @@ Return the entity name.
 ## TitleEntity
 
 ```lua
-local title = client:title(nil)
+local title = client:Title(nil)
 ```
 
 ### Fields
@@ -601,7 +601,7 @@ local title = client:title(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:title():list()
+local results, err = client:Title():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -609,7 +609,7 @@ local results, err = client:title():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:title():load({ id = "title_id" })
+local result, err = client:Title():load({ id = "title_id" })
 ```
 
 ### Common Methods
@@ -645,7 +645,7 @@ Return the entity name.
 ## TitleabEntity
 
 ```lua
-local titleab = client:titleab(nil)
+local titleab = client:Titleab(nil)
 ```
 
 ### Fields
@@ -664,7 +664,7 @@ local titleab = client:titleab(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:titleab():list()
+local results, err = client:Titleab():list()
 ```
 
 ### Common Methods

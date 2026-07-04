@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:author():list() / client:author():load({ id = ... })
-function PoetrydbSDK:author(data)
+-- Idiomatic facade: client:Author():list() / client:Author():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PoetrydbSDK:Author(data)
   local EntityMod = require("entity.author_entity")
   if data == nil then
     if self._author == nil then
@@ -256,15 +257,10 @@ function PoetrydbSDK:author(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:author() instead.
-function PoetrydbSDK:Author(data)
-  local EntityMod = require("entity.author_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:authorab():list() / client:authorab():load({ id = ... })
-function PoetrydbSDK:authorab(data)
+-- Idiomatic facade: client:Authorab():list() / client:Authorab():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PoetrydbSDK:Authorab(data)
   local EntityMod = require("entity.authorab_entity")
   if data == nil then
     if self._authorab == nil then
@@ -275,15 +271,10 @@ function PoetrydbSDK:authorab(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:authorab() instead.
-function PoetrydbSDK:Authorab(data)
-  local EntityMod = require("entity.authorab_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:combined_search():list() / client:combined_search():load({ id = ... })
-function PoetrydbSDK:combined_search(data)
+-- Idiomatic facade: client:CombinedSearch():list() / client:CombinedSearch():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PoetrydbSDK:CombinedSearch(data)
   local EntityMod = require("entity.combined_search_entity")
   if data == nil then
     if self._combined_search == nil then
@@ -294,15 +285,10 @@ function PoetrydbSDK:combined_search(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:combined_search() instead.
-function PoetrydbSDK:CombinedSearch(data)
-  local EntityMod = require("entity.combined_search_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:combined_search_with_field():list() / client:combined_search_with_field():load({ id = ... })
-function PoetrydbSDK:combined_search_with_field(data)
+-- Idiomatic facade: client:CombinedSearchWithField():list() / client:CombinedSearchWithField():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PoetrydbSDK:CombinedSearchWithField(data)
   local EntityMod = require("entity.combined_search_with_field_entity")
   if data == nil then
     if self._combined_search_with_field == nil then
@@ -313,15 +299,10 @@ function PoetrydbSDK:combined_search_with_field(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:combined_search_with_field() instead.
-function PoetrydbSDK:CombinedSearchWithField(data)
-  local EntityMod = require("entity.combined_search_with_field_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:line():list() / client:line():load({ id = ... })
-function PoetrydbSDK:line(data)
+-- Idiomatic facade: client:Line():list() / client:Line():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PoetrydbSDK:Line(data)
   local EntityMod = require("entity.line_entity")
   if data == nil then
     if self._line == nil then
@@ -332,15 +313,10 @@ function PoetrydbSDK:line(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:line() instead.
-function PoetrydbSDK:Line(data)
-  local EntityMod = require("entity.line_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:linecount():list() / client:linecount():load({ id = ... })
-function PoetrydbSDK:linecount(data)
+-- Idiomatic facade: client:Linecount():list() / client:Linecount():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PoetrydbSDK:Linecount(data)
   local EntityMod = require("entity.linecount_entity")
   if data == nil then
     if self._linecount == nil then
@@ -351,15 +327,10 @@ function PoetrydbSDK:linecount(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:linecount() instead.
-function PoetrydbSDK:Linecount(data)
-  local EntityMod = require("entity.linecount_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:poemcount():list() / client:poemcount():load({ id = ... })
-function PoetrydbSDK:poemcount(data)
+-- Idiomatic facade: client:Poemcount():list() / client:Poemcount():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PoetrydbSDK:Poemcount(data)
   local EntityMod = require("entity.poemcount_entity")
   if data == nil then
     if self._poemcount == nil then
@@ -370,15 +341,10 @@ function PoetrydbSDK:poemcount(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:poemcount() instead.
-function PoetrydbSDK:Poemcount(data)
-  local EntityMod = require("entity.poemcount_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:random():list() / client:random():load({ id = ... })
-function PoetrydbSDK:random(data)
+-- Idiomatic facade: client:Random():list() / client:Random():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PoetrydbSDK:Random(data)
   local EntityMod = require("entity.random_entity")
   if data == nil then
     if self._random == nil then
@@ -389,15 +355,10 @@ function PoetrydbSDK:random(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:random() instead.
-function PoetrydbSDK:Random(data)
-  local EntityMod = require("entity.random_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:title():list() / client:title():load({ id = ... })
-function PoetrydbSDK:title(data)
+-- Idiomatic facade: client:Title():list() / client:Title():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PoetrydbSDK:Title(data)
   local EntityMod = require("entity.title_entity")
   if data == nil then
     if self._title == nil then
@@ -408,15 +369,10 @@ function PoetrydbSDK:title(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:title() instead.
-function PoetrydbSDK:Title(data)
-  local EntityMod = require("entity.title_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:titleab():list() / client:titleab():load({ id = ... })
-function PoetrydbSDK:titleab(data)
+-- Idiomatic facade: client:Titleab():list() / client:Titleab():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PoetrydbSDK:Titleab(data)
   local EntityMod = require("entity.titleab_entity")
   if data == nil then
     if self._titleab == nil then
@@ -424,12 +380,6 @@ function PoetrydbSDK:titleab(data)
     end
     return self._titleab
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:titleab() instead.
-function PoetrydbSDK:Titleab(data)
-  local EntityMod = require("entity.titleab_entity")
   return EntityMod.new(self, data)
 end
 

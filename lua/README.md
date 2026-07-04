@@ -31,26 +31,26 @@ local sdk = require("poetrydb_sdk")
 local client = sdk.new()
 ```
 
-### 2. List authors
+### 2. List author records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:author():list()
+local authors, err = client:Author():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(authors) do
+  print(item["id"], item["name"])
 end
 ```
 
 ### 3. Load an author
 
 ```lua
-local result, err = client:author():load({ id = "example_id" })
+local author, err = client:Author():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(author)
 ```
 
 
@@ -96,8 +96,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:author():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Author():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -175,8 +175,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Author` | `(data) -> AuthorEntity` | Create a Author entity instance. |
-| `Authorab` | `(data) -> AuthorabEntity` | Create a Authorab entity instance. |
+| `Author` | `(data) -> AuthorEntity` | Create an Author entity instance. |
+| `Authorab` | `(data) -> AuthorabEntity` | Create an Authorab entity instance. |
 | `CombinedSearch` | `(data) -> CombinedSearchEntity` | Create a CombinedSearch entity instance. |
 | `CombinedSearchWithField` | `(data) -> CombinedSearchWithFieldEntity` | Create a CombinedSearchWithField entity instance. |
 | `Line` | `(data) -> LineEntity` | Create a Line entity instance. |
@@ -206,17 +206,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local author, err = client:Author():load({ id = "example_id" })
+    if err then error(err) end
+    -- author is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -353,7 +358,7 @@ API path: `/title/{title}:abs`
 
 ### Author
 
-Create an instance: `const author = client.author`
+Create an instance: `local author = client:Author(nil)`
 
 #### Operations
 
@@ -373,20 +378,20 @@ Create an instance: `const author = client.author`
 
 #### Example: Load
 
-```ts
-const author = await client.author.load({ id: 'author_id' })
+```lua
+local author, err = client:Author():load({ id = "author_id" })
 ```
 
 #### Example: List
 
-```ts
-const authors = await client.author.list()
+```lua
+local authors, err = client:Author():list()
 ```
 
 
 ### Authorab
 
-Create an instance: `const authorab = client.authorab`
+Create an instance: `local authorab = client:Authorab(nil)`
 
 #### Operations
 
@@ -405,14 +410,14 @@ Create an instance: `const authorab = client.authorab`
 
 #### Example: List
 
-```ts
-const authorabs = await client.authorab.list()
+```lua
+local authorabs, err = client:Authorab():list()
 ```
 
 
 ### CombinedSearch
 
-Create an instance: `const combined_search = client.combined_search`
+Create an instance: `local combined_search = client:CombinedSearch(nil)`
 
 #### Operations
 
@@ -431,14 +436,14 @@ Create an instance: `const combined_search = client.combined_search`
 
 #### Example: List
 
-```ts
-const combined_searchs = await client.combined_search.list()
+```lua
+local combined_searchs, err = client:CombinedSearch():list()
 ```
 
 
 ### CombinedSearchWithField
 
-Create an instance: `const combined_search_with_field = client.combined_search_with_field`
+Create an instance: `local combined_search_with_field = client:CombinedSearchWithField(nil)`
 
 #### Operations
 
@@ -448,14 +453,14 @@ Create an instance: `const combined_search_with_field = client.combined_search_w
 
 #### Example: List
 
-```ts
-const combined_search_with_fields = await client.combined_search_with_field.list()
+```lua
+local combined_search_with_fields, err = client:CombinedSearchWithField():list()
 ```
 
 
 ### Line
 
-Create an instance: `const line = client.line`
+Create an instance: `local line = client:Line(nil)`
 
 #### Operations
 
@@ -475,20 +480,20 @@ Create an instance: `const line = client.line`
 
 #### Example: Load
 
-```ts
-const line = await client.line.load({ id: 'line_id' })
+```lua
+local line, err = client:Line():load({ id = "line_id" })
 ```
 
 #### Example: List
 
-```ts
-const lines = await client.line.list()
+```lua
+local lines, err = client:Line():list()
 ```
 
 
 ### Linecount
 
-Create an instance: `const linecount = client.linecount`
+Create an instance: `local linecount = client:Linecount(nil)`
 
 #### Operations
 
@@ -508,20 +513,20 @@ Create an instance: `const linecount = client.linecount`
 
 #### Example: Load
 
-```ts
-const linecount = await client.linecount.load({ id: 'linecount_id' })
+```lua
+local linecount, err = client:Linecount():load({ id = "linecount_id" })
 ```
 
 #### Example: List
 
-```ts
-const linecounts = await client.linecount.list()
+```lua
+local linecounts, err = client:Linecount():list()
 ```
 
 
 ### Poemcount
 
-Create an instance: `const poemcount = client.poemcount`
+Create an instance: `local poemcount = client:Poemcount(nil)`
 
 #### Operations
 
@@ -540,14 +545,14 @@ Create an instance: `const poemcount = client.poemcount`
 
 #### Example: Load
 
-```ts
-const poemcount = await client.poemcount.load({ id: 'poemcount_id' })
+```lua
+local poemcount, err = client:Poemcount():load({ id = "poemcount_id" })
 ```
 
 
 ### Random
 
-Create an instance: `const random = client.random`
+Create an instance: `local random = client:Random(nil)`
 
 #### Operations
 
@@ -567,20 +572,20 @@ Create an instance: `const random = client.random`
 
 #### Example: Load
 
-```ts
-const random = await client.random.load({ id: 'random_id' })
+```lua
+local random, err = client:Random():load({ id = "random_id" })
 ```
 
 #### Example: List
 
-```ts
-const randoms = await client.random.list()
+```lua
+local randoms, err = client:Random():list()
 ```
 
 
 ### Title
 
-Create an instance: `const title = client.title`
+Create an instance: `local title = client:Title(nil)`
 
 #### Operations
 
@@ -600,20 +605,20 @@ Create an instance: `const title = client.title`
 
 #### Example: Load
 
-```ts
-const title = await client.title.load({ id: 'title_id' })
+```lua
+local title, err = client:Title():load({ id = "title_id" })
 ```
 
 #### Example: List
 
-```ts
-const titles = await client.title.list()
+```lua
+local titles, err = client:Title():list()
 ```
 
 
 ### Titleab
 
-Create an instance: `const titleab = client.titleab`
+Create an instance: `local titleab = client:Titleab(nil)`
 
 #### Operations
 
@@ -632,8 +637,8 @@ Create an instance: `const titleab = client.titleab`
 
 #### Example: List
 
-```ts
-const titleabs = await client.titleab.list()
+```lua
+local titleabs, err = client:Titleab():list()
 ```
 
 
@@ -708,7 +713,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local author = client:author()
+local author = client:Author()
 author:load({ id = "example_id" })
 
 -- author:data_get() now returns the loaded author data

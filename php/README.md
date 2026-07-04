@@ -29,18 +29,16 @@ require_once 'poetrydb_sdk.php';
 $client = new PoetrydbSDK();
 ```
 
-### 2. List authors
+### 2. List author records
 
 ```php
 try {
-    $result = $client->author()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Author records — iterate directly.
+    $authors = $client->Author()->list();
+    foreach ($authors as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -49,9 +47,10 @@ try {
 
 ```php
 try {
-    $result = $client->author()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Author record (throws on error).
+    $author = $client->Author()->load(["id" => "example_id"]);
+    print_r($author);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -97,13 +96,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = PoetrydbSDK::test();
+$client = PoetrydbSDK::test([
+    "entity" => ["author" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->author()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$author = $client->Author()->load(["id" => "test01"]);
+print_r($author);
 ```
 
 ### Use a custom fetch function
@@ -182,8 +185,8 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Author` | `($data): AuthorEntity` | Create a Author entity instance. |
-| `Authorab` | `($data): AuthorabEntity` | Create a Authorab entity instance. |
+| `Author` | `($data): AuthorEntity` | Create an Author entity instance. |
+| `Authorab` | `($data): AuthorabEntity` | Create an Authorab entity instance. |
 | `CombinedSearch` | `($data): CombinedSearchEntity` | Create a CombinedSearch entity instance. |
 | `CombinedSearchWithField` | `($data): CombinedSearchWithFieldEntity` | Create a CombinedSearchWithField entity instance. |
 | `Line` | `($data): LineEntity` | Create a Line entity instance. |
@@ -364,7 +367,7 @@ API path: `/title/{title}:abs`
 
 ### Author
 
-Create an instance: `const author = client.author`
+Create an instance: `$author = $client->Author();`
 
 #### Operations
 
@@ -384,20 +387,22 @@ Create an instance: `const author = client.author`
 
 #### Example: Load
 
-```ts
-const author = await client.author.load({ id: 'author_id' })
+```php
+// load() returns the bare Author record (throws on error).
+$author = $client->Author()->load(["id" => "author_id"]);
 ```
 
 #### Example: List
 
-```ts
-const authors = await client.author.list()
+```php
+// list() returns an array of Author records (throws on error).
+$authors = $client->Author()->list();
 ```
 
 
 ### Authorab
 
-Create an instance: `const authorab = client.authorab`
+Create an instance: `$authorab = $client->Authorab();`
 
 #### Operations
 
@@ -416,14 +421,15 @@ Create an instance: `const authorab = client.authorab`
 
 #### Example: List
 
-```ts
-const authorabs = await client.authorab.list()
+```php
+// list() returns an array of Authorab records (throws on error).
+$authorabs = $client->Authorab()->list();
 ```
 
 
 ### CombinedSearch
 
-Create an instance: `const combined_search = client.combined_search`
+Create an instance: `$combined_search = $client->CombinedSearch();`
 
 #### Operations
 
@@ -442,14 +448,15 @@ Create an instance: `const combined_search = client.combined_search`
 
 #### Example: List
 
-```ts
-const combined_searchs = await client.combined_search.list()
+```php
+// list() returns an array of CombinedSearch records (throws on error).
+$combined_searchs = $client->CombinedSearch()->list();
 ```
 
 
 ### CombinedSearchWithField
 
-Create an instance: `const combined_search_with_field = client.combined_search_with_field`
+Create an instance: `$combined_search_with_field = $client->CombinedSearchWithField();`
 
 #### Operations
 
@@ -459,14 +466,15 @@ Create an instance: `const combined_search_with_field = client.combined_search_w
 
 #### Example: List
 
-```ts
-const combined_search_with_fields = await client.combined_search_with_field.list()
+```php
+// list() returns an array of CombinedSearchWithField records (throws on error).
+$combined_search_with_fields = $client->CombinedSearchWithField()->list();
 ```
 
 
 ### Line
 
-Create an instance: `const line = client.line`
+Create an instance: `$line = $client->Line();`
 
 #### Operations
 
@@ -486,20 +494,22 @@ Create an instance: `const line = client.line`
 
 #### Example: Load
 
-```ts
-const line = await client.line.load({ id: 'line_id' })
+```php
+// load() returns the bare Line record (throws on error).
+$line = $client->Line()->load(["id" => "line_id"]);
 ```
 
 #### Example: List
 
-```ts
-const lines = await client.line.list()
+```php
+// list() returns an array of Line records (throws on error).
+$lines = $client->Line()->list();
 ```
 
 
 ### Linecount
 
-Create an instance: `const linecount = client.linecount`
+Create an instance: `$linecount = $client->Linecount();`
 
 #### Operations
 
@@ -519,20 +529,22 @@ Create an instance: `const linecount = client.linecount`
 
 #### Example: Load
 
-```ts
-const linecount = await client.linecount.load({ id: 'linecount_id' })
+```php
+// load() returns the bare Linecount record (throws on error).
+$linecount = $client->Linecount()->load(["id" => "linecount_id"]);
 ```
 
 #### Example: List
 
-```ts
-const linecounts = await client.linecount.list()
+```php
+// list() returns an array of Linecount records (throws on error).
+$linecounts = $client->Linecount()->list();
 ```
 
 
 ### Poemcount
 
-Create an instance: `const poemcount = client.poemcount`
+Create an instance: `$poemcount = $client->Poemcount();`
 
 #### Operations
 
@@ -551,14 +563,15 @@ Create an instance: `const poemcount = client.poemcount`
 
 #### Example: Load
 
-```ts
-const poemcount = await client.poemcount.load({ id: 'poemcount_id' })
+```php
+// load() returns the bare Poemcount record (throws on error).
+$poemcount = $client->Poemcount()->load(["id" => "poemcount_id"]);
 ```
 
 
 ### Random
 
-Create an instance: `const random = client.random`
+Create an instance: `$random = $client->Random();`
 
 #### Operations
 
@@ -578,20 +591,22 @@ Create an instance: `const random = client.random`
 
 #### Example: Load
 
-```ts
-const random = await client.random.load({ id: 'random_id' })
+```php
+// load() returns the bare Random record (throws on error).
+$random = $client->Random()->load(["id" => "random_id"]);
 ```
 
 #### Example: List
 
-```ts
-const randoms = await client.random.list()
+```php
+// list() returns an array of Random records (throws on error).
+$randoms = $client->Random()->list();
 ```
 
 
 ### Title
 
-Create an instance: `const title = client.title`
+Create an instance: `$title = $client->Title();`
 
 #### Operations
 
@@ -611,20 +626,22 @@ Create an instance: `const title = client.title`
 
 #### Example: Load
 
-```ts
-const title = await client.title.load({ id: 'title_id' })
+```php
+// load() returns the bare Title record (throws on error).
+$title = $client->Title()->load(["id" => "title_id"]);
 ```
 
 #### Example: List
 
-```ts
-const titles = await client.title.list()
+```php
+// list() returns an array of Title records (throws on error).
+$titles = $client->Title()->list();
 ```
 
 
 ### Titleab
 
-Create an instance: `const titleab = client.titleab`
+Create an instance: `$titleab = $client->Titleab();`
 
 #### Operations
 
@@ -643,8 +660,9 @@ Create an instance: `const titleab = client.titleab`
 
 #### Example: List
 
-```ts
-const titleabs = await client.titleab.list()
+```php
+// list() returns an array of Titleab records (throws on error).
+$titleabs = $client->Titleab()->list();
 ```
 
 
@@ -719,7 +737,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$author = $client->author();
+$author = $client->Author();
 $author->load(["id" => "example_id"]);
 
 // $author->dataGet() now returns the loaded author data

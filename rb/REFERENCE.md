@@ -122,7 +122,7 @@ same parameters as `direct()`. Raises on error.
 ## AuthorEntity
 
 ```ruby
-author = client.author
+author = client.Author
 ```
 
 ### Fields
@@ -141,7 +141,7 @@ author = client.author
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.author.list(nil)
+results = client.Author.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -149,7 +149,7 @@ results = client.author.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.author.load({ "id" => "author_id" })
+result = client.Author.load({ "id" => "author_id" })
 ```
 
 ### Common Methods
@@ -185,7 +185,7 @@ Return the entity name.
 ## AuthorabEntity
 
 ```ruby
-authorab = client.authorab
+authorab = client.Authorab
 ```
 
 ### Fields
@@ -204,7 +204,7 @@ authorab = client.authorab
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.authorab.list(nil)
+results = client.Authorab.list(nil)
 ```
 
 ### Common Methods
@@ -240,7 +240,7 @@ Return the entity name.
 ## CombinedSearchEntity
 
 ```ruby
-combined_search = client.combined_search
+combined_search = client.CombinedSearch
 ```
 
 ### Fields
@@ -259,7 +259,7 @@ combined_search = client.combined_search
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.combined_search.list(nil)
+results = client.CombinedSearch.list(nil)
 ```
 
 ### Common Methods
@@ -295,7 +295,7 @@ Return the entity name.
 ## CombinedSearchWithFieldEntity
 
 ```ruby
-combined_search_with_field = client.combined_search_with_field
+combined_search_with_field = client.CombinedSearchWithField
 ```
 
 ### Operations
@@ -305,7 +305,7 @@ combined_search_with_field = client.combined_search_with_field
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.combined_search_with_field.list(nil)
+results = client.CombinedSearchWithField.list(nil)
 ```
 
 ### Common Methods
@@ -341,7 +341,7 @@ Return the entity name.
 ## LineEntity
 
 ```ruby
-line = client.line
+line = client.Line
 ```
 
 ### Fields
@@ -360,7 +360,7 @@ line = client.line
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.line.list(nil)
+results = client.Line.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -368,7 +368,7 @@ results = client.line.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.line.load({ "id" => "line_id" })
+result = client.Line.load({ "id" => "line_id" })
 ```
 
 ### Common Methods
@@ -404,7 +404,7 @@ Return the entity name.
 ## LinecountEntity
 
 ```ruby
-linecount = client.linecount
+linecount = client.Linecount
 ```
 
 ### Fields
@@ -423,7 +423,7 @@ linecount = client.linecount
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.linecount.list(nil)
+results = client.Linecount.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -431,7 +431,7 @@ results = client.linecount.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.linecount.load({ "id" => "linecount_id" })
+result = client.Linecount.load({ "id" => "linecount_id" })
 ```
 
 ### Common Methods
@@ -467,7 +467,7 @@ Return the entity name.
 ## PoemcountEntity
 
 ```ruby
-poemcount = client.poemcount
+poemcount = client.Poemcount
 ```
 
 ### Fields
@@ -486,7 +486,7 @@ poemcount = client.poemcount
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.poemcount.load({ "id" => "poemcount_id" })
+result = client.Poemcount.load({ "id" => "poemcount_id" })
 ```
 
 ### Common Methods
@@ -522,7 +522,7 @@ Return the entity name.
 ## RandomEntity
 
 ```ruby
-random = client.random
+random = client.Random
 ```
 
 ### Fields
@@ -541,7 +541,7 @@ random = client.random
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.random.list(nil)
+results = client.Random.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -549,7 +549,7 @@ results = client.random.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.random.load({ "id" => "random_id" })
+result = client.Random.load({ "id" => "random_id" })
 ```
 
 ### Common Methods
@@ -585,7 +585,7 @@ Return the entity name.
 ## TitleEntity
 
 ```ruby
-title = client.title
+title = client.Title
 ```
 
 ### Fields
@@ -604,7 +604,7 @@ title = client.title
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.title.list(nil)
+results = client.Title.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -612,7 +612,7 @@ results = client.title.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.title.load({ "id" => "title_id" })
+result = client.Title.load({ "id" => "title_id" })
 ```
 
 ### Common Methods
@@ -648,7 +648,7 @@ Return the entity name.
 ## TitleabEntity
 
 ```ruby
-titleab = client.titleab
+titleab = client.Titleab
 ```
 
 ### Fields
@@ -667,7 +667,7 @@ titleab = client.titleab
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.titleab.list(nil)
+results = client.Titleab.list(nil)
 ```
 
 ### Common Methods

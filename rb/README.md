@@ -28,16 +28,14 @@ require_relative "Poetrydb_sdk"
 client = PoetrydbSDK.new
 ```
 
-### 2. List authors
+### 2. List author records
 
 ```ruby
 begin
-  result = client.author.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Author records — iterate directly.
+  authors = client.Author.list
+  authors.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -48,8 +46,9 @@ end
 
 ```ruby
 begin
-  result = client.author.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Author record (raises on error).
+  author = client.Author.load({ "id" => "example_id" })
+  puts author
 rescue => err
   warn "load failed: #{err}"
 end
@@ -96,13 +95,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = PoetrydbSDK.test
+client = PoetrydbSDK.test({
+  "entity" => { "author" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.author.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+author = client.Author.load({ "id" => "test01" })
+puts author
 ```
 
 ### Use a custom fetch function
@@ -178,8 +181,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Author` | `(data) -> AuthorEntity` | Create a Author entity instance. |
-| `Authorab` | `(data) -> AuthorabEntity` | Create a Authorab entity instance. |
+| `Author` | `(data) -> AuthorEntity` | Create an Author entity instance. |
+| `Authorab` | `(data) -> AuthorabEntity` | Create an Authorab entity instance. |
 | `CombinedSearch` | `(data) -> CombinedSearchEntity` | Create a CombinedSearch entity instance. |
 | `CombinedSearchWithField` | `(data) -> CombinedSearchWithFieldEntity` | Create a CombinedSearchWithField entity instance. |
 | `Line` | `(data) -> LineEntity` | Create a Line entity instance. |
@@ -359,7 +362,7 @@ API path: `/title/{title}:abs`
 
 ### Author
 
-Create an instance: `const author = client.author`
+Create an instance: `author = client.Author`
 
 #### Operations
 
@@ -379,20 +382,22 @@ Create an instance: `const author = client.author`
 
 #### Example: Load
 
-```ts
-const author = await client.author.load({ id: 'author_id' })
+```ruby
+# load returns the bare Author record (raises on error).
+author = client.Author.load({ "id" => "author_id" })
 ```
 
 #### Example: List
 
-```ts
-const authors = await client.author.list()
+```ruby
+# list returns an Array of Author records (raises on error).
+authors = client.Author.list
 ```
 
 
 ### Authorab
 
-Create an instance: `const authorab = client.authorab`
+Create an instance: `authorab = client.Authorab`
 
 #### Operations
 
@@ -411,14 +416,15 @@ Create an instance: `const authorab = client.authorab`
 
 #### Example: List
 
-```ts
-const authorabs = await client.authorab.list()
+```ruby
+# list returns an Array of Authorab records (raises on error).
+authorabs = client.Authorab.list
 ```
 
 
 ### CombinedSearch
 
-Create an instance: `const combined_search = client.combined_search`
+Create an instance: `combined_search = client.CombinedSearch`
 
 #### Operations
 
@@ -437,14 +443,15 @@ Create an instance: `const combined_search = client.combined_search`
 
 #### Example: List
 
-```ts
-const combined_searchs = await client.combined_search.list()
+```ruby
+# list returns an Array of CombinedSearch records (raises on error).
+combined_searchs = client.CombinedSearch.list
 ```
 
 
 ### CombinedSearchWithField
 
-Create an instance: `const combined_search_with_field = client.combined_search_with_field`
+Create an instance: `combined_search_with_field = client.CombinedSearchWithField`
 
 #### Operations
 
@@ -454,14 +461,15 @@ Create an instance: `const combined_search_with_field = client.combined_search_w
 
 #### Example: List
 
-```ts
-const combined_search_with_fields = await client.combined_search_with_field.list()
+```ruby
+# list returns an Array of CombinedSearchWithField records (raises on error).
+combined_search_with_fields = client.CombinedSearchWithField.list
 ```
 
 
 ### Line
 
-Create an instance: `const line = client.line`
+Create an instance: `line = client.Line`
 
 #### Operations
 
@@ -481,20 +489,22 @@ Create an instance: `const line = client.line`
 
 #### Example: Load
 
-```ts
-const line = await client.line.load({ id: 'line_id' })
+```ruby
+# load returns the bare Line record (raises on error).
+line = client.Line.load({ "id" => "line_id" })
 ```
 
 #### Example: List
 
-```ts
-const lines = await client.line.list()
+```ruby
+# list returns an Array of Line records (raises on error).
+lines = client.Line.list
 ```
 
 
 ### Linecount
 
-Create an instance: `const linecount = client.linecount`
+Create an instance: `linecount = client.Linecount`
 
 #### Operations
 
@@ -514,20 +524,22 @@ Create an instance: `const linecount = client.linecount`
 
 #### Example: Load
 
-```ts
-const linecount = await client.linecount.load({ id: 'linecount_id' })
+```ruby
+# load returns the bare Linecount record (raises on error).
+linecount = client.Linecount.load({ "id" => "linecount_id" })
 ```
 
 #### Example: List
 
-```ts
-const linecounts = await client.linecount.list()
+```ruby
+# list returns an Array of Linecount records (raises on error).
+linecounts = client.Linecount.list
 ```
 
 
 ### Poemcount
 
-Create an instance: `const poemcount = client.poemcount`
+Create an instance: `poemcount = client.Poemcount`
 
 #### Operations
 
@@ -546,14 +558,15 @@ Create an instance: `const poemcount = client.poemcount`
 
 #### Example: Load
 
-```ts
-const poemcount = await client.poemcount.load({ id: 'poemcount_id' })
+```ruby
+# load returns the bare Poemcount record (raises on error).
+poemcount = client.Poemcount.load({ "id" => "poemcount_id" })
 ```
 
 
 ### Random
 
-Create an instance: `const random = client.random`
+Create an instance: `random = client.Random`
 
 #### Operations
 
@@ -573,20 +586,22 @@ Create an instance: `const random = client.random`
 
 #### Example: Load
 
-```ts
-const random = await client.random.load({ id: 'random_id' })
+```ruby
+# load returns the bare Random record (raises on error).
+random = client.Random.load({ "id" => "random_id" })
 ```
 
 #### Example: List
 
-```ts
-const randoms = await client.random.list()
+```ruby
+# list returns an Array of Random records (raises on error).
+randoms = client.Random.list
 ```
 
 
 ### Title
 
-Create an instance: `const title = client.title`
+Create an instance: `title = client.Title`
 
 #### Operations
 
@@ -606,20 +621,22 @@ Create an instance: `const title = client.title`
 
 #### Example: Load
 
-```ts
-const title = await client.title.load({ id: 'title_id' })
+```ruby
+# load returns the bare Title record (raises on error).
+title = client.Title.load({ "id" => "title_id" })
 ```
 
 #### Example: List
 
-```ts
-const titles = await client.title.list()
+```ruby
+# list returns an Array of Title records (raises on error).
+titles = client.Title.list
 ```
 
 
 ### Titleab
 
-Create an instance: `const titleab = client.titleab`
+Create an instance: `titleab = client.Titleab`
 
 #### Operations
 
@@ -638,8 +655,9 @@ Create an instance: `const titleab = client.titleab`
 
 #### Example: List
 
-```ts
-const titleabs = await client.titleab.list()
+```ruby
+# list returns an Array of Titleab records (raises on error).
+titleabs = client.Titleab.list
 ```
 
 
@@ -714,7 +732,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-author = client.author
+author = client.Author
 author.load({ "id" => "example_id" })
 
 # author.data_get now returns the loaded author data

@@ -233,10 +233,10 @@ class PoetrydbSDK
 
     private $_author = null;
 
-    // Idiomatic facade: $client->author()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Author() (PHP method
-    // names are case-insensitive).
-    public function author($data = null)
+    // Canonical facade: $client->Author()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->author()
+    // resolves here too.
+    public function Author($data = null)
     {
         require_once __DIR__ . '/entity/author_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class PoetrydbSDK
 
     private $_authorab = null;
 
-    // Idiomatic facade: $client->authorab()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Authorab() (PHP method
-    // names are case-insensitive).
-    public function authorab($data = null)
+    // Canonical facade: $client->Authorab()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->authorab()
+    // resolves here too.
+    public function Authorab($data = null)
     {
         require_once __DIR__ . '/entity/authorab_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class PoetrydbSDK
 
     private $_combined_search = null;
 
-    // Idiomatic facade: $client->combined_search()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CombinedSearch() (PHP method
-    // names are case-insensitive).
-    public function combined_search($data = null)
+    // Canonical facade: $client->CombinedSearch()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->combined_search()
+    // resolves here too.
+    public function CombinedSearch($data = null)
     {
         require_once __DIR__ . '/entity/combined_search_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class PoetrydbSDK
 
     private $_combined_search_with_field = null;
 
-    // Idiomatic facade: $client->combined_search_with_field()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CombinedSearchWithField() (PHP method
-    // names are case-insensitive).
-    public function combined_search_with_field($data = null)
+    // Canonical facade: $client->CombinedSearchWithField()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->combined_search_with_field()
+    // resolves here too.
+    public function CombinedSearchWithField($data = null)
     {
         require_once __DIR__ . '/entity/combined_search_with_field_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class PoetrydbSDK
 
     private $_line = null;
 
-    // Idiomatic facade: $client->line()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Line() (PHP method
-    // names are case-insensitive).
-    public function line($data = null)
+    // Canonical facade: $client->Line()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->line()
+    // resolves here too.
+    public function Line($data = null)
     {
         require_once __DIR__ . '/entity/line_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class PoetrydbSDK
 
     private $_linecount = null;
 
-    // Idiomatic facade: $client->linecount()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Linecount() (PHP method
-    // names are case-insensitive).
-    public function linecount($data = null)
+    // Canonical facade: $client->Linecount()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->linecount()
+    // resolves here too.
+    public function Linecount($data = null)
     {
         require_once __DIR__ . '/entity/linecount_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class PoetrydbSDK
 
     private $_poemcount = null;
 
-    // Idiomatic facade: $client->poemcount()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Poemcount() (PHP method
-    // names are case-insensitive).
-    public function poemcount($data = null)
+    // Canonical facade: $client->Poemcount()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->poemcount()
+    // resolves here too.
+    public function Poemcount($data = null)
     {
         require_once __DIR__ . '/entity/poemcount_entity.php';
         if ($data === null) {
@@ -359,10 +359,10 @@ class PoetrydbSDK
 
     private $_random = null;
 
-    // Idiomatic facade: $client->random()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Random() (PHP method
-    // names are case-insensitive).
-    public function random($data = null)
+    // Canonical facade: $client->Random()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->random()
+    // resolves here too.
+    public function Random($data = null)
     {
         require_once __DIR__ . '/entity/random_entity.php';
         if ($data === null) {
@@ -377,10 +377,10 @@ class PoetrydbSDK
 
     private $_title = null;
 
-    // Idiomatic facade: $client->title()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Title() (PHP method
-    // names are case-insensitive).
-    public function title($data = null)
+    // Canonical facade: $client->Title()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->title()
+    // resolves here too.
+    public function Title($data = null)
     {
         require_once __DIR__ . '/entity/title_entity.php';
         if ($data === null) {
@@ -395,10 +395,10 @@ class PoetrydbSDK
 
     private $_titleab = null;
 
-    // Idiomatic facade: $client->titleab()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Titleab() (PHP method
-    // names are case-insensitive).
-    public function titleab($data = null)
+    // Canonical facade: $client->Titleab()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->titleab()
+    // resolves here too.
+    public function Titleab($data = null)
     {
         require_once __DIR__ . '/entity/titleab_entity.php';
         if ($data === null) {
