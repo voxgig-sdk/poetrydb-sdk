@@ -45,6 +45,7 @@ class RandomEntity
     end
   end
 
+  # @return [Random, Hash] the current Random data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class RandomEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Random fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Random.
+  #
+  # @param reqmatch [RandomLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Random, Hash] the loaded Random; raises PoetrydbError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class RandomEntity
 
 
   
+  # List Random items matching the given filter.
+  #
+  # @param reqmatch [RandomListMatch, Hash, nil] match filter (any subset of Random fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Random>, Array] the matching Random items; raises PoetrydbError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

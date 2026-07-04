@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  CombinedSearchWithField,
+  CombinedSearchWithFieldListMatch,
+} from '../PoetrydbTypes'
 
 // TODO: needs Entity superclass
-class CombinedSearchWithFieldEntity extends PoetrydbEntityBase {
+class CombinedSearchWithFieldEntity extends PoetrydbEntityBase<CombinedSearchWithField> {
 
   constructor(client: PoetrydbSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class CombinedSearchWithFieldEntity extends PoetrydbEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: CombinedSearchWithFieldListMatch, ctrl?: Control): Promise<CombinedSearchWithField[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class CombinedSearchWithFieldEntity extends PoetrydbEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<CombinedSearchWithField[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

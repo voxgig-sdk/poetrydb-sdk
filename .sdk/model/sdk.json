@@ -1909,6 +1909,7 @@
         }
       },
       "info": {
+        "auth": false,
         "contact": {
           "url": "https://github.com/thundercomb/poetrydb"
         },
@@ -1944,6 +1945,7 @@
               "active": false,
               "name": "",
               "package": "",
+              "state": "pending",
               "url": "",
               "vault": {
                 "alias": "",
@@ -1994,6 +1996,7 @@
               "active": false,
               "name": "",
               "package": "",
+              "state": "pending",
               "url": "",
               "vault": {
                 "alias": "",
@@ -2043,6 +2046,7 @@
               "active": false,
               "name": "",
               "package": "",
+              "state": "pending",
               "url": "",
               "vault": {
                 "alias": "",
@@ -2084,6 +2088,7 @@
               "active": false,
               "name": "luarocks",
               "package": "",
+              "state": "pending",
               "url": "https://luarocks.org",
               "vault": {
                 "alias": "luarocks",
@@ -2120,6 +2125,7 @@
               "active": false,
               "name": "packagist",
               "package": "",
+              "state": "pending",
               "url": "https://packagist.org",
               "vault": {
                 "alias": "packagist",
@@ -2162,6 +2168,7 @@
               "active": false,
               "name": "pypi",
               "package": "",
+              "state": "pending",
               "url": "https://pypi.org",
               "vault": {
                 "alias": "pypi",
@@ -2209,6 +2216,7 @@
               "active": false,
               "name": "rubygems",
               "package": "",
+              "state": "pending",
               "url": "https://rubygems.org",
               "vault": {
                 "alias": "gem",
@@ -2262,6 +2270,7 @@
               "active": false,
               "name": "npm",
               "package": "",
+              "state": "pending",
               "url": "https://registry.npmjs.org",
               "vault": {
                 "alias": "npm",

@@ -144,16 +144,23 @@ class PoetrydbSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class PoetrydbSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,60 +212,170 @@ class PoetrydbSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def author(self):
+        """Idiomatic facade: client.author.list() / client.author.load({"id": ...})."""
+        from entity.author_entity import AuthorEntity
+        cached = getattr(self, "_author", None)
+        if cached is None:
+            cached = AuthorEntity(self, None)
+            self._author = cached
+        return cached
 
     def Author(self, data=None):
+        # Deprecated: use client.author instead.
         from entity.author_entity import AuthorEntity
         return AuthorEntity(self, data)
 
 
+    @property
+    def authorab(self):
+        """Idiomatic facade: client.authorab.list() / client.authorab.load({"id": ...})."""
+        from entity.authorab_entity import AuthorabEntity
+        cached = getattr(self, "_authorab", None)
+        if cached is None:
+            cached = AuthorabEntity(self, None)
+            self._authorab = cached
+        return cached
+
     def Authorab(self, data=None):
+        # Deprecated: use client.authorab instead.
         from entity.authorab_entity import AuthorabEntity
         return AuthorabEntity(self, data)
 
 
+    @property
+    def combined_search(self):
+        """Idiomatic facade: client.combined_search.list() / client.combined_search.load({"id": ...})."""
+        from entity.combined_search_entity import CombinedSearchEntity
+        cached = getattr(self, "_combined_search", None)
+        if cached is None:
+            cached = CombinedSearchEntity(self, None)
+            self._combined_search = cached
+        return cached
+
     def CombinedSearch(self, data=None):
+        # Deprecated: use client.combined_search instead.
         from entity.combined_search_entity import CombinedSearchEntity
         return CombinedSearchEntity(self, data)
 
 
+    @property
+    def combined_search_with_field(self):
+        """Idiomatic facade: client.combined_search_with_field.list() / client.combined_search_with_field.load({"id": ...})."""
+        from entity.combined_search_with_field_entity import CombinedSearchWithFieldEntity
+        cached = getattr(self, "_combined_search_with_field", None)
+        if cached is None:
+            cached = CombinedSearchWithFieldEntity(self, None)
+            self._combined_search_with_field = cached
+        return cached
+
     def CombinedSearchWithField(self, data=None):
+        # Deprecated: use client.combined_search_with_field instead.
         from entity.combined_search_with_field_entity import CombinedSearchWithFieldEntity
         return CombinedSearchWithFieldEntity(self, data)
 
 
+    @property
+    def line(self):
+        """Idiomatic facade: client.line.list() / client.line.load({"id": ...})."""
+        from entity.line_entity import LineEntity
+        cached = getattr(self, "_line", None)
+        if cached is None:
+            cached = LineEntity(self, None)
+            self._line = cached
+        return cached
+
     def Line(self, data=None):
+        # Deprecated: use client.line instead.
         from entity.line_entity import LineEntity
         return LineEntity(self, data)
 
 
+    @property
+    def linecount(self):
+        """Idiomatic facade: client.linecount.list() / client.linecount.load({"id": ...})."""
+        from entity.linecount_entity import LinecountEntity
+        cached = getattr(self, "_linecount", None)
+        if cached is None:
+            cached = LinecountEntity(self, None)
+            self._linecount = cached
+        return cached
+
     def Linecount(self, data=None):
+        # Deprecated: use client.linecount instead.
         from entity.linecount_entity import LinecountEntity
         return LinecountEntity(self, data)
 
 
+    @property
+    def poemcount(self):
+        """Idiomatic facade: client.poemcount.list() / client.poemcount.load({"id": ...})."""
+        from entity.poemcount_entity import PoemcountEntity
+        cached = getattr(self, "_poemcount", None)
+        if cached is None:
+            cached = PoemcountEntity(self, None)
+            self._poemcount = cached
+        return cached
+
     def Poemcount(self, data=None):
+        # Deprecated: use client.poemcount instead.
         from entity.poemcount_entity import PoemcountEntity
         return PoemcountEntity(self, data)
 
 
+    @property
+    def random(self):
+        """Idiomatic facade: client.random.list() / client.random.load({"id": ...})."""
+        from entity.random_entity import RandomEntity
+        cached = getattr(self, "_random", None)
+        if cached is None:
+            cached = RandomEntity(self, None)
+            self._random = cached
+        return cached
+
     def Random(self, data=None):
+        # Deprecated: use client.random instead.
         from entity.random_entity import RandomEntity
         return RandomEntity(self, data)
 
 
+    @property
+    def title(self):
+        """Idiomatic facade: client.title.list() / client.title.load({"id": ...})."""
+        from entity.title_entity import TitleEntity
+        cached = getattr(self, "_title", None)
+        if cached is None:
+            cached = TitleEntity(self, None)
+            self._title = cached
+        return cached
+
     def Title(self, data=None):
+        # Deprecated: use client.title instead.
         from entity.title_entity import TitleEntity
         return TitleEntity(self, data)
 
 
+    @property
+    def titleab(self):
+        """Idiomatic facade: client.titleab.list() / client.titleab.load({"id": ...})."""
+        from entity.titleab_entity import TitleabEntity
+        cached = getattr(self, "_titleab", None)
+        if cached is None:
+            cached = TitleabEntity(self, None)
+            self._titleab = cached
+        return cached
+
     def Titleab(self, data=None):
+        # Deprecated: use client.titleab instead.
         from entity.titleab_entity import TitleabEntity
         return TitleabEntity(self, data)
 

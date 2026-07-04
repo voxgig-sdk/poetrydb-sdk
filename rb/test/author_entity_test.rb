@@ -43,14 +43,12 @@ class AuthorEntityTest < Minitest::Test
     author_ref01_ent = client.Author(nil)
     author_ref01_match = {}
 
-    author_ref01_list_result, err = author_ref01_ent.list(author_ref01_match, nil)
-    assert_nil err
+    author_ref01_list_result = author_ref01_ent.list(author_ref01_match, nil)
     assert author_ref01_list_result.is_a?(Array)
 
     # LOAD
     author_ref01_match_dt0 = {}
-    author_ref01_data_dt0_loaded, err = author_ref01_ent.load(author_ref01_match_dt0, nil)
-    assert_nil err
+    author_ref01_data_dt0_loaded = author_ref01_ent.load(author_ref01_match_dt0, nil)
     assert !author_ref01_data_dt0_loaded.nil?
 
   end
@@ -89,7 +87,6 @@ def author_basic_setup(extra)
     "POETRYDB_TEST_AUTHOR_ENTID" => idmap,
     "POETRYDB_TEST_LIVE" => "FALSE",
     "POETRYDB_TEST_EXPLAIN" => "FALSE",
-    "POETRYDB_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -101,7 +98,6 @@ def author_basic_setup(extra)
   if env["POETRYDB_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["POETRYDB_APIKEY"],
       },
       extra || {},
     ])

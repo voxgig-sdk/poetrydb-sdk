@@ -49,8 +49,7 @@ class TestPoemcountEntity:
         # LOAD
         poemcount_ref01_ent = client.Poemcount(None)
         poemcount_ref01_match_dt0 = {}
-        poemcount_ref01_data_dt0_loaded, err = poemcount_ref01_ent.load(poemcount_ref01_match_dt0, None)
-        assert err is None
+        poemcount_ref01_data_dt0_loaded = poemcount_ref01_ent.load(poemcount_ref01_match_dt0, None)
         assert poemcount_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _poemcount_basic_setup(extra):
         "POETRYDB_TEST_POEMCOUNT_ENTID": idmap,
         "POETRYDB_TEST_LIVE": "FALSE",
         "POETRYDB_TEST_EXPLAIN": "FALSE",
-        "POETRYDB_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _poemcount_basic_setup(extra):
     if env.get("POETRYDB_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("POETRYDB_APIKEY"),
             },
             extra or {},
         ])

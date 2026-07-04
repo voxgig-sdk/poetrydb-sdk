@@ -9,11 +9,9 @@ The Python SDK for the Poetrydb API — an entity-oriented client following Pyth
 
 
 ## Install
-```bash
-pip install voxgig-sdk-poetrydb
-```
-
-Or install from source:
+This package is not yet published to PyPI. Install it from the GitHub
+release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/poetrydb-sdk/releases)) or
+from a source checkout:
 
 ```bash
 pip install -e .
@@ -28,34 +26,31 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from poetrydb_sdk import PoetrydbSDK
 
-client = PoetrydbSDK({
-    "apikey": os.environ.get("POETRYDB_APIKEY"),
-})
+client = PoetrydbSDK()
 ```
 
 ### 2. List authors
 
 ```python
-result, err = client.Author().list()
-if err:
-    raise Exception(err)
-
-if isinstance(result, list):
+try:
+    result = client.author.list()
     for item in result:
         d = item.data_get()
         print(d["id"], d["name"])
+except Exception as err:
+    print(f"list failed: {err}")
 ```
 
-### 3. Load a author
+### 3. Load an author
 
 ```python
-result, err = client.Author().load({"id": "example_id"})
-if err:
-    raise Exception(err)
-print(result)
+try:
+    result = client.author.load({"id": "example_id"})
+    print(result)
+except Exception as err:
+    print(f"load failed: {err}")
 ```
 
 
@@ -66,29 +61,28 @@ print(result)
 For endpoints not covered by entity methods:
 
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
+else:
+    print(result["err"])     # error value
 ```
 
 ### Prepare a request without sending it
 
 ```python
-fetchdef, err = client.prepare({
+# prepare() returns the fetch definition and raises on error.
+fetchdef = client.prepare({
     "path": "/api/resource/{id}",
     "method": "DELETE",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 print(fetchdef["url"])
 print(fetchdef["method"])
@@ -102,7 +96,7 @@ Create a mock client for unit testing — no server required:
 ```python
 client = PoetrydbSDK.test()
 
-result, err = client.Poetrydb().load({"id": "test01"})
+result = client.author.load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -133,7 +127,6 @@ Create a `.env.local` file at the project root:
 
 ```
 POETRYDB_TEST_LIVE=TRUE
-POETRYDB_APIKEY=<your-key>
 ```
 
 Then run:
@@ -157,7 +150,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |
@@ -179,8 +171,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | --- | --- | --- |
 | `options_map` | `() -> dict` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> (dict, err)` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> (dict, err)` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Author` | `(data) -> AuthorEntity` | Create a Author entity instance. |
 | `Authorab` | `(data) -> AuthorabEntity` | Create a Authorab entity instance. |
 | `CombinedSearch` | `(data) -> CombinedSearchEntity` | Create a CombinedSearch entity instance. |
@@ -198,11 +190,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> (any, err)` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> (any, err)` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> (any, err)` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> (any, err)` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> (any, err)` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -212,8 +204,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`dict` with these keys:
+Entity operations return the bare result data (a `dict` for single-entity
+ops, a `list` for `list`) and raise on error. Wrap calls in
+`try`/`except` to handle failures.
+
+The `direct()` escape hatch never raises — it returns a result `dict`
+you branch on via `result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -359,7 +355,7 @@ API path: `/title/{title}:abs`
 
 ### Author
 
-Create an instance: `const author = client.Author()`
+Create an instance: `const author = client.author`
 
 #### Operations
 
@@ -380,19 +376,19 @@ Create an instance: `const author = client.Author()`
 #### Example: Load
 
 ```ts
-const author = await client.Author().load({ id: 'author_id' })
+const author = await client.author.load({ id: 'author_id' })
 ```
 
 #### Example: List
 
 ```ts
-const authors = await client.Author().list()
+const authors = await client.author.list()
 ```
 
 
 ### Authorab
 
-Create an instance: `const authorab = client.Authorab()`
+Create an instance: `const authorab = client.authorab`
 
 #### Operations
 
@@ -412,13 +408,13 @@ Create an instance: `const authorab = client.Authorab()`
 #### Example: List
 
 ```ts
-const authorabs = await client.Authorab().list()
+const authorabs = await client.authorab.list()
 ```
 
 
 ### CombinedSearch
 
-Create an instance: `const combined_search = client.CombinedSearch()`
+Create an instance: `const combined_search = client.combined_search`
 
 #### Operations
 
@@ -438,13 +434,13 @@ Create an instance: `const combined_search = client.CombinedSearch()`
 #### Example: List
 
 ```ts
-const combined_searchs = await client.CombinedSearch().list()
+const combined_searchs = await client.combined_search.list()
 ```
 
 
 ### CombinedSearchWithField
 
-Create an instance: `const combined_search_with_field = client.CombinedSearchWithField()`
+Create an instance: `const combined_search_with_field = client.combined_search_with_field`
 
 #### Operations
 
@@ -455,13 +451,13 @@ Create an instance: `const combined_search_with_field = client.CombinedSearchWit
 #### Example: List
 
 ```ts
-const combined_search_with_fields = await client.CombinedSearchWithField().list()
+const combined_search_with_fields = await client.combined_search_with_field.list()
 ```
 
 
 ### Line
 
-Create an instance: `const line = client.Line()`
+Create an instance: `const line = client.line`
 
 #### Operations
 
@@ -482,19 +478,19 @@ Create an instance: `const line = client.Line()`
 #### Example: Load
 
 ```ts
-const line = await client.Line().load({ id: 'line_id' })
+const line = await client.line.load({ id: 'line_id' })
 ```
 
 #### Example: List
 
 ```ts
-const lines = await client.Line().list()
+const lines = await client.line.list()
 ```
 
 
 ### Linecount
 
-Create an instance: `const linecount = client.Linecount()`
+Create an instance: `const linecount = client.linecount`
 
 #### Operations
 
@@ -515,19 +511,19 @@ Create an instance: `const linecount = client.Linecount()`
 #### Example: Load
 
 ```ts
-const linecount = await client.Linecount().load({ id: 'linecount_id' })
+const linecount = await client.linecount.load({ id: 'linecount_id' })
 ```
 
 #### Example: List
 
 ```ts
-const linecounts = await client.Linecount().list()
+const linecounts = await client.linecount.list()
 ```
 
 
 ### Poemcount
 
-Create an instance: `const poemcount = client.Poemcount()`
+Create an instance: `const poemcount = client.poemcount`
 
 #### Operations
 
@@ -547,13 +543,13 @@ Create an instance: `const poemcount = client.Poemcount()`
 #### Example: Load
 
 ```ts
-const poemcount = await client.Poemcount().load({ id: 'poemcount_id' })
+const poemcount = await client.poemcount.load({ id: 'poemcount_id' })
 ```
 
 
 ### Random
 
-Create an instance: `const random = client.Random()`
+Create an instance: `const random = client.random`
 
 #### Operations
 
@@ -574,19 +570,19 @@ Create an instance: `const random = client.Random()`
 #### Example: Load
 
 ```ts
-const random = await client.Random().load({ id: 'random_id' })
+const random = await client.random.load({ id: 'random_id' })
 ```
 
 #### Example: List
 
 ```ts
-const randoms = await client.Random().list()
+const randoms = await client.random.list()
 ```
 
 
 ### Title
 
-Create an instance: `const title = client.Title()`
+Create an instance: `const title = client.title`
 
 #### Operations
 
@@ -607,19 +603,19 @@ Create an instance: `const title = client.Title()`
 #### Example: Load
 
 ```ts
-const title = await client.Title().load({ id: 'title_id' })
+const title = await client.title.load({ id: 'title_id' })
 ```
 
 #### Example: List
 
 ```ts
-const titles = await client.Title().list()
+const titles = await client.title.list()
 ```
 
 
 ### Titleab
 
-Create an instance: `const titleab = client.Titleab()`
+Create an instance: `const titleab = client.titleab`
 
 #### Operations
 
@@ -639,7 +635,7 @@ Create an instance: `const titleab = client.Titleab()`
 #### Example: List
 
 ```ts
-const titleabs = await client.Titleab().list()
+const titleabs = await client.titleab.list()
 ```
 
 
@@ -713,11 +709,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-moon = client.Moon()
-moon.load({"planet_id": "earth", "id": "luna"})
+author = client.author
+author.load({"id": "example_id"})
 
-# moon.data_get() now returns the loaded moon data
-# moon.match_get() returns the last match criteria
+# author.data_get() now returns the loaded author data
+# author.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

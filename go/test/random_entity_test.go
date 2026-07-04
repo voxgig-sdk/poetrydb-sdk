@@ -132,7 +132,6 @@ func randomBasicSetup(extra map[string]any) *entityTestSetup {
 		"POETRYDB_TEST_RANDOM_ENTID": idmap,
 		"POETRYDB_TEST_LIVE":      "FALSE",
 		"POETRYDB_TEST_EXPLAIN":   "FALSE",
-		"POETRYDB_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["POETRYDB_TEST_RANDOM_ENTID"])
@@ -143,7 +142,6 @@ func randomBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["POETRYDB_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["POETRYDB_APIKEY"],
 			},
 			extra,
 		})

@@ -53,14 +53,12 @@ class RandomEntityTest extends TestCase
             "output_field" => $setup["idmap"]["output_field01"],
         ];
 
-        [$random_ref01_list_result, $err] = $random_ref01_ent->list($random_ref01_match, null);
-        $this->assertNull($err);
+        $random_ref01_list_result = $random_ref01_ent->list($random_ref01_match, null);
         $this->assertIsArray($random_ref01_list_result);
 
         // LOAD
         $random_ref01_match_dt0 = [];
-        [$random_ref01_data_dt0_loaded, $err] = $random_ref01_ent->load($random_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $random_ref01_data_dt0_loaded = $random_ref01_ent->load($random_ref01_match_dt0, null);
         $this->assertNotNull($random_ref01_data_dt0_loaded);
 
     }
@@ -95,7 +93,6 @@ function random_basic_setup($extra)
         "POETRYDB_TEST_RANDOM_ENTID" => $idmap,
         "POETRYDB_TEST_LIVE" => "FALSE",
         "POETRYDB_TEST_EXPLAIN" => "FALSE",
-        "POETRYDB_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -107,7 +104,6 @@ function random_basic_setup($extra)
     if ($env["POETRYDB_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["POETRYDB_APIKEY"],
             ],
             $extra ?? [],
         ]);

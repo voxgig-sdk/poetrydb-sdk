@@ -45,6 +45,7 @@ class PoemcountEntity
     end
   end
 
+  # @return [Poemcount, Hash] the current Poemcount data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class PoemcountEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Poemcount fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Poemcount.
+  #
+  # @param reqmatch [PoemcountLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Poemcount, Hash] the loaded Poemcount; raises PoetrydbError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

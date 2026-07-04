@@ -53,14 +53,12 @@ class TestRandomEntity:
             "output_field": setup["idmap"]["output_field01"],
         }
 
-        random_ref01_list_result, err = random_ref01_ent.list(random_ref01_match, None)
-        assert err is None
+        random_ref01_list_result = random_ref01_ent.list(random_ref01_match, None)
         assert isinstance(random_ref01_list_result, list)
 
         # LOAD
         random_ref01_match_dt0 = {}
-        random_ref01_data_dt0_loaded, err = random_ref01_ent.load(random_ref01_match_dt0, None)
-        assert err is None
+        random_ref01_data_dt0_loaded = random_ref01_ent.load(random_ref01_match_dt0, None)
         assert random_ref01_data_dt0_loaded is not None
 
 
@@ -101,7 +99,6 @@ def _random_basic_setup(extra):
         "POETRYDB_TEST_RANDOM_ENTID": idmap,
         "POETRYDB_TEST_LIVE": "FALSE",
         "POETRYDB_TEST_EXPLAIN": "FALSE",
-        "POETRYDB_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -112,7 +109,6 @@ def _random_basic_setup(extra):
     if env.get("POETRYDB_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("POETRYDB_APIKEY"),
             },
             extra or {},
         ])

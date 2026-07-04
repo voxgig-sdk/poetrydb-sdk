@@ -52,8 +52,7 @@ class TestTitleabEntity:
             "title": setup["idmap"]["title01"],
         }
 
-        titleab_ref01_list_result, err = titleab_ref01_ent.list(titleab_ref01_match, None)
-        assert err is None
+        titleab_ref01_list_result = titleab_ref01_ent.list(titleab_ref01_match, None)
         assert isinstance(titleab_ref01_list_result, list)
 
 
@@ -94,7 +93,6 @@ def _titleab_basic_setup(extra):
         "POETRYDB_TEST_TITLEAB_ENTID": idmap,
         "POETRYDB_TEST_LIVE": "FALSE",
         "POETRYDB_TEST_EXPLAIN": "FALSE",
-        "POETRYDB_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +103,6 @@ def _titleab_basic_setup(extra):
     if env.get("POETRYDB_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("POETRYDB_APIKEY"),
             },
             extra or {},
         ])

@@ -46,14 +46,12 @@ class LinecountEntityTest < Minitest::Test
       "output_field" => setup[:idmap]["output_field01"],
     }
 
-    linecount_ref01_list_result, err = linecount_ref01_ent.list(linecount_ref01_match, nil)
-    assert_nil err
+    linecount_ref01_list_result = linecount_ref01_ent.list(linecount_ref01_match, nil)
     assert linecount_ref01_list_result.is_a?(Array)
 
     # LOAD
     linecount_ref01_match_dt0 = {}
-    linecount_ref01_data_dt0_loaded, err = linecount_ref01_ent.load(linecount_ref01_match_dt0, nil)
-    assert_nil err
+    linecount_ref01_data_dt0_loaded = linecount_ref01_ent.load(linecount_ref01_match_dt0, nil)
     assert !linecount_ref01_data_dt0_loaded.nil?
 
   end
@@ -92,7 +90,6 @@ def linecount_basic_setup(extra)
     "POETRYDB_TEST_LINECOUNT_ENTID" => idmap,
     "POETRYDB_TEST_LIVE" => "FALSE",
     "POETRYDB_TEST_EXPLAIN" => "FALSE",
-    "POETRYDB_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -104,7 +101,6 @@ def linecount_basic_setup(extra)
   if env["POETRYDB_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["POETRYDB_APIKEY"],
       },
       extra || {},
     ])

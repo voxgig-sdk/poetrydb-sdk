@@ -85,6 +85,27 @@ func (e *LinecountEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Linecount; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *LinecountEntity) DataTyped(data ...Linecount) Linecount {
+	if len(data) > 0 {
+		return typedFrom[Linecount](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Linecount](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Linecount (all fields
+// optional at the wire level).
+func (e *LinecountEntity) MatchTyped(match ...Linecount) Linecount {
+	if len(match) > 0 {
+		return typedFrom[Linecount](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Linecount](e.Match())
+}
+
 
 func (e *LinecountEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *LinecountEntity) Load(reqmatch map[string]any, ctrl map[string]any) (an
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// LinecountLoadMatch and returns an Linecount. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *LinecountEntity) LoadTyped(reqmatch LinecountLoadMatch, ctrl map[string]any) (Linecount, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Linecount{}, err
+	}
+	return typedFrom[Linecount](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *LinecountEntity) List(reqmatch map[string]any, ctrl map[string]any) (an
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// LinecountListMatch and returns []Linecount. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *LinecountEntity) ListTyped(reqmatch LinecountListMatch, ctrl map[string]any) ([]Linecount, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Linecount](res), nil
 }
 
 

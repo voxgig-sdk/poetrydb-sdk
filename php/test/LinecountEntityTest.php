@@ -53,14 +53,12 @@ class LinecountEntityTest extends TestCase
             "output_field" => $setup["idmap"]["output_field01"],
         ];
 
-        [$linecount_ref01_list_result, $err] = $linecount_ref01_ent->list($linecount_ref01_match, null);
-        $this->assertNull($err);
+        $linecount_ref01_list_result = $linecount_ref01_ent->list($linecount_ref01_match, null);
         $this->assertIsArray($linecount_ref01_list_result);
 
         // LOAD
         $linecount_ref01_match_dt0 = [];
-        [$linecount_ref01_data_dt0_loaded, $err] = $linecount_ref01_ent->load($linecount_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $linecount_ref01_data_dt0_loaded = $linecount_ref01_ent->load($linecount_ref01_match_dt0, null);
         $this->assertNotNull($linecount_ref01_data_dt0_loaded);
 
     }
@@ -95,7 +93,6 @@ function linecount_basic_setup($extra)
         "POETRYDB_TEST_LINECOUNT_ENTID" => $idmap,
         "POETRYDB_TEST_LIVE" => "FALSE",
         "POETRYDB_TEST_EXPLAIN" => "FALSE",
-        "POETRYDB_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -107,7 +104,6 @@ function linecount_basic_setup($extra)
     if ($env["POETRYDB_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["POETRYDB_APIKEY"],
             ],
             $extra ?? [],
         ]);

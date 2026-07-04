@@ -53,14 +53,12 @@ class TestLineEntity:
             "output_field": setup["idmap"]["output_field01"],
         }
 
-        line_ref01_list_result, err = line_ref01_ent.list(line_ref01_match, None)
-        assert err is None
+        line_ref01_list_result = line_ref01_ent.list(line_ref01_match, None)
         assert isinstance(line_ref01_list_result, list)
 
         # LOAD
         line_ref01_match_dt0 = {}
-        line_ref01_data_dt0_loaded, err = line_ref01_ent.load(line_ref01_match_dt0, None)
-        assert err is None
+        line_ref01_data_dt0_loaded = line_ref01_ent.load(line_ref01_match_dt0, None)
         assert line_ref01_data_dt0_loaded is not None
 
 
@@ -101,7 +99,6 @@ def _line_basic_setup(extra):
         "POETRYDB_TEST_LINE_ENTID": idmap,
         "POETRYDB_TEST_LIVE": "FALSE",
         "POETRYDB_TEST_EXPLAIN": "FALSE",
-        "POETRYDB_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -112,7 +109,6 @@ def _line_basic_setup(extra):
     if env.get("POETRYDB_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("POETRYDB_APIKEY"),
             },
             extra or {},
         ])

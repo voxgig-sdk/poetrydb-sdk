@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://poetrydb.org',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -131,7 +127,8 @@ class Config {
                     "name": "author",
                     "orig": "author",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -140,7 +137,8 @@ class Config {
                     "name": "format",
                     "orig": "format",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   },
                   {
                     "active": true,
@@ -149,7 +147,8 @@ class Config {
                     "name": "output_field",
                     "orig": "output_field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 2
                   }
                 ]
               },
@@ -189,7 +188,8 @@ class Config {
                     "name": "author",
                     "orig": "author",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -198,7 +198,8 @@ class Config {
                     "name": "output_field",
                     "orig": "output_field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -259,7 +260,8 @@ class Config {
                     "name": "id",
                     "orig": "author",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -345,7 +347,8 @@ class Config {
                     "name": "author",
                     "orig": "author",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -426,7 +429,8 @@ class Config {
                     "name": "input_field1",
                     "orig": "input_field1",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -435,7 +439,8 @@ class Config {
                     "name": "input_field2",
                     "orig": "input_field2",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   },
                   {
                     "active": true,
@@ -444,7 +449,8 @@ class Config {
                     "name": "search_term1",
                     "orig": "search_term1",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 2
                   },
                   {
                     "active": true,
@@ -453,7 +459,8 @@ class Config {
                     "name": "search_term2",
                     "orig": "search_term2",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 3
                   }
                 ]
               },
@@ -510,7 +517,8 @@ class Config {
                     "name": "input_field1",
                     "orig": "input_field1",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -519,7 +527,8 @@ class Config {
                     "name": "input_field2",
                     "orig": "input_field2",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   },
                   {
                     "active": true,
@@ -528,7 +537,8 @@ class Config {
                     "name": "output_field",
                     "orig": "output_field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 2
                   },
                   {
                     "active": true,
@@ -537,7 +547,8 @@ class Config {
                     "name": "search_term1",
                     "orig": "search_term1",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 3
                   },
                   {
                     "active": true,
@@ -546,7 +557,8 @@ class Config {
                     "name": "search_term2",
                     "orig": "search_term2",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 4
                   }
                 ]
               },
@@ -635,7 +647,8 @@ class Config {
                     "name": "format",
                     "orig": "format",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -644,7 +657,8 @@ class Config {
                     "name": "line",
                     "orig": "line",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   },
                   {
                     "active": true,
@@ -653,7 +667,8 @@ class Config {
                     "name": "output_field",
                     "orig": "output_field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 2
                   }
                 ]
               },
@@ -694,7 +709,8 @@ class Config {
                     "name": "line",
                     "orig": "line",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -703,7 +719,8 @@ class Config {
                     "name": "output_field",
                     "orig": "output_field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -750,7 +767,8 @@ class Config {
                     "name": "id",
                     "orig": "line",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -836,7 +854,8 @@ class Config {
                     "name": "format",
                     "orig": "format",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -845,7 +864,8 @@ class Config {
                     "name": "linecount",
                     "orig": "linecount",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 1
                   },
                   {
                     "active": true,
@@ -854,7 +874,8 @@ class Config {
                     "name": "output_field",
                     "orig": "output_field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 2
                   }
                 ]
               },
@@ -894,7 +915,8 @@ class Config {
                     "name": "linecount",
                     "orig": "linecount",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -903,7 +925,8 @@ class Config {
                     "name": "output_field",
                     "orig": "output_field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -949,7 +972,8 @@ class Config {
                     "name": "id",
                     "orig": "linecount",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1035,7 +1059,8 @@ class Config {
                     "name": "id",
                     "orig": "count",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1117,7 +1142,8 @@ class Config {
                     "name": "count",
                     "orig": "count",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -1126,7 +1152,8 @@ class Config {
                     "name": "output_field",
                     "orig": "output_field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -1172,7 +1199,8 @@ class Config {
                     "name": "id",
                     "orig": "count",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1258,7 +1286,8 @@ class Config {
                     "name": "format",
                     "orig": "format",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -1267,7 +1296,8 @@ class Config {
                     "name": "output_field",
                     "orig": "output_field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   },
                   {
                     "active": true,
@@ -1276,7 +1306,8 @@ class Config {
                     "name": "title",
                     "orig": "title",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 2
                   }
                 ]
               },
@@ -1316,7 +1347,8 @@ class Config {
                     "name": "output_field",
                     "orig": "output_field",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -1325,7 +1357,8 @@ class Config {
                     "name": "title",
                     "orig": "title",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -1386,7 +1419,8 @@ class Config {
                     "name": "id",
                     "orig": "title",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -1472,7 +1506,8 @@ class Config {
                     "name": "title",
                     "orig": "title",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },

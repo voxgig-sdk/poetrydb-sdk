@@ -45,6 +45,7 @@ class LineEntity
     end
   end
 
+  # @return [Line, Hash] the current Line data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class LineEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Line fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Line.
+  #
+  # @param reqmatch [LineLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Line, Hash] the loaded Line; raises PoetrydbError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class LineEntity
 
 
   
+  # List Line items matching the given filter.
+  #
+  # @param reqmatch [LineListMatch, Hash, nil] match filter (any subset of Line fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Line>, Array] the matching Line items; raises PoetrydbError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

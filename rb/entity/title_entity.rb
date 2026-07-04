@@ -45,6 +45,7 @@ class TitleEntity
     end
   end
 
+  # @return [Title, Hash] the current Title data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class TitleEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Title fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Title.
+  #
+  # @param reqmatch [TitleLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Title, Hash] the loaded Title; raises PoetrydbError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class TitleEntity
 
 
   
+  # List Title items matching the given filter.
+  #
+  # @param reqmatch [TitleListMatch, Hash, nil] match filter (any subset of Title fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Title>, Array] the matching Title items; raises PoetrydbError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

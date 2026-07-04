@@ -244,60 +244,190 @@ end
 
 
 
+-- Idiomatic facade: client:author():list() / client:author():load({ id = ... })
+function PoetrydbSDK:author(data)
+  local EntityMod = require("entity.author_entity")
+  if data == nil then
+    if self._author == nil then
+      self._author = EntityMod.new(self, nil)
+    end
+    return self._author
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:author() instead.
 function PoetrydbSDK:Author(data)
   local EntityMod = require("entity.author_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:authorab():list() / client:authorab():load({ id = ... })
+function PoetrydbSDK:authorab(data)
+  local EntityMod = require("entity.authorab_entity")
+  if data == nil then
+    if self._authorab == nil then
+      self._authorab = EntityMod.new(self, nil)
+    end
+    return self._authorab
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:authorab() instead.
 function PoetrydbSDK:Authorab(data)
   local EntityMod = require("entity.authorab_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:combined_search():list() / client:combined_search():load({ id = ... })
+function PoetrydbSDK:combined_search(data)
+  local EntityMod = require("entity.combined_search_entity")
+  if data == nil then
+    if self._combined_search == nil then
+      self._combined_search = EntityMod.new(self, nil)
+    end
+    return self._combined_search
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:combined_search() instead.
 function PoetrydbSDK:CombinedSearch(data)
   local EntityMod = require("entity.combined_search_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:combined_search_with_field():list() / client:combined_search_with_field():load({ id = ... })
+function PoetrydbSDK:combined_search_with_field(data)
+  local EntityMod = require("entity.combined_search_with_field_entity")
+  if data == nil then
+    if self._combined_search_with_field == nil then
+      self._combined_search_with_field = EntityMod.new(self, nil)
+    end
+    return self._combined_search_with_field
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:combined_search_with_field() instead.
 function PoetrydbSDK:CombinedSearchWithField(data)
   local EntityMod = require("entity.combined_search_with_field_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:line():list() / client:line():load({ id = ... })
+function PoetrydbSDK:line(data)
+  local EntityMod = require("entity.line_entity")
+  if data == nil then
+    if self._line == nil then
+      self._line = EntityMod.new(self, nil)
+    end
+    return self._line
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:line() instead.
 function PoetrydbSDK:Line(data)
   local EntityMod = require("entity.line_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:linecount():list() / client:linecount():load({ id = ... })
+function PoetrydbSDK:linecount(data)
+  local EntityMod = require("entity.linecount_entity")
+  if data == nil then
+    if self._linecount == nil then
+      self._linecount = EntityMod.new(self, nil)
+    end
+    return self._linecount
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:linecount() instead.
 function PoetrydbSDK:Linecount(data)
   local EntityMod = require("entity.linecount_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:poemcount():list() / client:poemcount():load({ id = ... })
+function PoetrydbSDK:poemcount(data)
+  local EntityMod = require("entity.poemcount_entity")
+  if data == nil then
+    if self._poemcount == nil then
+      self._poemcount = EntityMod.new(self, nil)
+    end
+    return self._poemcount
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:poemcount() instead.
 function PoetrydbSDK:Poemcount(data)
   local EntityMod = require("entity.poemcount_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:random():list() / client:random():load({ id = ... })
+function PoetrydbSDK:random(data)
+  local EntityMod = require("entity.random_entity")
+  if data == nil then
+    if self._random == nil then
+      self._random = EntityMod.new(self, nil)
+    end
+    return self._random
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:random() instead.
 function PoetrydbSDK:Random(data)
   local EntityMod = require("entity.random_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:title():list() / client:title():load({ id = ... })
+function PoetrydbSDK:title(data)
+  local EntityMod = require("entity.title_entity")
+  if data == nil then
+    if self._title == nil then
+      self._title = EntityMod.new(self, nil)
+    end
+    return self._title
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:title() instead.
 function PoetrydbSDK:Title(data)
   local EntityMod = require("entity.title_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:titleab():list() / client:titleab():load({ id = ... })
+function PoetrydbSDK:titleab(data)
+  local EntityMod = require("entity.titleab_entity")
+  if data == nil then
+    if self._titleab == nil then
+      self._titleab = EntityMod.new(self, nil)
+    end
+    return self._titleab
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:titleab() instead.
 function PoetrydbSDK:Titleab(data)
   local EntityMod = require("entity.titleab_entity")
   return EntityMod.new(self, data)

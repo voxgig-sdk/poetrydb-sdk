@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'Poetrydb_types'
+
 
 class PoetrydbSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class PoetrydbSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class PoetrydbSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue PoetrydbError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = PoetrydbHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class PoetrydbSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,70 +198,140 @@ class PoetrydbSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.author.list / client.author.load({ "id" => ... })
+  def author
+    require_relative 'entity/author_entity'
+    @author ||= AuthorEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.author instead.
   def Author(data = nil)
     require_relative 'entity/author_entity'
     AuthorEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.authorab.list / client.authorab.load({ "id" => ... })
+  def authorab
+    require_relative 'entity/authorab_entity'
+    @authorab ||= AuthorabEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.authorab instead.
   def Authorab(data = nil)
     require_relative 'entity/authorab_entity'
     AuthorabEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.combined_search.list / client.combined_search.load({ "id" => ... })
+  def combined_search
+    require_relative 'entity/combined_search_entity'
+    @combined_search ||= CombinedSearchEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.combined_search instead.
   def CombinedSearch(data = nil)
     require_relative 'entity/combined_search_entity'
     CombinedSearchEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.combined_search_with_field.list / client.combined_search_with_field.load({ "id" => ... })
+  def combined_search_with_field
+    require_relative 'entity/combined_search_with_field_entity'
+    @combined_search_with_field ||= CombinedSearchWithFieldEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.combined_search_with_field instead.
   def CombinedSearchWithField(data = nil)
     require_relative 'entity/combined_search_with_field_entity'
     CombinedSearchWithFieldEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.line.list / client.line.load({ "id" => ... })
+  def line
+    require_relative 'entity/line_entity'
+    @line ||= LineEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.line instead.
   def Line(data = nil)
     require_relative 'entity/line_entity'
     LineEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.linecount.list / client.linecount.load({ "id" => ... })
+  def linecount
+    require_relative 'entity/linecount_entity'
+    @linecount ||= LinecountEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.linecount instead.
   def Linecount(data = nil)
     require_relative 'entity/linecount_entity'
     LinecountEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.poemcount.list / client.poemcount.load({ "id" => ... })
+  def poemcount
+    require_relative 'entity/poemcount_entity'
+    @poemcount ||= PoemcountEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.poemcount instead.
   def Poemcount(data = nil)
     require_relative 'entity/poemcount_entity'
     PoemcountEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.random.list / client.random.load({ "id" => ... })
+  def random
+    require_relative 'entity/random_entity'
+    @random ||= RandomEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.random instead.
   def Random(data = nil)
     require_relative 'entity/random_entity'
     RandomEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.title.list / client.title.load({ "id" => ... })
+  def title
+    require_relative 'entity/title_entity'
+    @title ||= TitleEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.title instead.
   def Title(data = nil)
     require_relative 'entity/title_entity'
     TitleEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.titleab.list / client.titleab.load({ "id" => ... })
+  def titleab
+    require_relative 'entity/titleab_entity'
+    @titleab ||= TitleabEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.titleab instead.
   def Titleab(data = nil)
     require_relative 'entity/titleab_entity'
     TitleabEntity.new(self, data)

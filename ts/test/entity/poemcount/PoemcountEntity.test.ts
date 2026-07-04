@@ -111,7 +111,6 @@ function basicSetup(extra?: any) {
     'POETRYDB_TEST_POEMCOUNT_ENTID': idmap,
     'POETRYDB_TEST_LIVE': 'FALSE',
     'POETRYDB_TEST_EXPLAIN': 'FALSE',
-    'POETRYDB_APIKEY': 'NONE',
   })
 
   idmap = env['POETRYDB_TEST_POEMCOUNT_ENTID']
@@ -121,7 +120,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new PoetrydbSDK(merge([
       {
-        apikey: env.POETRYDB_APIKEY,
       },
       extra
     ]))

@@ -58,7 +58,7 @@ class CombinedSearchWithFieldDirectTest extends TestCase
             $params["search_term2"] = "direct01";
         }
 
-        [$result, $err] = $client->direct([
+        $result = $client->direct([
             "path" => "{input_field1},{input_field2}/{search_term1};{search_term2}/{output_field}",
             "method" => "GET",
             "params" => $params,
@@ -67,8 +67,8 @@ class CombinedSearchWithFieldDirectTest extends TestCase
             // Live mode is lenient: synthetic IDs frequently 4xx and the
             // list-response shape varies wildly across public APIs. Skip
             // rather than fail when the call doesn't return a usable list.
-            if ($err !== null) {
-                $this->markTestSkipped("list call failed (likely synthetic IDs against live API): " . (string)$err);
+            if (!empty($result["err"])) {
+                $this->markTestSkipped("list call failed (likely synthetic IDs against live API): " . (string)$result["err"]);
                 return;
             }
             if (empty($result["ok"])) {
@@ -81,7 +81,7 @@ class CombinedSearchWithFieldDirectTest extends TestCase
                 return;
             }
         } else {
-            $this->assertNull($err);
+            $this->assertArrayNotHasKey("err", $result);
             $this->assertTrue($result["ok"]);
             $this->assertEquals(200, Helpers::to_int($result["status"]));
             $this->assertIsArray($result["data"]);
@@ -102,14 +102,12 @@ function combined_search_with_field_direct_setup($mockres)
     $env = Runner::env_override([
         "POETRYDB_TEST_COMBINED_SEARCH_WITH_FIELD_ENTID" => [],
         "POETRYDB_TEST_LIVE" => "FALSE",
-        "POETRYDB_APIKEY" => "NONE",
     ]);
 
     $live = $env["POETRYDB_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["POETRYDB_APIKEY"],
         ];
         $client = new PoetrydbSDK($merged_opts);
         return [

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch TitleLoadMatch
+---@param ctrl? table
+---@return Title
+---@return string? err
 function TitleEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch TitleListMatch
+---@param ctrl? table
+---@return Title[]
+---@return string? err
 function TitleEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

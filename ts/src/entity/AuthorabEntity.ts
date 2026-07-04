@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Authorab,
+  AuthorabListMatch,
+} from '../PoetrydbTypes'
 
 // TODO: needs Entity superclass
-class AuthorabEntity extends PoetrydbEntityBase {
+class AuthorabEntity extends PoetrydbEntityBase<Authorab> {
 
   constructor(client: PoetrydbSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class AuthorabEntity extends PoetrydbEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: AuthorabListMatch, ctrl?: Control): Promise<Authorab[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class AuthorabEntity extends PoetrydbEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Authorab[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

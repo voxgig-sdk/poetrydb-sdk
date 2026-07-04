@@ -53,14 +53,12 @@ class TestLinecountEntity:
             "output_field": setup["idmap"]["output_field01"],
         }
 
-        linecount_ref01_list_result, err = linecount_ref01_ent.list(linecount_ref01_match, None)
-        assert err is None
+        linecount_ref01_list_result = linecount_ref01_ent.list(linecount_ref01_match, None)
         assert isinstance(linecount_ref01_list_result, list)
 
         # LOAD
         linecount_ref01_match_dt0 = {}
-        linecount_ref01_data_dt0_loaded, err = linecount_ref01_ent.load(linecount_ref01_match_dt0, None)
-        assert err is None
+        linecount_ref01_data_dt0_loaded = linecount_ref01_ent.load(linecount_ref01_match_dt0, None)
         assert linecount_ref01_data_dt0_loaded is not None
 
 
@@ -101,7 +99,6 @@ def _linecount_basic_setup(extra):
         "POETRYDB_TEST_LINECOUNT_ENTID": idmap,
         "POETRYDB_TEST_LIVE": "FALSE",
         "POETRYDB_TEST_EXPLAIN": "FALSE",
-        "POETRYDB_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -112,7 +109,6 @@ def _linecount_basic_setup(extra):
     if env.get("POETRYDB_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("POETRYDB_APIKEY"),
             },
             extra or {},
         ])

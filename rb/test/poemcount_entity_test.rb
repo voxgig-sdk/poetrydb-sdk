@@ -42,8 +42,7 @@ class PoemcountEntityTest < Minitest::Test
     # LOAD
     poemcount_ref01_ent = client.Poemcount(nil)
     poemcount_ref01_match_dt0 = {}
-    poemcount_ref01_data_dt0_loaded, err = poemcount_ref01_ent.load(poemcount_ref01_match_dt0, nil)
-    assert_nil err
+    poemcount_ref01_data_dt0_loaded = poemcount_ref01_ent.load(poemcount_ref01_match_dt0, nil)
     assert !poemcount_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def poemcount_basic_setup(extra)
     "POETRYDB_TEST_POEMCOUNT_ENTID" => idmap,
     "POETRYDB_TEST_LIVE" => "FALSE",
     "POETRYDB_TEST_EXPLAIN" => "FALSE",
-    "POETRYDB_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def poemcount_basic_setup(extra)
   if env["POETRYDB_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["POETRYDB_APIKEY"],
       },
       extra || {},
     ])

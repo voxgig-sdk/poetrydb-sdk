@@ -103,7 +103,7 @@ class PoetrydbSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class PoetrydbSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class PoetrydbSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,87 +216,197 @@ class PoetrydbSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Author($data = null)
+    private $_author = null;
+
+    // Idiomatic facade: $client->author()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Author() (PHP method
+    // names are case-insensitive).
+    public function author($data = null)
     {
         require_once __DIR__ . '/entity/author_entity.php';
+        if ($data === null) {
+            if ($this->_author === null) {
+                $this->_author = new AuthorEntity($this, null);
+            }
+            return $this->_author;
+        }
         return new AuthorEntity($this, $data);
     }
 
 
-    public function Authorab($data = null)
+    private $_authorab = null;
+
+    // Idiomatic facade: $client->authorab()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Authorab() (PHP method
+    // names are case-insensitive).
+    public function authorab($data = null)
     {
         require_once __DIR__ . '/entity/authorab_entity.php';
+        if ($data === null) {
+            if ($this->_authorab === null) {
+                $this->_authorab = new AuthorabEntity($this, null);
+            }
+            return $this->_authorab;
+        }
         return new AuthorabEntity($this, $data);
     }
 
 
-    public function CombinedSearch($data = null)
+    private $_combined_search = null;
+
+    // Idiomatic facade: $client->combined_search()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias CombinedSearch() (PHP method
+    // names are case-insensitive).
+    public function combined_search($data = null)
     {
         require_once __DIR__ . '/entity/combined_search_entity.php';
+        if ($data === null) {
+            if ($this->_combined_search === null) {
+                $this->_combined_search = new CombinedSearchEntity($this, null);
+            }
+            return $this->_combined_search;
+        }
         return new CombinedSearchEntity($this, $data);
     }
 
 
-    public function CombinedSearchWithField($data = null)
+    private $_combined_search_with_field = null;
+
+    // Idiomatic facade: $client->combined_search_with_field()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias CombinedSearchWithField() (PHP method
+    // names are case-insensitive).
+    public function combined_search_with_field($data = null)
     {
         require_once __DIR__ . '/entity/combined_search_with_field_entity.php';
+        if ($data === null) {
+            if ($this->_combined_search_with_field === null) {
+                $this->_combined_search_with_field = new CombinedSearchWithFieldEntity($this, null);
+            }
+            return $this->_combined_search_with_field;
+        }
         return new CombinedSearchWithFieldEntity($this, $data);
     }
 
 
-    public function Line($data = null)
+    private $_line = null;
+
+    // Idiomatic facade: $client->line()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Line() (PHP method
+    // names are case-insensitive).
+    public function line($data = null)
     {
         require_once __DIR__ . '/entity/line_entity.php';
+        if ($data === null) {
+            if ($this->_line === null) {
+                $this->_line = new LineEntity($this, null);
+            }
+            return $this->_line;
+        }
         return new LineEntity($this, $data);
     }
 
 
-    public function Linecount($data = null)
+    private $_linecount = null;
+
+    // Idiomatic facade: $client->linecount()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Linecount() (PHP method
+    // names are case-insensitive).
+    public function linecount($data = null)
     {
         require_once __DIR__ . '/entity/linecount_entity.php';
+        if ($data === null) {
+            if ($this->_linecount === null) {
+                $this->_linecount = new LinecountEntity($this, null);
+            }
+            return $this->_linecount;
+        }
         return new LinecountEntity($this, $data);
     }
 
 
-    public function Poemcount($data = null)
+    private $_poemcount = null;
+
+    // Idiomatic facade: $client->poemcount()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Poemcount() (PHP method
+    // names are case-insensitive).
+    public function poemcount($data = null)
     {
         require_once __DIR__ . '/entity/poemcount_entity.php';
+        if ($data === null) {
+            if ($this->_poemcount === null) {
+                $this->_poemcount = new PoemcountEntity($this, null);
+            }
+            return $this->_poemcount;
+        }
         return new PoemcountEntity($this, $data);
     }
 
 
-    public function Random($data = null)
+    private $_random = null;
+
+    // Idiomatic facade: $client->random()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Random() (PHP method
+    // names are case-insensitive).
+    public function random($data = null)
     {
         require_once __DIR__ . '/entity/random_entity.php';
+        if ($data === null) {
+            if ($this->_random === null) {
+                $this->_random = new RandomEntity($this, null);
+            }
+            return $this->_random;
+        }
         return new RandomEntity($this, $data);
     }
 
 
-    public function Title($data = null)
+    private $_title = null;
+
+    // Idiomatic facade: $client->title()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Title() (PHP method
+    // names are case-insensitive).
+    public function title($data = null)
     {
         require_once __DIR__ . '/entity/title_entity.php';
+        if ($data === null) {
+            if ($this->_title === null) {
+                $this->_title = new TitleEntity($this, null);
+            }
+            return $this->_title;
+        }
         return new TitleEntity($this, $data);
     }
 
 
-    public function Titleab($data = null)
+    private $_titleab = null;
+
+    // Idiomatic facade: $client->titleab()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Titleab() (PHP method
+    // names are case-insensitive).
+    public function titleab($data = null)
     {
         require_once __DIR__ . '/entity/titleab_entity.php';
+        if ($data === null) {
+            if ($this->_titleab === null) {
+                $this->_titleab = new TitleabEntity($this, null);
+            }
+            return $this->_titleab;
+        }
         return new TitleabEntity($this, $data);
     }
 

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch CombinedSearchWithFieldListMatch
+---@param ctrl? table
+---@return CombinedSearchWithField[]
+---@return string? err
 function CombinedSearchWithFieldEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

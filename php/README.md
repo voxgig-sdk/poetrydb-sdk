@@ -9,9 +9,10 @@ The PHP SDK for the Poetrydb API — an entity-oriented client using PHP convent
 
 
 ## Install
-```bash
-composer require voxgig-sdk/poetrydb
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/poetrydb-sdk/releases](https://github.com/voxgig-sdk/poetrydb-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,31 +26,34 @@ loading a specific record.
 <?php
 require_once 'poetrydb_sdk.php';
 
-$client = new PoetrydbSDK([
-    "apikey" => getenv("POETRYDB_APIKEY"),
-]);
+$client = new PoetrydbSDK();
 ```
 
 ### 2. List authors
 
 ```php
-[$result, $err] = $client->Author()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->author()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
-### 3. Load a author
+### 3. Load an author
 
 ```php
-[$result, $err] = $client->Author()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->author()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -60,28 +64,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -95,7 +102,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = PoetrydbSDK::test();
 
-[$result, $err] = $client->Poetrydb()->load(["id" => "test01"]);
+$result = $client->author()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -130,7 +137,6 @@ Create a `.env.local` file at the project root:
 
 ```
 POETRYDB_TEST_LIVE=TRUE
-POETRYDB_APIKEY=<your-key>
 ```
 
 Then run:
@@ -153,7 +159,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -208,8 +213,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -355,7 +364,7 @@ API path: `/title/{title}:abs`
 
 ### Author
 
-Create an instance: `const author = client.Author()`
+Create an instance: `const author = client.author`
 
 #### Operations
 
@@ -376,19 +385,19 @@ Create an instance: `const author = client.Author()`
 #### Example: Load
 
 ```ts
-const author = await client.Author().load({ id: 'author_id' })
+const author = await client.author.load({ id: 'author_id' })
 ```
 
 #### Example: List
 
 ```ts
-const authors = await client.Author().list()
+const authors = await client.author.list()
 ```
 
 
 ### Authorab
 
-Create an instance: `const authorab = client.Authorab()`
+Create an instance: `const authorab = client.authorab`
 
 #### Operations
 
@@ -408,13 +417,13 @@ Create an instance: `const authorab = client.Authorab()`
 #### Example: List
 
 ```ts
-const authorabs = await client.Authorab().list()
+const authorabs = await client.authorab.list()
 ```
 
 
 ### CombinedSearch
 
-Create an instance: `const combined_search = client.CombinedSearch()`
+Create an instance: `const combined_search = client.combined_search`
 
 #### Operations
 
@@ -434,13 +443,13 @@ Create an instance: `const combined_search = client.CombinedSearch()`
 #### Example: List
 
 ```ts
-const combined_searchs = await client.CombinedSearch().list()
+const combined_searchs = await client.combined_search.list()
 ```
 
 
 ### CombinedSearchWithField
 
-Create an instance: `const combined_search_with_field = client.CombinedSearchWithField()`
+Create an instance: `const combined_search_with_field = client.combined_search_with_field`
 
 #### Operations
 
@@ -451,13 +460,13 @@ Create an instance: `const combined_search_with_field = client.CombinedSearchWit
 #### Example: List
 
 ```ts
-const combined_search_with_fields = await client.CombinedSearchWithField().list()
+const combined_search_with_fields = await client.combined_search_with_field.list()
 ```
 
 
 ### Line
 
-Create an instance: `const line = client.Line()`
+Create an instance: `const line = client.line`
 
 #### Operations
 
@@ -478,19 +487,19 @@ Create an instance: `const line = client.Line()`
 #### Example: Load
 
 ```ts
-const line = await client.Line().load({ id: 'line_id' })
+const line = await client.line.load({ id: 'line_id' })
 ```
 
 #### Example: List
 
 ```ts
-const lines = await client.Line().list()
+const lines = await client.line.list()
 ```
 
 
 ### Linecount
 
-Create an instance: `const linecount = client.Linecount()`
+Create an instance: `const linecount = client.linecount`
 
 #### Operations
 
@@ -511,19 +520,19 @@ Create an instance: `const linecount = client.Linecount()`
 #### Example: Load
 
 ```ts
-const linecount = await client.Linecount().load({ id: 'linecount_id' })
+const linecount = await client.linecount.load({ id: 'linecount_id' })
 ```
 
 #### Example: List
 
 ```ts
-const linecounts = await client.Linecount().list()
+const linecounts = await client.linecount.list()
 ```
 
 
 ### Poemcount
 
-Create an instance: `const poemcount = client.Poemcount()`
+Create an instance: `const poemcount = client.poemcount`
 
 #### Operations
 
@@ -543,13 +552,13 @@ Create an instance: `const poemcount = client.Poemcount()`
 #### Example: Load
 
 ```ts
-const poemcount = await client.Poemcount().load({ id: 'poemcount_id' })
+const poemcount = await client.poemcount.load({ id: 'poemcount_id' })
 ```
 
 
 ### Random
 
-Create an instance: `const random = client.Random()`
+Create an instance: `const random = client.random`
 
 #### Operations
 
@@ -570,19 +579,19 @@ Create an instance: `const random = client.Random()`
 #### Example: Load
 
 ```ts
-const random = await client.Random().load({ id: 'random_id' })
+const random = await client.random.load({ id: 'random_id' })
 ```
 
 #### Example: List
 
 ```ts
-const randoms = await client.Random().list()
+const randoms = await client.random.list()
 ```
 
 
 ### Title
 
-Create an instance: `const title = client.Title()`
+Create an instance: `const title = client.title`
 
 #### Operations
 
@@ -603,19 +612,19 @@ Create an instance: `const title = client.Title()`
 #### Example: Load
 
 ```ts
-const title = await client.Title().load({ id: 'title_id' })
+const title = await client.title.load({ id: 'title_id' })
 ```
 
 #### Example: List
 
 ```ts
-const titles = await client.Title().list()
+const titles = await client.title.list()
 ```
 
 
 ### Titleab
 
-Create an instance: `const titleab = client.Titleab()`
+Create an instance: `const titleab = client.titleab`
 
 #### Operations
 
@@ -635,7 +644,7 @@ Create an instance: `const titleab = client.Titleab()`
 #### Example: List
 
 ```ts
-const titleabs = await client.Titleab().list()
+const titleabs = await client.titleab.list()
 ```
 
 
@@ -710,11 +719,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$author = $client->author();
+$author->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $author->dataGet() now returns the loaded author data
+// $author->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

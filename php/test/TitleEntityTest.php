@@ -50,14 +50,12 @@ class TitleEntityTest extends TestCase
         $title_ref01_ent = $client->Title(null);
         $title_ref01_match = [];
 
-        [$title_ref01_list_result, $err] = $title_ref01_ent->list($title_ref01_match, null);
-        $this->assertNull($err);
+        $title_ref01_list_result = $title_ref01_ent->list($title_ref01_match, null);
         $this->assertIsArray($title_ref01_list_result);
 
         // LOAD
         $title_ref01_match_dt0 = [];
-        [$title_ref01_data_dt0_loaded, $err] = $title_ref01_ent->load($title_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $title_ref01_data_dt0_loaded = $title_ref01_ent->load($title_ref01_match_dt0, null);
         $this->assertNotNull($title_ref01_data_dt0_loaded);
 
     }
@@ -92,7 +90,6 @@ function title_basic_setup($extra)
         "POETRYDB_TEST_TITLE_ENTID" => $idmap,
         "POETRYDB_TEST_LIVE" => "FALSE",
         "POETRYDB_TEST_EXPLAIN" => "FALSE",
-        "POETRYDB_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -104,7 +101,6 @@ function title_basic_setup($extra)
     if ($env["POETRYDB_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["POETRYDB_APIKEY"],
             ],
             $extra ?? [],
         ]);

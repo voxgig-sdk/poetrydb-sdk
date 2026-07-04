@@ -11,6 +11,8 @@ import { RandomEntity } from './entity/RandomEntity'
 import { TitleEntity } from './entity/TitleEntity'
 import { TitleabEntity } from './entity/TitleabEntity'
 
+export type * from './PoetrydbTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -211,60 +213,140 @@ class PoetrydbSDK {
 
 
 
+  _author?: AuthorEntity
+
+  // Idiomatic facade: `client.author.list()` / `client.author.load({ id })`.
+  get author(): AuthorEntity {
+    return (this._author ??= new AuthorEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.author` instead. */
   Author(data?: any) {
     const self = this
     return new AuthorEntity(self,data)
   }
 
 
+  _authorab?: AuthorabEntity
+
+  // Idiomatic facade: `client.authorab.list()` / `client.authorab.load({ id })`.
+  get authorab(): AuthorabEntity {
+    return (this._authorab ??= new AuthorabEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.authorab` instead. */
   Authorab(data?: any) {
     const self = this
     return new AuthorabEntity(self,data)
   }
 
 
+  _combined_search?: CombinedSearchEntity
+
+  // Idiomatic facade: `client.combined_search.list()` / `client.combined_search.load({ id })`.
+  get combined_search(): CombinedSearchEntity {
+    return (this._combined_search ??= new CombinedSearchEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.combined_search` instead. */
   CombinedSearch(data?: any) {
     const self = this
     return new CombinedSearchEntity(self,data)
   }
 
 
+  _combined_search_with_field?: CombinedSearchWithFieldEntity
+
+  // Idiomatic facade: `client.combined_search_with_field.list()` / `client.combined_search_with_field.load({ id })`.
+  get combined_search_with_field(): CombinedSearchWithFieldEntity {
+    return (this._combined_search_with_field ??= new CombinedSearchWithFieldEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.combined_search_with_field` instead. */
   CombinedSearchWithField(data?: any) {
     const self = this
     return new CombinedSearchWithFieldEntity(self,data)
   }
 
 
+  _line?: LineEntity
+
+  // Idiomatic facade: `client.line.list()` / `client.line.load({ id })`.
+  get line(): LineEntity {
+    return (this._line ??= new LineEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.line` instead. */
   Line(data?: any) {
     const self = this
     return new LineEntity(self,data)
   }
 
 
+  _linecount?: LinecountEntity
+
+  // Idiomatic facade: `client.linecount.list()` / `client.linecount.load({ id })`.
+  get linecount(): LinecountEntity {
+    return (this._linecount ??= new LinecountEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.linecount` instead. */
   Linecount(data?: any) {
     const self = this
     return new LinecountEntity(self,data)
   }
 
 
+  _poemcount?: PoemcountEntity
+
+  // Idiomatic facade: `client.poemcount.list()` / `client.poemcount.load({ id })`.
+  get poemcount(): PoemcountEntity {
+    return (this._poemcount ??= new PoemcountEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.poemcount` instead. */
   Poemcount(data?: any) {
     const self = this
     return new PoemcountEntity(self,data)
   }
 
 
+  _random?: RandomEntity
+
+  // Idiomatic facade: `client.random.list()` / `client.random.load({ id })`.
+  get random(): RandomEntity {
+    return (this._random ??= new RandomEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.random` instead. */
   Random(data?: any) {
     const self = this
     return new RandomEntity(self,data)
   }
 
 
+  _title?: TitleEntity
+
+  // Idiomatic facade: `client.title.list()` / `client.title.load({ id })`.
+  get title(): TitleEntity {
+    return (this._title ??= new TitleEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.title` instead. */
   Title(data?: any) {
     const self = this
     return new TitleEntity(self,data)
   }
 
 
+  _titleab?: TitleabEntity
+
+  // Idiomatic facade: `client.titleab.list()` / `client.titleab.load({ id })`.
+  get titleab(): TitleabEntity {
+    return (this._titleab ??= new TitleabEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.titleab` instead. */
   Titleab(data?: any) {
     const self = this
     return new TitleabEntity(self,data)

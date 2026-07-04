@@ -52,8 +52,7 @@ class TestAuthorabEntity:
             "author": setup["idmap"]["author01"],
         }
 
-        authorab_ref01_list_result, err = authorab_ref01_ent.list(authorab_ref01_match, None)
-        assert err is None
+        authorab_ref01_list_result = authorab_ref01_ent.list(authorab_ref01_match, None)
         assert isinstance(authorab_ref01_list_result, list)
 
 
@@ -94,7 +93,6 @@ def _authorab_basic_setup(extra):
         "POETRYDB_TEST_AUTHORAB_ENTID": idmap,
         "POETRYDB_TEST_LIVE": "FALSE",
         "POETRYDB_TEST_EXPLAIN": "FALSE",
-        "POETRYDB_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +103,6 @@ def _authorab_basic_setup(extra):
     if env.get("POETRYDB_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("POETRYDB_APIKEY"),
             },
             extra or {},
         ])

@@ -46,14 +46,12 @@ class LineEntityTest < Minitest::Test
       "output_field" => setup[:idmap]["output_field01"],
     }
 
-    line_ref01_list_result, err = line_ref01_ent.list(line_ref01_match, nil)
-    assert_nil err
+    line_ref01_list_result = line_ref01_ent.list(line_ref01_match, nil)
     assert line_ref01_list_result.is_a?(Array)
 
     # LOAD
     line_ref01_match_dt0 = {}
-    line_ref01_data_dt0_loaded, err = line_ref01_ent.load(line_ref01_match_dt0, nil)
-    assert_nil err
+    line_ref01_data_dt0_loaded = line_ref01_ent.load(line_ref01_match_dt0, nil)
     assert !line_ref01_data_dt0_loaded.nil?
 
   end
@@ -92,7 +90,6 @@ def line_basic_setup(extra)
     "POETRYDB_TEST_LINE_ENTID" => idmap,
     "POETRYDB_TEST_LIVE" => "FALSE",
     "POETRYDB_TEST_EXPLAIN" => "FALSE",
-    "POETRYDB_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -104,7 +101,6 @@ def line_basic_setup(extra)
   if env["POETRYDB_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["POETRYDB_APIKEY"],
       },
       extra || {},
     ])

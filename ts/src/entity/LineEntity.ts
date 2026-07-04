@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Line,
+  LineLoadMatch,
+  LineListMatch,
+} from '../PoetrydbTypes'
 
 // TODO: needs Entity superclass
-class LineEntity extends PoetrydbEntityBase {
+class LineEntity extends PoetrydbEntityBase<Line> {
 
   constructor(client: PoetrydbSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class LineEntity extends PoetrydbEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: LineLoadMatch, ctrl?: Control): Promise<Line> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class LineEntity extends PoetrydbEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Line> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: LineListMatch, ctrl?: Control): Promise<Line[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class LineEntity extends PoetrydbEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Line[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

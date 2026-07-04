@@ -55,6 +55,9 @@ class CombinedSearchWithFieldEntity
         return new CombinedSearchWithFieldEntity($this->_client, $opts);
     }
 
+    /**
+     * @param CombinedSearchWithField|array $args CombinedSearchWithField data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class CombinedSearchWithFieldEntity
         }
     }
 
+    /**
+     * @return CombinedSearchWithField|array The current CombinedSearchWithField data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of CombinedSearchWithField fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class CombinedSearchWithFieldEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of CombinedSearchWithField fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -86,7 +98,16 @@ class CombinedSearchWithFieldEntity
     
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List CombinedSearchWithField items matching the given filter.
+     *
+     * @param CombinedSearchWithFieldListMatch|array|null $reqmatch Match filter (any subset
+     *   of CombinedSearchWithField fields) as an assoc-array; CombinedSearchWithFieldListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return CombinedSearchWithField[]|array A list of CombinedSearchWithField items as assoc-arrays at
+     *   the SDK boundary; throws PoetrydbError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -114,7 +135,7 @@ class CombinedSearchWithFieldEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

@@ -50,14 +50,12 @@ class TestTitleEntity:
         title_ref01_ent = client.Title(None)
         title_ref01_match = {}
 
-        title_ref01_list_result, err = title_ref01_ent.list(title_ref01_match, None)
-        assert err is None
+        title_ref01_list_result = title_ref01_ent.list(title_ref01_match, None)
         assert isinstance(title_ref01_list_result, list)
 
         # LOAD
         title_ref01_match_dt0 = {}
-        title_ref01_data_dt0_loaded, err = title_ref01_ent.load(title_ref01_match_dt0, None)
-        assert err is None
+        title_ref01_data_dt0_loaded = title_ref01_ent.load(title_ref01_match_dt0, None)
         assert title_ref01_data_dt0_loaded is not None
 
 
@@ -98,7 +96,6 @@ def _title_basic_setup(extra):
         "POETRYDB_TEST_TITLE_ENTID": idmap,
         "POETRYDB_TEST_LIVE": "FALSE",
         "POETRYDB_TEST_EXPLAIN": "FALSE",
-        "POETRYDB_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -109,7 +106,6 @@ def _title_basic_setup(extra):
     if env.get("POETRYDB_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("POETRYDB_APIKEY"),
             },
             extra or {},
         ])

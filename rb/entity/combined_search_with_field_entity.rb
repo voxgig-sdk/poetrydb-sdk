@@ -45,6 +45,7 @@ class CombinedSearchWithFieldEntity
     end
   end
 
+  # @return [CombinedSearchWithField, Hash] the current CombinedSearchWithField data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class CombinedSearchWithFieldEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of CombinedSearchWithField fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class CombinedSearchWithFieldEntity
   
 
   
+  # List CombinedSearchWithField items matching the given filter.
+  #
+  # @param reqmatch [CombinedSearchWithFieldListMatch, Hash, nil] match filter (any subset of CombinedSearchWithField fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<CombinedSearchWithField>, Array] the matching CombinedSearchWithField items; raises PoetrydbError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

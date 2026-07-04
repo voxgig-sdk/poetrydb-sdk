@@ -53,14 +53,12 @@ class LineEntityTest extends TestCase
             "output_field" => $setup["idmap"]["output_field01"],
         ];
 
-        [$line_ref01_list_result, $err] = $line_ref01_ent->list($line_ref01_match, null);
-        $this->assertNull($err);
+        $line_ref01_list_result = $line_ref01_ent->list($line_ref01_match, null);
         $this->assertIsArray($line_ref01_list_result);
 
         // LOAD
         $line_ref01_match_dt0 = [];
-        [$line_ref01_data_dt0_loaded, $err] = $line_ref01_ent->load($line_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $line_ref01_data_dt0_loaded = $line_ref01_ent->load($line_ref01_match_dt0, null);
         $this->assertNotNull($line_ref01_data_dt0_loaded);
 
     }
@@ -95,7 +93,6 @@ function line_basic_setup($extra)
         "POETRYDB_TEST_LINE_ENTID" => $idmap,
         "POETRYDB_TEST_LIVE" => "FALSE",
         "POETRYDB_TEST_EXPLAIN" => "FALSE",
-        "POETRYDB_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -107,7 +104,6 @@ function line_basic_setup($extra)
     if ($env["POETRYDB_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["POETRYDB_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch PoemcountLoadMatch
+---@param ctrl? table
+---@return Poemcount
+---@return string? err
 function PoemcountEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

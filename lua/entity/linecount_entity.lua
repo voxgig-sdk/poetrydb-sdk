@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch LinecountLoadMatch
+---@param ctrl? table
+---@return Linecount
+---@return string? err
 function LinecountEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch LinecountListMatch
+---@param ctrl? table
+---@return Linecount[]
+---@return string? err
 function LinecountEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -245,51 +245,81 @@ func (sdk *PoetrydbSDK) Direct(fetchargs map[string]any) (map[string]any, error)
 }
 
 
+// Author returns a Author entity bound to this client.
+// Idiomatic usage: client.Author(nil).List(nil, nil) or
+// client.Author(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PoetrydbSDK) Author(data map[string]any) PoetrydbEntity {
 	return NewAuthorEntityFunc(sdk, data)
 }
 
 
+// Authorab returns a Authorab entity bound to this client.
+// Idiomatic usage: client.Authorab(nil).List(nil, nil) or
+// client.Authorab(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PoetrydbSDK) Authorab(data map[string]any) PoetrydbEntity {
 	return NewAuthorabEntityFunc(sdk, data)
 }
 
 
+// CombinedSearch returns a CombinedSearch entity bound to this client.
+// Idiomatic usage: client.CombinedSearch(nil).List(nil, nil) or
+// client.CombinedSearch(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PoetrydbSDK) CombinedSearch(data map[string]any) PoetrydbEntity {
 	return NewCombinedSearchEntityFunc(sdk, data)
 }
 
 
+// CombinedSearchWithField returns a CombinedSearchWithField entity bound to this client.
+// Idiomatic usage: client.CombinedSearchWithField(nil).List(nil, nil) or
+// client.CombinedSearchWithField(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PoetrydbSDK) CombinedSearchWithField(data map[string]any) PoetrydbEntity {
 	return NewCombinedSearchWithFieldEntityFunc(sdk, data)
 }
 
 
+// Line returns a Line entity bound to this client.
+// Idiomatic usage: client.Line(nil).List(nil, nil) or
+// client.Line(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PoetrydbSDK) Line(data map[string]any) PoetrydbEntity {
 	return NewLineEntityFunc(sdk, data)
 }
 
 
+// Linecount returns a Linecount entity bound to this client.
+// Idiomatic usage: client.Linecount(nil).List(nil, nil) or
+// client.Linecount(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PoetrydbSDK) Linecount(data map[string]any) PoetrydbEntity {
 	return NewLinecountEntityFunc(sdk, data)
 }
 
 
+// Poemcount returns a Poemcount entity bound to this client.
+// Idiomatic usage: client.Poemcount(nil).List(nil, nil) or
+// client.Poemcount(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PoetrydbSDK) Poemcount(data map[string]any) PoetrydbEntity {
 	return NewPoemcountEntityFunc(sdk, data)
 }
 
 
+// Random returns a Random entity bound to this client.
+// Idiomatic usage: client.Random(nil).List(nil, nil) or
+// client.Random(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PoetrydbSDK) Random(data map[string]any) PoetrydbEntity {
 	return NewRandomEntityFunc(sdk, data)
 }
 
 
+// Title returns a Title entity bound to this client.
+// Idiomatic usage: client.Title(nil).List(nil, nil) or
+// client.Title(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PoetrydbSDK) Title(data map[string]any) PoetrydbEntity {
 	return NewTitleEntityFunc(sdk, data)
 }
 
 
+// Titleab returns a Titleab entity bound to this client.
+// Idiomatic usage: client.Titleab(nil).List(nil, nil) or
+// client.Titleab(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PoetrydbSDK) Titleab(data map[string]any) PoetrydbEntity {
 	return NewTitleabEntityFunc(sdk, data)
 }

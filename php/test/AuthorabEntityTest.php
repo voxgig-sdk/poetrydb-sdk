@@ -52,8 +52,7 @@ class AuthorabEntityTest extends TestCase
             "author" => $setup["idmap"]["author01"],
         ];
 
-        [$authorab_ref01_list_result, $err] = $authorab_ref01_ent->list($authorab_ref01_match, null);
-        $this->assertNull($err);
+        $authorab_ref01_list_result = $authorab_ref01_ent->list($authorab_ref01_match, null);
         $this->assertIsArray($authorab_ref01_list_result);
 
     }
@@ -88,7 +87,6 @@ function authorab_basic_setup($extra)
         "POETRYDB_TEST_AUTHORAB_ENTID" => $idmap,
         "POETRYDB_TEST_LIVE" => "FALSE",
         "POETRYDB_TEST_EXPLAIN" => "FALSE",
-        "POETRYDB_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -100,7 +98,6 @@ function authorab_basic_setup($extra)
     if ($env["POETRYDB_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["POETRYDB_APIKEY"],
             ],
             $extra ?? [],
         ]);

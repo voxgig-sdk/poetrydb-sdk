@@ -9,9 +9,12 @@ The TypeScript SDK for the Poetrydb API — a type-safe, entity-oriented client 
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/poetrydb
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/poetrydb-sdk/releases](https://github.com/voxgig-sdk/poetrydb-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { PoetrydbSDK } from 'poetrydb'
+import { PoetrydbSDK } from '@voxgig-sdk/poetrydb'
 
-const client = new PoetrydbSDK({
-  apikey: process.env.POETRYDB_APIKEY,
-})
+const client = new PoetrydbSDK()
 ```
 
 ### 2. List authors
 
 ```ts
-const result = await client.Author().list()
+const result = await client.author.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -39,10 +40,10 @@ if (result.ok) {
 }
 ```
 
-### 3. Load a author
+### 3. Load an author
 
 ```ts
-const result = await client.Author().load({ id: 'example_id' })
+const result = await client.author.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -91,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = PoetrydbSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.author.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -99,7 +100,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new PoetrydbSDK({ apikey: '...' })
+const client = new PoetrydbSDK()
 const testClient = client.tester()
 ```
 
@@ -108,7 +109,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.author
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -135,7 +136,6 @@ const logger = {
 }
 
 const client = new PoetrydbSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -146,7 +146,6 @@ Create a `.env.local` file at the project root:
 
 ```
 POETRYDB_TEST_LIVE=TRUE
-POETRYDB_APIKEY=<your-key>
 ```
 
 Then run:
@@ -164,7 +163,6 @@ cd ts && npm test
 
 ```ts
 new PoetrydbSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -175,7 +173,6 @@ new PoetrydbSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -403,7 +400,7 @@ API path: `/title/{title}:abs`
 
 ### Author
 
-Create an instance: `const author = client.Author()`
+Create an instance: `const author = client.author`
 
 #### Operations
 
@@ -424,19 +421,19 @@ Create an instance: `const author = client.Author()`
 #### Example: Load
 
 ```ts
-const author = await client.Author().load({ id: 'author_id' })
+const author = await client.author.load({ id: 'author_id' })
 ```
 
 #### Example: List
 
 ```ts
-const authors = await client.Author().list()
+const authors = await client.author.list()
 ```
 
 
 ### Authorab
 
-Create an instance: `const authorab = client.Authorab()`
+Create an instance: `const authorab = client.authorab`
 
 #### Operations
 
@@ -456,13 +453,13 @@ Create an instance: `const authorab = client.Authorab()`
 #### Example: List
 
 ```ts
-const authorabs = await client.Authorab().list()
+const authorabs = await client.authorab.list()
 ```
 
 
 ### CombinedSearch
 
-Create an instance: `const combined_search = client.CombinedSearch()`
+Create an instance: `const combined_search = client.combined_search`
 
 #### Operations
 
@@ -482,13 +479,13 @@ Create an instance: `const combined_search = client.CombinedSearch()`
 #### Example: List
 
 ```ts
-const combined_searchs = await client.CombinedSearch().list()
+const combined_searchs = await client.combined_search.list()
 ```
 
 
 ### CombinedSearchWithField
 
-Create an instance: `const combined_search_with_field = client.CombinedSearchWithField()`
+Create an instance: `const combined_search_with_field = client.combined_search_with_field`
 
 #### Operations
 
@@ -499,13 +496,13 @@ Create an instance: `const combined_search_with_field = client.CombinedSearchWit
 #### Example: List
 
 ```ts
-const combined_search_with_fields = await client.CombinedSearchWithField().list()
+const combined_search_with_fields = await client.combined_search_with_field.list()
 ```
 
 
 ### Line
 
-Create an instance: `const line = client.Line()`
+Create an instance: `const line = client.line`
 
 #### Operations
 
@@ -526,19 +523,19 @@ Create an instance: `const line = client.Line()`
 #### Example: Load
 
 ```ts
-const line = await client.Line().load({ id: 'line_id' })
+const line = await client.line.load({ id: 'line_id' })
 ```
 
 #### Example: List
 
 ```ts
-const lines = await client.Line().list()
+const lines = await client.line.list()
 ```
 
 
 ### Linecount
 
-Create an instance: `const linecount = client.Linecount()`
+Create an instance: `const linecount = client.linecount`
 
 #### Operations
 
@@ -559,19 +556,19 @@ Create an instance: `const linecount = client.Linecount()`
 #### Example: Load
 
 ```ts
-const linecount = await client.Linecount().load({ id: 'linecount_id' })
+const linecount = await client.linecount.load({ id: 'linecount_id' })
 ```
 
 #### Example: List
 
 ```ts
-const linecounts = await client.Linecount().list()
+const linecounts = await client.linecount.list()
 ```
 
 
 ### Poemcount
 
-Create an instance: `const poemcount = client.Poemcount()`
+Create an instance: `const poemcount = client.poemcount`
 
 #### Operations
 
@@ -591,13 +588,13 @@ Create an instance: `const poemcount = client.Poemcount()`
 #### Example: Load
 
 ```ts
-const poemcount = await client.Poemcount().load({ id: 'poemcount_id' })
+const poemcount = await client.poemcount.load({ id: 'poemcount_id' })
 ```
 
 
 ### Random
 
-Create an instance: `const random = client.Random()`
+Create an instance: `const random = client.random`
 
 #### Operations
 
@@ -618,19 +615,19 @@ Create an instance: `const random = client.Random()`
 #### Example: Load
 
 ```ts
-const random = await client.Random().load({ id: 'random_id' })
+const random = await client.random.load({ id: 'random_id' })
 ```
 
 #### Example: List
 
 ```ts
-const randoms = await client.Random().list()
+const randoms = await client.random.list()
 ```
 
 
 ### Title
 
-Create an instance: `const title = client.Title()`
+Create an instance: `const title = client.title`
 
 #### Operations
 
@@ -651,19 +648,19 @@ Create an instance: `const title = client.Title()`
 #### Example: Load
 
 ```ts
-const title = await client.Title().load({ id: 'title_id' })
+const title = await client.title.load({ id: 'title_id' })
 ```
 
 #### Example: List
 
 ```ts
-const titles = await client.Title().list()
+const titles = await client.title.list()
 ```
 
 
 ### Titleab
 
-Create an instance: `const titleab = client.Titleab()`
+Create an instance: `const titleab = client.titleab`
 
 #### Operations
 
@@ -683,7 +680,7 @@ Create an instance: `const titleab = client.Titleab()`
 #### Example: List
 
 ```ts
-const titleabs = await client.Titleab().list()
+const titleabs = await client.titleab.list()
 ```
 
 
@@ -744,7 +741,7 @@ poetrydb/
 Import the SDK from the package root:
 
 ```ts
-import { PoetrydbSDK } from 'poetrydb'
+import { PoetrydbSDK } from '@voxgig-sdk/poetrydb'
 ```
 
 ### Entity state
@@ -754,11 +751,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const author = client.author
+await author.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// author.data() now returns the loaded author data
+// author.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

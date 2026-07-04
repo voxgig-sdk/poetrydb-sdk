@@ -55,6 +55,9 @@ class TitleabEntity
         return new TitleabEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Titleab|array $args Titleab data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class TitleabEntity
         }
     }
 
+    /**
+     * @return Titleab|array The current Titleab data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Titleab fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class TitleabEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Titleab fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -86,7 +98,16 @@ class TitleabEntity
     
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Titleab items matching the given filter.
+     *
+     * @param TitleabListMatch|array|null $reqmatch Match filter (any subset
+     *   of Titleab fields) as an assoc-array; TitleabListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Titleab[]|array A list of Titleab items as assoc-arrays at
+     *   the SDK boundary; throws PoetrydbError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -114,7 +135,7 @@ class TitleabEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

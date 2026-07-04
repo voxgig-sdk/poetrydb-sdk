@@ -55,8 +55,7 @@ class TestCombinedSearchEntity:
             "search_term2": setup["idmap"]["search_term201"],
         }
 
-        combined_search_ref01_list_result, err = combined_search_ref01_ent.list(combined_search_ref01_match, None)
-        assert err is None
+        combined_search_ref01_list_result = combined_search_ref01_ent.list(combined_search_ref01_match, None)
         assert isinstance(combined_search_ref01_list_result, list)
 
 
@@ -97,7 +96,6 @@ def _combined_search_basic_setup(extra):
         "POETRYDB_TEST_COMBINED_SEARCH_ENTID": idmap,
         "POETRYDB_TEST_LIVE": "FALSE",
         "POETRYDB_TEST_EXPLAIN": "FALSE",
-        "POETRYDB_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -108,7 +106,6 @@ def _combined_search_basic_setup(extra):
     if env.get("POETRYDB_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("POETRYDB_APIKEY"),
             },
             extra or {},
         ])

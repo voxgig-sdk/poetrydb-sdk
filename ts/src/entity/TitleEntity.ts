@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Title,
+  TitleLoadMatch,
+  TitleListMatch,
+} from '../PoetrydbTypes'
 
 // TODO: needs Entity superclass
-class TitleEntity extends PoetrydbEntityBase {
+class TitleEntity extends PoetrydbEntityBase<Title> {
 
   constructor(client: PoetrydbSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class TitleEntity extends PoetrydbEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: TitleLoadMatch, ctrl?: Control): Promise<Title> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class TitleEntity extends PoetrydbEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Title> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: TitleListMatch, ctrl?: Control): Promise<Title[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class TitleEntity extends PoetrydbEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Title[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

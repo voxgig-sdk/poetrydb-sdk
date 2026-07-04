@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch TitleabListMatch
+---@param ctrl? table
+---@return Titleab[]
+---@return string? err
 function TitleabEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
