@@ -123,19 +123,19 @@ author = client.Author()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `str` | No |  |
+| `line` | `list` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Author().list({})
+results = client.Author().list()
 for author in results:
     print(author)
 ```
@@ -187,19 +187,19 @@ authorab = client.Authorab()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `str` | No |  |
+| `line` | `list` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Authorab().list({})
+results = client.Authorab().list()
 for authorab in results:
     print(authorab)
 ```
@@ -243,19 +243,19 @@ combined_search = client.CombinedSearch()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `str` | No |  |
+| `line` | `list` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CombinedSearch().list({})
+results = client.CombinedSearch().list()
 for combined_search in results:
     print(combined_search)
 ```
@@ -297,12 +297,12 @@ combined_search_with_field = client.CombinedSearchWithField()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CombinedSearchWithField().list({})
+results = client.CombinedSearchWithField().list()
 for combined_search_with_field in results:
     print(combined_search_with_field)
 ```
@@ -346,19 +346,19 @@ line = client.Line()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `str` | No |  |
+| `line` | `list` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Line().list({})
+results = client.Line().list()
 for line in results:
     print(line)
 ```
@@ -410,19 +410,19 @@ linecount = client.Linecount()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `str` | No |  |
+| `line` | `list` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Linecount().list({})
+results = client.Linecount().list()
 for linecount in results:
     print(linecount)
 ```
@@ -474,10 +474,10 @@ poemcount = client.Poemcount()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `str` | No |  |
+| `line` | `list` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
@@ -528,19 +528,19 @@ random = client.Random()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `str` | No |  |
+| `line` | `list` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Random().list({})
+results = client.Random().list()
 for random in results:
     print(random)
 ```
@@ -592,19 +592,19 @@ title = client.Title()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `str` | No |  |
+| `line` | `list` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Title().list({})
+results = client.Title().list()
 for title in results:
     print(title)
 ```
@@ -656,19 +656,19 @@ titleab = client.Titleab()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `str` | No |  |
+| `line` | `list` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Titleab().list({})
+results = client.Titleab().list()
 for titleab in results:
     print(titleab)
 ```

@@ -65,8 +65,13 @@ class RandomEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: RandomLoadMatch, ctrl=None) -> Random:
+    def load(self, reqmatch=None, ctrl=None) -> Random:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Random().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class RandomEntity:
 
 
     
-    def list(self, reqmatch: RandomListMatch, ctrl=None) -> list[Random]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Random]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Random().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

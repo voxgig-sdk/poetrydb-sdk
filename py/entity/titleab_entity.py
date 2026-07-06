@@ -66,8 +66,12 @@ class TitleabEntity:
     
 
     
-    def list(self, reqmatch: TitleabListMatch, ctrl=None) -> list[Titleab]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Titleab]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Titleab().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

@@ -221,61 +221,61 @@ class PoetrydbSDK:
 
 
     def Author(self, data=None) -> "AuthorEntity":
-        """Entity factory: client.Author().list({}) / client.Author().load({"id": ...})."""
+        """Entity factory: client.Author().list() / client.Author().load({"id": ...})."""
         from entity.author_entity import AuthorEntity
         return AuthorEntity(self, data)
 
 
     def Authorab(self, data=None) -> "AuthorabEntity":
-        """Entity factory: client.Authorab().list({}) / client.Authorab().load({"id": ...})."""
+        """Entity factory: client.Authorab().list() / client.Authorab().load({"id": ...})."""
         from entity.authorab_entity import AuthorabEntity
         return AuthorabEntity(self, data)
 
 
     def CombinedSearch(self, data=None) -> "CombinedSearchEntity":
-        """Entity factory: client.CombinedSearch().list({}) / client.CombinedSearch().load({"id": ...})."""
+        """Entity factory: client.CombinedSearch().list() / client.CombinedSearch().load({"id": ...})."""
         from entity.combined_search_entity import CombinedSearchEntity
         return CombinedSearchEntity(self, data)
 
 
     def CombinedSearchWithField(self, data=None) -> "CombinedSearchWithFieldEntity":
-        """Entity factory: client.CombinedSearchWithField().list({}) / client.CombinedSearchWithField().load({"id": ...})."""
+        """Entity factory: client.CombinedSearchWithField().list() / client.CombinedSearchWithField().load({"id": ...})."""
         from entity.combined_search_with_field_entity import CombinedSearchWithFieldEntity
         return CombinedSearchWithFieldEntity(self, data)
 
 
     def Line(self, data=None) -> "LineEntity":
-        """Entity factory: client.Line().list({}) / client.Line().load({"id": ...})."""
+        """Entity factory: client.Line().list() / client.Line().load({"id": ...})."""
         from entity.line_entity import LineEntity
         return LineEntity(self, data)
 
 
     def Linecount(self, data=None) -> "LinecountEntity":
-        """Entity factory: client.Linecount().list({}) / client.Linecount().load({"id": ...})."""
+        """Entity factory: client.Linecount().list() / client.Linecount().load({"id": ...})."""
         from entity.linecount_entity import LinecountEntity
         return LinecountEntity(self, data)
 
 
     def Poemcount(self, data=None) -> "PoemcountEntity":
-        """Entity factory: client.Poemcount().list({}) / client.Poemcount().load({"id": ...})."""
+        """Entity factory: client.Poemcount().list() / client.Poemcount().load({"id": ...})."""
         from entity.poemcount_entity import PoemcountEntity
         return PoemcountEntity(self, data)
 
 
     def Random(self, data=None) -> "RandomEntity":
-        """Entity factory: client.Random().list({}) / client.Random().load({"id": ...})."""
+        """Entity factory: client.Random().list() / client.Random().load({"id": ...})."""
         from entity.random_entity import RandomEntity
         return RandomEntity(self, data)
 
 
     def Title(self, data=None) -> "TitleEntity":
-        """Entity factory: client.Title().list({}) / client.Title().load({"id": ...})."""
+        """Entity factory: client.Title().list() / client.Title().load({"id": ...})."""
         from entity.title_entity import TitleEntity
         return TitleEntity(self, data)
 
 
     def Titleab(self, data=None) -> "TitleabEntity":
-        """Entity factory: client.Titleab().list({}) / client.Titleab().load({"id": ...})."""
+        """Entity factory: client.Titleab().list() / client.Titleab().load({"id": ...})."""
         from entity.titleab_entity import TitleabEntity
         return TitleabEntity(self, data)
 

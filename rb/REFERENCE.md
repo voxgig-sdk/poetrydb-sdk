@@ -8,7 +8,7 @@ Complete API reference for the Poetrydb Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'poetrydb_sdk'
+require_relative 'Poetrydb_sdk'
 
 client = PoetrydbSDK.new(options)
 ```
@@ -129,19 +129,19 @@ author = client.Author
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `String` | No |  |
+| `line` | `Array` | No |  |
+| `linecount` | `Integer` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Author.list(nil)
+results = client.Author.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -192,19 +192,19 @@ authorab = client.Authorab
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `String` | No |  |
+| `line` | `Array` | No |  |
+| `linecount` | `Integer` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Authorab.list(nil)
+results = client.Authorab.list
 ```
 
 ### Common Methods
@@ -247,19 +247,19 @@ combined_search = client.CombinedSearch
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `String` | No |  |
+| `line` | `Array` | No |  |
+| `linecount` | `Integer` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.CombinedSearch.list(nil)
+results = client.CombinedSearch.list
 ```
 
 ### Common Methods
@@ -300,12 +300,12 @@ combined_search_with_field = client.CombinedSearchWithField
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.CombinedSearchWithField.list(nil)
+results = client.CombinedSearchWithField.list
 ```
 
 ### Common Methods
@@ -348,19 +348,19 @@ line = client.Line
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `String` | No |  |
+| `line` | `Array` | No |  |
+| `linecount` | `Integer` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Line.list(nil)
+results = client.Line.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -411,19 +411,19 @@ linecount = client.Linecount
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `String` | No |  |
+| `line` | `Array` | No |  |
+| `linecount` | `Integer` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Linecount.list(nil)
+results = client.Linecount.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -474,10 +474,10 @@ poemcount = client.Poemcount
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `String` | No |  |
+| `line` | `Array` | No |  |
+| `linecount` | `Integer` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
@@ -529,19 +529,19 @@ random = client.Random
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `String` | No |  |
+| `line` | `Array` | No |  |
+| `linecount` | `Integer` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Random.list(nil)
+results = client.Random.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -592,19 +592,19 @@ title = client.Title
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `String` | No |  |
+| `line` | `Array` | No |  |
+| `linecount` | `Integer` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Title.list(nil)
+results = client.Title.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -655,19 +655,19 @@ titleab = client.Titleab
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `String` | No |  |
+| `line` | `Array` | No |  |
+| `linecount` | `Integer` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Titleab.list(nil)
+results = client.Titleab.list
 ```
 
 ### Common Methods

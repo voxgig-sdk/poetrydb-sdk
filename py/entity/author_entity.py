@@ -65,8 +65,13 @@ class AuthorEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: AuthorLoadMatch, ctrl=None) -> Author:
+    def load(self, reqmatch=None, ctrl=None) -> Author:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Author().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class AuthorEntity:
 
 
     
-    def list(self, reqmatch: AuthorListMatch, ctrl=None) -> list[Author]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Author]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Author().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

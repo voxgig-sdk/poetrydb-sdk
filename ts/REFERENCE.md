@@ -224,10 +224,10 @@ const author = client.Author()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `any[]` | No |  |
+| `linecount` | `number` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -285,10 +285,10 @@ const authorab = client.Authorab()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `any[]` | No |  |
+| `linecount` | `number` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -338,10 +338,10 @@ const combined_search = client.CombinedSearch()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `any[]` | No |  |
+| `linecount` | `number` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -435,10 +435,10 @@ const line = client.Line()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `any[]` | No |  |
+| `linecount` | `number` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -496,10 +496,10 @@ const linecount = client.Linecount()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `any[]` | No |  |
+| `linecount` | `number` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -516,7 +516,7 @@ const results = await client.Linecount().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Linecount().load({ id: 'linecount_id' })
+const result = await client.Linecount().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -557,10 +557,10 @@ const poemcount = client.Poemcount()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `any[]` | No |  |
+| `linecount` | `number` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -569,7 +569,7 @@ const poemcount = client.Poemcount()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Poemcount().load({ id: 'poemcount_id' })
+const result = await client.Poemcount().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -610,10 +610,10 @@ const random = client.Random()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `any[]` | No |  |
+| `linecount` | `number` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -630,7 +630,7 @@ const results = await client.Random().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Random().load({ id: 'random_id' })
+const result = await client.Random().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -671,10 +671,10 @@ const title = client.Title()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `any[]` | No |  |
+| `linecount` | `number` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -732,10 +732,10 @@ const titleab = client.Titleab()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `any[]` | No |  |
+| `linecount` | `number` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 

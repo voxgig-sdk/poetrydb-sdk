@@ -133,10 +133,10 @@ author := client.Author(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `[]any` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -190,10 +190,10 @@ authorab := client.Authorab(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `[]any` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -239,10 +239,10 @@ combined_search := client.CombinedSearch(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `[]any` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -328,10 +328,10 @@ line := client.Line(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `[]any` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -385,10 +385,10 @@ linecount := client.Linecount(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `[]any` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -442,10 +442,10 @@ poemcount := client.Poemcount(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `[]any` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -491,10 +491,10 @@ random := client.Random(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `[]any` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -548,10 +548,10 @@ title := client.Title(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `[]any` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -605,10 +605,10 @@ titleab := client.Titleab(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `line` | ``$ARRAY`` | No |  |
-| `linecount` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `line` | `[]any` | No |  |
+| `linecount` | `int` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
