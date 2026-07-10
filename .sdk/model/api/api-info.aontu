@@ -19,9 +19,9 @@ main: {
           url: "https://poetrydb.org"
         }
       ]
+      summary: "An API for internet poets to access and retrieve poetry data."
       title: "PoetryDB API"
       version: "1.0.0"
+      website: "https://poetrydb.org"
     }
   }
-}
-

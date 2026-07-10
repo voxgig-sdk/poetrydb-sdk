@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -1918,14 +1915,17 @@
           "name": "GPL-2.0",
           "url": "https://github.com/thundercomb/poetrydb/blob/master/LICENSE.txt"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://poetrydb.org"
           }
         ],
+        "summary": "An API for internet poets to access and retrieve poetry data.",
         "title": "PoetryDB API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://poetrydb.org"
       },
       "option": {},
       "target": {
@@ -1978,6 +1978,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -2028,6 +2031,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

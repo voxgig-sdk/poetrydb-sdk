@@ -30,9 +30,9 @@ class AuthorLoadMatch
 /** Request payload for Author#list. */
 class AuthorListMatch
 {
-    public string $author;
-    public string $format;
-    public string $output_field;
+    public ?string $author = null;
+    public ?string $format = null;
+    public ?string $output_field = null;
 }
 
 /** Authorab entity data model. */
@@ -101,7 +101,7 @@ class LineLoadMatch
 /** Request payload for Line#list. */
 class LineListMatch
 {
-    public string $format;
+    public ?string $format = null;
     public string $line;
     public string $output_field;
 }
@@ -124,7 +124,7 @@ class LinecountLoadMatch
 /** Request payload for Linecount#list. */
 class LinecountListMatch
 {
-    public string $format;
+    public ?string $format = null;
     public int $linecount;
     public string $output_field;
 }
@@ -184,9 +184,9 @@ class TitleLoadMatch
 /** Request payload for Title#list. */
 class TitleListMatch
 {
-    public string $format;
-    public string $output_field;
-    public string $title;
+    public ?string $format = null;
+    public ?string $output_field = null;
+    public ?string $title = null;
 }
 
 /** Titleab entity data model. */

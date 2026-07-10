@@ -60,7 +60,7 @@ func main() {
     }
 
     // Load a single author — the value is the loaded record.
-    author, err := client.Author(nil).Load(map[string]any{"id": "example"}, nil)
+    author, err := client.Author(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
@@ -478,7 +478,7 @@ fmt.Println(authorabs) // the array of records
 
 ### CombinedSearch
 
-Create an instance: `combined_search := client.CombinedSearch(nil)`
+Create an instance: `combinedSearch := client.CombinedSearch(nil)`
 
 #### Operations
 
@@ -498,17 +498,17 @@ Create an instance: `combined_search := client.CombinedSearch(nil)`
 #### Example: List
 
 ```go
-combined_searchs, err := client.CombinedSearch(nil).List(nil, nil)
+combinedSearchs, err := client.CombinedSearch(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(combined_searchs) // the array of records
+fmt.Println(combinedSearchs) // the array of records
 ```
 
 
 ### CombinedSearchWithField
 
-Create an instance: `combined_search_with_field := client.CombinedSearchWithField(nil)`
+Create an instance: `combinedSearchWithField := client.CombinedSearchWithField(nil)`
 
 #### Operations
 
@@ -519,11 +519,11 @@ Create an instance: `combined_search_with_field := client.CombinedSearchWithFiel
 #### Example: List
 
 ```go
-combined_search_with_fields, err := client.CombinedSearchWithField(nil).List(nil, nil)
+combinedSearchWithFields, err := client.CombinedSearchWithField(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(combined_search_with_fields) // the array of records
+fmt.Println(combinedSearchWithFields) // the array of records
 ```
 
 
@@ -591,7 +591,7 @@ Create an instance: `linecount := client.Linecount(nil)`
 #### Example: Load
 
 ```go
-linecount, err := client.Linecount(nil).Load(map[string]any{"id": "linecount_id"}, nil)
+linecount, err := client.Linecount(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -631,7 +631,7 @@ Create an instance: `poemcount := client.Poemcount(nil)`
 #### Example: Load
 
 ```go
-poemcount, err := client.Poemcount(nil).Load(map[string]any{"id": "poemcount_id"}, nil)
+poemcount, err := client.Poemcount(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -662,7 +662,7 @@ Create an instance: `random := client.Random(nil)`
 #### Example: Load
 
 ```go
-random, err := client.Random(nil).Load(map[string]any{"id": "random_id"}, nil)
+random, err := client.Random(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }

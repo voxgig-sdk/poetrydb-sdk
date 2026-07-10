@@ -564,7 +564,7 @@ Create an instance: `$linecount = $client->Linecount();`
 
 ```php
 // load() returns the bare Linecount record (throws on error).
-$linecount = $client->Linecount()->load(["id" => "linecount_id"]);
+$linecount = $client->Linecount()->load(["id" => 1]);
 ```
 
 #### Example: List
@@ -598,7 +598,7 @@ Create an instance: `$poemcount = $client->Poemcount();`
 
 ```php
 // load() returns the bare Poemcount record (throws on error).
-$poemcount = $client->Poemcount()->load(["id" => "poemcount_id"]);
+$poemcount = $client->Poemcount()->load(["id" => 1]);
 ```
 
 
@@ -626,7 +626,7 @@ Create an instance: `$random = $client->Random();`
 
 ```php
 // load() returns the bare Random record (throws on error).
-$random = $client->Random()->load(["id" => "random_id"]);
+$random = $client->Random()->load(["id" => 1]);
 ```
 
 #### Example: List

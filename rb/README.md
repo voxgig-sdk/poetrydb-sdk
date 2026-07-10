@@ -554,7 +554,7 @@ Create an instance: `linecount = client.Linecount`
 
 ```ruby
 # load returns the bare Linecount record (raises on error).
-linecount = client.Linecount.load({ "id" => "linecount_id" })
+linecount = client.Linecount.load({ "id" => 1 })
 ```
 
 #### Example: List
@@ -588,7 +588,7 @@ Create an instance: `poemcount = client.Poemcount`
 
 ```ruby
 # load returns the bare Poemcount record (raises on error).
-poemcount = client.Poemcount.load({ "id" => "poemcount_id" })
+poemcount = client.Poemcount.load({ "id" => 1 })
 ```
 
 
@@ -616,7 +616,7 @@ Create an instance: `random = client.Random`
 
 ```ruby
 # load returns the bare Random record (raises on error).
-random = client.Random.load({ "id" => "random_id" })
+random = client.Random.load({ "id" => 1 })
 ```
 
 #### Example: List

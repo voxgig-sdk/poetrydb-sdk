@@ -430,7 +430,7 @@ $results = $client->Linecount()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Linecount()->load(["id" => "linecount_id"]);
+$result = $client->Linecount()->load(["id" => 1]);
 ```
 
 ### Common Methods
@@ -485,7 +485,7 @@ $poemcount = $client->Poemcount();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Poemcount()->load(["id" => "poemcount_id"]);
+$result = $client->Poemcount()->load(["id" => 1]);
 ```
 
 ### Common Methods
@@ -548,7 +548,7 @@ $results = $client->Random()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Random()->load(["id" => "random_id"]);
+$result = $client->Random()->load(["id" => 1]);
 ```
 
 ### Common Methods

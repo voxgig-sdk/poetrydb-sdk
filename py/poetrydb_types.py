@@ -27,7 +27,7 @@ class AuthorLoadMatch(TypedDict):
     id: str
 
 
-class AuthorListMatch(TypedDict):
+class AuthorListMatch(TypedDict, total=False):
     author: str
     format: str
     output_field: str
@@ -81,10 +81,13 @@ class LineLoadMatch(TypedDict):
     id: str
 
 
-class LineListMatch(TypedDict):
-    format: str
+class LineListMatchRequired(TypedDict):
     line: str
     output_field: str
+
+
+class LineListMatch(LineListMatchRequired, total=False):
+    format: str
 
 
 class Linecount(TypedDict, total=False):
@@ -98,10 +101,13 @@ class LinecountLoadMatch(TypedDict):
     id: int
 
 
-class LinecountListMatch(TypedDict):
-    format: str
+class LinecountListMatchRequired(TypedDict):
     linecount: int
     output_field: str
+
+
+class LinecountListMatch(LinecountListMatchRequired, total=False):
+    format: str
 
 
 class Poemcount(TypedDict, total=False):
@@ -142,7 +148,7 @@ class TitleLoadMatch(TypedDict):
     id: str
 
 
-class TitleListMatch(TypedDict):
+class TitleListMatch(TypedDict, total=False):
     format: str
     output_field: str
     title: str

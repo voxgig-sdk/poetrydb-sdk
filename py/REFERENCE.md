@@ -432,7 +432,7 @@ for linecount in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Linecount().load({"id": "linecount_id"})
+result = client.Linecount().load({"id": 1})
 ```
 
 ### Common Methods
@@ -486,7 +486,7 @@ poemcount = client.Poemcount()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Poemcount().load({"id": "poemcount_id"})
+result = client.Poemcount().load({"id": 1})
 ```
 
 ### Common Methods
@@ -550,7 +550,7 @@ for random in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Random().load({"id": "random_id"})
+result = client.Random().load({"id": 1})
 ```
 
 ### Common Methods

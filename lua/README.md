@@ -535,7 +535,7 @@ Create an instance: `local linecount = client:Linecount(nil)`
 #### Example: Load
 
 ```lua
-local linecount, err = client:Linecount():load({ id = "linecount_id" })
+local linecount, err = client:Linecount():load({ id = 1 })
 ```
 
 #### Example: List
@@ -567,7 +567,7 @@ Create an instance: `local poemcount = client:Poemcount(nil)`
 #### Example: Load
 
 ```lua
-local poemcount, err = client:Poemcount():load({ id = "poemcount_id" })
+local poemcount, err = client:Poemcount():load({ id = 1 })
 ```
 
 
@@ -594,7 +594,7 @@ Create an instance: `local random = client:Random(nil)`
 #### Example: Load
 
 ```lua
-local random, err = client:Random():load({ id = "random_id" })
+local random, err = client:Random():load({ id = 1 })
 ```
 
 #### Example: List

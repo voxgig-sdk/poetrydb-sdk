@@ -549,7 +549,7 @@ Create an instance: `linecount = client.Linecount()`
 #### Example: Load
 
 ```python
-linecount = client.Linecount().load({"id": "linecount_id"})
+linecount = client.Linecount().load({"id": 1})
 ```
 
 #### Example: List
@@ -581,7 +581,7 @@ Create an instance: `poemcount = client.Poemcount()`
 #### Example: Load
 
 ```python
-poemcount = client.Poemcount().load({"id": "poemcount_id"})
+poemcount = client.Poemcount().load({"id": 1})
 ```
 
 
@@ -608,7 +608,7 @@ Create an instance: `random = client.Random()`
 #### Example: Load
 
 ```python
-random = client.Random().load({"id": "random_id"})
+random = client.Random().load({"id": 1})
 ```
 
 #### Example: List

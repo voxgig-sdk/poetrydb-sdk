@@ -23,9 +23,9 @@ type AuthorLoadMatch struct {
 
 // AuthorListMatch is the typed request payload for Author.ListTyped.
 type AuthorListMatch struct {
-	Author string `json:"author"`
-	Format string `json:"format"`
-	OutputField string `json:"output_field"`
+	Author *string `json:"author,omitempty"`
+	Format *string `json:"format,omitempty"`
+	OutputField *string `json:"output_field,omitempty"`
 }
 
 // Authorab is the typed data model for the authorab entity.
@@ -85,7 +85,7 @@ type LineLoadMatch struct {
 
 // LineListMatch is the typed request payload for Line.ListTyped.
 type LineListMatch struct {
-	Format string `json:"format"`
+	Format *string `json:"format,omitempty"`
 	Line string `json:"line"`
 	OutputField string `json:"output_field"`
 }
@@ -105,7 +105,7 @@ type LinecountLoadMatch struct {
 
 // LinecountListMatch is the typed request payload for Linecount.ListTyped.
 type LinecountListMatch struct {
-	Format string `json:"format"`
+	Format *string `json:"format,omitempty"`
 	Linecount int `json:"linecount"`
 	OutputField string `json:"output_field"`
 }
@@ -157,9 +157,9 @@ type TitleLoadMatch struct {
 
 // TitleListMatch is the typed request payload for Title.ListTyped.
 type TitleListMatch struct {
-	Format string `json:"format"`
-	OutputField string `json:"output_field"`
-	Title string `json:"title"`
+	Format *string `json:"format,omitempty"`
+	OutputField *string `json:"output_field,omitempty"`
+	Title *string `json:"title,omitempty"`
 }
 
 // Titleab is the typed data model for the titleab entity.

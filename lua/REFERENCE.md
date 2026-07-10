@@ -428,7 +428,7 @@ local results, err = client:Linecount():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Linecount():load({ id = "linecount_id" })
+local result, err = client:Linecount():load({ id = 1 })
 ```
 
 ### Common Methods
@@ -483,7 +483,7 @@ local poemcount = client:Poemcount(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Poemcount():load({ id = "poemcount_id" })
+local result, err = client:Poemcount():load({ id = 1 })
 ```
 
 ### Common Methods
@@ -546,7 +546,7 @@ local results, err = client:Random():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Random():load({ id = "random_id" })
+local result, err = client:Random():load({ id = 1 })
 ```
 
 ### Common Methods
