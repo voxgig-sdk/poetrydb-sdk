@@ -1,4 +1,4 @@
--- ProjectName SDK configuration
+-- Poetrydb SDK configuration
 
 local function make_config()
   return {

@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Poetrydb SDK exists test
 
 local sdk = require("poetrydb_sdk")
 
