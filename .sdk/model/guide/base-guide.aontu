@@ -8,6 +8,7 @@ guide: {
   entity: author: {
     path: "/author": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.authors`")|top
     }
     path: "/author/{author}": {
       rename: param: "author": *"id"
@@ -99,6 +100,7 @@ guide: {
   entity: title: {
     path: "/title": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.titles`")|top
     }
     path: "/title/{title}": {
       rename: param: "title": *"id"

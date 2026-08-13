@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import PoetrydbSDK
-from core.error import PoetrydbError
-from core.result import PoetrydbResult
-from core.response import PoetrydbResponse
-from core.spec import PoetrydbSpec
-from feature.base_feature import PoetrydbBaseFeature
+from projectname_sdk.core.error import PoetrydbError
+from projectname_sdk.core.result import PoetrydbResult
+from projectname_sdk.core.response import PoetrydbResponse
+from projectname_sdk.core.spec import PoetrydbSpec
+from projectname_sdk.feature.base_feature import PoetrydbBaseFeature
 
 
 def _client():

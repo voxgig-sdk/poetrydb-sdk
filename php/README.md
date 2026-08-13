@@ -49,7 +49,7 @@ try {
 
 ```php
 try {
-    // load() returns the bare Author record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Author record (throws on error).
     $author = $client->Author()->load(["id" => "example_id"]);
     print_r($author);
 } catch (\Throwable $err) {
@@ -65,7 +65,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $authors = $client->Author()->list();
+    $authorabs = $client->Authorab()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -132,17 +132,15 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = PoetrydbSDK::test([
-    "entity" => ["author" => ["test01" => ["id" => "test01"]]],
-]);
+$client = PoetrydbSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$author = $client->Author()->list();
-print_r($author);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$authorab = $client->Authorab()->list();
+print_r($authorab);
 ```
 
 ### Use a custom fetch function
@@ -249,7 +247,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -272,8 +270,9 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
+| `authors` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -285,8 +284,8 @@ API path: `/author/{author}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List.
@@ -298,8 +297,8 @@ API path: `/author/{author}:abs`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List.
@@ -320,8 +319,8 @@ API path: `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputField
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -333,8 +332,8 @@ API path: `/lines/{lines}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -346,8 +345,8 @@ API path: `/linecount/{linecount}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: Load.
@@ -359,8 +358,8 @@ API path: `/poemcount/{count}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -372,9 +371,10 @@ API path: `/random/{count}/{outputFields}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
+| `titles` |  |
 
 Operations: List, Load.
 
@@ -385,8 +385,8 @@ API path: `/title/{title}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List.
@@ -414,14 +414,15 @@ Create an instance: `$author = $client->Author();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `array` |  |
+| `authors` | `array` |  |
 | `linecount` | `int` |  |
+| `lines` | `array` |  |
 | `title` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Author record (throws on error).
+// load() returns the ENTITY — call data_get() for the Author record (throws on error).
 $author = $client->Author()->load(["id" => "author_id"]);
 ```
 
@@ -448,8 +449,8 @@ Create an instance: `$authorab = $client->Authorab();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `array` |  |
 | `linecount` | `int` |  |
+| `lines` | `array` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -475,8 +476,8 @@ Create an instance: `$combined_search = $client->CombinedSearch();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `array` |  |
 | `linecount` | `int` |  |
+| `lines` | `array` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -521,14 +522,14 @@ Create an instance: `$line = $client->Line();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `array` |  |
 | `linecount` | `int` |  |
+| `lines` | `array` |  |
 | `title` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Line record (throws on error).
+// load() returns the ENTITY — call data_get() for the Line record (throws on error).
 $line = $client->Line()->load(["id" => "line_id"]);
 ```
 
@@ -556,14 +557,14 @@ Create an instance: `$linecount = $client->Linecount();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `array` |  |
 | `linecount` | `int` |  |
+| `lines` | `array` |  |
 | `title` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Linecount record (throws on error).
+// load() returns the ENTITY — call data_get() for the Linecount record (throws on error).
 $linecount = $client->Linecount()->load(["id" => 1]);
 ```
 
@@ -590,14 +591,14 @@ Create an instance: `$poemcount = $client->Poemcount();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `array` |  |
 | `linecount` | `int` |  |
+| `lines` | `array` |  |
 | `title` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Poemcount record (throws on error).
+// load() returns the ENTITY — call data_get() for the Poemcount record (throws on error).
 $poemcount = $client->Poemcount()->load(["id" => 1]);
 ```
 
@@ -618,14 +619,14 @@ Create an instance: `$random = $client->Random();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `array` |  |
 | `linecount` | `int` |  |
+| `lines` | `array` |  |
 | `title` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Random record (throws on error).
+// load() returns the ENTITY — call data_get() for the Random record (throws on error).
 $random = $client->Random()->load(["id" => 1]);
 ```
 
@@ -653,14 +654,15 @@ Create an instance: `$title = $client->Title();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `array` |  |
 | `linecount` | `int` |  |
+| `lines` | `array` |  |
 | `title` | `string` |  |
+| `titles` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Title record (throws on error).
+// load() returns the ENTITY — call data_get() for the Title record (throws on error).
 $title = $client->Title()->load(["id" => "title_id"]);
 ```
 
@@ -687,8 +689,8 @@ Create an instance: `$titleab = $client->Titleab();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `array` |  |
 | `linecount` | `int` |  |
+| `lines` | `array` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -775,11 +777,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$author = $client->Author();
-$author->list();
+$authorab = $client->Authorab();
+$authorab->list();
 
-// $author->data_get() now returns the author data from the last list
-// $author->match_get() returns the last match criteria
+// $authorab->data_get() now returns the authorab data from the last list
+// $authorab->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

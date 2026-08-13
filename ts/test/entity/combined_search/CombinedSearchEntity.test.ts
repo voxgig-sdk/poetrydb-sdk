@@ -67,7 +67,7 @@ describe('CombinedSearchEntity', async () => {
     combined_search_ref01_match['search_term1'] = setup.idmap['search_term101']
     combined_search_ref01_match['search_term2'] = setup.idmap['search_term201']
 
-    const combined_search_ref01_list = await combined_search_ref01_ent.list(combined_search_ref01_match)
+    const combined_search_ref01_list = (await combined_search_ref01_ent.list(combined_search_ref01_match)).map((e: any) => e.data())
 
 
   })

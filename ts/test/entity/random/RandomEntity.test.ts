@@ -65,7 +65,7 @@ describe('RandomEntity', async () => {
     random_ref01_match['count'] = setup.idmap['count01']
     random_ref01_match['output_field'] = setup.idmap['output_field01']
 
-    const random_ref01_list = await random_ref01_ent.list(random_ref01_match)
+    const random_ref01_list = (await random_ref01_ent.list(random_ref01_match)).map((e: any) => e.data())
 
 
 

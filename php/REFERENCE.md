@@ -129,8 +129,9 @@ $author = $client->Author();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `array` | No |  |
+| `authors` | `array` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `array` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -192,8 +193,8 @@ $authorab = $client->Authorab();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `array` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `array` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -247,8 +248,8 @@ $combined_search = $client->CombinedSearch();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `array` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `array` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -348,8 +349,8 @@ $line = $client->Line();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `array` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `array` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -411,8 +412,8 @@ $linecount = $client->Linecount();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `array` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `array` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -474,8 +475,8 @@ $poemcount = $client->Poemcount();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `array` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `array` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -529,8 +530,8 @@ $random = $client->Random();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `array` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `array` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -592,9 +593,10 @@ $title = $client->Title();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `array` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `array` | No |  |
 | `title` | `string` | No |  |
+| `titles` | `array` | No |  |
 
 ### Operations
 
@@ -655,8 +657,8 @@ $titleab = $client->Titleab();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `array` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `array` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations

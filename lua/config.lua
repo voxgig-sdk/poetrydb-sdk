@@ -42,7 +42,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "line",
+            ["name"] = "authors",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 1,
@@ -56,10 +56,17 @@ local function make_config()
           },
           {
             ["active"] = true,
+            ["name"] = "lines",
+            ["req"] = false,
+            ["type"] = "`$ARRAY`",
+            ["index$"] = 3,
+          },
+          {
+            ["active"] = true,
             ["name"] = "title",
             ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 3,
+            ["index$"] = 4,
           },
         },
         ["name"] = "author",
@@ -104,6 +111,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/author/{author}/{outputFields}.{format}",
                 ["parts"] = {
@@ -155,6 +163,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/author/{author}/{outputFields}",
                 ["parts"] = {
@@ -182,6 +191,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/author",
                 ["parts"] = {
@@ -190,7 +200,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.authors`",
                 },
                 ["index$"] = 2,
               },
@@ -217,6 +227,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/author/{author}",
                 ["parts"] = {
@@ -262,16 +273,16 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "line",
+            ["name"] = "linecount",
             ["req"] = false,
-            ["type"] = "`$ARRAY`",
+            ["type"] = "`$INTEGER`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "linecount",
+            ["name"] = "lines",
             ["req"] = false,
-            ["type"] = "`$INTEGER`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 2,
           },
           {
@@ -304,6 +315,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/author/{author}:abs",
                 ["parts"] = {
@@ -344,16 +356,16 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "line",
+            ["name"] = "linecount",
             ["req"] = false,
-            ["type"] = "`$ARRAY`",
+            ["type"] = "`$INTEGER`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "linecount",
+            ["name"] = "lines",
             ["req"] = false,
-            ["type"] = "`$INTEGER`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 2,
           },
           {
@@ -416,6 +428,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}",
                 ["parts"] = {
@@ -514,6 +527,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputFields}",
                 ["parts"] = {
@@ -562,16 +576,16 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "line",
+            ["name"] = "linecount",
             ["req"] = false,
-            ["type"] = "`$ARRAY`",
+            ["type"] = "`$INTEGER`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "linecount",
+            ["name"] = "lines",
             ["req"] = false,
-            ["type"] = "`$INTEGER`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 2,
           },
           {
@@ -624,6 +638,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lines/{lines}/{outputFields}.{format}",
                 ["parts"] = {
@@ -676,6 +691,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lines/{lines}/{outputFields}",
                 ["parts"] = {
@@ -724,6 +740,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lines/{lines}",
                 ["parts"] = {
@@ -769,16 +786,16 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "line",
+            ["name"] = "linecount",
             ["req"] = false,
-            ["type"] = "`$ARRAY`",
+            ["type"] = "`$INTEGER`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "linecount",
+            ["name"] = "lines",
             ["req"] = false,
-            ["type"] = "`$INTEGER`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 2,
           },
           {
@@ -831,6 +848,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/linecount/{linecount}/{outputFields}.{format}",
                 ["parts"] = {
@@ -882,6 +900,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/linecount/{linecount}/{outputFields}",
                 ["parts"] = {
@@ -929,6 +948,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/linecount/{linecount}",
                 ["parts"] = {
@@ -974,16 +994,16 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "line",
+            ["name"] = "linecount",
             ["req"] = false,
-            ["type"] = "`$ARRAY`",
+            ["type"] = "`$INTEGER`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "linecount",
+            ["name"] = "lines",
             ["req"] = false,
-            ["type"] = "`$INTEGER`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 2,
           },
           {
@@ -1016,6 +1036,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/poemcount/{count}",
                 ["parts"] = {
@@ -1057,16 +1078,16 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "line",
+            ["name"] = "linecount",
             ["req"] = false,
-            ["type"] = "`$ARRAY`",
+            ["type"] = "`$INTEGER`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "linecount",
+            ["name"] = "lines",
             ["req"] = false,
-            ["type"] = "`$INTEGER`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 2,
           },
           {
@@ -1109,6 +1130,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/random/{count}/{outputFields}",
                 ["parts"] = {
@@ -1156,6 +1178,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/random/{count}",
                 ["parts"] = {
@@ -1201,16 +1224,16 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "line",
+            ["name"] = "linecount",
             ["req"] = false,
-            ["type"] = "`$ARRAY`",
+            ["type"] = "`$INTEGER`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "linecount",
+            ["name"] = "lines",
             ["req"] = false,
-            ["type"] = "`$INTEGER`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 2,
           },
           {
@@ -1219,6 +1242,13 @@ local function make_config()
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 3,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "titles",
+            ["req"] = false,
+            ["type"] = "`$ARRAY`",
+            ["index$"] = 4,
           },
         },
         ["name"] = "title",
@@ -1263,6 +1293,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/title/{title}/{outputFields}.{format}",
                 ["parts"] = {
@@ -1314,6 +1345,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/title/{title}/{outputFields}",
                 ["parts"] = {
@@ -1341,6 +1373,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/title",
                 ["parts"] = {
@@ -1349,7 +1382,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.titles`",
                 },
                 ["index$"] = 2,
               },
@@ -1376,6 +1409,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/title/{title}",
                 ["parts"] = {
@@ -1421,16 +1455,16 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "line",
+            ["name"] = "linecount",
             ["req"] = false,
-            ["type"] = "`$ARRAY`",
+            ["type"] = "`$INTEGER`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "linecount",
+            ["name"] = "lines",
             ["req"] = false,
-            ["type"] = "`$INTEGER`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 2,
           },
           {
@@ -1463,6 +1497,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/title/{title}:abs",
                 ["parts"] = {

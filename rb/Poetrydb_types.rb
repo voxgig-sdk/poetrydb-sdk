@@ -13,18 +13,22 @@
 # @!attribute [rw] author
 #   @return [String, nil]
 #
-# @!attribute [rw] line
+# @!attribute [rw] authors
 #   @return [Array, nil]
 #
 # @!attribute [rw] linecount
 #   @return [Integer, nil]
 #
+# @!attribute [rw] lines
+#   @return [Array, nil]
+#
 # @!attribute [rw] title
 #   @return [String, nil]
 Author = Struct.new(
   :author,
-  :line,
+  :authors,
   :linecount,
+  :lines,
   :title,
   keyword_init: true
 )
@@ -60,18 +64,18 @@ AuthorListMatch = Struct.new(
 # @!attribute [rw] author
 #   @return [String, nil]
 #
-# @!attribute [rw] line
-#   @return [Array, nil]
-#
 # @!attribute [rw] linecount
 #   @return [Integer, nil]
+#
+# @!attribute [rw] lines
+#   @return [Array, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 Authorab = Struct.new(
   :author,
-  :line,
   :linecount,
+  :lines,
   :title,
   keyword_init: true
 )
@@ -90,18 +94,18 @@ AuthorabListMatch = Struct.new(
 # @!attribute [rw] author
 #   @return [String, nil]
 #
-# @!attribute [rw] line
-#   @return [Array, nil]
-#
 # @!attribute [rw] linecount
 #   @return [Integer, nil]
+#
+# @!attribute [rw] lines
+#   @return [Array, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 CombinedSearch = Struct.new(
   :author,
-  :line,
   :linecount,
+  :lines,
   :title,
   keyword_init: true
 )
@@ -161,18 +165,18 @@ CombinedSearchWithFieldListMatch = Struct.new(
 # @!attribute [rw] author
 #   @return [String, nil]
 #
-# @!attribute [rw] line
-#   @return [Array, nil]
-#
 # @!attribute [rw] linecount
 #   @return [Integer, nil]
+#
+# @!attribute [rw] lines
+#   @return [Array, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 Line = Struct.new(
   :author,
-  :line,
   :linecount,
+  :lines,
   :title,
   keyword_init: true
 )
@@ -208,18 +212,18 @@ LineListMatch = Struct.new(
 # @!attribute [rw] author
 #   @return [String, nil]
 #
-# @!attribute [rw] line
-#   @return [Array, nil]
-#
 # @!attribute [rw] linecount
 #   @return [Integer, nil]
+#
+# @!attribute [rw] lines
+#   @return [Array, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 Linecount = Struct.new(
   :author,
-  :line,
   :linecount,
+  :lines,
   :title,
   keyword_init: true
 )
@@ -255,18 +259,18 @@ LinecountListMatch = Struct.new(
 # @!attribute [rw] author
 #   @return [String, nil]
 #
-# @!attribute [rw] line
-#   @return [Array, nil]
-#
 # @!attribute [rw] linecount
 #   @return [Integer, nil]
+#
+# @!attribute [rw] lines
+#   @return [Array, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 Poemcount = Struct.new(
   :author,
-  :line,
   :linecount,
+  :lines,
   :title,
   keyword_init: true
 )
@@ -285,18 +289,18 @@ PoemcountLoadMatch = Struct.new(
 # @!attribute [rw] author
 #   @return [String, nil]
 #
-# @!attribute [rw] line
-#   @return [Array, nil]
-#
 # @!attribute [rw] linecount
 #   @return [Integer, nil]
 #
+# @!attribute [rw] lines
+#   @return [Array, nil]
+#
 # @!attribute [rw] title
 #   @return [String, nil]
-Random = Struct.new(
+RandomType = Struct.new(
   :author,
-  :line,
   :linecount,
+  :lines,
   :title,
   keyword_init: true
 )
@@ -328,19 +332,23 @@ RandomListMatch = Struct.new(
 # @!attribute [rw] author
 #   @return [String, nil]
 #
-# @!attribute [rw] line
-#   @return [Array, nil]
-#
 # @!attribute [rw] linecount
 #   @return [Integer, nil]
 #
+# @!attribute [rw] lines
+#   @return [Array, nil]
+#
 # @!attribute [rw] title
 #   @return [String, nil]
+#
+# @!attribute [rw] titles
+#   @return [Array, nil]
 Title = Struct.new(
   :author,
-  :line,
   :linecount,
+  :lines,
   :title,
+  :titles,
   keyword_init: true
 )
 
@@ -375,18 +383,18 @@ TitleListMatch = Struct.new(
 # @!attribute [rw] author
 #   @return [String, nil]
 #
-# @!attribute [rw] line
-#   @return [Array, nil]
-#
 # @!attribute [rw] linecount
 #   @return [Integer, nil]
+#
+# @!attribute [rw] lines
+#   @return [Array, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 Titleab = Struct.new(
   :author,
-  :line,
   :linecount,
+  :lines,
   :title,
   keyword_init: true
 )

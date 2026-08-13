@@ -37,7 +37,7 @@ class TitleabEntity extends PoetrydbEntityBase<Titleab> {
 
 
 
-  async list(this: any, reqmatch?: TitleabListMatch, ctrl?: Control): Promise<Titleab[]> {
+  async list(this: any, reqmatch?: TitleabListMatch, ctrl?: Control): Promise<TitleabEntity[]> {
 
     const utility = this._utility
 

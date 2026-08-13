@@ -75,12 +75,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-authors, err := client.Author(nil).List(nil, nil)
+authorabs, err := client.Authorab(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = authors
+_ = authorabs
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -144,13 +144,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-author, err := client.Author(nil).List(
+authorab, err := client.Authorab(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(author) // the returned mock data
+fmt.Println(authorab) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -279,8 +279,9 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"author"` |  |
-| `"line"` |  |
+| `"authors"` |  |
 | `"linecount"` |  |
+| `"lines"` |  |
 | `"title"` |  |
 
 Operations: List, Load.
@@ -292,8 +293,8 @@ API path: `/author/{author}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `"author"` |  |
-| `"line"` |  |
 | `"linecount"` |  |
+| `"lines"` |  |
 | `"title"` |  |
 
 Operations: List.
@@ -305,8 +306,8 @@ API path: `/author/{author}:abs`
 | Field | Description |
 | --- | --- |
 | `"author"` |  |
-| `"line"` |  |
 | `"linecount"` |  |
+| `"lines"` |  |
 | `"title"` |  |
 
 Operations: List.
@@ -327,8 +328,8 @@ API path: `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputField
 | Field | Description |
 | --- | --- |
 | `"author"` |  |
-| `"line"` |  |
 | `"linecount"` |  |
+| `"lines"` |  |
 | `"title"` |  |
 
 Operations: List, Load.
@@ -340,8 +341,8 @@ API path: `/lines/{lines}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `"author"` |  |
-| `"line"` |  |
 | `"linecount"` |  |
+| `"lines"` |  |
 | `"title"` |  |
 
 Operations: List, Load.
@@ -353,8 +354,8 @@ API path: `/linecount/{linecount}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `"author"` |  |
-| `"line"` |  |
 | `"linecount"` |  |
+| `"lines"` |  |
 | `"title"` |  |
 
 Operations: Load.
@@ -366,8 +367,8 @@ API path: `/poemcount/{count}`
 | Field | Description |
 | --- | --- |
 | `"author"` |  |
-| `"line"` |  |
 | `"linecount"` |  |
+| `"lines"` |  |
 | `"title"` |  |
 
 Operations: List, Load.
@@ -379,9 +380,10 @@ API path: `/random/{count}/{outputFields}`
 | Field | Description |
 | --- | --- |
 | `"author"` |  |
-| `"line"` |  |
 | `"linecount"` |  |
+| `"lines"` |  |
 | `"title"` |  |
+| `"titles"` |  |
 
 Operations: List, Load.
 
@@ -392,8 +394,8 @@ API path: `/title/{title}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `"author"` |  |
-| `"line"` |  |
 | `"linecount"` |  |
+| `"lines"` |  |
 | `"title"` |  |
 
 Operations: List.
@@ -421,8 +423,9 @@ Create an instance: `author := client.Author(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `[]any` |  |
+| `authors` | `[]any` |  |
 | `linecount` | `int` |  |
+| `lines` | `[]any` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -461,8 +464,8 @@ Create an instance: `authorab := client.Authorab(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `[]any` |  |
 | `linecount` | `int` |  |
+| `lines` | `[]any` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -491,8 +494,8 @@ Create an instance: `combinedSearch := client.CombinedSearch(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `[]any` |  |
 | `linecount` | `int` |  |
+| `lines` | `[]any` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -543,8 +546,8 @@ Create an instance: `line := client.Line(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `[]any` |  |
 | `linecount` | `int` |  |
+| `lines` | `[]any` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -584,8 +587,8 @@ Create an instance: `linecount := client.Linecount(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `[]any` |  |
 | `linecount` | `int` |  |
+| `lines` | `[]any` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -624,8 +627,8 @@ Create an instance: `poemcount := client.Poemcount(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `[]any` |  |
 | `linecount` | `int` |  |
+| `lines` | `[]any` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -655,8 +658,8 @@ Create an instance: `random := client.Random(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `[]any` |  |
 | `linecount` | `int` |  |
+| `lines` | `[]any` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -696,9 +699,10 @@ Create an instance: `title := client.Title(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `[]any` |  |
 | `linecount` | `int` |  |
+| `lines` | `[]any` |  |
 | `title` | `string` |  |
+| `titles` | `[]any` |  |
 
 #### Example: Load
 
@@ -736,8 +740,8 @@ Create an instance: `titleab := client.Titleab(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `[]any` |  |
 | `linecount` | `int` |  |
+| `lines` | `[]any` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -824,11 +828,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-author := client.Author(nil)
-author.List(nil, nil)
+authorab := client.Authorab(nil)
+authorab.List(nil, nil)
 
-// author.Data() now returns the author data from the last list
-// author.Match() returns the last match criteria
+// authorab.Data() now returns the authorab data from the last list
+// authorab.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

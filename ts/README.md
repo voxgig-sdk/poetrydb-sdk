@@ -35,7 +35,9 @@ const client = new PoetrydbSDK()
 
 ### 2. List author records
 
-`list()` resolves to an array of Author objects — iterate it directly:
+`list()` resolves to an array of Author ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const authors = await client.Author().list()
@@ -65,8 +67,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const authors = await client.Author().list()
-  console.log(authors)
+  const authorabs = await client.Authorab().list()
+  console.log(authorabs)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -132,9 +134,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = PoetrydbSDK.test()
 
-const author = await client.Author().list()
-// author is a bare entity populated with mock response data
-console.log(author)
+const authorab = await client.Authorab().list()
+// authorab is the entity, populated with mock response data
+// — call authorab.data() for the record itself
+console.log(authorab)
 ```
 
 You can also use the instance method:
@@ -149,7 +152,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Author()
+const entity = client.Authorab()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -309,8 +312,9 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
+| `authors` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: list, load.
@@ -322,8 +326,8 @@ API path: `/author/{author}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: list.
@@ -335,8 +339,8 @@ API path: `/author/{author}:abs`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: list.
@@ -357,8 +361,8 @@ API path: `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputField
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: list, load.
@@ -370,8 +374,8 @@ API path: `/lines/{lines}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: list, load.
@@ -383,8 +387,8 @@ API path: `/linecount/{linecount}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: load.
@@ -396,8 +400,8 @@ API path: `/poemcount/{count}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: list, load.
@@ -409,9 +413,10 @@ API path: `/random/{count}/{outputFields}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
+| `titles` |  |
 
 Operations: list, load.
 
@@ -422,8 +427,8 @@ API path: `/title/{title}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: list.
@@ -451,8 +456,9 @@ Create an instance: `const author = client.Author()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `any[]` |  |
+| `authors` | `any[]` |  |
 | `linecount` | `number` |  |
+| `lines` | `any[]` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -483,14 +489,14 @@ Create an instance: `const authorab = client.Authorab()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `any[]` |  |
 | `linecount` | `number` |  |
+| `lines` | `any[]` |  |
 | `title` | `string` |  |
 
 #### Example: List
 
 ```ts
-const authorabs = await client.Authorab().list()
+const authorabs = await client.Authorab().list({ author: "example" })
 ```
 
 
@@ -509,14 +515,14 @@ Create an instance: `const combined_search = client.CombinedSearch()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `any[]` |  |
 | `linecount` | `number` |  |
+| `lines` | `any[]` |  |
 | `title` | `string` |  |
 
 #### Example: List
 
 ```ts
-const combined_searchs = await client.CombinedSearch().list()
+const combined_searchs = await client.CombinedSearch().list({ input_field1: "example", input_field2: "example", search_term1: "example", search_term2: "example" })
 ```
 
 
@@ -533,7 +539,7 @@ Create an instance: `const combined_search_with_field = client.CombinedSearchWit
 #### Example: List
 
 ```ts
-const combined_search_with_fields = await client.CombinedSearchWithField().list()
+const combined_search_with_fields = await client.CombinedSearchWithField().list({ input_field1: "example", input_field2: "example", output_field: "example", search_term1: "example", search_term2: "example" })
 ```
 
 
@@ -553,8 +559,8 @@ Create an instance: `const line = client.Line()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `any[]` |  |
 | `linecount` | `number` |  |
+| `lines` | `any[]` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -566,7 +572,7 @@ const line = await client.Line().load({ id: 'line_id' })
 #### Example: List
 
 ```ts
-const lines = await client.Line().list()
+const lines = await client.Line().list({ line: "example", output_field: "example" })
 ```
 
 
@@ -586,8 +592,8 @@ Create an instance: `const linecount = client.Linecount()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `any[]` |  |
 | `linecount` | `number` |  |
+| `lines` | `any[]` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -599,7 +605,7 @@ const linecount = await client.Linecount().load({ id: 1 })
 #### Example: List
 
 ```ts
-const linecounts = await client.Linecount().list()
+const linecounts = await client.Linecount().list({ linecount: 1, output_field: "example" })
 ```
 
 
@@ -618,8 +624,8 @@ Create an instance: `const poemcount = client.Poemcount()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `any[]` |  |
 | `linecount` | `number` |  |
+| `lines` | `any[]` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -645,8 +651,8 @@ Create an instance: `const random = client.Random()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `any[]` |  |
 | `linecount` | `number` |  |
+| `lines` | `any[]` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -658,7 +664,7 @@ const random = await client.Random().load({ id: 1 })
 #### Example: List
 
 ```ts
-const randoms = await client.Random().list()
+const randoms = await client.Random().list({ count: 1, output_field: "example" })
 ```
 
 
@@ -678,9 +684,10 @@ Create an instance: `const title = client.Title()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `any[]` |  |
 | `linecount` | `number` |  |
+| `lines` | `any[]` |  |
 | `title` | `string` |  |
+| `titles` | `any[]` |  |
 
 #### Example: Load
 
@@ -710,14 +717,14 @@ Create an instance: `const titleab = client.Titleab()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `any[]` |  |
 | `linecount` | `number` |  |
+| `lines` | `any[]` |  |
 | `title` | `string` |  |
 
 #### Example: List
 
 ```ts
-const titleabs = await client.Titleab().list()
+const titleabs = await client.Titleab().list({ title: "example" })
 ```
 
 
@@ -790,11 +797,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const author = client.Author()
-await author.list()
+const authorab = client.Authorab()
+await authorab.list()
 
-// author.data() now returns the author data from the last `list`
-// author.match() returns the last match criteria
+// authorab.data() now returns the authorab data from the last `list`
+// authorab.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

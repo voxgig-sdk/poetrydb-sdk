@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Poetrydb SDK exists test
 
 import pytest
 from poetrydb_sdk import PoetrydbSDK

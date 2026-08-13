@@ -2,28 +2,31 @@
   "existing": {
     "title": {
       "TITLE00": {
-        "author": "s28",
-        "line": [],
-        "linecount": "s2a",
-        "title": "s2b",
+        "author": "s32",
+        "linecount": "s33",
+        "lines": [],
+        "title": "s35",
+        "titles": [],
         "format": "FORMAT01",
         "output_field": "OUTPUT_FIELD01",
         "id": "TITLE00"
       },
       "TITLE01": {
-        "author": "s50",
-        "line": [],
-        "linecount": "s52",
-        "title": "s53",
+        "author": "s64",
+        "linecount": "s65",
+        "lines": [],
+        "title": "s67",
+        "titles": [],
         "format": "FORMAT01",
         "output_field": "OUTPUT_FIELD01",
         "id": "TITLE01"
       },
       "TITLE02": {
-        "author": "s78",
-        "line": [],
-        "linecount": "s7a",
-        "title": "s7b",
+        "author": "s96",
+        "linecount": "s97",
+        "lines": [],
+        "title": "s99",
+        "titles": [],
         "format": "FORMAT01",
         "output_field": "OUTPUT_FIELD01",
         "id": "TITLE02"
@@ -33,10 +36,11 @@
   "new": {
     "title": {
       "title_ref01": {
-        "author": "sa0",
-        "line": [],
-        "linecount": "sa2",
-        "title": "sa3"
+        "author": "sc8",
+        "linecount": "sc9",
+        "lines": [],
+        "title": "scb",
+        "titles": []
       }
     }
   }

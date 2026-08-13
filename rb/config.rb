@@ -43,7 +43,7 @@ module PoetrydbConfig
             },
             {
               "active" => true,
-              "name" => "line",
+              "name" => "authors",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 1,
@@ -57,10 +57,17 @@ module PoetrydbConfig
             },
             {
               "active" => true,
+              "name" => "lines",
+              "req" => false,
+              "type" => "`$ARRAY`",
+              "index$" => 3,
+            },
+            {
+              "active" => true,
               "name" => "title",
               "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
+              "index$" => 4,
             },
           ],
           "name" => "author",
@@ -105,6 +112,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/author/{author}/{outputFields}.{format}",
                   "parts" => [
@@ -156,6 +164,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/author/{author}/{outputFields}",
                   "parts" => [
@@ -183,6 +192,7 @@ module PoetrydbConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/author",
                   "parts" => [
@@ -191,7 +201,7 @@ module PoetrydbConfig
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.authors`",
                   },
                   "index$" => 2,
                 },
@@ -218,6 +228,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/author/{author}",
                   "parts" => [
@@ -263,16 +274,16 @@ module PoetrydbConfig
             },
             {
               "active" => true,
-              "name" => "line",
+              "name" => "linecount",
               "req" => false,
-              "type" => "`$ARRAY`",
+              "type" => "`$INTEGER`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "linecount",
+              "name" => "lines",
               "req" => false,
-              "type" => "`$INTEGER`",
+              "type" => "`$ARRAY`",
               "index$" => 2,
             },
             {
@@ -305,6 +316,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/author/{author}:abs",
                   "parts" => [
@@ -345,16 +357,16 @@ module PoetrydbConfig
             },
             {
               "active" => true,
-              "name" => "line",
+              "name" => "linecount",
               "req" => false,
-              "type" => "`$ARRAY`",
+              "type" => "`$INTEGER`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "linecount",
+              "name" => "lines",
               "req" => false,
-              "type" => "`$INTEGER`",
+              "type" => "`$ARRAY`",
               "index$" => 2,
             },
             {
@@ -417,6 +429,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}",
                   "parts" => [
@@ -515,6 +528,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputFields}",
                   "parts" => [
@@ -563,16 +577,16 @@ module PoetrydbConfig
             },
             {
               "active" => true,
-              "name" => "line",
+              "name" => "linecount",
               "req" => false,
-              "type" => "`$ARRAY`",
+              "type" => "`$INTEGER`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "linecount",
+              "name" => "lines",
               "req" => false,
-              "type" => "`$INTEGER`",
+              "type" => "`$ARRAY`",
               "index$" => 2,
             },
             {
@@ -625,6 +639,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lines/{lines}/{outputFields}.{format}",
                   "parts" => [
@@ -677,6 +692,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lines/{lines}/{outputFields}",
                   "parts" => [
@@ -725,6 +741,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lines/{lines}",
                   "parts" => [
@@ -770,16 +787,16 @@ module PoetrydbConfig
             },
             {
               "active" => true,
-              "name" => "line",
+              "name" => "linecount",
               "req" => false,
-              "type" => "`$ARRAY`",
+              "type" => "`$INTEGER`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "linecount",
+              "name" => "lines",
               "req" => false,
-              "type" => "`$INTEGER`",
+              "type" => "`$ARRAY`",
               "index$" => 2,
             },
             {
@@ -832,6 +849,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/linecount/{linecount}/{outputFields}.{format}",
                   "parts" => [
@@ -883,6 +901,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/linecount/{linecount}/{outputFields}",
                   "parts" => [
@@ -930,6 +949,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/linecount/{linecount}",
                   "parts" => [
@@ -975,16 +995,16 @@ module PoetrydbConfig
             },
             {
               "active" => true,
-              "name" => "line",
+              "name" => "linecount",
               "req" => false,
-              "type" => "`$ARRAY`",
+              "type" => "`$INTEGER`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "linecount",
+              "name" => "lines",
               "req" => false,
-              "type" => "`$INTEGER`",
+              "type" => "`$ARRAY`",
               "index$" => 2,
             },
             {
@@ -1017,6 +1037,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/poemcount/{count}",
                   "parts" => [
@@ -1058,16 +1079,16 @@ module PoetrydbConfig
             },
             {
               "active" => true,
-              "name" => "line",
+              "name" => "linecount",
               "req" => false,
-              "type" => "`$ARRAY`",
+              "type" => "`$INTEGER`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "linecount",
+              "name" => "lines",
               "req" => false,
-              "type" => "`$INTEGER`",
+              "type" => "`$ARRAY`",
               "index$" => 2,
             },
             {
@@ -1110,6 +1131,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/random/{count}/{outputFields}",
                   "parts" => [
@@ -1157,6 +1179,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/random/{count}",
                   "parts" => [
@@ -1202,16 +1225,16 @@ module PoetrydbConfig
             },
             {
               "active" => true,
-              "name" => "line",
+              "name" => "linecount",
               "req" => false,
-              "type" => "`$ARRAY`",
+              "type" => "`$INTEGER`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "linecount",
+              "name" => "lines",
               "req" => false,
-              "type" => "`$INTEGER`",
+              "type" => "`$ARRAY`",
               "index$" => 2,
             },
             {
@@ -1220,6 +1243,13 @@ module PoetrydbConfig
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 3,
+            },
+            {
+              "active" => true,
+              "name" => "titles",
+              "req" => false,
+              "type" => "`$ARRAY`",
+              "index$" => 4,
             },
           ],
           "name" => "title",
@@ -1264,6 +1294,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/title/{title}/{outputFields}.{format}",
                   "parts" => [
@@ -1315,6 +1346,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/title/{title}/{outputFields}",
                   "parts" => [
@@ -1342,6 +1374,7 @@ module PoetrydbConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/title",
                   "parts" => [
@@ -1350,7 +1383,7 @@ module PoetrydbConfig
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.titles`",
                   },
                   "index$" => 2,
                 },
@@ -1377,6 +1410,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/title/{title}",
                   "parts" => [
@@ -1422,16 +1456,16 @@ module PoetrydbConfig
             },
             {
               "active" => true,
-              "name" => "line",
+              "name" => "linecount",
               "req" => false,
-              "type" => "`$ARRAY`",
+              "type" => "`$INTEGER`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "linecount",
+              "name" => "lines",
               "req" => false,
-              "type" => "`$INTEGER`",
+              "type" => "`$ARRAY`",
               "index$" => 2,
             },
             {
@@ -1464,6 +1498,7 @@ module PoetrydbConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/title/{title}:abs",
                   "parts" => [

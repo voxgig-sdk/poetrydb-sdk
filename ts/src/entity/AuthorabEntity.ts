@@ -37,7 +37,7 @@ class AuthorabEntity extends PoetrydbEntityBase<Authorab> {
 
 
 
-  async list(this: any, reqmatch?: AuthorabListMatch, ctrl?: Control): Promise<Authorab[]> {
+  async list(this: any, reqmatch?: AuthorabListMatch, ctrl?: Control): Promise<AuthorabEntity[]> {
 
     const utility = this._utility
 

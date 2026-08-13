@@ -127,8 +127,9 @@ local author = client:Author(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `table` | No |  |
+| `authors` | `table` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `table` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -190,8 +191,8 @@ local authorab = client:Authorab(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `table` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `table` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -245,8 +246,8 @@ local combined_search = client:CombinedSearch(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `table` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `table` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -346,8 +347,8 @@ local line = client:Line(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `table` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `table` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -409,8 +410,8 @@ local linecount = client:Linecount(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `table` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `table` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -472,8 +473,8 @@ local poemcount = client:Poemcount(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `table` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `table` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -527,8 +528,8 @@ local random = client:Random(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `table` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `table` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -590,9 +591,10 @@ local title = client:Title(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `table` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `table` | No |  |
 | `title` | `string` | No |  |
+| `titles` | `table` | No |  |
 
 ### Operations
 
@@ -653,8 +655,8 @@ local titleab = client:Titleab(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `table` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `table` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations

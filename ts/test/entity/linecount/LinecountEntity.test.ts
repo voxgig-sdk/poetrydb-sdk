@@ -65,7 +65,7 @@ describe('LinecountEntity', async () => {
     linecount_ref01_match['linecount'] = setup.idmap['linecount01']
     linecount_ref01_match['output_field'] = setup.idmap['output_field01']
 
-    const linecount_ref01_list = await linecount_ref01_ent.list(linecount_ref01_match)
+    const linecount_ref01_list = (await linecount_ref01_ent.list(linecount_ref01_match)).map((e: any) => e.data())
 
 
 

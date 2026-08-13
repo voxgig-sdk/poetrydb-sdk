@@ -63,7 +63,7 @@ describe('AuthorEntity', async () => {
     const author_ref01_ent = client.Author()
     const author_ref01_match: any = {}
 
-    const author_ref01_list = await author_ref01_ent.list(author_ref01_match)
+    const author_ref01_list = (await author_ref01_ent.list(author_ref01_match)).map((e: any) => e.data())
 
 
 

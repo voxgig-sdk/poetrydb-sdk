@@ -16,8 +16,9 @@ declare(strict_types=1);
 class Author
 {
     public ?string $author = null;
-    public ?array $line = null;
+    public ?array $authors = null;
     public ?int $linecount = null;
+    public ?array $lines = null;
     public ?string $title = null;
 }
 
@@ -39,8 +40,8 @@ class AuthorListMatch
 class Authorab
 {
     public ?string $author = null;
-    public ?array $line = null;
     public ?int $linecount = null;
+    public ?array $lines = null;
     public ?string $title = null;
 }
 
@@ -54,8 +55,8 @@ class AuthorabListMatch
 class CombinedSearch
 {
     public ?string $author = null;
-    public ?array $line = null;
     public ?int $linecount = null;
+    public ?array $lines = null;
     public ?string $title = null;
 }
 
@@ -87,8 +88,8 @@ class CombinedSearchWithFieldListMatch
 class Line
 {
     public ?string $author = null;
-    public ?array $line = null;
     public ?int $linecount = null;
+    public ?array $lines = null;
     public ?string $title = null;
 }
 
@@ -110,8 +111,8 @@ class LineListMatch
 class Linecount
 {
     public ?string $author = null;
-    public ?array $line = null;
     public ?int $linecount = null;
+    public ?array $lines = null;
     public ?string $title = null;
 }
 
@@ -133,8 +134,8 @@ class LinecountListMatch
 class Poemcount
 {
     public ?string $author = null;
-    public ?array $line = null;
     public ?int $linecount = null;
+    public ?array $lines = null;
     public ?string $title = null;
 }
 
@@ -148,8 +149,8 @@ class PoemcountLoadMatch
 class Random
 {
     public ?string $author = null;
-    public ?array $line = null;
     public ?int $linecount = null;
+    public ?array $lines = null;
     public ?string $title = null;
 }
 
@@ -170,9 +171,10 @@ class RandomListMatch
 class Title
 {
     public ?string $author = null;
-    public ?array $line = null;
     public ?int $linecount = null;
+    public ?array $lines = null;
     public ?string $title = null;
+    public ?array $titles = null;
 }
 
 /** Request payload for Title#load. */
@@ -193,8 +195,8 @@ class TitleListMatch
 class Titleab
 {
     public ?string $author = null;
-    public ?array $line = null;
     public ?int $linecount = null;
+    public ?array $lines = null;
     public ?string $title = null;
 }
 

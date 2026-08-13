@@ -8,8 +8,9 @@
 
 ---@class Author
 ---@field author? string
----@field line? table
+---@field authors? table
 ---@field linecount? number
+---@field lines? table
 ---@field title? string
 
 ---@class AuthorLoadMatch
@@ -22,8 +23,8 @@
 
 ---@class Authorab
 ---@field author? string
----@field line? table
 ---@field linecount? number
+---@field lines? table
 ---@field title? string
 
 ---@class AuthorabListMatch
@@ -31,8 +32,8 @@
 
 ---@class CombinedSearch
 ---@field author? string
----@field line? table
 ---@field linecount? number
+---@field lines? table
 ---@field title? string
 
 ---@class CombinedSearchListMatch
@@ -52,8 +53,8 @@
 
 ---@class Line
 ---@field author? string
----@field line? table
 ---@field linecount? number
+---@field lines? table
 ---@field title? string
 
 ---@class LineLoadMatch
@@ -66,8 +67,8 @@
 
 ---@class Linecount
 ---@field author? string
----@field line? table
 ---@field linecount? number
+---@field lines? table
 ---@field title? string
 
 ---@class LinecountLoadMatch
@@ -80,8 +81,8 @@
 
 ---@class Poemcount
 ---@field author? string
----@field line? table
 ---@field linecount? number
+---@field lines? table
 ---@field title? string
 
 ---@class PoemcountLoadMatch
@@ -89,8 +90,8 @@
 
 ---@class Random
 ---@field author? string
----@field line? table
 ---@field linecount? number
+---@field lines? table
 ---@field title? string
 
 ---@class RandomLoadMatch
@@ -102,9 +103,10 @@
 
 ---@class Title
 ---@field author? string
----@field line? table
 ---@field linecount? number
+---@field lines? table
 ---@field title? string
+---@field titles? table
 
 ---@class TitleLoadMatch
 ---@field id string
@@ -116,8 +118,8 @@
 
 ---@class Titleab
 ---@field author? string
----@field line? table
 ---@field linecount? number
+---@field lines? table
 ---@field title? string
 
 ---@class TitleabListMatch

@@ -63,7 +63,7 @@ describe('TitleEntity', async () => {
     const title_ref01_ent = client.Title()
     const title_ref01_match: any = {}
 
-    const title_ref01_list = await title_ref01_ent.list(title_ref01_match)
+    const title_ref01_list = (await title_ref01_ent.list(title_ref01_match)).map((e: any) => e.data())
 
 
 

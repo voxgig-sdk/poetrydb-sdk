@@ -64,7 +64,7 @@ describe('AuthorabEntity', async () => {
     const authorab_ref01_match: any = {}
     authorab_ref01_match['author'] = setup.idmap['author01']
 
-    const authorab_ref01_list = await authorab_ref01_ent.list(authorab_ref01_match)
+    const authorab_ref01_list = (await authorab_ref01_ent.list(authorab_ref01_match)).map((e: any) => e.data())
 
 
   })

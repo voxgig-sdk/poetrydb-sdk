@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = PoetrydbSDK.test()
-const authors = await client.Author().list()
-// authors is an array of bare Author records populated with mock data
-console.log(authors)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = PoetrydbSDK.test({
+  entity: {
+    authorab: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const authorabs = await client.Authorab().list()
+// authorabs is an array of Authorab entities, populated with mock data
+// — call authorabs[0].data() for the record itself
+console.log(authorabs)
 ```
 
 ### Python
 
 ```python
 client = PoetrydbSDK.test()
-authors = client.Author().list()
-print(authors)
+authorabs = client.Authorab().list()
+print(authorabs)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(authors)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = PoetrydbSDK::test([
-    "entity" => ["author" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["authorab" => ["test01" => []]],
 ]);
-$authors = $client->Author()->list();
+$authorabs = $client->Authorab()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Author(nil).List(
+result, err := client.Authorab(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Author(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = PoetrydbSDK.test({
-  "entity" => { "author" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "authorab" => { "test01" => {} } },
 })
-authors = client.Author.list()
+authorabs = client.Authorab.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Author():list()
+local results, err = client:Authorab():list()
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { PoetrydbSDK } from '@voxgig-sdk/poetrydb'
 
 const client = new PoetrydbSDK()
 
-// List all authors (returns Author[])
+// List all authors (returns AuthorEntity[] — .data() for the record)
 const authors = await client.Author().list()
 for (const author of authors) {
   console.log(author)
@@ -200,7 +209,7 @@ $client = new PoetrydbSDK();
 $authors = $client->Author()->list();
 print_r($authors);
 
-// Load a specific author (returns the bare record; throws on error)
+// Load a specific author (returns the ENTITY; call data_get() for the record; throws on error)
 $author = $client->Author()->load(["id" => "example_id"]);
 print_r($author);
 ```
@@ -231,7 +240,7 @@ client = PoetrydbSDK.new
 authors = client.Author.list
 puts authors
 
-# Load a specific author (returns the bare record; raises on error)
+# Load a specific author (returns the ENTITY; call data_get for the record)
 author = client.Author.load({ "id" => "example_id" })
 puts author
 ```
@@ -368,6 +377,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://github.com/thundercomb/poetrydb](https://github.com/thundercomb/poetrydb)
 

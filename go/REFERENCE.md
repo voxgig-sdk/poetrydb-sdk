@@ -135,8 +135,9 @@ fmt.Println(author.GetName()) // "author"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `[]any` | No |  |
+| `authors` | `[]any` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `[]any` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -201,8 +202,8 @@ fmt.Println(authorab.GetName()) // "authorab"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `[]any` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `[]any` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -255,8 +256,8 @@ fmt.Println(combinedSearch.GetName()) // "combined_search"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `[]any` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `[]any` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -354,8 +355,8 @@ fmt.Println(line.GetName()) // "line"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `[]any` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `[]any` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -420,8 +421,8 @@ fmt.Println(linecount.GetName()) // "linecount"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `[]any` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `[]any` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -486,8 +487,8 @@ fmt.Println(poemcount.GetName()) // "poemcount"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `[]any` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `[]any` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -540,8 +541,8 @@ fmt.Println(random.GetName()) // "random"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `[]any` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `[]any` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -606,9 +607,10 @@ fmt.Println(title.GetName()) // "title"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `[]any` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `[]any` | No |  |
 | `title` | `string` | No |  |
+| `titles` | `[]any` | No |  |
 
 ### Operations
 
@@ -672,8 +674,8 @@ fmt.Println(titleab.GetName()) // "titleab"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `[]any` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `[]any` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations

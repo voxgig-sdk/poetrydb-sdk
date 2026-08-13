@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare Author record (raises on error).
+  # load returns the ENTITY — call data_get for the Author record (raises on error).
   author = client.Author.load({ "id" => "example_id" })
   puts author
 rescue => err
@@ -63,7 +63,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  authors = client.Author.list()
+  authorabs = client.Authorab.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -126,17 +126,15 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = PoetrydbSDK.test({
-  "entity" => { "author" => { "test01" => { "id" => "test01" } } },
-})
+client = PoetrydbSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-author = client.Author.list()
-puts author
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+authorab = client.Authorab.list()
+puts authorab
 ```
 
 ### Use a custom fetch function
@@ -262,8 +260,9 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
+| `authors` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -275,8 +274,8 @@ API path: `/author/{author}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List.
@@ -288,8 +287,8 @@ API path: `/author/{author}:abs`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List.
@@ -310,8 +309,8 @@ API path: `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputField
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -323,8 +322,8 @@ API path: `/lines/{lines}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -336,8 +335,8 @@ API path: `/linecount/{linecount}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: Load.
@@ -349,8 +348,8 @@ API path: `/poemcount/{count}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -362,9 +361,10 @@ API path: `/random/{count}/{outputFields}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
+| `titles` |  |
 
 Operations: List, Load.
 
@@ -375,8 +375,8 @@ API path: `/title/{title}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List.
@@ -404,14 +404,15 @@ Create an instance: `author = client.Author`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `String` |  |
-| `line` | `Array` |  |
+| `authors` | `Array` |  |
 | `linecount` | `Integer` |  |
+| `lines` | `Array` |  |
 | `title` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Author record (raises on error).
+# load returns the ENTITY — call data_get for the Author record (raises on error).
 author = client.Author.load({ "id" => "author_id" })
 ```
 
@@ -438,8 +439,8 @@ Create an instance: `authorab = client.Authorab`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `String` |  |
-| `line` | `Array` |  |
 | `linecount` | `Integer` |  |
+| `lines` | `Array` |  |
 | `title` | `String` |  |
 
 #### Example: List
@@ -465,8 +466,8 @@ Create an instance: `combined_search = client.CombinedSearch`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `String` |  |
-| `line` | `Array` |  |
 | `linecount` | `Integer` |  |
+| `lines` | `Array` |  |
 | `title` | `String` |  |
 
 #### Example: List
@@ -511,14 +512,14 @@ Create an instance: `line = client.Line`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `String` |  |
-| `line` | `Array` |  |
 | `linecount` | `Integer` |  |
+| `lines` | `Array` |  |
 | `title` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Line record (raises on error).
+# load returns the ENTITY — call data_get for the Line record (raises on error).
 line = client.Line.load({ "id" => "line_id" })
 ```
 
@@ -546,14 +547,14 @@ Create an instance: `linecount = client.Linecount`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `String` |  |
-| `line` | `Array` |  |
 | `linecount` | `Integer` |  |
+| `lines` | `Array` |  |
 | `title` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Linecount record (raises on error).
+# load returns the ENTITY — call data_get for the Linecount record (raises on error).
 linecount = client.Linecount.load({ "id" => 1 })
 ```
 
@@ -580,14 +581,14 @@ Create an instance: `poemcount = client.Poemcount`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `String` |  |
-| `line` | `Array` |  |
 | `linecount` | `Integer` |  |
+| `lines` | `Array` |  |
 | `title` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Poemcount record (raises on error).
+# load returns the ENTITY — call data_get for the Poemcount record (raises on error).
 poemcount = client.Poemcount.load({ "id" => 1 })
 ```
 
@@ -608,14 +609,14 @@ Create an instance: `random = client.Random`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `String` |  |
-| `line` | `Array` |  |
 | `linecount` | `Integer` |  |
+| `lines` | `Array` |  |
 | `title` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Random record (raises on error).
+# load returns the ENTITY — call data_get for the Random record (raises on error).
 random = client.Random.load({ "id" => 1 })
 ```
 
@@ -643,14 +644,15 @@ Create an instance: `title = client.Title`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `String` |  |
-| `line` | `Array` |  |
 | `linecount` | `Integer` |  |
+| `lines` | `Array` |  |
 | `title` | `String` |  |
+| `titles` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Title record (raises on error).
+# load returns the ENTITY — call data_get for the Title record (raises on error).
 title = client.Title.load({ "id" => "title_id" })
 ```
 
@@ -677,8 +679,8 @@ Create an instance: `titleab = client.Titleab`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `String` |  |
-| `line` | `Array` |  |
 | `linecount` | `Integer` |  |
+| `lines` | `Array` |  |
 | `title` | `String` |  |
 
 #### Example: List
@@ -765,11 +767,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-author = client.Author
-author.list()
+authorab = client.Authorab
+authorab.list()
 
-# author.data_get now returns the author data from the last list
-# author.match_get returns the last match criteria
+# authorab.data_get now returns the authorab data from the last list
+# authorab.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

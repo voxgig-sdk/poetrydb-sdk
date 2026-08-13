@@ -7,8 +7,9 @@
 
 export interface Author {
   author?: string
-  line?: any[]
+  authors?: any[]
   linecount?: number
+  lines?: any[]
   title?: string
 }
 
@@ -24,8 +25,8 @@ export interface AuthorListMatch {
 
 export interface Authorab {
   author?: string
-  line?: any[]
   linecount?: number
+  lines?: any[]
   title?: string
 }
 
@@ -35,8 +36,8 @@ export interface AuthorabListMatch {
 
 export interface CombinedSearch {
   author?: string
-  line?: any[]
   linecount?: number
+  lines?: any[]
   title?: string
 }
 
@@ -60,8 +61,8 @@ export interface CombinedSearchWithFieldListMatch {
 
 export interface Line {
   author?: string
-  line?: any[]
   linecount?: number
+  lines?: any[]
   title?: string
 }
 
@@ -77,8 +78,8 @@ export interface LineListMatch {
 
 export interface Linecount {
   author?: string
-  line?: any[]
   linecount?: number
+  lines?: any[]
   title?: string
 }
 
@@ -94,8 +95,8 @@ export interface LinecountListMatch {
 
 export interface Poemcount {
   author?: string
-  line?: any[]
   linecount?: number
+  lines?: any[]
   title?: string
 }
 
@@ -105,8 +106,8 @@ export interface PoemcountLoadMatch {
 
 export interface Random {
   author?: string
-  line?: any[]
   linecount?: number
+  lines?: any[]
   title?: string
 }
 
@@ -121,9 +122,10 @@ export interface RandomListMatch {
 
 export interface Title {
   author?: string
-  line?: any[]
   linecount?: number
+  lines?: any[]
   title?: string
+  titles?: any[]
 }
 
 export interface TitleLoadMatch {
@@ -138,8 +140,8 @@ export interface TitleListMatch {
 
 export interface Titleab {
   author?: string
-  line?: any[]
   linecount?: number
+  lines?: any[]
   title?: string
 }
 

@@ -3,8 +3,8 @@
     "linecount": {
       "LINECOUNT00": {
         "author": "s28",
-        "line": [],
-        "linecount": "s2a",
+        "linecount": "s29",
+        "lines": [],
         "title": "s2b",
         "format": "FORMAT01",
         "output_field": "OUTPUT_FIELD01",
@@ -12,8 +12,8 @@
       },
       "LINECOUNT01": {
         "author": "s50",
-        "line": [],
-        "linecount": "s52",
+        "linecount": "s51",
+        "lines": [],
         "title": "s53",
         "format": "FORMAT01",
         "output_field": "OUTPUT_FIELD01",
@@ -21,8 +21,8 @@
       },
       "LINECOUNT02": {
         "author": "s78",
-        "line": [],
-        "linecount": "s7a",
+        "linecount": "s79",
+        "lines": [],
         "title": "s7b",
         "format": "FORMAT01",
         "output_field": "OUTPUT_FIELD01",
@@ -34,8 +34,8 @@
     "linecount": {
       "linecount_ref01": {
         "author": "sa0",
-        "line": [],
-        "linecount": "sa2",
+        "linecount": "sa1",
+        "lines": [],
         "title": "sa3"
       }
     }

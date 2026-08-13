@@ -155,8 +155,29 @@ class PoetrydbSDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('PoetrydbSDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -217,73 +238,147 @@ class PoetrydbSDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('PoetrydbSDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('PoetrydbSDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.Author().list()` / `client.Author().load({ id })`.
-  Author(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Author(entopts?: Record<string, any>) {
     const self = this
-    return new AuthorEntity(self,data)
+    return new AuthorEntity(self, entopts)
   }
 
 
   // Entity access: `client.Authorab().list()` / `client.Authorab().load({ id })`.
-  Authorab(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Authorab(entopts?: Record<string, any>) {
     const self = this
-    return new AuthorabEntity(self,data)
+    return new AuthorabEntity(self, entopts)
   }
 
 
   // Entity access: `client.CombinedSearch().list()` / `client.CombinedSearch().load({ id })`.
-  CombinedSearch(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CombinedSearch(entopts?: Record<string, any>) {
     const self = this
-    return new CombinedSearchEntity(self,data)
+    return new CombinedSearchEntity(self, entopts)
   }
 
 
   // Entity access: `client.CombinedSearchWithField().list()` / `client.CombinedSearchWithField().load({ id })`.
-  CombinedSearchWithField(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CombinedSearchWithField(entopts?: Record<string, any>) {
     const self = this
-    return new CombinedSearchWithFieldEntity(self,data)
+    return new CombinedSearchWithFieldEntity(self, entopts)
   }
 
 
   // Entity access: `client.Line().list()` / `client.Line().load({ id })`.
-  Line(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Line(entopts?: Record<string, any>) {
     const self = this
-    return new LineEntity(self,data)
+    return new LineEntity(self, entopts)
   }
 
 
   // Entity access: `client.Linecount().list()` / `client.Linecount().load({ id })`.
-  Linecount(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Linecount(entopts?: Record<string, any>) {
     const self = this
-    return new LinecountEntity(self,data)
+    return new LinecountEntity(self, entopts)
   }
 
 
   // Entity access: `client.Poemcount().list()` / `client.Poemcount().load({ id })`.
-  Poemcount(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Poemcount(entopts?: Record<string, any>) {
     const self = this
-    return new PoemcountEntity(self,data)
+    return new PoemcountEntity(self, entopts)
   }
 
 
   // Entity access: `client.Random().list()` / `client.Random().load({ id })`.
-  Random(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Random(entopts?: Record<string, any>) {
     const self = this
-    return new RandomEntity(self,data)
+    return new RandomEntity(self, entopts)
   }
 
 
   // Entity access: `client.Title().list()` / `client.Title().load({ id })`.
-  Title(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Title(entopts?: Record<string, any>) {
     const self = this
-    return new TitleEntity(self,data)
+    return new TitleEntity(self, entopts)
   }
 
 
   // Entity access: `client.Titleab().list()` / `client.Titleab().load({ id })`.
-  Titleab(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Titleab(entopts?: Record<string, any>) {
     const self = this
-    return new TitleabEntity(self,data)
+    return new TitleabEntity(self, entopts)
   }
 
 

@@ -62,7 +62,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local authors, err = client:Author():list()
+local authorabs, err = client:Authorab():list()
 if err then error(err) end
 ```
 
@@ -120,7 +120,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Author():list()
+local result, err = client:Authorab():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -251,8 +251,9 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
+| `authors` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -264,8 +265,8 @@ API path: `/author/{author}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List.
@@ -277,8 +278,8 @@ API path: `/author/{author}:abs`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List.
@@ -299,8 +300,8 @@ API path: `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputField
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -312,8 +313,8 @@ API path: `/lines/{lines}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -325,8 +326,8 @@ API path: `/linecount/{linecount}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: Load.
@@ -338,8 +339,8 @@ API path: `/poemcount/{count}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -351,9 +352,10 @@ API path: `/random/{count}/{outputFields}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
+| `titles` |  |
 
 Operations: List, Load.
 
@@ -364,8 +366,8 @@ API path: `/title/{title}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List.
@@ -393,8 +395,9 @@ Create an instance: `local author = client:Author(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `table` |  |
+| `authors` | `table` |  |
 | `linecount` | `number` |  |
+| `lines` | `table` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -425,8 +428,8 @@ Create an instance: `local authorab = client:Authorab(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `table` |  |
 | `linecount` | `number` |  |
+| `lines` | `table` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -451,8 +454,8 @@ Create an instance: `local combined_search = client:CombinedSearch(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `table` |  |
 | `linecount` | `number` |  |
+| `lines` | `table` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -495,8 +498,8 @@ Create an instance: `local line = client:Line(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `table` |  |
 | `linecount` | `number` |  |
+| `lines` | `table` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -528,8 +531,8 @@ Create an instance: `local linecount = client:Linecount(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `table` |  |
 | `linecount` | `number` |  |
+| `lines` | `table` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -560,8 +563,8 @@ Create an instance: `local poemcount = client:Poemcount(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `table` |  |
 | `linecount` | `number` |  |
+| `lines` | `table` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -587,8 +590,8 @@ Create an instance: `local random = client:Random(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `table` |  |
 | `linecount` | `number` |  |
+| `lines` | `table` |  |
 | `title` | `string` |  |
 
 #### Example: Load
@@ -620,9 +623,10 @@ Create an instance: `local title = client:Title(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `table` |  |
 | `linecount` | `number` |  |
+| `lines` | `table` |  |
 | `title` | `string` |  |
+| `titles` | `table` |  |
 
 #### Example: Load
 
@@ -652,8 +656,8 @@ Create an instance: `local titleab = client:Titleab(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` |  |
-| `line` | `table` |  |
 | `linecount` | `number` |  |
+| `lines` | `table` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -739,11 +743,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local author = client:Author()
-author:list()
+local authorab = client:Authorab()
+authorab:list()
 
--- author:data_get() now returns the author data from the last list
--- author:match_get() returns the last match criteria
+-- authorab:data_get() now returns the authorab data from the last list
+-- authorab:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

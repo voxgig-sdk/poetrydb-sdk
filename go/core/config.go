@@ -42,7 +42,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "line",
+						"name": "authors",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 1,
@@ -56,10 +56,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
+						"name": "lines",
+						"req": false,
+						"type": "`$ARRAY`",
+						"index$": 3,
+					},
+					map[string]any{
+						"active": true,
 						"name": "title",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 3,
+						"index$": 4,
 					},
 				},
 				"name": "author",
@@ -104,6 +111,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/author/{author}/{outputFields}.{format}",
 								"parts": []any{
@@ -155,6 +163,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/author/{author}/{outputFields}",
 								"parts": []any{
@@ -182,6 +191,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/author",
 								"parts": []any{
@@ -190,12 +200,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.authors`",
 								},
 								"index$": 2,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -217,6 +226,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/author/{author}",
 								"parts": []any{
@@ -240,7 +250,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -262,16 +271,16 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "line",
+						"name": "linecount",
 						"req": false,
-						"type": "`$ARRAY`",
+						"type": "`$INTEGER`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "linecount",
+						"name": "lines",
 						"req": false,
-						"type": "`$INTEGER`",
+						"type": "`$ARRAY`",
 						"index$": 2,
 					},
 					map[string]any{
@@ -304,6 +313,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/author/{author}:abs",
 								"parts": []any{
@@ -322,7 +332,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -344,16 +353,16 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "line",
+						"name": "linecount",
 						"req": false,
-						"type": "`$ARRAY`",
+						"type": "`$INTEGER`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "linecount",
+						"name": "lines",
 						"req": false,
-						"type": "`$INTEGER`",
+						"type": "`$ARRAY`",
 						"index$": 2,
 					},
 					map[string]any{
@@ -416,6 +425,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}",
 								"parts": []any{
@@ -443,7 +453,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -514,6 +523,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputFields}",
 								"parts": []any{
@@ -544,7 +554,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -562,16 +571,16 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "line",
+						"name": "linecount",
 						"req": false,
-						"type": "`$ARRAY`",
+						"type": "`$INTEGER`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "linecount",
+						"name": "lines",
 						"req": false,
-						"type": "`$INTEGER`",
+						"type": "`$ARRAY`",
 						"index$": 2,
 					},
 					map[string]any{
@@ -624,6 +633,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/lines/{lines}/{outputFields}.{format}",
 								"parts": []any{
@@ -676,6 +686,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/lines/{lines}/{outputFields}",
 								"parts": []any{
@@ -702,7 +713,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -724,6 +734,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/lines/{lines}",
 								"parts": []any{
@@ -747,7 +758,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -769,16 +779,16 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "line",
+						"name": "linecount",
 						"req": false,
-						"type": "`$ARRAY`",
+						"type": "`$INTEGER`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "linecount",
+						"name": "lines",
 						"req": false,
-						"type": "`$INTEGER`",
+						"type": "`$ARRAY`",
 						"index$": 2,
 					},
 					map[string]any{
@@ -831,6 +841,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/linecount/{linecount}/{outputFields}.{format}",
 								"parts": []any{
@@ -882,6 +893,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/linecount/{linecount}/{outputFields}",
 								"parts": []any{
@@ -907,7 +919,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -929,6 +940,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/linecount/{linecount}",
 								"parts": []any{
@@ -952,7 +964,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -974,16 +985,16 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "line",
+						"name": "linecount",
 						"req": false,
-						"type": "`$ARRAY`",
+						"type": "`$INTEGER`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "linecount",
+						"name": "lines",
 						"req": false,
-						"type": "`$INTEGER`",
+						"type": "`$ARRAY`",
 						"index$": 2,
 					},
 					map[string]any{
@@ -1016,6 +1027,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/poemcount/{count}",
 								"parts": []any{
@@ -1039,7 +1051,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -1057,16 +1068,16 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "line",
+						"name": "linecount",
 						"req": false,
-						"type": "`$ARRAY`",
+						"type": "`$INTEGER`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "linecount",
+						"name": "lines",
 						"req": false,
-						"type": "`$INTEGER`",
+						"type": "`$ARRAY`",
 						"index$": 2,
 					},
 					map[string]any{
@@ -1109,6 +1120,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/random/{count}/{outputFields}",
 								"parts": []any{
@@ -1134,7 +1146,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -1156,6 +1167,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/random/{count}",
 								"parts": []any{
@@ -1179,7 +1191,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -1201,16 +1212,16 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "line",
+						"name": "linecount",
 						"req": false,
-						"type": "`$ARRAY`",
+						"type": "`$INTEGER`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "linecount",
+						"name": "lines",
 						"req": false,
-						"type": "`$INTEGER`",
+						"type": "`$ARRAY`",
 						"index$": 2,
 					},
 					map[string]any{
@@ -1219,6 +1230,13 @@ func MakeConfig() map[string]any {
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 3,
+					},
+					map[string]any{
+						"active": true,
+						"name": "titles",
+						"req": false,
+						"type": "`$ARRAY`",
+						"index$": 4,
 					},
 				},
 				"name": "title",
@@ -1263,6 +1281,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/title/{title}/{outputFields}.{format}",
 								"parts": []any{
@@ -1314,6 +1333,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/title/{title}/{outputFields}",
 								"parts": []any{
@@ -1341,6 +1361,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/title",
 								"parts": []any{
@@ -1349,12 +1370,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.titles`",
 								},
 								"index$": 2,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -1376,6 +1396,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/title/{title}",
 								"parts": []any{
@@ -1399,7 +1420,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -1421,16 +1441,16 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "line",
+						"name": "linecount",
 						"req": false,
-						"type": "`$ARRAY`",
+						"type": "`$INTEGER`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "linecount",
+						"name": "lines",
 						"req": false,
-						"type": "`$INTEGER`",
+						"type": "`$ARRAY`",
 						"index$": 2,
 					},
 					map[string]any{
@@ -1463,6 +1483,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/title/{title}:abs",
 								"parts": []any{
@@ -1481,7 +1502,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{

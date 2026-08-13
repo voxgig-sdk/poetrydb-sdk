@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Poetrydb',
   }
 
 
@@ -90,7 +90,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "line",
+          "name": "authors",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
@@ -104,10 +104,17 @@ class Config {
         },
         {
           "active": true,
+          "name": "lines",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 3
+        },
+        {
+          "active": true,
           "name": "title",
           "req": false,
           "type": "`$STRING`",
-          "index$": 3
+          "index$": 4
         }
       ],
       "name": "author",
@@ -152,6 +159,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/author/{author}/{outputFields}.{format}",
               "parts": [
@@ -203,6 +211,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/author/{author}/{outputFields}",
               "parts": [
@@ -230,6 +239,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/author",
               "parts": [
@@ -238,7 +248,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.authors`"
               },
               "index$": 2
             }
@@ -265,6 +275,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/author/{author}",
               "parts": [
@@ -310,16 +321,16 @@ class Config {
         },
         {
           "active": true,
-          "name": "line",
+          "name": "linecount",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$INTEGER`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "linecount",
+          "name": "lines",
           "req": false,
-          "type": "`$INTEGER`",
+          "type": "`$ARRAY`",
           "index$": 2
         },
         {
@@ -352,6 +363,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/author/{author}:abs",
               "parts": [
@@ -392,16 +404,16 @@ class Config {
         },
         {
           "active": true,
-          "name": "line",
+          "name": "linecount",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$INTEGER`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "linecount",
+          "name": "lines",
           "req": false,
-          "type": "`$INTEGER`",
+          "type": "`$ARRAY`",
           "index$": 2
         },
         {
@@ -464,6 +476,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}",
               "parts": [
@@ -562,6 +575,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputFields}",
               "parts": [
@@ -610,16 +624,16 @@ class Config {
         },
         {
           "active": true,
-          "name": "line",
+          "name": "linecount",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$INTEGER`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "linecount",
+          "name": "lines",
           "req": false,
-          "type": "`$INTEGER`",
+          "type": "`$ARRAY`",
           "index$": 2
         },
         {
@@ -672,6 +686,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/lines/{lines}/{outputFields}.{format}",
               "parts": [
@@ -724,6 +739,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/lines/{lines}/{outputFields}",
               "parts": [
@@ -772,6 +788,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/lines/{lines}",
               "parts": [
@@ -817,16 +834,16 @@ class Config {
         },
         {
           "active": true,
-          "name": "line",
+          "name": "linecount",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$INTEGER`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "linecount",
+          "name": "lines",
           "req": false,
-          "type": "`$INTEGER`",
+          "type": "`$ARRAY`",
           "index$": 2
         },
         {
@@ -879,6 +896,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/linecount/{linecount}/{outputFields}.{format}",
               "parts": [
@@ -930,6 +948,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/linecount/{linecount}/{outputFields}",
               "parts": [
@@ -977,6 +996,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/linecount/{linecount}",
               "parts": [
@@ -1022,16 +1042,16 @@ class Config {
         },
         {
           "active": true,
-          "name": "line",
+          "name": "linecount",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$INTEGER`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "linecount",
+          "name": "lines",
           "req": false,
-          "type": "`$INTEGER`",
+          "type": "`$ARRAY`",
           "index$": 2
         },
         {
@@ -1064,6 +1084,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/poemcount/{count}",
               "parts": [
@@ -1105,16 +1126,16 @@ class Config {
         },
         {
           "active": true,
-          "name": "line",
+          "name": "linecount",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$INTEGER`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "linecount",
+          "name": "lines",
           "req": false,
-          "type": "`$INTEGER`",
+          "type": "`$ARRAY`",
           "index$": 2
         },
         {
@@ -1157,6 +1178,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/random/{count}/{outputFields}",
               "parts": [
@@ -1204,6 +1226,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/random/{count}",
               "parts": [
@@ -1249,16 +1272,16 @@ class Config {
         },
         {
           "active": true,
-          "name": "line",
+          "name": "linecount",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$INTEGER`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "linecount",
+          "name": "lines",
           "req": false,
-          "type": "`$INTEGER`",
+          "type": "`$ARRAY`",
           "index$": 2
         },
         {
@@ -1267,6 +1290,13 @@ class Config {
           "req": false,
           "type": "`$STRING`",
           "index$": 3
+        },
+        {
+          "active": true,
+          "name": "titles",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 4
         }
       ],
       "name": "title",
@@ -1311,6 +1341,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/title/{title}/{outputFields}.{format}",
               "parts": [
@@ -1362,6 +1393,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/title/{title}/{outputFields}",
               "parts": [
@@ -1389,6 +1421,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/title",
               "parts": [
@@ -1397,7 +1430,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.titles`"
               },
               "index$": 2
             }
@@ -1424,6 +1457,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/title/{title}",
               "parts": [
@@ -1469,16 +1503,16 @@ class Config {
         },
         {
           "active": true,
-          "name": "line",
+          "name": "linecount",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$INTEGER`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "linecount",
+          "name": "lines",
           "req": false,
-          "type": "`$INTEGER`",
+          "type": "`$ARRAY`",
           "index$": 2
         },
         {
@@ -1511,6 +1545,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/title/{title}:abs",
               "parts": [

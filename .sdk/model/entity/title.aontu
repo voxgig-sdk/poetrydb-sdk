@@ -11,19 +11,24 @@ main: kit: entity: title: {
       type: "`$STRING`"
     }
     {
-      name: "line"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
       name: "linecount"
       req: false
       type: "`$INTEGER`"
     }
     {
+      name: "lines"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
       name: "title"
       req: false
       type: "`$STRING`"
+    }
+    {
+      name: "titles"
+      req: false
+      type: "`$ARRAY`"
     }
   ]
 
@@ -137,7 +142,7 @@ main: kit: entity: title: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.titles`"
           }
         }
       ]

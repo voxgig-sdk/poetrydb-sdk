@@ -52,7 +52,7 @@ except Exception as err:
 
 ### 3. Load an author
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -69,8 +69,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    authors = client.Author().list()
-    print(authors)
+    authorabs = client.Authorab().list()
+    print(authorabs)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -136,9 +136,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = PoetrydbSDK.test()
 
-# Entity ops return the bare record and raise on error.
-author = client.Author().list()
-# author contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+authorab = client.Authorab().list()
+# authorab contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -242,7 +243,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -265,8 +266,9 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
+| `authors` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -278,8 +280,8 @@ API path: `/author/{author}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List.
@@ -291,8 +293,8 @@ API path: `/author/{author}:abs`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List.
@@ -313,8 +315,8 @@ API path: `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputField
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -326,8 +328,8 @@ API path: `/lines/{lines}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -339,8 +341,8 @@ API path: `/linecount/{linecount}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: Load.
@@ -352,8 +354,8 @@ API path: `/poemcount/{count}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List, Load.
@@ -365,9 +367,10 @@ API path: `/random/{count}/{outputFields}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
+| `titles` |  |
 
 Operations: List, Load.
 
@@ -378,8 +381,8 @@ API path: `/title/{title}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` |  |
-| `line` |  |
 | `linecount` |  |
+| `lines` |  |
 | `title` |  |
 
 Operations: List.
@@ -407,8 +410,9 @@ Create an instance: `author = client.Author()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `str` |  |
-| `line` | `list` |  |
+| `authors` | `list` |  |
 | `linecount` | `int` |  |
+| `lines` | `list` |  |
 | `title` | `str` |  |
 
 #### Example: Load
@@ -439,14 +443,14 @@ Create an instance: `authorab = client.Authorab()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `str` |  |
-| `line` | `list` |  |
 | `linecount` | `int` |  |
+| `lines` | `list` |  |
 | `title` | `str` |  |
 
 #### Example: List
 
 ```python
-authorabs = client.Authorab().list()
+authorabs = client.Authorab().list({"author": "example"})
 ```
 
 
@@ -465,14 +469,14 @@ Create an instance: `combined_search = client.CombinedSearch()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `str` |  |
-| `line` | `list` |  |
 | `linecount` | `int` |  |
+| `lines` | `list` |  |
 | `title` | `str` |  |
 
 #### Example: List
 
 ```python
-combined_searchs = client.CombinedSearch().list()
+combined_searchs = client.CombinedSearch().list({"input_field1": "example", "input_field2": "example", "search_term1": "example", "search_term2": "example"})
 ```
 
 
@@ -489,7 +493,7 @@ Create an instance: `combined_search_with_field = client.CombinedSearchWithField
 #### Example: List
 
 ```python
-combined_search_with_fields = client.CombinedSearchWithField().list()
+combined_search_with_fields = client.CombinedSearchWithField().list({"input_field1": "example", "input_field2": "example", "output_field": "example", "search_term1": "example", "search_term2": "example"})
 ```
 
 
@@ -509,8 +513,8 @@ Create an instance: `line = client.Line()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `str` |  |
-| `line` | `list` |  |
 | `linecount` | `int` |  |
+| `lines` | `list` |  |
 | `title` | `str` |  |
 
 #### Example: Load
@@ -522,7 +526,7 @@ line = client.Line().load({"id": "line_id"})
 #### Example: List
 
 ```python
-lines = client.Line().list()
+lines = client.Line().list({"line": "example", "output_field": "example"})
 ```
 
 
@@ -542,8 +546,8 @@ Create an instance: `linecount = client.Linecount()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `str` |  |
-| `line` | `list` |  |
 | `linecount` | `int` |  |
+| `lines` | `list` |  |
 | `title` | `str` |  |
 
 #### Example: Load
@@ -555,7 +559,7 @@ linecount = client.Linecount().load({"id": 1})
 #### Example: List
 
 ```python
-linecounts = client.Linecount().list()
+linecounts = client.Linecount().list({"linecount": 1, "output_field": "example"})
 ```
 
 
@@ -574,8 +578,8 @@ Create an instance: `poemcount = client.Poemcount()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `str` |  |
-| `line` | `list` |  |
 | `linecount` | `int` |  |
+| `lines` | `list` |  |
 | `title` | `str` |  |
 
 #### Example: Load
@@ -601,8 +605,8 @@ Create an instance: `random = client.Random()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `str` |  |
-| `line` | `list` |  |
 | `linecount` | `int` |  |
+| `lines` | `list` |  |
 | `title` | `str` |  |
 
 #### Example: Load
@@ -614,7 +618,7 @@ random = client.Random().load({"id": 1})
 #### Example: List
 
 ```python
-randoms = client.Random().list()
+randoms = client.Random().list({"count": 1, "output_field": "example"})
 ```
 
 
@@ -634,9 +638,10 @@ Create an instance: `title = client.Title()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `str` |  |
-| `line` | `list` |  |
 | `linecount` | `int` |  |
+| `lines` | `list` |  |
 | `title` | `str` |  |
+| `titles` | `list` |  |
 
 #### Example: Load
 
@@ -666,14 +671,14 @@ Create an instance: `titleab = client.Titleab()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `str` |  |
-| `line` | `list` |  |
 | `linecount` | `int` |  |
+| `lines` | `list` |  |
 | `title` | `str` |  |
 
 #### Example: List
 
 ```python
-titleabs = client.Titleab().list()
+titleabs = client.Titleab().list({"title": "example"})
 ```
 
 
@@ -752,11 +757,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-author = client.Author()
-author.list()
+authorab = client.Authorab()
+authorab.list()
 
-# author.data_get() now returns the author data from the last list
-# author.match_get() returns the last match criteria
+# authorab.data_get() now returns the authorab data from the last list
+# authorab.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

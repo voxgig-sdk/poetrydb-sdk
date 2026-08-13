@@ -124,8 +124,9 @@ author = client.Author()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `str` | No |  |
-| `line` | `list` | No |  |
+| `authors` | `list` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `list` | No |  |
 | `title` | `str` | No |  |
 
 ### Operations
@@ -188,8 +189,8 @@ authorab = client.Authorab()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `str` | No |  |
-| `line` | `list` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `list` | No |  |
 | `title` | `str` | No |  |
 
 ### Operations
@@ -199,7 +200,7 @@ authorab = client.Authorab()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Authorab().list()
+results = client.Authorab().list({"author": "example"})
 for authorab in results:
     print(authorab)
 ```
@@ -244,8 +245,8 @@ combined_search = client.CombinedSearch()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `str` | No |  |
-| `line` | `list` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `list` | No |  |
 | `title` | `str` | No |  |
 
 ### Operations
@@ -255,7 +256,7 @@ combined_search = client.CombinedSearch()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CombinedSearch().list()
+results = client.CombinedSearch().list({"input_field1": "example", "input_field2": "example", "search_term1": "example", "search_term2": "example"})
 for combined_search in results:
     print(combined_search)
 ```
@@ -302,7 +303,7 @@ combined_search_with_field = client.CombinedSearchWithField()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.CombinedSearchWithField().list()
+results = client.CombinedSearchWithField().list({"input_field1": "example", "input_field2": "example", "output_field": "example", "search_term1": "example", "search_term2": "example"})
 for combined_search_with_field in results:
     print(combined_search_with_field)
 ```
@@ -347,8 +348,8 @@ line = client.Line()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `str` | No |  |
-| `line` | `list` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `list` | No |  |
 | `title` | `str` | No |  |
 
 ### Operations
@@ -358,7 +359,7 @@ line = client.Line()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Line().list()
+results = client.Line().list({"line": "example", "output_field": "example"})
 for line in results:
     print(line)
 ```
@@ -411,8 +412,8 @@ linecount = client.Linecount()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `str` | No |  |
-| `line` | `list` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `list` | No |  |
 | `title` | `str` | No |  |
 
 ### Operations
@@ -422,7 +423,7 @@ linecount = client.Linecount()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Linecount().list()
+results = client.Linecount().list({"linecount": 1, "output_field": "example"})
 for linecount in results:
     print(linecount)
 ```
@@ -475,8 +476,8 @@ poemcount = client.Poemcount()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `str` | No |  |
-| `line` | `list` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `list` | No |  |
 | `title` | `str` | No |  |
 
 ### Operations
@@ -529,8 +530,8 @@ random = client.Random()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `str` | No |  |
-| `line` | `list` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `list` | No |  |
 | `title` | `str` | No |  |
 
 ### Operations
@@ -540,7 +541,7 @@ random = client.Random()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Random().list()
+results = client.Random().list({"count": 1, "output_field": "example"})
 for random in results:
     print(random)
 ```
@@ -593,9 +594,10 @@ title = client.Title()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `str` | No |  |
-| `line` | `list` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `list` | No |  |
 | `title` | `str` | No |  |
+| `titles` | `list` | No |  |
 
 ### Operations
 
@@ -657,8 +659,8 @@ titleab = client.Titleab()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `str` | No |  |
-| `line` | `list` | No |  |
 | `linecount` | `int` | No |  |
+| `lines` | `list` | No |  |
 | `title` | `str` | No |  |
 
 ### Operations
@@ -668,7 +670,7 @@ titleab = client.Titleab()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Titleab().list()
+results = client.Titleab().list({"title": "example"})
 for titleab in results:
     print(titleab)
 ```

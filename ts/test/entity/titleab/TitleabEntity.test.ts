@@ -64,7 +64,7 @@ describe('TitleabEntity', async () => {
     const titleab_ref01_match: any = {}
     titleab_ref01_match['title'] = setup.idmap['title01']
 
-    const titleab_ref01_list = await titleab_ref01_ent.list(titleab_ref01_match)
+    const titleab_ref01_list = (await titleab_ref01_ent.list(titleab_ref01_match)).map((e: any) => e.data())
 
 
   })

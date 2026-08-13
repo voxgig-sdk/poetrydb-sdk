@@ -130,8 +130,9 @@ author = client.Author
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `String` | No |  |
-| `line` | `Array` | No |  |
+| `authors` | `Array` | No |  |
 | `linecount` | `Integer` | No |  |
+| `lines` | `Array` | No |  |
 | `title` | `String` | No |  |
 
 ### Operations
@@ -193,8 +194,8 @@ authorab = client.Authorab
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `String` | No |  |
-| `line` | `Array` | No |  |
 | `linecount` | `Integer` | No |  |
+| `lines` | `Array` | No |  |
 | `title` | `String` | No |  |
 
 ### Operations
@@ -248,8 +249,8 @@ combined_search = client.CombinedSearch
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `String` | No |  |
-| `line` | `Array` | No |  |
 | `linecount` | `Integer` | No |  |
+| `lines` | `Array` | No |  |
 | `title` | `String` | No |  |
 
 ### Operations
@@ -349,8 +350,8 @@ line = client.Line
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `String` | No |  |
-| `line` | `Array` | No |  |
 | `linecount` | `Integer` | No |  |
+| `lines` | `Array` | No |  |
 | `title` | `String` | No |  |
 
 ### Operations
@@ -412,8 +413,8 @@ linecount = client.Linecount
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `String` | No |  |
-| `line` | `Array` | No |  |
 | `linecount` | `Integer` | No |  |
+| `lines` | `Array` | No |  |
 | `title` | `String` | No |  |
 
 ### Operations
@@ -475,8 +476,8 @@ poemcount = client.Poemcount
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `String` | No |  |
-| `line` | `Array` | No |  |
 | `linecount` | `Integer` | No |  |
+| `lines` | `Array` | No |  |
 | `title` | `String` | No |  |
 
 ### Operations
@@ -530,8 +531,8 @@ random = client.Random
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `String` | No |  |
-| `line` | `Array` | No |  |
 | `linecount` | `Integer` | No |  |
+| `lines` | `Array` | No |  |
 | `title` | `String` | No |  |
 
 ### Operations
@@ -593,9 +594,10 @@ title = client.Title
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `String` | No |  |
-| `line` | `Array` | No |  |
 | `linecount` | `Integer` | No |  |
+| `lines` | `Array` | No |  |
 | `title` | `String` | No |  |
+| `titles` | `Array` | No |  |
 
 ### Operations
 
@@ -656,8 +658,8 @@ titleab = client.Titleab
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `String` | No |  |
-| `line` | `Array` | No |  |
 | `linecount` | `Integer` | No |  |
+| `lines` | `Array` | No |  |
 | `title` | `String` | No |  |
 
 ### Operations

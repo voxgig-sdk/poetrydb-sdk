@@ -37,7 +37,7 @@ class LineEntity extends PoetrydbEntityBase<Line> {
 
 
 
-  async load(this: any, reqmatch?: LineLoadMatch, ctrl?: Control): Promise<Line> {
+  async load(this: any, reqmatch?: LineLoadMatch, ctrl?: Control): Promise<LineEntity> {
 
     const utility = this._utility
 
@@ -128,7 +128,15 @@ class LineEntity extends PoetrydbEntityBase<Line> {
         }
       }
 
-      return done(ctx)
+      const out = done(ctx)
+
+      // An operation resolves to the ENTITY, not the raw data — the record
+      // has just been absorbed into this instance and is reached through
+      // data(). `done` still runs: it completes the pipeline and raises on
+      // failure, and when throwing is disabled it hands back the error
+      // payload, which passes through unchanged. See AGENTS.md "Entity
+      // operations return ENTITIES".
+      return (ctx.result && ctx.result.ok) ? this : out
     }
     catch (err: any) {
 
@@ -150,7 +158,7 @@ class LineEntity extends PoetrydbEntityBase<Line> {
 
 
 
-  async list(this: any, reqmatch?: LineListMatch, ctrl?: Control): Promise<Line[]> {
+  async list(this: any, reqmatch?: LineListMatch, ctrl?: Control): Promise<LineEntity[]> {
 
     const utility = this._utility
 

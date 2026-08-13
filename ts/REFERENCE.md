@@ -225,8 +225,9 @@ const author = client.Author()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `any[]` | No |  |
+| `authors` | `any[]` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `any[]` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -286,8 +287,8 @@ const authorab = client.Authorab()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `any[]` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `any[]` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -297,7 +298,7 @@ const authorab = client.Authorab()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Authorab().list()
+const results = await client.Authorab().list({ author: "example" })
 ```
 
 ### Common Methods
@@ -339,8 +340,8 @@ const combined_search = client.CombinedSearch()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `any[]` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `any[]` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -350,7 +351,7 @@ const combined_search = client.CombinedSearch()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.CombinedSearch().list()
+const results = await client.CombinedSearch().list({ input_field1: "example", input_field2: "example", search_term1: "example", search_term2: "example" })
 ```
 
 ### Common Methods
@@ -394,7 +395,7 @@ const combined_search_with_field = client.CombinedSearchWithField()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.CombinedSearchWithField().list()
+const results = await client.CombinedSearchWithField().list({ input_field1: "example", input_field2: "example", output_field: "example", search_term1: "example", search_term2: "example" })
 ```
 
 ### Common Methods
@@ -436,8 +437,8 @@ const line = client.Line()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `any[]` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `any[]` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -447,7 +448,7 @@ const line = client.Line()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Line().list()
+const results = await client.Line().list({ line: "example", output_field: "example" })
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -497,8 +498,8 @@ const linecount = client.Linecount()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `any[]` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `any[]` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -508,7 +509,7 @@ const linecount = client.Linecount()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Linecount().list()
+const results = await client.Linecount().list({ linecount: 1, output_field: "example" })
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -558,8 +559,8 @@ const poemcount = client.Poemcount()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `any[]` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `any[]` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -611,8 +612,8 @@ const random = client.Random()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `any[]` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `any[]` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -622,7 +623,7 @@ const random = client.Random()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Random().list()
+const results = await client.Random().list({ count: 1, output_field: "example" })
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -672,9 +673,10 @@ const title = client.Title()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `any[]` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `any[]` | No |  |
 | `title` | `string` | No |  |
+| `titles` | `any[]` | No |  |
 
 ### Operations
 
@@ -733,8 +735,8 @@ const titleab = client.Titleab()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No |  |
-| `line` | `any[]` | No |  |
 | `linecount` | `number` | No |  |
+| `lines` | `any[]` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -744,7 +746,7 @@ const titleab = client.Titleab()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Titleab().list()
+const results = await client.Titleab().list({ title: "example" })
 ```
 
 ### Common Methods

@@ -65,7 +65,7 @@ describe('LineEntity', async () => {
     line_ref01_match['line'] = setup.idmap['line01']
     line_ref01_match['output_field'] = setup.idmap['output_field01']
 
-    const line_ref01_list = await line_ref01_ent.list(line_ref01_match)
+    const line_ref01_list = (await line_ref01_ent.list(line_ref01_match)).map((e: any) => e.data())
 
 
 

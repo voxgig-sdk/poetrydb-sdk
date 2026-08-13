@@ -11,7 +11,7 @@ main: kit: entity: author: {
       type: "`$STRING`"
     }
     {
-      name: "line"
+      name: "authors"
       req: false
       type: "`$ARRAY`"
     }
@@ -19,6 +19,11 @@ main: kit: entity: author: {
       name: "linecount"
       req: false
       type: "`$INTEGER`"
+    }
+    {
+      name: "lines"
+      req: false
+      type: "`$ARRAY`"
     }
     {
       name: "title"
@@ -137,7 +142,7 @@ main: kit: entity: author: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.authors`"
           }
         }
       ]

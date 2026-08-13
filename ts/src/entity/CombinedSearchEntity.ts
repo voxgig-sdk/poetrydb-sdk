@@ -37,7 +37,7 @@ class CombinedSearchEntity extends PoetrydbEntityBase<CombinedSearch> {
 
 
 
-  async list(this: any, reqmatch?: CombinedSearchListMatch, ctrl?: Control): Promise<CombinedSearch[]> {
+  async list(this: any, reqmatch?: CombinedSearchListMatch, ctrl?: Control): Promise<CombinedSearchEntity[]> {
 
     const utility = this._utility
 
