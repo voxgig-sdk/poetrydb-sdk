@@ -18,9 +18,9 @@ export interface AuthorLoadMatch {
 }
 
 export interface AuthorListMatch {
-  author?: string
-  format?: string
-  output_field?: string
+  author: string
+  format: string
+  output_field: string
 }
 
 export interface Authorab {
@@ -133,9 +133,9 @@ export interface TitleLoadMatch {
 }
 
 export interface TitleListMatch {
-  format?: string
-  output_field?: string
-  title?: string
+  format: string
+  output_field: string
+  title: string
 }
 
 export interface Titleab {

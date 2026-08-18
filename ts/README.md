@@ -40,7 +40,7 @@ resolves to entities, not raw records. Iterate them directly, and call
 `.data()` on one for the record it holds:
 
 ```ts
-const authors = await client.Author().list()
+const authors = await client.Author().list({ author: "example", format: "example", output_field: "example" })
 
 for (const author of authors) {
   console.log(author)
@@ -470,7 +470,7 @@ const author = await client.Author().load({ id: 'author_id' })
 #### Example: List
 
 ```ts
-const authors = await client.Author().list()
+const authors = await client.Author().list({ author: "example", format: "example", output_field: "example" })
 ```
 
 
@@ -698,7 +698,7 @@ const title = await client.Title().load({ id: 'title_id' })
 #### Example: List
 
 ```ts
-const titles = await client.Title().list()
+const titles = await client.Title().list({ format: "example", output_field: "example", title: "example" })
 ```
 
 

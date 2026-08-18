@@ -1,6 +1,20 @@
 # Poetrydb SDK configuration
 
 module PoetrydbConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -35,39 +49,24 @@ module PoetrydbConfig
         "author" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "author",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "authors",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "linecount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "lines",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "title",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
           ],
           "name" => "author",
@@ -77,38 +76,31 @@ module PoetrydbConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "Ernest Dowson",
                         "kind" => "param",
                         "name" => "author",
                         "orig" => "author",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "example" => "text",
                         "kind" => "param",
                         "name" => "format",
                         "orig" => "format",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                       {
-                        "active" => true,
                         "example" => "author,title,linecount",
                         "kind" => "param",
                         "name" => "output_field",
                         "orig" => "output_field",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 2,
                       },
                     ],
                   },
@@ -136,31 +128,25 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "Ernest Dowson",
                         "kind" => "param",
                         "name" => "author",
                         "orig" => "author",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "example" => "author,title,linecount",
                         "kind" => "param",
                         "name" => "output_field",
                         "orig" => "output_field",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                     ],
                   },
@@ -187,10 +173,8 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -203,28 +187,23 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body.authors`",
                   },
-                  "index$" => 2,
                 },
               ],
-              "key$" => "list",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "Ernest Dowson",
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "author",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -249,10 +228,8 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -266,32 +243,20 @@ module PoetrydbConfig
         "authorab" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "author",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "linecount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "lines",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "title",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
           ],
           "name" => "authorab",
@@ -301,18 +266,15 @@ module PoetrydbConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "Ernest Dowson",
                         "kind" => "param",
                         "name" => "author",
                         "orig" => "author",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -332,10 +294,8 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
@@ -349,32 +309,20 @@ module PoetrydbConfig
         "combined_search" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "author",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "linecount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "lines",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "title",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
           ],
           "name" => "combined_search",
@@ -384,48 +332,39 @@ module PoetrydbConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "author",
                         "kind" => "param",
                         "name" => "input_field1",
                         "orig" => "input_field1",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "example" => "linecount",
                         "kind" => "param",
                         "name" => "input_field2",
                         "orig" => "input_field2",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                       {
-                        "active" => true,
                         "example" => "Shakespeare",
                         "kind" => "param",
                         "name" => "search_term1",
                         "orig" => "search_term1",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 2,
                       },
                       {
-                        "active" => true,
                         "example" => "14",
                         "kind" => "param",
                         "name" => "search_term2",
                         "orig" => "search_term2",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 3,
                       },
                     ],
                   },
@@ -454,10 +393,8 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
@@ -473,58 +410,47 @@ module PoetrydbConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "author",
                         "kind" => "param",
                         "name" => "input_field1",
                         "orig" => "input_field1",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "example" => "linecount",
                         "kind" => "param",
                         "name" => "input_field2",
                         "orig" => "input_field2",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                       {
-                        "active" => true,
                         "example" => "lines",
                         "kind" => "param",
                         "name" => "output_field",
                         "orig" => "output_field",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 2,
                       },
                       {
-                        "active" => true,
                         "example" => "Shakespeare",
                         "kind" => "param",
                         "name" => "search_term1",
                         "orig" => "search_term1",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 3,
                       },
                       {
-                        "active" => true,
                         "example" => "14",
                         "kind" => "param",
                         "name" => "search_term2",
                         "orig" => "search_term2",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 4,
                       },
                     ],
                   },
@@ -556,10 +482,8 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
@@ -569,32 +493,20 @@ module PoetrydbConfig
         "line" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "author",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "linecount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "lines",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "title",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
           ],
           "name" => "line",
@@ -604,38 +516,31 @@ module PoetrydbConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "text",
                         "kind" => "param",
                         "name" => "format",
                         "orig" => "format",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "example" => "Latitudeless Place",
                         "kind" => "param",
                         "name" => "line",
                         "orig" => "line",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                       {
-                        "active" => true,
                         "example" => "author,title,linecount",
                         "kind" => "param",
                         "name" => "output_field",
                         "orig" => "output_field",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 2,
                       },
                     ],
                   },
@@ -664,31 +569,25 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "Latitudeless Place",
                         "kind" => "param",
                         "name" => "line",
                         "orig" => "line",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "example" => "author,title,linecount",
                         "kind" => "param",
                         "name" => "output_field",
                         "orig" => "output_field",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                     ],
                   },
@@ -716,28 +615,23 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "list",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "Latitudeless Place",
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "line",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -762,10 +656,8 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -779,32 +671,20 @@ module PoetrydbConfig
         "linecount" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "author",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "linecount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "lines",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "title",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
           ],
           "name" => "linecount",
@@ -814,38 +694,31 @@ module PoetrydbConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "text",
                         "kind" => "param",
                         "name" => "format",
                         "orig" => "format",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "example" => 14,
                         "kind" => "param",
                         "name" => "linecount",
                         "orig" => "linecount",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
-                        "index$" => 1,
                       },
                       {
-                        "active" => true,
                         "example" => "author,title",
                         "kind" => "param",
                         "name" => "output_field",
                         "orig" => "output_field",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 2,
                       },
                     ],
                   },
@@ -873,31 +746,25 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => 14,
                         "kind" => "param",
                         "name" => "linecount",
                         "orig" => "linecount",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "example" => "author,title",
                         "kind" => "param",
                         "name" => "output_field",
                         "orig" => "output_field",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                     ],
                   },
@@ -924,28 +791,23 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "list",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => 14,
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "linecount",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -970,10 +832,8 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -987,32 +847,20 @@ module PoetrydbConfig
         "poemcount" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "author",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "linecount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "lines",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "title",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
           ],
           "name" => "poemcount",
@@ -1022,18 +870,15 @@ module PoetrydbConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => 10,
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "count",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -1058,10 +903,8 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -1071,32 +914,20 @@ module PoetrydbConfig
         "random" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "author",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "linecount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "lines",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "title",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
           ],
           "name" => "random",
@@ -1106,28 +937,23 @@ module PoetrydbConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => 5,
                         "kind" => "param",
                         "name" => "count",
                         "orig" => "count",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "example" => "author,title",
                         "kind" => "param",
                         "name" => "output_field",
                         "orig" => "output_field",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                     ],
                   },
@@ -1154,28 +980,23 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => 5,
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "count",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -1200,10 +1021,8 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -1217,39 +1036,24 @@ module PoetrydbConfig
         "title" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "author",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "linecount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "lines",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "title",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "titles",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 4,
             },
           ],
           "name" => "title",
@@ -1259,38 +1063,31 @@ module PoetrydbConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "text",
                         "kind" => "param",
                         "name" => "format",
                         "orig" => "format",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "example" => "title,lines",
                         "kind" => "param",
                         "name" => "output_field",
                         "orig" => "output_field",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                       {
-                        "active" => true,
                         "example" => "Ozymandias",
                         "kind" => "param",
                         "name" => "title",
                         "orig" => "title",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 2,
                       },
                     ],
                   },
@@ -1318,31 +1115,25 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "author,title,linecount",
                         "kind" => "param",
                         "name" => "output_field",
                         "orig" => "output_field",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "example" => "Ozymandias",
                         "kind" => "param",
                         "name" => "title",
                         "orig" => "title",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                     ],
                   },
@@ -1369,10 +1160,8 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -1385,28 +1174,23 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body.titles`",
                   },
-                  "index$" => 2,
                 },
               ],
-              "key$" => "list",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "Ozymandias",
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "title",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -1431,10 +1215,8 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -1448,32 +1230,20 @@ module PoetrydbConfig
         "titleab" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "author",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "linecount",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "lines",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "title",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
           ],
           "name" => "titleab",
@@ -1483,18 +1253,15 @@ module PoetrydbConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "Ozymandias",
                         "kind" => "param",
                         "name" => "title",
                         "orig" => "title",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -1514,10 +1281,8 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {

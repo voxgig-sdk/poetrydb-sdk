@@ -237,7 +237,7 @@ const author = client.Author()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Author().list()
+const results = await client.Author().list({ author: "example", format: "example", output_field: "example" })
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -685,7 +685,7 @@ const title = client.Title()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Title().list()
+const results = await client.Title().list({ format: "example", output_field: "example", title: "example" })
 ```
 
 #### `load(match: object, ctrl?: object)`

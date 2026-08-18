@@ -28,7 +28,7 @@ class PoetrydbSDK
     utility = PoetrydbUtility.new
     @_utility = utility
 
-    config = PoetrydbConfig.make_config
+    config = PoetrydbConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

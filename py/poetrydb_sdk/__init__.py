@@ -23,8 +23,8 @@ class PoetrydbSDK:
         utility = PoetrydbUtility()
         self._utility = utility
 
-        from poetrydb_sdk.config import make_config
-        config = make_config()
+        from poetrydb_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

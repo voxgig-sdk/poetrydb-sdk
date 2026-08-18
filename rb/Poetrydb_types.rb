@@ -45,13 +45,13 @@ AuthorLoadMatch = Struct.new(
 # Request payload for Author#list.
 #
 # @!attribute [rw] author
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] format
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] output_field
-#   @return [String, nil]
+#   @return [String]
 AuthorListMatch = Struct.new(
   :author,
   :format,
@@ -364,13 +364,13 @@ TitleLoadMatch = Struct.new(
 # Request payload for Title#list.
 #
 # @!attribute [rw] format
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] output_field
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] title
-#   @return [String, nil]
+#   @return [String]
 TitleListMatch = Struct.new(
   :format,
   :output_field,

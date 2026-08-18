@@ -40,7 +40,7 @@ class PoetrydbSDK
         $utility = new PoetrydbUtility();
         $this->_utility = $utility;
 
-        $config = PoetrydbConfig::make_config();
+        $config = PoetrydbConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

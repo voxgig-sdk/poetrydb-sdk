@@ -31,9 +31,9 @@ class AuthorLoadMatch
 /** Request payload for Author#list. */
 class AuthorListMatch
 {
-    public ?string $author = null;
-    public ?string $format = null;
-    public ?string $output_field = null;
+    public string $author;
+    public string $format;
+    public string $output_field;
 }
 
 /** Authorab entity data model. */
@@ -186,9 +186,9 @@ class TitleLoadMatch
 /** Request payload for Title#list. */
 class TitleListMatch
 {
-    public ?string $format = null;
-    public ?string $output_field = null;
-    public ?string $title = null;
+    public string $format;
+    public string $output_field;
+    public string $title;
 }
 
 /** Titleab entity data model. */

@@ -43,7 +43,7 @@ error — iterate it directly.
 
 ```python
 try:
-    authors = client.Author().list()
+    authors = client.Author().list({"author": "example", "format": "example", "output_field": "example"})
     for author in authors:
         print(author)
 except Exception as err:
@@ -424,7 +424,7 @@ author = client.Author().load({"id": "author_id"})
 #### Example: List
 
 ```python
-authors = client.Author().list()
+authors = client.Author().list({"author": "example", "format": "example", "output_field": "example"})
 ```
 
 
@@ -652,7 +652,7 @@ title = client.Title().load({"id": "title_id"})
 #### Example: List
 
 ```python
-titles = client.Title().list()
+titles = client.Title().list({"format": "example", "output_field": "example", "title": "example"})
 ```
 
 

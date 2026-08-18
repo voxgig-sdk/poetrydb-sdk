@@ -28,9 +28,9 @@ type AuthorLoadMatch struct {
 
 // AuthorListMatch is the typed request payload for Author.ListTyped.
 type AuthorListMatch struct {
-	Author *string `json:"author,omitempty"`
-	Format *string `json:"format,omitempty"`
-	OutputField *string `json:"output_field,omitempty"`
+	Author string `json:"author"`
+	Format string `json:"format"`
+	OutputField string `json:"output_field"`
 }
 
 // Authorab is the typed data model for the authorab entity.
@@ -163,9 +163,9 @@ type TitleLoadMatch struct {
 
 // TitleListMatch is the typed request payload for Title.ListTyped.
 type TitleListMatch struct {
-	Format *string `json:"format,omitempty"`
-	OutputField *string `json:"output_field,omitempty"`
-	Title *string `json:"title,omitempty"`
+	Format string `json:"format"`
+	OutputField string `json:"output_field"`
+	Title string `json:"title"`
 }
 
 // Titleab is the typed data model for the titleab entity.

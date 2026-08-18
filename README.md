@@ -23,7 +23,7 @@ support (`list`, `load`):
 
 ```ts
 const client = new PoetrydbSDK()
-const items = await client.Author().list()
+const items = await client.Author().list({ author: "example", format: "example", output_field: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -120,7 +120,7 @@ import { PoetrydbSDK } from '@voxgig-sdk/poetrydb'
 const client = new PoetrydbSDK()
 
 // List all authors (returns AuthorEntity[] — .data() for the record)
-const authors = await client.Author().list()
+const authors = await client.Author().list({ author: "example", format: "example", output_field: "example" })
 for (const author of authors) {
   console.log(author)
 }
@@ -188,7 +188,7 @@ from poetrydb_sdk import PoetrydbSDK
 client = PoetrydbSDK()
 
 # List all authors (returns a list, raises on error)
-authors = client.Author().list()
+authors = client.Author().list({"author": "example", "format": "example", "output_field": "example"})
 for author in authors:
     print(author)
 

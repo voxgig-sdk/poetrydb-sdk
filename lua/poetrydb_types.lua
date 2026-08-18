@@ -17,9 +17,9 @@
 ---@field id string
 
 ---@class AuthorListMatch
----@field author? string
----@field format? string
----@field output_field? string
+---@field author string
+---@field format string
+---@field output_field string
 
 ---@class Authorab
 ---@field author? string
@@ -112,9 +112,9 @@
 ---@field id string
 
 ---@class TitleListMatch
----@field format? string
----@field output_field? string
----@field title? string
+---@field format string
+---@field output_field string
+---@field title string
 
 ---@class Titleab
 ---@field author? string

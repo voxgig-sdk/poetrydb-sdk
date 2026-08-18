@@ -28,7 +28,7 @@ class AuthorLoadMatch(TypedDict):
     id: str
 
 
-class AuthorListMatch(TypedDict, total=False):
+class AuthorListMatch(TypedDict):
     author: str
     format: str
     output_field: str
@@ -150,7 +150,7 @@ class TitleLoadMatch(TypedDict):
     id: str
 
 
-class TitleListMatch(TypedDict, total=False):
+class TitleListMatch(TypedDict):
     format: str
     output_field: str
     title: str

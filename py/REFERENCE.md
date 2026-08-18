@@ -136,7 +136,7 @@ author = client.Author()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Author().list()
+results = client.Author().list({"author": "example", "format": "example", "output_field": "example"})
 for author in results:
     print(author)
 ```
@@ -606,7 +606,7 @@ title = client.Title()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Title().list()
+results = client.Title().list({"format": "example", "output_field": "example", "title": "example"})
 for title in results:
     print(title)
 ```
