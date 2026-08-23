@@ -1,0 +1,82 @@
+# Entity: titleab
+
+main: kit: entity: titleab: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "author"
+      req: false
+      short: "The author of the poem"
+      type: "`$STRING`"
+    }
+    {
+      name: "linecount"
+      req: false
+      short: "The number of lines in the poem (including section headings, excluding empty lines)"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "lines"
+      req: false
+      short: "The lines of the poem"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "The title of the poem"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "titleab"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "Ozymandias"
+                kind: "param"
+                name: "title"
+                orig: "title"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/title/{title}:abs"
+          parts: [
+            "title"
+            "{title}:abs"
+          ]
+          select: {
+            exist: [
+              "title"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "title"
+      ]
+    ]
+  }
+
+
+
+}

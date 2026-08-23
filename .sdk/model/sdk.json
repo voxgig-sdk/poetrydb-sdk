@@ -36,6 +36,7 @@
               "active": true,
               "name": "author",
               "req": false,
+              "short": "The author of the poem",
               "type": "`$STRING`"
             },
             {
@@ -48,18 +49,21 @@
               "active": true,
               "name": "linecount",
               "req": false,
+              "short": "The number of lines in the poem (including section headings, excluding empty lines)",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "lines",
               "req": false,
+              "short": "The lines of the poem",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "The title of the poem",
               "type": "`$STRING`"
             }
           ],
@@ -254,24 +258,28 @@
               "active": true,
               "name": "author",
               "req": false,
+              "short": "The author of the poem",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "linecount",
               "req": false,
+              "short": "The number of lines in the poem (including section headings, excluding empty lines)",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "lines",
               "req": false,
+              "short": "The lines of the poem",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "The title of the poem",
               "type": "`$STRING`"
             }
           ],
@@ -334,24 +342,28 @@
               "active": true,
               "name": "author",
               "req": false,
+              "short": "The author of the poem",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "linecount",
               "req": false,
+              "short": "The number of lines in the poem (including section headings, excluding empty lines)",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "lines",
               "req": false,
+              "short": "The lines of the poem",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "The title of the poem",
               "type": "`$STRING`"
             }
           ],
@@ -545,24 +557,28 @@
               "active": true,
               "name": "author",
               "req": false,
+              "short": "The author of the poem",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "linecount",
               "req": false,
+              "short": "The number of lines in the poem (including section headings, excluding empty lines)",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "lines",
               "req": false,
+              "short": "The lines of the poem",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "The title of the poem",
               "type": "`$STRING`"
             }
           ],
@@ -744,24 +760,28 @@
               "active": true,
               "name": "author",
               "req": false,
+              "short": "The author of the poem",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "linecount",
               "req": false,
+              "short": "The number of lines in the poem (including section headings, excluding empty lines)",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "lines",
               "req": false,
+              "short": "The lines of the poem",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "The title of the poem",
               "type": "`$STRING`"
             }
           ],
@@ -941,24 +961,28 @@
               "active": true,
               "name": "author",
               "req": false,
+              "short": "The author of the poem",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "linecount",
               "req": false,
+              "short": "The number of lines in the poem (including section headings, excluding empty lines)",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "lines",
               "req": false,
+              "short": "The lines of the poem",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "The title of the poem",
               "type": "`$STRING`"
             }
           ],
@@ -1022,24 +1046,28 @@
               "active": true,
               "name": "author",
               "req": false,
+              "short": "The author of the poem",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "linecount",
               "req": false,
+              "short": "The number of lines in the poem (including section headings, excluding empty lines)",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "lines",
               "req": false,
+              "short": "The lines of the poem",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "The title of the poem",
               "type": "`$STRING`"
             }
           ],
@@ -1161,24 +1189,28 @@
               "active": true,
               "name": "author",
               "req": false,
+              "short": "The author of the poem",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "linecount",
               "req": false,
+              "short": "The number of lines in the poem (including section headings, excluding empty lines)",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "lines",
               "req": false,
+              "short": "The lines of the poem",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "The title of the poem",
               "type": "`$STRING`"
             },
             {
@@ -1379,24 +1411,28 @@
               "active": true,
               "name": "author",
               "req": false,
+              "short": "The author of the poem",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "linecount",
               "req": false,
+              "short": "The number of lines in the poem (including section headings, excluding empty lines)",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "lines",
               "req": false,
+              "short": "The lines of the poem",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "The title of the poem",
               "type": "`$STRING`"
             }
           ],

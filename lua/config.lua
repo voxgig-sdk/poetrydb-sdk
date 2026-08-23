@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "Poetrydb",
+      slug = "poetrydb",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -38,6 +41,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "author",
+            ["short"] = "The author of the poem",
             ["type"] = "`$STRING`",
           },
           {
@@ -46,14 +50,17 @@ local function make_config()
           },
           {
             ["name"] = "linecount",
+            ["short"] = "The number of lines in the poem (including section headings, excluding empty lines)",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "lines",
+            ["short"] = "The lines of the poem",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "title",
+            ["short"] = "The title of the poem",
             ["type"] = "`$STRING`",
           },
         },
@@ -232,18 +239,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "author",
+            ["short"] = "The author of the poem",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "linecount",
+            ["short"] = "The number of lines in the poem (including section headings, excluding empty lines)",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "lines",
+            ["short"] = "The lines of the poem",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "title",
+            ["short"] = "The title of the poem",
             ["type"] = "`$STRING`",
           },
         },
@@ -298,18 +309,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "author",
+            ["short"] = "The author of the poem",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "linecount",
+            ["short"] = "The number of lines in the poem (including section headings, excluding empty lines)",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "lines",
+            ["short"] = "The lines of the poem",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "title",
+            ["short"] = "The title of the poem",
             ["type"] = "`$STRING`",
           },
         },
@@ -482,18 +497,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "author",
+            ["short"] = "The author of the poem",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "linecount",
+            ["short"] = "The number of lines in the poem (including section headings, excluding empty lines)",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "lines",
+            ["short"] = "The lines of the poem",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "title",
+            ["short"] = "The title of the poem",
             ["type"] = "`$STRING`",
           },
         },
@@ -660,18 +679,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "author",
+            ["short"] = "The author of the poem",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "linecount",
+            ["short"] = "The number of lines in the poem (including section headings, excluding empty lines)",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "lines",
+            ["short"] = "The lines of the poem",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "title",
+            ["short"] = "The title of the poem",
             ["type"] = "`$STRING`",
           },
         },
@@ -836,18 +859,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "author",
+            ["short"] = "The author of the poem",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "linecount",
+            ["short"] = "The number of lines in the poem (including section headings, excluding empty lines)",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "lines",
+            ["short"] = "The lines of the poem",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "title",
+            ["short"] = "The title of the poem",
             ["type"] = "`$STRING`",
           },
         },
@@ -903,18 +930,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "author",
+            ["short"] = "The author of the poem",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "linecount",
+            ["short"] = "The number of lines in the poem (including section headings, excluding empty lines)",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "lines",
+            ["short"] = "The lines of the poem",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "title",
+            ["short"] = "The title of the poem",
             ["type"] = "`$STRING`",
           },
         },
@@ -1025,18 +1056,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "author",
+            ["short"] = "The author of the poem",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "linecount",
+            ["short"] = "The number of lines in the poem (including section headings, excluding empty lines)",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "lines",
+            ["short"] = "The lines of the poem",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "title",
+            ["short"] = "The title of the poem",
             ["type"] = "`$STRING`",
           },
           {
@@ -1219,18 +1254,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "author",
+            ["short"] = "The author of the poem",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "linecount",
+            ["short"] = "The number of lines in the poem (including section headings, excluding empty lines)",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "lines",
+            ["short"] = "The lines of the poem",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "title",
+            ["short"] = "The title of the poem",
             ["type"] = "`$STRING`",
           },
         },

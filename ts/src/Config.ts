@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'Poetrydb',
+        slug: "poetrydb",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -83,6 +94,7 @@ class Config {
       "fields": [
         {
           "name": "author",
+          "short": "The author of the poem",
           "type": "`$STRING`"
         },
         {
@@ -91,14 +103,17 @@ class Config {
         },
         {
           "name": "linecount",
+          "short": "The number of lines in the poem (including section headings, excluding empty lines)",
           "type": "`$INTEGER`"
         },
         {
           "name": "lines",
+          "short": "The lines of the poem",
           "type": "`$ARRAY`"
         },
         {
           "name": "title",
+          "short": "The title of the poem",
           "type": "`$STRING`"
         }
       ],
@@ -277,18 +292,22 @@ class Config {
       "fields": [
         {
           "name": "author",
+          "short": "The author of the poem",
           "type": "`$STRING`"
         },
         {
           "name": "linecount",
+          "short": "The number of lines in the poem (including section headings, excluding empty lines)",
           "type": "`$INTEGER`"
         },
         {
           "name": "lines",
+          "short": "The lines of the poem",
           "type": "`$ARRAY`"
         },
         {
           "name": "title",
+          "short": "The title of the poem",
           "type": "`$STRING`"
         }
       ],
@@ -343,18 +362,22 @@ class Config {
       "fields": [
         {
           "name": "author",
+          "short": "The author of the poem",
           "type": "`$STRING`"
         },
         {
           "name": "linecount",
+          "short": "The number of lines in the poem (including section headings, excluding empty lines)",
           "type": "`$INTEGER`"
         },
         {
           "name": "lines",
+          "short": "The lines of the poem",
           "type": "`$ARRAY`"
         },
         {
           "name": "title",
+          "short": "The title of the poem",
           "type": "`$STRING`"
         }
       ],
@@ -527,18 +550,22 @@ class Config {
       "fields": [
         {
           "name": "author",
+          "short": "The author of the poem",
           "type": "`$STRING`"
         },
         {
           "name": "linecount",
+          "short": "The number of lines in the poem (including section headings, excluding empty lines)",
           "type": "`$INTEGER`"
         },
         {
           "name": "lines",
+          "short": "The lines of the poem",
           "type": "`$ARRAY`"
         },
         {
           "name": "title",
+          "short": "The title of the poem",
           "type": "`$STRING`"
         }
       ],
@@ -705,18 +732,22 @@ class Config {
       "fields": [
         {
           "name": "author",
+          "short": "The author of the poem",
           "type": "`$STRING`"
         },
         {
           "name": "linecount",
+          "short": "The number of lines in the poem (including section headings, excluding empty lines)",
           "type": "`$INTEGER`"
         },
         {
           "name": "lines",
+          "short": "The lines of the poem",
           "type": "`$ARRAY`"
         },
         {
           "name": "title",
+          "short": "The title of the poem",
           "type": "`$STRING`"
         }
       ],
@@ -881,18 +912,22 @@ class Config {
       "fields": [
         {
           "name": "author",
+          "short": "The author of the poem",
           "type": "`$STRING`"
         },
         {
           "name": "linecount",
+          "short": "The number of lines in the poem (including section headings, excluding empty lines)",
           "type": "`$INTEGER`"
         },
         {
           "name": "lines",
+          "short": "The lines of the poem",
           "type": "`$ARRAY`"
         },
         {
           "name": "title",
+          "short": "The title of the poem",
           "type": "`$STRING`"
         }
       ],
@@ -948,18 +983,22 @@ class Config {
       "fields": [
         {
           "name": "author",
+          "short": "The author of the poem",
           "type": "`$STRING`"
         },
         {
           "name": "linecount",
+          "short": "The number of lines in the poem (including section headings, excluding empty lines)",
           "type": "`$INTEGER`"
         },
         {
           "name": "lines",
+          "short": "The lines of the poem",
           "type": "`$ARRAY`"
         },
         {
           "name": "title",
+          "short": "The title of the poem",
           "type": "`$STRING`"
         }
       ],
@@ -1070,18 +1109,22 @@ class Config {
       "fields": [
         {
           "name": "author",
+          "short": "The author of the poem",
           "type": "`$STRING`"
         },
         {
           "name": "linecount",
+          "short": "The number of lines in the poem (including section headings, excluding empty lines)",
           "type": "`$INTEGER`"
         },
         {
           "name": "lines",
+          "short": "The lines of the poem",
           "type": "`$ARRAY`"
         },
         {
           "name": "title",
+          "short": "The title of the poem",
           "type": "`$STRING`"
         },
         {
@@ -1264,18 +1307,22 @@ class Config {
       "fields": [
         {
           "name": "author",
+          "short": "The author of the poem",
           "type": "`$STRING`"
         },
         {
           "name": "linecount",
+          "short": "The number of lines in the poem (including section headings, excluding empty lines)",
           "type": "`$INTEGER`"
         },
         {
           "name": "lines",
+          "short": "The lines of the poem",
           "type": "`$ARRAY`"
         },
         {
           "name": "title",
+          "short": "The title of the poem",
           "type": "`$STRING`"
         }
       ],

@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Poetrydb",
+			"slug": "poetrydb",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -42,6 +45,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "author",
+						"short": "The author of the poem",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -50,14 +54,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "linecount",
+						"short": "The number of lines in the poem (including section headings, excluding empty lines)",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "lines",
+						"short": "The lines of the poem",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "The title of the poem",
 						"type": "`$STRING`",
 					},
 				},
@@ -236,18 +243,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "author",
+						"short": "The author of the poem",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "linecount",
+						"short": "The number of lines in the poem (including section headings, excluding empty lines)",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "lines",
+						"short": "The lines of the poem",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "The title of the poem",
 						"type": "`$STRING`",
 					},
 				},
@@ -302,18 +313,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "author",
+						"short": "The author of the poem",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "linecount",
+						"short": "The number of lines in the poem (including section headings, excluding empty lines)",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "lines",
+						"short": "The lines of the poem",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "The title of the poem",
 						"type": "`$STRING`",
 					},
 				},
@@ -486,18 +501,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "author",
+						"short": "The author of the poem",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "linecount",
+						"short": "The number of lines in the poem (including section headings, excluding empty lines)",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "lines",
+						"short": "The lines of the poem",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "The title of the poem",
 						"type": "`$STRING`",
 					},
 				},
@@ -664,18 +683,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "author",
+						"short": "The author of the poem",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "linecount",
+						"short": "The number of lines in the poem (including section headings, excluding empty lines)",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "lines",
+						"short": "The lines of the poem",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "The title of the poem",
 						"type": "`$STRING`",
 					},
 				},
@@ -840,18 +863,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "author",
+						"short": "The author of the poem",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "linecount",
+						"short": "The number of lines in the poem (including section headings, excluding empty lines)",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "lines",
+						"short": "The lines of the poem",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "The title of the poem",
 						"type": "`$STRING`",
 					},
 				},
@@ -907,18 +934,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "author",
+						"short": "The author of the poem",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "linecount",
+						"short": "The number of lines in the poem (including section headings, excluding empty lines)",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "lines",
+						"short": "The lines of the poem",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "The title of the poem",
 						"type": "`$STRING`",
 					},
 				},
@@ -1029,18 +1060,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "author",
+						"short": "The author of the poem",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "linecount",
+						"short": "The number of lines in the poem (including section headings, excluding empty lines)",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "lines",
+						"short": "The lines of the poem",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "The title of the poem",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -1223,18 +1258,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "author",
+						"short": "The author of the poem",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "linecount",
+						"short": "The number of lines in the poem (including section headings, excluding empty lines)",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "lines",
+						"short": "The lines of the poem",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "The title of the poem",
 						"type": "`$STRING`",
 					},
 				},

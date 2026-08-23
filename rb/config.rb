@@ -19,6 +19,9 @@ module PoetrydbConfig
     {
       "main" => {
         "name" => "Poetrydb",
+        "slug" => "poetrydb",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -50,6 +53,7 @@ module PoetrydbConfig
           "fields" => [
             {
               "name" => "author",
+              "short" => "The author of the poem",
               "type" => "`$STRING`",
             },
             {
@@ -58,14 +62,17 @@ module PoetrydbConfig
             },
             {
               "name" => "linecount",
+              "short" => "The number of lines in the poem (including section headings, excluding empty lines)",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "lines",
+              "short" => "The lines of the poem",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "title",
+              "short" => "The title of the poem",
               "type" => "`$STRING`",
             },
           ],
@@ -244,18 +251,22 @@ module PoetrydbConfig
           "fields" => [
             {
               "name" => "author",
+              "short" => "The author of the poem",
               "type" => "`$STRING`",
             },
             {
               "name" => "linecount",
+              "short" => "The number of lines in the poem (including section headings, excluding empty lines)",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "lines",
+              "short" => "The lines of the poem",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "title",
+              "short" => "The title of the poem",
               "type" => "`$STRING`",
             },
           ],
@@ -310,18 +321,22 @@ module PoetrydbConfig
           "fields" => [
             {
               "name" => "author",
+              "short" => "The author of the poem",
               "type" => "`$STRING`",
             },
             {
               "name" => "linecount",
+              "short" => "The number of lines in the poem (including section headings, excluding empty lines)",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "lines",
+              "short" => "The lines of the poem",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "title",
+              "short" => "The title of the poem",
               "type" => "`$STRING`",
             },
           ],
@@ -494,18 +509,22 @@ module PoetrydbConfig
           "fields" => [
             {
               "name" => "author",
+              "short" => "The author of the poem",
               "type" => "`$STRING`",
             },
             {
               "name" => "linecount",
+              "short" => "The number of lines in the poem (including section headings, excluding empty lines)",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "lines",
+              "short" => "The lines of the poem",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "title",
+              "short" => "The title of the poem",
               "type" => "`$STRING`",
             },
           ],
@@ -672,18 +691,22 @@ module PoetrydbConfig
           "fields" => [
             {
               "name" => "author",
+              "short" => "The author of the poem",
               "type" => "`$STRING`",
             },
             {
               "name" => "linecount",
+              "short" => "The number of lines in the poem (including section headings, excluding empty lines)",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "lines",
+              "short" => "The lines of the poem",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "title",
+              "short" => "The title of the poem",
               "type" => "`$STRING`",
             },
           ],
@@ -848,18 +871,22 @@ module PoetrydbConfig
           "fields" => [
             {
               "name" => "author",
+              "short" => "The author of the poem",
               "type" => "`$STRING`",
             },
             {
               "name" => "linecount",
+              "short" => "The number of lines in the poem (including section headings, excluding empty lines)",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "lines",
+              "short" => "The lines of the poem",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "title",
+              "short" => "The title of the poem",
               "type" => "`$STRING`",
             },
           ],
@@ -915,18 +942,22 @@ module PoetrydbConfig
           "fields" => [
             {
               "name" => "author",
+              "short" => "The author of the poem",
               "type" => "`$STRING`",
             },
             {
               "name" => "linecount",
+              "short" => "The number of lines in the poem (including section headings, excluding empty lines)",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "lines",
+              "short" => "The lines of the poem",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "title",
+              "short" => "The title of the poem",
               "type" => "`$STRING`",
             },
           ],
@@ -1037,18 +1068,22 @@ module PoetrydbConfig
           "fields" => [
             {
               "name" => "author",
+              "short" => "The author of the poem",
               "type" => "`$STRING`",
             },
             {
               "name" => "linecount",
+              "short" => "The number of lines in the poem (including section headings, excluding empty lines)",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "lines",
+              "short" => "The lines of the poem",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "title",
+              "short" => "The title of the poem",
               "type" => "`$STRING`",
             },
             {
@@ -1231,18 +1266,22 @@ module PoetrydbConfig
           "fields" => [
             {
               "name" => "author",
+              "short" => "The author of the poem",
               "type" => "`$STRING`",
             },
             {
               "name" => "linecount",
+              "short" => "The number of lines in the poem (including section headings, excluding empty lines)",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "lines",
+              "short" => "The lines of the poem",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "title",
+              "short" => "The title of the poem",
               "type" => "`$STRING`",
             },
           ],

@@ -250,11 +250,11 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
+| `author` | The author of the poem |
 | `authors` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: List, Load.
 
@@ -264,10 +264,10 @@ API path: `/author/{author}/{outputFields}.{format}`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: List.
 
@@ -277,10 +277,10 @@ API path: `/author/{author}:abs`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: List.
 
@@ -299,10 +299,10 @@ API path: `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputField
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: List, Load.
 
@@ -312,10 +312,10 @@ API path: `/lines/{lines}/{outputFields}.{format}`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: List, Load.
 
@@ -325,10 +325,10 @@ API path: `/linecount/{linecount}/{outputFields}.{format}`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: Load.
 
@@ -338,10 +338,10 @@ API path: `/poemcount/{count}`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: List, Load.
 
@@ -351,10 +351,10 @@ API path: `/random/{count}/{outputFields}`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 | `titles` |  |
 
 Operations: List, Load.
@@ -365,10 +365,10 @@ API path: `/title/{title}/{outputFields}.{format}`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: List.
 
@@ -394,11 +394,11 @@ Create an instance: `local author = client:Author(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
+| `author` | `string` | The author of the poem |
 | `authors` | `table` |  |
-| `linecount` | `number` |  |
-| `lines` | `table` |  |
-| `title` | `string` |  |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: Load
 
@@ -427,10 +427,10 @@ Create an instance: `local authorab = client:Authorab(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `table` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: List
 
@@ -453,10 +453,10 @@ Create an instance: `local combined_search = client:CombinedSearch(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `table` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: List
 
@@ -497,10 +497,10 @@ Create an instance: `local line = client:Line(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `table` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: Load
 
@@ -530,10 +530,10 @@ Create an instance: `local linecount = client:Linecount(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `table` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: Load
 
@@ -562,10 +562,10 @@ Create an instance: `local poemcount = client:Poemcount(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `table` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: Load
 
@@ -589,10 +589,10 @@ Create an instance: `local random = client:Random(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `table` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: Load
 
@@ -622,10 +622,10 @@ Create an instance: `local title = client:Title(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `table` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 | `titles` | `table` |  |
 
 #### Example: Load
@@ -655,10 +655,10 @@ Create an instance: `local titleab = client:Titleab(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `table` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: List
 

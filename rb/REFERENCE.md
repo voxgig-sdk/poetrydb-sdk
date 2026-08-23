@@ -129,11 +129,11 @@ author = client.Author
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `String` | No |  |
+| `author` | `String` | No | The author of the poem |
 | `authors` | `Array` | No |  |
-| `linecount` | `Integer` | No |  |
-| `lines` | `Array` | No |  |
-| `title` | `String` | No |  |
+| `linecount` | `Integer` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `Array` | No | The lines of the poem |
+| `title` | `String` | No | The title of the poem |
 
 ### Operations
 
@@ -193,10 +193,10 @@ authorab = client.Authorab
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `String` | No |  |
-| `linecount` | `Integer` | No |  |
-| `lines` | `Array` | No |  |
-| `title` | `String` | No |  |
+| `author` | `String` | No | The author of the poem |
+| `linecount` | `Integer` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `Array` | No | The lines of the poem |
+| `title` | `String` | No | The title of the poem |
 
 ### Operations
 
@@ -248,10 +248,10 @@ combined_search = client.CombinedSearch
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `String` | No |  |
-| `linecount` | `Integer` | No |  |
-| `lines` | `Array` | No |  |
-| `title` | `String` | No |  |
+| `author` | `String` | No | The author of the poem |
+| `linecount` | `Integer` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `Array` | No | The lines of the poem |
+| `title` | `String` | No | The title of the poem |
 
 ### Operations
 
@@ -349,10 +349,10 @@ line = client.Line
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `String` | No |  |
-| `linecount` | `Integer` | No |  |
-| `lines` | `Array` | No |  |
-| `title` | `String` | No |  |
+| `author` | `String` | No | The author of the poem |
+| `linecount` | `Integer` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `Array` | No | The lines of the poem |
+| `title` | `String` | No | The title of the poem |
 
 ### Operations
 
@@ -412,10 +412,10 @@ linecount = client.Linecount
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `String` | No |  |
-| `linecount` | `Integer` | No |  |
-| `lines` | `Array` | No |  |
-| `title` | `String` | No |  |
+| `author` | `String` | No | The author of the poem |
+| `linecount` | `Integer` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `Array` | No | The lines of the poem |
+| `title` | `String` | No | The title of the poem |
 
 ### Operations
 
@@ -475,10 +475,10 @@ poemcount = client.Poemcount
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `String` | No |  |
-| `linecount` | `Integer` | No |  |
-| `lines` | `Array` | No |  |
-| `title` | `String` | No |  |
+| `author` | `String` | No | The author of the poem |
+| `linecount` | `Integer` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `Array` | No | The lines of the poem |
+| `title` | `String` | No | The title of the poem |
 
 ### Operations
 
@@ -530,10 +530,10 @@ random = client.Random
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `String` | No |  |
-| `linecount` | `Integer` | No |  |
-| `lines` | `Array` | No |  |
-| `title` | `String` | No |  |
+| `author` | `String` | No | The author of the poem |
+| `linecount` | `Integer` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `Array` | No | The lines of the poem |
+| `title` | `String` | No | The title of the poem |
 
 ### Operations
 
@@ -593,10 +593,10 @@ title = client.Title
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `String` | No |  |
-| `linecount` | `Integer` | No |  |
-| `lines` | `Array` | No |  |
-| `title` | `String` | No |  |
+| `author` | `String` | No | The author of the poem |
+| `linecount` | `Integer` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `Array` | No | The lines of the poem |
+| `title` | `String` | No | The title of the poem |
 | `titles` | `Array` | No |  |
 
 ### Operations
@@ -657,10 +657,10 @@ titleab = client.Titleab
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `String` | No |  |
-| `linecount` | `Integer` | No |  |
-| `lines` | `Array` | No |  |
-| `title` | `String` | No |  |
+| `author` | `String` | No | The author of the poem |
+| `linecount` | `Integer` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `Array` | No | The lines of the poem |
+| `title` | `String` | No | The title of the poem |
 
 ### Operations
 

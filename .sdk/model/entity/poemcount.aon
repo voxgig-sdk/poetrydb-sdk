@@ -1,0 +1,79 @@
+# Entity: poemcount
+
+main: kit: entity: poemcount: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "author"
+      req: false
+      short: "The author of the poem"
+      type: "`$STRING`"
+    }
+    {
+      name: "linecount"
+      req: false
+      short: "The number of lines in the poem (including section headings, excluding empty lines)"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "lines"
+      req: false
+      short: "The lines of the poem"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "The title of the poem"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "poemcount"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: 10
+                kind: "param"
+                name: "id"
+                orig: "count"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/poemcount/{count}"
+          parts: [
+            "poemcount"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              count: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

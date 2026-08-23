@@ -126,11 +126,11 @@ local author = client:Author(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `string` | No |  |
+| `author` | `string` | No | The author of the poem |
 | `authors` | `table` | No |  |
-| `linecount` | `number` | No |  |
-| `lines` | `table` | No |  |
-| `title` | `string` | No |  |
+| `linecount` | `number` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | No | The lines of the poem |
+| `title` | `string` | No | The title of the poem |
 
 ### Operations
 
@@ -190,10 +190,10 @@ local authorab = client:Authorab(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `string` | No |  |
-| `linecount` | `number` | No |  |
-| `lines` | `table` | No |  |
-| `title` | `string` | No |  |
+| `author` | `string` | No | The author of the poem |
+| `linecount` | `number` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | No | The lines of the poem |
+| `title` | `string` | No | The title of the poem |
 
 ### Operations
 
@@ -245,10 +245,10 @@ local combined_search = client:CombinedSearch(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `string` | No |  |
-| `linecount` | `number` | No |  |
-| `lines` | `table` | No |  |
-| `title` | `string` | No |  |
+| `author` | `string` | No | The author of the poem |
+| `linecount` | `number` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | No | The lines of the poem |
+| `title` | `string` | No | The title of the poem |
 
 ### Operations
 
@@ -346,10 +346,10 @@ local line = client:Line(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `string` | No |  |
-| `linecount` | `number` | No |  |
-| `lines` | `table` | No |  |
-| `title` | `string` | No |  |
+| `author` | `string` | No | The author of the poem |
+| `linecount` | `number` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | No | The lines of the poem |
+| `title` | `string` | No | The title of the poem |
 
 ### Operations
 
@@ -409,10 +409,10 @@ local linecount = client:Linecount(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `string` | No |  |
-| `linecount` | `number` | No |  |
-| `lines` | `table` | No |  |
-| `title` | `string` | No |  |
+| `author` | `string` | No | The author of the poem |
+| `linecount` | `number` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | No | The lines of the poem |
+| `title` | `string` | No | The title of the poem |
 
 ### Operations
 
@@ -472,10 +472,10 @@ local poemcount = client:Poemcount(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `string` | No |  |
-| `linecount` | `number` | No |  |
-| `lines` | `table` | No |  |
-| `title` | `string` | No |  |
+| `author` | `string` | No | The author of the poem |
+| `linecount` | `number` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | No | The lines of the poem |
+| `title` | `string` | No | The title of the poem |
 
 ### Operations
 
@@ -527,10 +527,10 @@ local random = client:Random(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `string` | No |  |
-| `linecount` | `number` | No |  |
-| `lines` | `table` | No |  |
-| `title` | `string` | No |  |
+| `author` | `string` | No | The author of the poem |
+| `linecount` | `number` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | No | The lines of the poem |
+| `title` | `string` | No | The title of the poem |
 
 ### Operations
 
@@ -590,10 +590,10 @@ local title = client:Title(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `string` | No |  |
-| `linecount` | `number` | No |  |
-| `lines` | `table` | No |  |
-| `title` | `string` | No |  |
+| `author` | `string` | No | The author of the poem |
+| `linecount` | `number` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | No | The lines of the poem |
+| `title` | `string` | No | The title of the poem |
 | `titles` | `table` | No |  |
 
 ### Operations
@@ -654,10 +654,10 @@ local titleab = client:Titleab(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `string` | No |  |
-| `linecount` | `number` | No |  |
-| `lines` | `table` | No |  |
-| `title` | `string` | No |  |
+| `author` | `string` | No | The author of the poem |
+| `linecount` | `number` | No | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `table` | No | The lines of the poem |
+| `title` | `string` | No | The title of the poem |
 
 ### Operations
 

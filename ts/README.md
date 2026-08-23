@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -311,11 +311,11 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
+| `author` | The author of the poem |
 | `authors` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: list, load.
 
@@ -325,10 +325,10 @@ API path: `/author/{author}/{outputFields}.{format}`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: list.
 
@@ -338,10 +338,10 @@ API path: `/author/{author}:abs`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: list.
 
@@ -360,10 +360,10 @@ API path: `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputField
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: list, load.
 
@@ -373,10 +373,10 @@ API path: `/lines/{lines}/{outputFields}.{format}`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: list, load.
 
@@ -386,10 +386,10 @@ API path: `/linecount/{linecount}/{outputFields}.{format}`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: load.
 
@@ -399,10 +399,10 @@ API path: `/poemcount/{count}`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: list, load.
 
@@ -412,10 +412,10 @@ API path: `/random/{count}/{outputFields}`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 | `titles` |  |
 
 Operations: list, load.
@@ -426,10 +426,10 @@ API path: `/title/{title}/{outputFields}.{format}`
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
-| `linecount` |  |
-| `lines` |  |
-| `title` |  |
+| `author` | The author of the poem |
+| `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | The lines of the poem |
+| `title` | The title of the poem |
 
 Operations: list.
 
@@ -455,11 +455,11 @@ Create an instance: `const author = client.Author()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
+| `author` | `string` | The author of the poem |
 | `authors` | `any[]` |  |
-| `linecount` | `number` |  |
-| `lines` | `any[]` |  |
-| `title` | `string` |  |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `any[]` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: Load
 
@@ -488,10 +488,10 @@ Create an instance: `const authorab = client.Authorab()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `any[]` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `any[]` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: List
 
@@ -514,10 +514,10 @@ Create an instance: `const combined_search = client.CombinedSearch()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `any[]` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `any[]` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: List
 
@@ -558,10 +558,10 @@ Create an instance: `const line = client.Line()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `any[]` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `any[]` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: Load
 
@@ -591,10 +591,10 @@ Create an instance: `const linecount = client.Linecount()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `any[]` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `any[]` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: Load
 
@@ -623,10 +623,10 @@ Create an instance: `const poemcount = client.Poemcount()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `any[]` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `any[]` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: Load
 
@@ -650,10 +650,10 @@ Create an instance: `const random = client.Random()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `any[]` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `any[]` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: Load
 
@@ -683,10 +683,10 @@ Create an instance: `const title = client.Title()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `any[]` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `any[]` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 | `titles` | `any[]` |  |
 
 #### Example: Load
@@ -716,10 +716,10 @@ Create an instance: `const titleab = client.Titleab()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `string` |  |
-| `linecount` | `number` |  |
-| `lines` | `any[]` |  |
-| `title` | `string` |  |
+| `author` | `string` | The author of the poem |
+| `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
+| `lines` | `any[]` | The lines of the poem |
+| `title` | `string` | The title of the poem |
 
 #### Example: List
 
