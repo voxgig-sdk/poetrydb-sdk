@@ -9,6 +9,7 @@
 ---@class Author
 ---@field author? string
 ---@field authors? table
+---@field id? string
 ---@field linecount? number
 ---@field lines? table
 ---@field title? string
@@ -53,6 +54,7 @@
 
 ---@class Line
 ---@field author? string
+---@field id? string
 ---@field linecount? number
 ---@field lines? table
 ---@field title? string
@@ -67,6 +69,7 @@
 
 ---@class Linecount
 ---@field author? string
+---@field id? string
 ---@field linecount? number
 ---@field lines? table
 ---@field title? string
@@ -81,6 +84,7 @@
 
 ---@class Poemcount
 ---@field author? string
+---@field id? string
 ---@field linecount? number
 ---@field lines? table
 ---@field title? string
@@ -90,6 +94,7 @@
 
 ---@class Random
 ---@field author? string
+---@field id? string
 ---@field linecount? number
 ---@field lines? table
 ---@field title? string
@@ -103,6 +108,7 @@
 
 ---@class Title
 ---@field author? string
+---@field id? string
 ---@field linecount? number
 ---@field lines? table
 ---@field title? string

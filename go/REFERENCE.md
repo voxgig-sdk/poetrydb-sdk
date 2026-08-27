@@ -136,6 +136,7 @@ fmt.Println(author.GetName()) // "author"
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
 | `authors` | `[]any` | No |  |
+| `id` | `string` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `[]any` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |
@@ -355,6 +356,7 @@ fmt.Println(line.GetName()) // "line"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
+| `id` | `string` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `[]any` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |
@@ -421,6 +423,7 @@ fmt.Println(linecount.GetName()) // "linecount"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
+| `id` | `string` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `[]any` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |
@@ -487,6 +490,7 @@ fmt.Println(poemcount.GetName()) // "poemcount"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
+| `id` | `string` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `[]any` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |
@@ -541,6 +545,7 @@ fmt.Println(random.GetName()) // "random"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
+| `id` | `string` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `[]any` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |
@@ -607,6 +612,7 @@ fmt.Println(title.GetName()) // "title"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
+| `id` | `string` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `[]any` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |

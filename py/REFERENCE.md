@@ -125,6 +125,7 @@ author = client.Author()
 | --- | --- | --- | --- |
 | `author` | `str` | No | The author of the poem |
 | `authors` | `list` | No |  |
+| `id` | `str` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `list` | No | The lines of the poem |
 | `title` | `str` | No | The title of the poem |
@@ -348,6 +349,7 @@ line = client.Line()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `str` | No | The author of the poem |
+| `id` | `str` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `list` | No | The lines of the poem |
 | `title` | `str` | No | The title of the poem |
@@ -412,6 +414,7 @@ linecount = client.Linecount()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `str` | No | The author of the poem |
+| `id` | `str` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `list` | No | The lines of the poem |
 | `title` | `str` | No | The title of the poem |
@@ -476,6 +479,7 @@ poemcount = client.Poemcount()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `str` | No | The author of the poem |
+| `id` | `str` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `list` | No | The lines of the poem |
 | `title` | `str` | No | The title of the poem |
@@ -530,6 +534,7 @@ random = client.Random()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `str` | No | The author of the poem |
+| `id` | `str` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `list` | No | The lines of the poem |
 | `title` | `str` | No | The title of the poem |
@@ -594,6 +599,7 @@ title = client.Title()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `str` | No | The author of the poem |
+| `id` | `str` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `list` | No | The lines of the poem |
 | `title` | `str` | No | The title of the poem |

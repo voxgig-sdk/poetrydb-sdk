@@ -121,13 +121,19 @@ func TestAuthorEntity(t *testing.T) {
 		}
 
 		// LOAD
-		authorRef01MatchDt0 := map[string]any{}
+		authorRef01MatchDt0 := map[string]any{
+			"id": authorRef01Data["id"],
+		}
 		authorRef01DataDt0Loaded, err := authorRef01Ent.Load(authorRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if authorRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		authorRef01DataDt0LoadResult := core.ToMapAny(entityData(authorRef01DataDt0Loaded))
+		if authorRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if authorRef01DataDt0LoadResult["id"] != authorRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

@@ -19,6 +19,7 @@ from typing import TypedDict, Any
 class Author(TypedDict, total=False):
     author: str
     authors: list
+    id: str
     linecount: int
     lines: list
     title: str
@@ -73,6 +74,7 @@ class CombinedSearchWithFieldListMatch(TypedDict):
 
 class Line(TypedDict, total=False):
     author: str
+    id: str
     linecount: int
     lines: list
     title: str
@@ -93,6 +95,7 @@ class LineListMatch(LineListMatchRequired, total=False):
 
 class Linecount(TypedDict, total=False):
     author: str
+    id: str
     linecount: int
     lines: list
     title: str
@@ -113,6 +116,7 @@ class LinecountListMatch(LinecountListMatchRequired, total=False):
 
 class Poemcount(TypedDict, total=False):
     author: str
+    id: str
     linecount: int
     lines: list
     title: str
@@ -124,6 +128,7 @@ class PoemcountLoadMatch(TypedDict):
 
 class Random(TypedDict, total=False):
     author: str
+    id: str
     linecount: int
     lines: list
     title: str
@@ -140,6 +145,7 @@ class RandomListMatch(TypedDict):
 
 class Title(TypedDict, total=False):
     author: str
+    id: str
     linecount: int
     lines: list
     title: str

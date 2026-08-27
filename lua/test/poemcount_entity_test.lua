@@ -44,10 +44,14 @@ describe("PoemcountEntity", function()
 
     -- LOAD
     local poemcount_ref01_ent = client:Poemcount(nil)
-    local poemcount_ref01_match_dt0 = {}
+    local poemcount_ref01_match_dt0 = {
+      id = poemcount_ref01_data["id"],
+    }
     local poemcount_ref01_data_dt0_loaded, err = poemcount_ref01_ent:load(poemcount_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(poemcount_ref01_data_dt0_loaded)
+    local poemcount_ref01_data_dt0_load_result = helpers.to_map(type(poemcount_ref01_data_dt0_loaded) == 'table' and poemcount_ref01_data_dt0_loaded.data_get and poemcount_ref01_data_dt0_loaded:data_get() or poemcount_ref01_data_dt0_loaded)
+    assert.is_not_nil(poemcount_ref01_data_dt0_load_result)
+    assert.are.equal(poemcount_ref01_data_dt0_load_result["id"], poemcount_ref01_data["id"])
 
   end)
 end)

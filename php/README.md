@@ -38,7 +38,7 @@ try {
     // list() returns an array of Author records — iterate directly.
     $authors = $client->Author()->list();
     foreach ($authors as $item) {
-        echo $item["author"] . "\n";
+        echo $item["id"] . " " . $item["author"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -65,7 +65,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $authorabs = $client->Authorab()->list();
+    $linecounts = $client->Linecount()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -132,15 +132,18 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = PoetrydbSDK::test();
+$client = PoetrydbSDK::test([
+    "entity" => ["linecount" => ["test01" => ["id" => "test01"]]],
+]);
 
 // Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
-$authorab = $client->Authorab()->list();
-print_r($authorab);
+$linecount = $client->Linecount()->list();
+print_r($linecount);
 ```
 
 ### Use a custom fetch function
@@ -271,6 +274,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | --- | --- |
 | `author` | The author of the poem |
 | `authors` |  |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -319,6 +323,7 @@ API path: `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputField
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -332,6 +337,7 @@ API path: `/lines/{lines}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -345,6 +351,7 @@ API path: `/linecount/{linecount}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -358,6 +365,7 @@ API path: `/poemcount/{count}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -371,6 +379,7 @@ API path: `/random/{count}/{outputFields}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -415,6 +424,7 @@ Create an instance: `$author = $client->Author();`
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
 | `authors` | `array` |  |
+| `id` | `string` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `array` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -522,6 +532,7 @@ Create an instance: `$line = $client->Line();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `array` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -557,6 +568,7 @@ Create an instance: `$linecount = $client->Linecount();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `array` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -591,6 +603,7 @@ Create an instance: `$poemcount = $client->Poemcount();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `array` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -619,6 +632,7 @@ Create an instance: `$random = $client->Random();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `array` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -654,6 +668,7 @@ Create an instance: `$title = $client->Title();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `array` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -777,11 +792,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$authorab = $client->Authorab();
-$authorab->list();
+$linecount = $client->Linecount();
+$linecount->list();
 
-// $authorab->data_get() now returns the authorab data from the last list
-// $authorab->match_get() returns the last match criteria
+// $linecount->data_get() now returns the linecount data from the last list
+// $linecount->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

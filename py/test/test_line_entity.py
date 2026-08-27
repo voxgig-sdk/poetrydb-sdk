@@ -91,9 +91,13 @@ class TestLineEntity:
         assert isinstance(line_ref01_list_result, list)
 
         # LOAD
-        line_ref01_match_dt0 = {}
+        line_ref01_match_dt0 = {
+            "id": line_ref01_data["id"],
+        }
         line_ref01_data_dt0_loaded = line_ref01_ent.load(line_ref01_match_dt0, None)
-        assert line_ref01_data_dt0_loaded is not None
+        line_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(line_ref01_data_dt0_loaded))
+        assert line_ref01_data_dt0_load_result is not None
+        assert line_ref01_data_dt0_load_result["id"] == line_ref01_data["id"]
 
 
 

@@ -37,6 +37,7 @@ def make_config():
         "options": {
           "active": False,
         },
+        "transport": "base",
       },
         },
         "options": {
@@ -68,6 +69,10 @@ def make_config():
           {
             "name": "authors",
             "type": "`$ARRAY`",
+          },
+          {
+            "name": "id",
+            "type": "`$STRING`",
           },
           {
             "name": "linecount",
@@ -522,6 +527,10 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "name": "id",
+            "type": "`$STRING`",
+          },
+          {
             "name": "linecount",
             "short": "The number of lines in the poem (including section headings, excluding empty lines)",
             "type": "`$INTEGER`",
@@ -701,6 +710,10 @@ def make_config():
           {
             "name": "author",
             "short": "The author of the poem",
+            "type": "`$STRING`",
+          },
+          {
+            "name": "id",
             "type": "`$STRING`",
           },
           {
@@ -884,6 +897,10 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "name": "id",
+            "type": "`$STRING`",
+          },
+          {
             "name": "linecount",
             "short": "The number of lines in the poem (including section headings, excluding empty lines)",
             "type": "`$INTEGER`",
@@ -952,6 +969,10 @@ def make_config():
           {
             "name": "author",
             "short": "The author of the poem",
+            "type": "`$STRING`",
+          },
+          {
+            "name": "id",
             "type": "`$STRING`",
           },
           {
@@ -1078,6 +1099,10 @@ def make_config():
           {
             "name": "author",
             "short": "The author of the poem",
+            "type": "`$STRING`",
+          },
+          {
+            "name": "id",
             "type": "`$STRING`",
           },
           {

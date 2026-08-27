@@ -96,9 +96,13 @@ class LinecountEntityTest extends TestCase
         $this->assertIsArray($linecount_ref01_list_result);
 
         // LOAD
-        $linecount_ref01_match_dt0 = [];
+        $linecount_ref01_match_dt0 = [
+            "id" => $linecount_ref01_data["id"],
+        ];
         $linecount_ref01_data_dt0_loaded = $linecount_ref01_ent->load($linecount_ref01_match_dt0, null);
-        $this->assertNotNull($linecount_ref01_data_dt0_loaded);
+        $linecount_ref01_data_dt0_load_result = Helpers::to_map(is_object($linecount_ref01_data_dt0_loaded) && method_exists($linecount_ref01_data_dt0_loaded, 'data_get') ? $linecount_ref01_data_dt0_loaded->data_get() : $linecount_ref01_data_dt0_loaded);
+        $this->assertNotNull($linecount_ref01_data_dt0_load_result);
+        $this->assertEquals($linecount_ref01_data_dt0_load_result["id"], $linecount_ref01_data["id"]);
 
     }
 }

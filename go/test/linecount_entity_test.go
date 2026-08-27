@@ -124,13 +124,19 @@ func TestLinecountEntity(t *testing.T) {
 		}
 
 		// LOAD
-		linecountRef01MatchDt0 := map[string]any{}
+		linecountRef01MatchDt0 := map[string]any{
+			"id": linecountRef01Data["id"],
+		}
 		linecountRef01DataDt0Loaded, err := linecountRef01Ent.Load(linecountRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if linecountRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		linecountRef01DataDt0LoadResult := core.ToMapAny(entityData(linecountRef01DataDt0Loaded))
+		if linecountRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if linecountRef01DataDt0LoadResult["id"] != linecountRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

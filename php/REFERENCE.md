@@ -130,6 +130,7 @@ $author = $client->Author();
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
 | `authors` | `array` | No |  |
+| `id` | `string` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `array` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |
@@ -349,6 +350,7 @@ $line = $client->Line();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
+| `id` | `string` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `array` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |
@@ -412,6 +414,7 @@ $linecount = $client->Linecount();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
+| `id` | `string` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `array` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |
@@ -475,6 +478,7 @@ $poemcount = $client->Poemcount();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
+| `id` | `string` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `array` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |
@@ -530,6 +534,7 @@ $random = $client->Random();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
+| `id` | `string` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `array` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |
@@ -593,6 +598,7 @@ $title = $client->Title();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
+| `id` | `string` | No |  |
 | `linecount` | `int` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `array` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |

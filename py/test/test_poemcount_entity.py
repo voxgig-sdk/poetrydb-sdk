@@ -48,9 +48,13 @@ class TestPoemcountEntity:
 
         # LOAD
         poemcount_ref01_ent = client.Poemcount(None)
-        poemcount_ref01_match_dt0 = {}
+        poemcount_ref01_match_dt0 = {
+            "id": poemcount_ref01_data["id"],
+        }
         poemcount_ref01_data_dt0_loaded = poemcount_ref01_ent.load(poemcount_ref01_match_dt0, None)
-        assert poemcount_ref01_data_dt0_loaded is not None
+        poemcount_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(poemcount_ref01_data_dt0_loaded))
+        assert poemcount_ref01_data_dt0_load_result is not None
+        assert poemcount_ref01_data_dt0_load_result["id"] == poemcount_ref01_data["id"]
 
 
 

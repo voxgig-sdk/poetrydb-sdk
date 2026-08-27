@@ -86,9 +86,13 @@ class RandomEntityTest < Minitest::Test
     assert random_ref01_list_result.is_a?(Array)
 
     # LOAD
-    random_ref01_match_dt0 = {}
+    random_ref01_match_dt0 = {
+      "id" => random_ref01_data["id"],
+    }
     random_ref01_data_dt0_loaded = random_ref01_ent.load(random_ref01_match_dt0, nil)
-    assert !random_ref01_data_dt0_loaded.nil?
+    random_ref01_data_dt0_load_result = Helpers.to_map(random_ref01_data_dt0_loaded.respond_to?(:data_get) ? random_ref01_data_dt0_loaded.data_get : random_ref01_data_dt0_loaded)
+    assert !random_ref01_data_dt0_load_result.nil?
+    assert_equal random_ref01_data_dt0_load_result["id"], random_ref01_data["id"]
 
   end
 end

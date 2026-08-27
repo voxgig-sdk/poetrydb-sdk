@@ -66,6 +66,12 @@ describe('TitleEntity', async () => {
     const title_ref01_list = (await title_ref01_ent.list(title_ref01_match)).map((e: any) => e.data())
 
 
+    // LOAD
+    const title_ref01_match_dt0: any = {}
+    title_ref01_match_dt0.id = title_ref01_data.id
+    const title_ref01_data_dt0 = (await title_ref01_ent.load(title_ref01_match_dt0)).data()
+    assert(title_ref01_data_dt0.id === title_ref01_data.id)
+
 
   })
 })

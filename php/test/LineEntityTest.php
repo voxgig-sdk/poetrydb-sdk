@@ -96,9 +96,13 @@ class LineEntityTest extends TestCase
         $this->assertIsArray($line_ref01_list_result);
 
         // LOAD
-        $line_ref01_match_dt0 = [];
+        $line_ref01_match_dt0 = [
+            "id" => $line_ref01_data["id"],
+        ];
         $line_ref01_data_dt0_loaded = $line_ref01_ent->load($line_ref01_match_dt0, null);
-        $this->assertNotNull($line_ref01_data_dt0_loaded);
+        $line_ref01_data_dt0_load_result = Helpers::to_map(is_object($line_ref01_data_dt0_loaded) && method_exists($line_ref01_data_dt0_loaded, 'data_get') ? $line_ref01_data_dt0_loaded->data_get() : $line_ref01_data_dt0_loaded);
+        $this->assertNotNull($line_ref01_data_dt0_load_result);
+        $this->assertEquals($line_ref01_data_dt0_load_result["id"], $line_ref01_data["id"]);
 
     }
 }

@@ -42,23 +42,23 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = PoetrydbSDK.test({
   entity: {
-    authorab: {
+    linecount: {
       test01: { id: 'test01' },
     },
   },
 })
-const authorabs = await client.Authorab().list()
-// authorabs is an array of Authorab entities, populated with mock data
-// — call authorabs[0].data() for the record itself
-console.log(authorabs)
+const linecounts = await client.Linecount().list()
+// linecounts is an array of Linecount entities, populated with mock data
+// — call linecounts[0].data() for the record itself
+console.log(linecounts)
 ```
 
 ### Python
 
 ```python
 client = PoetrydbSDK.test()
-authorabs = client.Authorab().list()
-print(authorabs)
+linecounts = client.Linecount().list()
+print(linecounts)
 ```
 
 ### PHP
@@ -66,16 +66,16 @@ print(authorabs)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = PoetrydbSDK::test([
-    "entity" => ["authorab" => ["test01" => []]],
+    "entity" => ["linecount" => ["test01" => ["id" => "test01"]]],
 ]);
-$authorabs = $client->Authorab()->list();
+$linecounts = $client->Linecount()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Authorab(nil).List(
+result, err := client.Linecount(nil).List(
     nil, nil,
 )
 ```
@@ -85,16 +85,16 @@ result, err := client.Authorab(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = PoetrydbSDK.test({
-  "entity" => { "authorab" => { "test01" => {} } },
+  "entity" => { "linecount" => { "test01" => { "id" => "test01" } } },
 })
-authorabs = client.Authorab.list()
+linecounts = client.Linecount.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Authorab():list()
+local results, err = client:Linecount():list()
 ```
 
 ## Packages

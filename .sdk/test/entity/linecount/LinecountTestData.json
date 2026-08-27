@@ -2,41 +2,41 @@
   "existing": {
     "linecount": {
       "LINECOUNT00": {
-        "author": "s28",
-        "linecount": "s29",
+        "author": "s32",
+        "id": "LINECOUNT00",
+        "linecount": "s34",
         "lines": [],
-        "title": "s2b",
+        "title": "s36",
         "format": "FORMAT01",
-        "output_field": "OUTPUT_FIELD01",
-        "id": "LINECOUNT00"
+        "output_field": "OUTPUT_FIELD01"
       },
       "LINECOUNT01": {
-        "author": "s50",
-        "linecount": "s51",
+        "author": "s64",
+        "id": "LINECOUNT01",
+        "linecount": "s66",
         "lines": [],
-        "title": "s53",
+        "title": "s68",
         "format": "FORMAT01",
-        "output_field": "OUTPUT_FIELD01",
-        "id": "LINECOUNT01"
+        "output_field": "OUTPUT_FIELD01"
       },
       "LINECOUNT02": {
-        "author": "s78",
-        "linecount": "s79",
+        "author": "s96",
+        "id": "LINECOUNT02",
+        "linecount": "s98",
         "lines": [],
-        "title": "s7b",
+        "title": "s9a",
         "format": "FORMAT01",
-        "output_field": "OUTPUT_FIELD01",
-        "id": "LINECOUNT02"
+        "output_field": "OUTPUT_FIELD01"
       }
     }
   },
   "new": {
     "linecount": {
       "linecount_ref01": {
-        "author": "sa0",
-        "linecount": "sa1",
+        "author": "sc8",
+        "linecount": "sca",
         "lines": [],
-        "title": "sa3"
+        "title": "scc"
       }
     }
   }

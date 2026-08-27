@@ -226,6 +226,7 @@ const author = client.Author()
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
 | `authors` | `any[]` | No |  |
+| `id` | `string` | No |  |
 | `linecount` | `number` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `any[]` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |
@@ -437,6 +438,7 @@ const line = client.Line()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
+| `id` | `string` | No |  |
 | `linecount` | `number` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `any[]` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |
@@ -498,6 +500,7 @@ const linecount = client.Linecount()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
+| `id` | `string` | No |  |
 | `linecount` | `number` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `any[]` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |
@@ -559,6 +562,7 @@ const poemcount = client.Poemcount()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
+| `id` | `string` | No |  |
 | `linecount` | `number` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `any[]` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |
@@ -612,6 +616,7 @@ const random = client.Random()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
+| `id` | `string` | No |  |
 | `linecount` | `number` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `any[]` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |
@@ -673,6 +678,7 @@ const title = client.Title()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `author` | `string` | No | The author of the poem |
+| `id` | `string` | No |  |
 | `linecount` | `number` | No | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `any[]` | No | The lines of the poem |
 | `title` | `string` | No | The title of the poem |

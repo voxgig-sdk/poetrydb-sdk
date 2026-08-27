@@ -16,6 +16,7 @@ import (
 type Author struct {
 	Author *string `json:"author,omitempty"`
 	Authors *[]any `json:"authors,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Linecount *int `json:"linecount,omitempty"`
 	Lines *[]any `json:"lines,omitempty"`
 	Title *string `json:"title,omitempty"`
@@ -78,6 +79,7 @@ type CombinedSearchWithFieldListMatch struct {
 // Line is the typed data model for the line entity.
 type Line struct {
 	Author *string `json:"author,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Linecount *int `json:"linecount,omitempty"`
 	Lines *[]any `json:"lines,omitempty"`
 	Title *string `json:"title,omitempty"`
@@ -98,6 +100,7 @@ type LineListMatch struct {
 // Linecount is the typed data model for the linecount entity.
 type Linecount struct {
 	Author *string `json:"author,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Linecount *int `json:"linecount,omitempty"`
 	Lines *[]any `json:"lines,omitempty"`
 	Title *string `json:"title,omitempty"`
@@ -118,6 +121,7 @@ type LinecountListMatch struct {
 // Poemcount is the typed data model for the poemcount entity.
 type Poemcount struct {
 	Author *string `json:"author,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Linecount *int `json:"linecount,omitempty"`
 	Lines *[]any `json:"lines,omitempty"`
 	Title *string `json:"title,omitempty"`
@@ -131,6 +135,7 @@ type PoemcountLoadMatch struct {
 // Random is the typed data model for the random entity.
 type Random struct {
 	Author *string `json:"author,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Linecount *int `json:"linecount,omitempty"`
 	Lines *[]any `json:"lines,omitempty"`
 	Title *string `json:"title,omitempty"`
@@ -150,6 +155,7 @@ type RandomListMatch struct {
 // Title is the typed data model for the title entity.
 type Title struct {
 	Author *string `json:"author,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Linecount *int `json:"linecount,omitempty"`
 	Lines *[]any `json:"lines,omitempty"`
 	Title *string `json:"title,omitempty"`

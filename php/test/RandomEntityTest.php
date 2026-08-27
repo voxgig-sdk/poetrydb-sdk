@@ -96,9 +96,13 @@ class RandomEntityTest extends TestCase
         $this->assertIsArray($random_ref01_list_result);
 
         // LOAD
-        $random_ref01_match_dt0 = [];
+        $random_ref01_match_dt0 = [
+            "id" => $random_ref01_data["id"],
+        ];
         $random_ref01_data_dt0_loaded = $random_ref01_ent->load($random_ref01_match_dt0, null);
-        $this->assertNotNull($random_ref01_data_dt0_loaded);
+        $random_ref01_data_dt0_load_result = Helpers::to_map(is_object($random_ref01_data_dt0_loaded) && method_exists($random_ref01_data_dt0_loaded, 'data_get') ? $random_ref01_data_dt0_loaded->data_get() : $random_ref01_data_dt0_loaded);
+        $this->assertNotNull($random_ref01_data_dt0_load_result);
+        $this->assertEquals($random_ref01_data_dt0_load_result["id"], $random_ref01_data["id"]);
 
     }
 }

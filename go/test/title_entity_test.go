@@ -121,13 +121,19 @@ func TestTitleEntity(t *testing.T) {
 		}
 
 		// LOAD
-		titleRef01MatchDt0 := map[string]any{}
+		titleRef01MatchDt0 := map[string]any{
+			"id": titleRef01Data["id"],
+		}
 		titleRef01DataDt0Loaded, err := titleRef01Ent.Load(titleRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if titleRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		titleRef01DataDt0LoadResult := core.ToMapAny(entityData(titleRef01DataDt0Loaded))
+		if titleRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if titleRef01DataDt0LoadResult["id"] != titleRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

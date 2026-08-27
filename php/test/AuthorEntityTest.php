@@ -93,9 +93,13 @@ class AuthorEntityTest extends TestCase
         $this->assertIsArray($author_ref01_list_result);
 
         // LOAD
-        $author_ref01_match_dt0 = [];
+        $author_ref01_match_dt0 = [
+            "id" => $author_ref01_data["id"],
+        ];
         $author_ref01_data_dt0_loaded = $author_ref01_ent->load($author_ref01_match_dt0, null);
-        $this->assertNotNull($author_ref01_data_dt0_loaded);
+        $author_ref01_data_dt0_load_result = Helpers::to_map(is_object($author_ref01_data_dt0_loaded) && method_exists($author_ref01_data_dt0_loaded, 'data_get') ? $author_ref01_data_dt0_loaded->data_get() : $author_ref01_data_dt0_loaded);
+        $this->assertNotNull($author_ref01_data_dt0_load_result);
+        $this->assertEquals($author_ref01_data_dt0_load_result["id"], $author_ref01_data["id"]);
 
     }
 }

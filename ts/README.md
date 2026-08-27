@@ -67,8 +67,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const authorabs = await client.Authorab().list()
-  console.log(authorabs)
+  const linecounts = await client.Linecount().list()
+  console.log(linecounts)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -134,10 +134,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = PoetrydbSDK.test()
 
-const authorab = await client.Authorab().list()
-// authorab is the entity, populated with mock response data
-// — call authorab.data() for the record itself
-console.log(authorab)
+const linecount = await client.Linecount().list()
+// linecount is the entity, populated with mock response data
+// — call linecount.data() for the record itself
+console.log(linecount)
 ```
 
 You can also use the instance method:
@@ -152,14 +152,14 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Authorab()
+const entity = client.Linecount()
 
 // First call runs the operation and stores its result
 await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -313,6 +313,7 @@ The `prepare()` method returns:
 | --- | --- |
 | `author` | The author of the poem |
 | `authors` |  |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -361,6 +362,7 @@ API path: `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputField
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -374,6 +376,7 @@ API path: `/lines/{lines}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -387,6 +390,7 @@ API path: `/linecount/{linecount}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -400,6 +404,7 @@ API path: `/poemcount/{count}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -413,6 +418,7 @@ API path: `/random/{count}/{outputFields}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -457,6 +463,7 @@ Create an instance: `const author = client.Author()`
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
 | `authors` | `any[]` |  |
+| `id` | `string` |  |
 | `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `any[]` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -559,6 +566,7 @@ Create an instance: `const line = client.Line()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `any[]` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -592,6 +600,7 @@ Create an instance: `const linecount = client.Linecount()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `any[]` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -624,6 +633,7 @@ Create an instance: `const poemcount = client.Poemcount()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `any[]` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -651,6 +661,7 @@ Create an instance: `const random = client.Random()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `any[]` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -684,6 +695,7 @@ Create an instance: `const title = client.Title()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `any[]` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -797,11 +809,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const authorab = client.Authorab()
-await authorab.list()
+const linecount = client.Linecount()
+await linecount.list()
 
-// authorab.data() now returns the authorab data from the last `list`
-// authorab.match() returns the last match criteria
+// linecount.data() now returns the linecount data from the last `list`
+// linecount.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

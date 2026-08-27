@@ -42,6 +42,7 @@ class PoetrydbConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -73,6 +74,10 @@ class PoetrydbConfig
             [
               'name' => 'authors',
               'type' => '`$ARRAY`',
+            ],
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
             ],
             [
               'name' => 'linecount',
@@ -527,6 +532,10 @@ class PoetrydbConfig
               'type' => '`$STRING`',
             ],
             [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+            [
               'name' => 'linecount',
               'short' => 'The number of lines in the poem (including section headings, excluding empty lines)',
               'type' => '`$INTEGER`',
@@ -706,6 +715,10 @@ class PoetrydbConfig
             [
               'name' => 'author',
               'short' => 'The author of the poem',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [
@@ -889,6 +902,10 @@ class PoetrydbConfig
               'type' => '`$STRING`',
             ],
             [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+            [
               'name' => 'linecount',
               'short' => 'The number of lines in the poem (including section headings, excluding empty lines)',
               'type' => '`$INTEGER`',
@@ -957,6 +974,10 @@ class PoetrydbConfig
             [
               'name' => 'author',
               'short' => 'The author of the poem',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [
@@ -1083,6 +1104,10 @@ class PoetrydbConfig
             [
               'name' => 'author',
               'short' => 'The author of the poem',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [

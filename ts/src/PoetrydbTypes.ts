@@ -8,6 +8,7 @@
 export interface Author {
   author?: string
   authors?: any[]
+  id?: string
   linecount?: number
   lines?: any[]
   title?: string
@@ -61,6 +62,7 @@ export interface CombinedSearchWithFieldListMatch {
 
 export interface Line {
   author?: string
+  id?: string
   linecount?: number
   lines?: any[]
   title?: string
@@ -78,6 +80,7 @@ export interface LineListMatch {
 
 export interface Linecount {
   author?: string
+  id?: string
   linecount?: number
   lines?: any[]
   title?: string
@@ -95,6 +98,7 @@ export interface LinecountListMatch {
 
 export interface Poemcount {
   author?: string
+  id?: string
   linecount?: number
   lines?: any[]
   title?: string
@@ -106,6 +110,7 @@ export interface PoemcountLoadMatch {
 
 export interface Random {
   author?: string
+  id?: string
   linecount?: number
   lines?: any[]
   title?: string
@@ -122,6 +127,7 @@ export interface RandomListMatch {
 
 export interface Title {
   author?: string
+  id?: string
   linecount?: number
   lines?: any[]
   title?: string

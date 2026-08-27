@@ -68,6 +68,12 @@ describe('RandomEntity', async () => {
     const random_ref01_list = (await random_ref01_ent.list(random_ref01_match)).map((e: any) => e.data())
 
 
+    // LOAD
+    const random_ref01_match_dt0: any = {}
+    random_ref01_match_dt0.id = random_ref01_data.id
+    const random_ref01_data_dt0 = (await random_ref01_ent.load(random_ref01_match_dt0)).data()
+    assert(random_ref01_data_dt0.id === random_ref01_data.id)
+
 
   })
 })

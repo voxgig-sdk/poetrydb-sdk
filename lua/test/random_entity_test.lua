@@ -95,10 +95,14 @@ describe("RandomEntity", function()
     assert.is_table(random_ref01_list_result)
 
     -- LOAD
-    local random_ref01_match_dt0 = {}
+    local random_ref01_match_dt0 = {
+      id = random_ref01_data["id"],
+    }
     local random_ref01_data_dt0_loaded, err = random_ref01_ent:load(random_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(random_ref01_data_dt0_loaded)
+    local random_ref01_data_dt0_load_result = helpers.to_map(type(random_ref01_data_dt0_loaded) == 'table' and random_ref01_data_dt0_loaded.data_get and random_ref01_data_dt0_loaded:data_get() or random_ref01_data_dt0_loaded)
+    assert.is_not_nil(random_ref01_data_dt0_load_result)
+    assert.are.equal(random_ref01_data_dt0_load_result["id"], random_ref01_data["id"])
 
   end)
 end)

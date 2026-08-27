@@ -41,9 +41,13 @@ class PoemcountEntityTest < Minitest::Test
 
     # LOAD
     poemcount_ref01_ent = client.Poemcount(nil)
-    poemcount_ref01_match_dt0 = {}
+    poemcount_ref01_match_dt0 = {
+      "id" => poemcount_ref01_data["id"],
+    }
     poemcount_ref01_data_dt0_loaded = poemcount_ref01_ent.load(poemcount_ref01_match_dt0, nil)
-    assert !poemcount_ref01_data_dt0_loaded.nil?
+    poemcount_ref01_data_dt0_load_result = Helpers.to_map(poemcount_ref01_data_dt0_loaded.respond_to?(:data_get) ? poemcount_ref01_data_dt0_loaded.data_get : poemcount_ref01_data_dt0_loaded)
+    assert !poemcount_ref01_data_dt0_load_result.nil?
+    assert_equal poemcount_ref01_data_dt0_load_result["id"], poemcount_ref01_data["id"]
 
   end
 end

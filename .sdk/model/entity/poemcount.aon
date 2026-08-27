@@ -12,6 +12,11 @@ main: kit: entity: poemcount: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "linecount"
       req: false
       short: "The number of lines in the poem (including section headings, excluding empty lines)"
@@ -30,6 +35,11 @@ main: kit: entity: poemcount: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "poemcount"
   op: {

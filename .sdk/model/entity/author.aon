@@ -17,6 +17,11 @@ main: kit: entity: author: {
       type: "`$ARRAY`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "linecount"
       req: false
       short: "The number of lines in the poem (including section headings, excluding empty lines)"
@@ -35,6 +40,11 @@ main: kit: entity: author: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "author"
   op: {

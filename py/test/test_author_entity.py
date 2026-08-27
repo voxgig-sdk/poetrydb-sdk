@@ -88,9 +88,13 @@ class TestAuthorEntity:
         assert isinstance(author_ref01_list_result, list)
 
         # LOAD
-        author_ref01_match_dt0 = {}
+        author_ref01_match_dt0 = {
+            "id": author_ref01_data["id"],
+        }
         author_ref01_data_dt0_loaded = author_ref01_ent.load(author_ref01_match_dt0, None)
-        assert author_ref01_data_dt0_loaded is not None
+        author_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(author_ref01_data_dt0_loaded))
+        assert author_ref01_data_dt0_load_result is not None
+        assert author_ref01_data_dt0_load_result["id"] == author_ref01_data["id"]
 
 
 

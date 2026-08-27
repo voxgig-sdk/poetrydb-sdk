@@ -75,12 +75,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-authorabs, err := client.Authorab(nil).List(nil, nil)
+linecounts, err := client.Linecount(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = authorabs
+_ = linecounts
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -144,13 +144,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-authorab, err := client.Authorab(nil).List(
+linecount, err := client.Linecount(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(authorab) // the returned mock data
+fmt.Println(linecount) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -280,6 +280,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | --- | --- |
 | `"author"` | The author of the poem |
 | `"authors"` |  |
+| `"id"` |  |
 | `"linecount"` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `"lines"` | The lines of the poem |
 | `"title"` | The title of the poem |
@@ -328,6 +329,7 @@ API path: `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputField
 | Field | Description |
 | --- | --- |
 | `"author"` | The author of the poem |
+| `"id"` |  |
 | `"linecount"` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `"lines"` | The lines of the poem |
 | `"title"` | The title of the poem |
@@ -341,6 +343,7 @@ API path: `/lines/{lines}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `"author"` | The author of the poem |
+| `"id"` |  |
 | `"linecount"` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `"lines"` | The lines of the poem |
 | `"title"` | The title of the poem |
@@ -354,6 +357,7 @@ API path: `/linecount/{linecount}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `"author"` | The author of the poem |
+| `"id"` |  |
 | `"linecount"` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `"lines"` | The lines of the poem |
 | `"title"` | The title of the poem |
@@ -367,6 +371,7 @@ API path: `/poemcount/{count}`
 | Field | Description |
 | --- | --- |
 | `"author"` | The author of the poem |
+| `"id"` |  |
 | `"linecount"` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `"lines"` | The lines of the poem |
 | `"title"` | The title of the poem |
@@ -380,6 +385,7 @@ API path: `/random/{count}/{outputFields}`
 | Field | Description |
 | --- | --- |
 | `"author"` | The author of the poem |
+| `"id"` |  |
 | `"linecount"` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `"lines"` | The lines of the poem |
 | `"title"` | The title of the poem |
@@ -424,6 +430,7 @@ Create an instance: `author := client.Author(nil)`
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
 | `authors` | `[]any` |  |
+| `id` | `string` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `[]any` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -546,6 +553,7 @@ Create an instance: `line := client.Line(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `[]any` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -587,6 +595,7 @@ Create an instance: `linecount := client.Linecount(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `[]any` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -627,6 +636,7 @@ Create an instance: `poemcount := client.Poemcount(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `[]any` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -658,6 +668,7 @@ Create an instance: `random := client.Random(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `[]any` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -699,6 +710,7 @@ Create an instance: `title := client.Title(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `[]any` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -828,11 +840,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-authorab := client.Authorab(nil)
-authorab.List(nil, nil)
+linecount := client.Linecount(nil)
+linecount.List(nil, nil)
 
-// authorab.Data() now returns the authorab data from the last list
-// authorab.Match() returns the last match criteria
+// linecount.Data() now returns the linecount data from the last list
+// linecount.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

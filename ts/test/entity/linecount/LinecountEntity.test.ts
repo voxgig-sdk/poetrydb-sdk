@@ -68,6 +68,12 @@ describe('LinecountEntity', async () => {
     const linecount_ref01_list = (await linecount_ref01_ent.list(linecount_ref01_match)).map((e: any) => e.data())
 
 
+    // LOAD
+    const linecount_ref01_match_dt0: any = {}
+    linecount_ref01_match_dt0.id = linecount_ref01_data.id
+    const linecount_ref01_data_dt0 = (await linecount_ref01_ent.load(linecount_ref01_match_dt0)).data()
+    assert(linecount_ref01_data_dt0.id === linecount_ref01_data.id)
+
 
   })
 })

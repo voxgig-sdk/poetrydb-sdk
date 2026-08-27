@@ -28,6 +28,7 @@ module PoetrydbConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -59,6 +60,10 @@ module PoetrydbConfig
             {
               "name" => "authors",
               "type" => "`$ARRAY`",
+            },
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
             },
             {
               "name" => "linecount",
@@ -513,6 +518,10 @@ module PoetrydbConfig
               "type" => "`$STRING`",
             },
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "linecount",
               "short" => "The number of lines in the poem (including section headings, excluding empty lines)",
               "type" => "`$INTEGER`",
@@ -692,6 +701,10 @@ module PoetrydbConfig
             {
               "name" => "author",
               "short" => "The author of the poem",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {
@@ -875,6 +888,10 @@ module PoetrydbConfig
               "type" => "`$STRING`",
             },
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "linecount",
               "short" => "The number of lines in the poem (including section headings, excluding empty lines)",
               "type" => "`$INTEGER`",
@@ -943,6 +960,10 @@ module PoetrydbConfig
             {
               "name" => "author",
               "short" => "The author of the poem",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {
@@ -1069,6 +1090,10 @@ module PoetrydbConfig
             {
               "name" => "author",
               "short" => "The author of the poem",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {

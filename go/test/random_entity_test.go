@@ -124,13 +124,19 @@ func TestRandomEntity(t *testing.T) {
 		}
 
 		// LOAD
-		randomRef01MatchDt0 := map[string]any{}
+		randomRef01MatchDt0 := map[string]any{
+			"id": randomRef01Data["id"],
+		}
 		randomRef01DataDt0Loaded, err := randomRef01Ent.Load(randomRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if randomRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		randomRef01DataDt0LoadResult := core.ToMapAny(entityData(randomRef01DataDt0Loaded))
+		if randomRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if randomRef01DataDt0LoadResult["id"] != randomRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

@@ -43,7 +43,7 @@ local authors, err = client:Author():list()
 if err then error(err) end
 
 for _, item in ipairs(authors) do
-  print(item["author"])
+  print(item["id"], item["author"])
 end
 ```
 
@@ -62,7 +62,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local authorabs, err = client:Authorab():list()
+local linecounts, err = client:Linecount():list()
 if err then error(err) end
 ```
 
@@ -120,7 +120,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Authorab():list()
+local result, err = client:Linecount():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -252,6 +252,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | --- | --- |
 | `author` | The author of the poem |
 | `authors` |  |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -300,6 +301,7 @@ API path: `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputField
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -313,6 +315,7 @@ API path: `/lines/{lines}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -326,6 +329,7 @@ API path: `/linecount/{linecount}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -339,6 +343,7 @@ API path: `/poemcount/{count}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -352,6 +357,7 @@ API path: `/random/{count}/{outputFields}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -396,6 +402,7 @@ Create an instance: `local author = client:Author(nil)`
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
 | `authors` | `table` |  |
+| `id` | `string` |  |
 | `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `table` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -498,6 +505,7 @@ Create an instance: `local line = client:Line(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `table` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -531,6 +539,7 @@ Create an instance: `local linecount = client:Linecount(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `table` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -563,6 +572,7 @@ Create an instance: `local poemcount = client:Poemcount(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `table` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -590,6 +600,7 @@ Create an instance: `local random = client:Random(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `table` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -623,6 +634,7 @@ Create an instance: `local title = client:Title(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `string` | The author of the poem |
+| `id` | `string` |  |
 | `linecount` | `number` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `table` | The lines of the poem |
 | `title` | `string` | The title of the poem |
@@ -743,11 +755,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local authorab = client:Authorab()
-authorab:list()
+local linecount = client:Linecount()
+linecount:list()
 
--- authorab:data_get() now returns the authorab data from the last list
--- authorab:match_get() returns the last match criteria
+-- linecount:data_get() now returns the linecount data from the last list
+-- linecount:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

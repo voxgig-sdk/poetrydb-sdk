@@ -61,13 +61,19 @@ func TestPoemcountEntity(t *testing.T) {
 
 		// LOAD
 		poemcountRef01Ent := client.Poemcount(nil)
-		poemcountRef01MatchDt0 := map[string]any{}
+		poemcountRef01MatchDt0 := map[string]any{
+			"id": poemcountRef01Data["id"],
+		}
 		poemcountRef01DataDt0Loaded, err := poemcountRef01Ent.Load(poemcountRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if poemcountRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		poemcountRef01DataDt0LoadResult := core.ToMapAny(entityData(poemcountRef01DataDt0Loaded))
+		if poemcountRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if poemcountRef01DataDt0LoadResult["id"] != poemcountRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

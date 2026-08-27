@@ -91,9 +91,13 @@ class TestRandomEntity:
         assert isinstance(random_ref01_list_result, list)
 
         # LOAD
-        random_ref01_match_dt0 = {}
+        random_ref01_match_dt0 = {
+            "id": random_ref01_data["id"],
+        }
         random_ref01_data_dt0_loaded = random_ref01_ent.load(random_ref01_match_dt0, None)
-        assert random_ref01_data_dt0_loaded is not None
+        random_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(random_ref01_data_dt0_loaded))
+        assert random_ref01_data_dt0_load_result is not None
+        assert random_ref01_data_dt0_load_result["id"] == random_ref01_data["id"]
 
 
 

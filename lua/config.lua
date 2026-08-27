@@ -16,6 +16,7 @@ local function make_config()
         ["options"] = {
           ["active"] = false,
         },
+        ["transport"] = "base",
       },
     },
     options = {
@@ -47,6 +48,10 @@ local function make_config()
           {
             ["name"] = "authors",
             ["type"] = "`$ARRAY`",
+          },
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "linecount",
@@ -501,6 +506,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "linecount",
             ["short"] = "The number of lines in the poem (including section headings, excluding empty lines)",
             ["type"] = "`$INTEGER`",
@@ -680,6 +689,10 @@ local function make_config()
           {
             ["name"] = "author",
             ["short"] = "The author of the poem",
+            ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "id",
             ["type"] = "`$STRING`",
           },
           {
@@ -863,6 +876,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "linecount",
             ["short"] = "The number of lines in the poem (including section headings, excluding empty lines)",
             ["type"] = "`$INTEGER`",
@@ -931,6 +948,10 @@ local function make_config()
           {
             ["name"] = "author",
             ["short"] = "The author of the poem",
+            ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "id",
             ["type"] = "`$STRING`",
           },
           {
@@ -1057,6 +1078,10 @@ local function make_config()
           {
             ["name"] = "author",
             ["short"] = "The author of the poem",
+            ["type"] = "`$STRING`",
+          },
+          {
+            ["name"] = "id",
             ["type"] = "`$STRING`",
           },
           {

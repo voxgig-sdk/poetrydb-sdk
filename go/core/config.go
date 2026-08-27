@@ -20,6 +20,7 @@ func MakeConfig() map[string]any {
 				"options": map[string]any{
 					"active": false,
 				},
+				"transport": "base",
 			},
 		},
 		"options": map[string]any{
@@ -51,6 +52,10 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "authors",
 						"type": "`$ARRAY`",
+					},
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "linecount",
@@ -505,6 +510,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "linecount",
 						"short": "The number of lines in the poem (including section headings, excluding empty lines)",
 						"type": "`$INTEGER`",
@@ -684,6 +693,10 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "author",
 						"short": "The author of the poem",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -867,6 +880,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "linecount",
 						"short": "The number of lines in the poem (including section headings, excluding empty lines)",
 						"type": "`$INTEGER`",
@@ -935,6 +952,10 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "author",
 						"short": "The author of the poem",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -1061,6 +1082,10 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "author",
 						"short": "The author of the poem",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "id",
 						"type": "`$STRING`",
 					},
 					map[string]any{

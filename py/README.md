@@ -69,8 +69,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    authorabs = client.Authorab().list()
-    print(authorabs)
+    linecounts = client.Linecount().list()
+    print(linecounts)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -138,8 +138,8 @@ client = PoetrydbSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-authorab = client.Authorab().list()
-# authorab contains the mock response record
+linecount = client.Linecount().list()
+# linecount contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -267,6 +267,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | --- | --- |
 | `author` | The author of the poem |
 | `authors` |  |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -315,6 +316,7 @@ API path: `/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputField
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -328,6 +330,7 @@ API path: `/lines/{lines}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -341,6 +344,7 @@ API path: `/linecount/{linecount}/{outputFields}.{format}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -354,6 +358,7 @@ API path: `/poemcount/{count}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -367,6 +372,7 @@ API path: `/random/{count}/{outputFields}`
 | Field | Description |
 | --- | --- |
 | `author` | The author of the poem |
+| `id` |  |
 | `linecount` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | The lines of the poem |
 | `title` | The title of the poem |
@@ -411,6 +417,7 @@ Create an instance: `author = client.Author()`
 | --- | --- | --- |
 | `author` | `str` | The author of the poem |
 | `authors` | `list` |  |
+| `id` | `str` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `list` | The lines of the poem |
 | `title` | `str` | The title of the poem |
@@ -513,6 +520,7 @@ Create an instance: `line = client.Line()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `str` | The author of the poem |
+| `id` | `str` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `list` | The lines of the poem |
 | `title` | `str` | The title of the poem |
@@ -546,6 +554,7 @@ Create an instance: `linecount = client.Linecount()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `str` | The author of the poem |
+| `id` | `str` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `list` | The lines of the poem |
 | `title` | `str` | The title of the poem |
@@ -578,6 +587,7 @@ Create an instance: `poemcount = client.Poemcount()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `str` | The author of the poem |
+| `id` | `str` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `list` | The lines of the poem |
 | `title` | `str` | The title of the poem |
@@ -605,6 +615,7 @@ Create an instance: `random = client.Random()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `str` | The author of the poem |
+| `id` | `str` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `list` | The lines of the poem |
 | `title` | `str` | The title of the poem |
@@ -638,6 +649,7 @@ Create an instance: `title = client.Title()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `author` | `str` | The author of the poem |
+| `id` | `str` |  |
 | `linecount` | `int` | The number of lines in the poem (including section headings, excluding empty lines) |
 | `lines` | `list` | The lines of the poem |
 | `title` | `str` | The title of the poem |
@@ -757,11 +769,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-authorab = client.Authorab()
-authorab.list()
+linecount = client.Linecount()
+linecount.list()
 
-# authorab.data_get() now returns the authorab data from the last list
-# authorab.match_get() returns the last match criteria
+# linecount.data_get() now returns the linecount data from the last list
+# linecount.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

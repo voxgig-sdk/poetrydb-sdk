@@ -68,6 +68,12 @@ describe('LineEntity', async () => {
     const line_ref01_list = (await line_ref01_ent.list(line_ref01_match)).map((e: any) => e.data())
 
 
+    // LOAD
+    const line_ref01_match_dt0: any = {}
+    line_ref01_match_dt0.id = line_ref01_data.id
+    const line_ref01_data_dt0 = (await line_ref01_ent.load(line_ref01_match_dt0)).data()
+    assert(line_ref01_data_dt0.id === line_ref01_data.id)
+
 
   })
 })

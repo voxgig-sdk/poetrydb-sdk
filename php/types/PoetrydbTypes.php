@@ -17,6 +17,7 @@ class Author
 {
     public ?string $author = null;
     public ?array $authors = null;
+    public ?string $id = null;
     public ?int $linecount = null;
     public ?array $lines = null;
     public ?string $title = null;
@@ -88,6 +89,7 @@ class CombinedSearchWithFieldListMatch
 class Line
 {
     public ?string $author = null;
+    public ?string $id = null;
     public ?int $linecount = null;
     public ?array $lines = null;
     public ?string $title = null;
@@ -111,6 +113,7 @@ class LineListMatch
 class Linecount
 {
     public ?string $author = null;
+    public ?string $id = null;
     public ?int $linecount = null;
     public ?array $lines = null;
     public ?string $title = null;
@@ -134,6 +137,7 @@ class LinecountListMatch
 class Poemcount
 {
     public ?string $author = null;
+    public ?string $id = null;
     public ?int $linecount = null;
     public ?array $lines = null;
     public ?string $title = null;
@@ -149,6 +153,7 @@ class PoemcountLoadMatch
 class Random
 {
     public ?string $author = null;
+    public ?string $id = null;
     public ?int $linecount = null;
     public ?array $lines = null;
     public ?string $title = null;
@@ -171,6 +176,7 @@ class RandomListMatch
 class Title
 {
     public ?string $author = null;
+    public ?string $id = null;
     public ?int $linecount = null;
     public ?array $lines = null;
     public ?string $title = null;

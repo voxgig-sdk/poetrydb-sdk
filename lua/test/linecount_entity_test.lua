@@ -95,10 +95,14 @@ describe("LinecountEntity", function()
     assert.is_table(linecount_ref01_list_result)
 
     -- LOAD
-    local linecount_ref01_match_dt0 = {}
+    local linecount_ref01_match_dt0 = {
+      id = linecount_ref01_data["id"],
+    }
     local linecount_ref01_data_dt0_loaded, err = linecount_ref01_ent:load(linecount_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(linecount_ref01_data_dt0_loaded)
+    local linecount_ref01_data_dt0_load_result = helpers.to_map(type(linecount_ref01_data_dt0_loaded) == 'table' and linecount_ref01_data_dt0_loaded.data_get and linecount_ref01_data_dt0_loaded:data_get() or linecount_ref01_data_dt0_loaded)
+    assert.is_not_nil(linecount_ref01_data_dt0_load_result)
+    assert.are.equal(linecount_ref01_data_dt0_load_result["id"], linecount_ref01_data["id"])
 
   end)
 end)

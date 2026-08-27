@@ -16,6 +16,9 @@
 # @!attribute [rw] authors
 #   @return [Array, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] linecount
 #   @return [Integer, nil]
 #
@@ -27,6 +30,7 @@
 Author = Struct.new(
   :author,
   :authors,
+  :id,
   :linecount,
   :lines,
   :title,
@@ -165,6 +169,9 @@ CombinedSearchWithFieldListMatch = Struct.new(
 # @!attribute [rw] author
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] linecount
 #   @return [Integer, nil]
 #
@@ -175,6 +182,7 @@ CombinedSearchWithFieldListMatch = Struct.new(
 #   @return [String, nil]
 Line = Struct.new(
   :author,
+  :id,
   :linecount,
   :lines,
   :title,
@@ -212,6 +220,9 @@ LineListMatch = Struct.new(
 # @!attribute [rw] author
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] linecount
 #   @return [Integer, nil]
 #
@@ -222,6 +233,7 @@ LineListMatch = Struct.new(
 #   @return [String, nil]
 Linecount = Struct.new(
   :author,
+  :id,
   :linecount,
   :lines,
   :title,
@@ -259,6 +271,9 @@ LinecountListMatch = Struct.new(
 # @!attribute [rw] author
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] linecount
 #   @return [Integer, nil]
 #
@@ -269,6 +284,7 @@ LinecountListMatch = Struct.new(
 #   @return [String, nil]
 Poemcount = Struct.new(
   :author,
+  :id,
   :linecount,
   :lines,
   :title,
@@ -289,6 +305,9 @@ PoemcountLoadMatch = Struct.new(
 # @!attribute [rw] author
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] linecount
 #   @return [Integer, nil]
 #
@@ -299,6 +318,7 @@ PoemcountLoadMatch = Struct.new(
 #   @return [String, nil]
 RandomType = Struct.new(
   :author,
+  :id,
   :linecount,
   :lines,
   :title,
@@ -332,6 +352,9 @@ RandomListMatch = Struct.new(
 # @!attribute [rw] author
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] linecount
 #   @return [Integer, nil]
 #
@@ -345,6 +368,7 @@ RandomListMatch = Struct.new(
 #   @return [Array, nil]
 Title = Struct.new(
   :author,
+  :id,
   :linecount,
   :lines,
   :title,

@@ -124,13 +124,19 @@ func TestLineEntity(t *testing.T) {
 		}
 
 		// LOAD
-		lineRef01MatchDt0 := map[string]any{}
+		lineRef01MatchDt0 := map[string]any{
+			"id": lineRef01Data["id"],
+		}
 		lineRef01DataDt0Loaded, err := lineRef01Ent.Load(lineRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if lineRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		lineRef01DataDt0LoadResult := core.ToMapAny(entityData(lineRef01DataDt0Loaded))
+		if lineRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if lineRef01DataDt0LoadResult["id"] != lineRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})
