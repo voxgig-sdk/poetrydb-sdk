@@ -45,7 +45,7 @@ describe("LinecountDirect", function()
     end
 
     local result, err = client:direct({
-      path = "linecount/{linecount}/{output_field}_{format}",
+      path = "linecount/{linecount}/{output_field}.{format}",
       method = "GET",
       params = params,
     })
@@ -146,6 +146,13 @@ function linecount_direct_setup(mockres)
   if live then
     local merged_opts = {
     }
+    -- sdk-test-control.json's test.client.options goes UNDER the generated
+    -- fields: it adds to the live client, it does not redirect it.
+    for _k, _v in pairs(runner.live_client_options()) do
+      if merged_opts[_k] == nil then
+        merged_opts[_k] = _v
+      end
+    end
     local client = sdk.new(merged_opts)
     return {
       client = client,

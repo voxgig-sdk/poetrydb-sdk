@@ -44,7 +44,7 @@ class TitleDirectTest < Minitest::Test
     end
 
     result = client.direct({
-      "path" => "title/{title}/{output_field}_{format}",
+      "path" => "title/{title}/{output_field}.{format}",
       "method" => "GET",
       "params" => params,
     })
@@ -143,8 +143,10 @@ def title_direct_setup(mockres)
   live = env["POETRYDB_TEST_LIVE"] == "TRUE"
 
   if live
-    merged_opts = {
-    }
+    # Merged so the generated fields win: sdk-test-control.json's
+    # test.client.options adds to the live client, it does not redirect it.
+    merged_opts = Runner.live_client_options.merge({
+    })
     client = PoetrydbSDK.new(merged_opts)
     return {
       client: client,

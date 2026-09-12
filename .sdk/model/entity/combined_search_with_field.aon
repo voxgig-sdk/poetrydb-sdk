@@ -56,11 +56,6 @@ main: kit: entity: combined_search_with_field: {
           }
           method: "GET"
           orig: "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputFields}"
-          parts: [
-            "{input_field1},{input_field2}"
-            "{search_term1};{search_term2}"
-            "{output_field}"
-          ]
           rename: {
             param: {
               "inputField1},{inputField2": "input_field1},{input_field2"
@@ -68,6 +63,17 @@ main: kit: entity: combined_search_with_field: {
               "searchTerm1};{searchTerm2": "search_term1};{search_term2"
             }
           }
+          segments: [
+            {
+              lit: "{inputField1},{inputField2}"
+            }
+            {
+              lit: "{searchTerm1};{searchTerm2}"
+            }
+            {
+              var: "output_field"
+            }
+          ]
           select: {
             exist: [
               "input_field1"
@@ -84,6 +90,14 @@ main: kit: entity: combined_search_with_field: {
         }
       ]
     }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "{search_term1};{search_term2}"
+      ]
+    ]
   }
 
 

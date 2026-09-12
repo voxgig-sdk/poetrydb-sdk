@@ -75,16 +75,20 @@ main: kit: entity: combined_search: {
           }
           method: "GET"
           orig: "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}"
-          parts: [
-            "{input_field1},{input_field2}"
-            "{search_term1};{search_term2}"
-          ]
           rename: {
             param: {
               "inputField1},{inputField2": "input_field1},{input_field2"
               "searchTerm1};{searchTerm2": "search_term1};{search_term2"
             }
           }
+          segments: [
+            {
+              lit: "{inputField1},{inputField2}"
+            }
+            {
+              lit: "{searchTerm1};{searchTerm2}"
+            }
+          ]
           select: {
             exist: [
               "input_field1"

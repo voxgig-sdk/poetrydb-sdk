@@ -77,17 +77,23 @@ main: kit: entity: line: {
           }
           method: "GET"
           orig: "/lines/{lines}/{outputFields}.{format}"
-          parts: [
-            "lines"
-            "{line}"
-            "{output_fields}_{format}"
-          ]
           rename: {
             param: {
               lines: "line"
               "outputFields}.{format": "output_fields}_{format"
             }
           }
+          segments: [
+            {
+              lit: "lines"
+            }
+            {
+              var: "line"
+            }
+            {
+              lit: "{outputFields}.{format}"
+            }
+          ]
           select: {
             exist: [
               "format"
@@ -123,17 +129,23 @@ main: kit: entity: line: {
           }
           method: "GET"
           orig: "/lines/{lines}/{outputFields}"
-          parts: [
-            "lines"
-            "{line}"
-            "{output_field}"
-          ]
           rename: {
             param: {
               lines: "line"
               outputFields: "output_field"
             }
           }
+          segments: [
+            {
+              lit: "lines"
+            }
+            {
+              var: "line"
+            }
+            {
+              var: "output_field"
+            }
+          ]
           select: {
             exist: [
               "line"
@@ -165,15 +177,19 @@ main: kit: entity: line: {
           }
           method: "GET"
           orig: "/lines/{lines}"
-          parts: [
-            "lines"
-            "{id}"
-          ]
           rename: {
             param: {
               lines: "id"
             }
           }
+          segments: [
+            {
+              lit: "lines"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

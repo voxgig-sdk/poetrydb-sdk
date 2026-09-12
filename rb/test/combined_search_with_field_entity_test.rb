@@ -105,7 +105,7 @@ def combined_search_with_field_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["combined_search_with_field01", "combined_search_with_field02", "combined_search_with_field03", "input_field101", "input_field201", "output_field01", "search_term101", "search_term201"],
+    ["combined_search_with_field01", "combined_search_with_field02", "combined_search_with_field03", "{search_term1};{search_term2}01", "{search_term1};{search_term2}02", "{search_term1};{search_term2}03", "input_field101", "input_field201", "output_field01", "search_term101", "search_term201"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",
@@ -134,6 +134,9 @@ def combined_search_with_field_basic_setup(extra)
 
   if env["POETRYDB_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
       },
       extra || {},

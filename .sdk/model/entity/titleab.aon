@@ -51,9 +51,13 @@ main: kit: entity: titleab: {
           }
           method: "GET"
           orig: "/title/{title}:abs"
-          parts: [
-            "title"
-            "{title}:abs"
+          segments: [
+            {
+              lit: "title"
+            }
+            {
+              lit: "{title}:abs"
+            }
           ]
           select: {
             exist: [
@@ -67,14 +71,6 @@ main: kit: entity: titleab: {
         }
       ]
     }
-  }
-
-  relations: {
-    ancestors: [
-      [
-        "title"
-      ]
-    ]
   }
 
 

@@ -69,16 +69,22 @@ main: kit: entity: random: {
           }
           method: "GET"
           orig: "/random/{count}/{outputFields}"
-          parts: [
-            "random"
-            "{count}"
-            "{output_field}"
-          ]
           rename: {
             param: {
               outputFields: "output_field"
             }
           }
+          segments: [
+            {
+              lit: "random"
+            }
+            {
+              var: "count"
+            }
+            {
+              var: "output_field"
+            }
+          ]
           select: {
             exist: [
               "count"
@@ -110,15 +116,19 @@ main: kit: entity: random: {
           }
           method: "GET"
           orig: "/random/{count}"
-          parts: [
-            "random"
-            "{id}"
-          ]
           rename: {
             param: {
               count: "id"
             }
           }
+          segments: [
+            {
+              lit: "random"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

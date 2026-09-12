@@ -82,16 +82,22 @@ main: kit: entity: title: {
           }
           method: "GET"
           orig: "/title/{title}/{outputFields}.{format}"
-          parts: [
-            "title"
-            "{title}"
-            "{output_fields}_{format}"
-          ]
           rename: {
             param: {
               "outputFields}.{format": "output_fields}_{format"
             }
           }
+          segments: [
+            {
+              lit: "title"
+            }
+            {
+              var: "title"
+            }
+            {
+              lit: "{outputFields}.{format}"
+            }
+          ]
           select: {
             exist: [
               "format"
@@ -127,16 +133,22 @@ main: kit: entity: title: {
           }
           method: "GET"
           orig: "/title/{title}/{outputFields}"
-          parts: [
-            "title"
-            "{title}"
-            "{output_field}"
-          ]
           rename: {
             param: {
               outputFields: "output_field"
             }
           }
+          segments: [
+            {
+              lit: "title"
+            }
+            {
+              var: "title"
+            }
+            {
+              var: "output_field"
+            }
+          ]
           select: {
             exist: [
               "output_field"
@@ -151,8 +163,10 @@ main: kit: entity: title: {
         {
           method: "GET"
           orig: "/title"
-          parts: [
-            "title"
+          segments: [
+            {
+              lit: "title"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -179,15 +193,19 @@ main: kit: entity: title: {
           }
           method: "GET"
           orig: "/title/{title}"
-          parts: [
-            "title"
-            "{id}"
-          ]
           rename: {
             param: {
               title: "id"
             }
           }
+          segments: [
+            {
+              lit: "title"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

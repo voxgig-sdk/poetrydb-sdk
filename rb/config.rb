@@ -81,6 +81,10 @@ module PoetrydbConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "author",
           "op" => {
             "list" => {
@@ -119,16 +123,22 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/author/{author}/{outputFields}.{format}",
-                  "parts" => [
-                    "author",
-                    "{author}",
-                    "{output_fields}_{format}",
-                  ],
                   "rename" => {
                     "param" => {
                       "outputFields}.{format" => "output_fields}_{format",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "author",
+                    },
+                    {
+                      "var" => "author",
+                    },
+                    {
+                      "lit" => "{outputFields}.{format}",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "author",
@@ -140,6 +150,11 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "author",
+                    "{author}",
+                    "{outputFields}.{format}",
+                  ],
                 },
                 {
                   "args" => {
@@ -165,16 +180,22 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/author/{author}/{outputFields}",
-                  "parts" => [
-                    "author",
-                    "{author}",
-                    "{output_field}",
-                  ],
                   "rename" => {
                     "param" => {
                       "outputFields" => "output_field",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "author",
+                    },
+                    {
+                      "var" => "author",
+                    },
+                    {
+                      "var" => "output_field",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "author",
@@ -185,20 +206,30 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "author",
+                    "{author}",
+                    "{output_field}",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/author",
-                  "parts" => [
-                    "author",
+                  "segments" => [
+                    {
+                      "lit" => "author",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.authors`",
                   },
+                  "parts" => [
+                    "author",
+                  ],
                 },
               ],
             },
@@ -222,15 +253,19 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/author/{author}",
-                  "parts" => [
-                    "author",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "author" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "author",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -240,6 +275,10 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "author",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -297,9 +336,13 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/author/{author}:abs",
-                  "parts" => [
-                    "author",
-                    "{author}:abs",
+                  "segments" => [
+                    {
+                      "lit" => "author",
+                    },
+                    {
+                      "lit" => "{author}:abs",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -310,16 +353,16 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "author",
+                    "{author}:abs",
+                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "author",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
         "combined_search" => {
@@ -391,16 +434,20 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}",
-                  "parts" => [
-                    "{input_field1},{input_field2}",
-                    "{search_term1};{search_term2}",
-                  ],
                   "rename" => {
                     "param" => {
                       "inputField1},{inputField2" => "input_field1},{input_field2",
                       "searchTerm1};{searchTerm2" => "search_term1};{search_term2",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "{inputField1},{inputField2}",
+                    },
+                    {
+                      "lit" => "{searchTerm1};{searchTerm2}",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "input_field1",
@@ -413,6 +460,10 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "{inputField1},{inputField2}",
+                    "{searchTerm1};{searchTerm2}",
+                  ],
                 },
               ],
             },
@@ -477,11 +528,6 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputFields}",
-                  "parts" => [
-                    "{input_field1},{input_field2}",
-                    "{search_term1};{search_term2}",
-                    "{output_field}",
-                  ],
                   "rename" => {
                     "param" => {
                       "inputField1},{inputField2" => "input_field1},{input_field2",
@@ -489,6 +535,17 @@ module PoetrydbConfig
                       "searchTerm1};{searchTerm2" => "search_term1};{search_term2",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "{inputField1},{inputField2}",
+                    },
+                    {
+                      "lit" => "{searchTerm1};{searchTerm2}",
+                    },
+                    {
+                      "var" => "output_field",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "input_field1",
@@ -502,12 +559,21 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "{inputField1},{inputField2}",
+                    "{searchTerm1};{searchTerm2}",
+                    "{output_field}",
+                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [],
+            "ancestors" => [
+              [
+                "{search_term1};{search_term2}",
+              ],
+            ],
           },
         },
         "line" => {
@@ -537,6 +603,10 @@ module PoetrydbConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "line",
           "op" => {
             "list" => {
@@ -575,17 +645,23 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lines/{lines}/{outputFields}.{format}",
-                  "parts" => [
-                    "lines",
-                    "{line}",
-                    "{output_fields}_{format}",
-                  ],
                   "rename" => {
                     "param" => {
                       "lines" => "line",
                       "outputFields}.{format" => "output_fields}_{format",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "lines",
+                    },
+                    {
+                      "var" => "line",
+                    },
+                    {
+                      "lit" => "{outputFields}.{format}",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "format",
@@ -597,6 +673,11 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "lines",
+                    "{line}",
+                    "{outputFields}.{format}",
+                  ],
                 },
                 {
                   "args" => {
@@ -622,17 +703,23 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lines/{lines}/{outputFields}",
-                  "parts" => [
-                    "lines",
-                    "{line}",
-                    "{output_field}",
-                  ],
                   "rename" => {
                     "param" => {
                       "lines" => "line",
                       "outputFields" => "output_field",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "lines",
+                    },
+                    {
+                      "var" => "line",
+                    },
+                    {
+                      "var" => "output_field",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "line",
@@ -643,6 +730,11 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "lines",
+                    "{line}",
+                    "{output_field}",
+                  ],
                 },
               ],
             },
@@ -666,15 +758,19 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/lines/{lines}",
-                  "parts" => [
-                    "lines",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "lines" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "lines",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -684,6 +780,10 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "lines",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -723,6 +823,10 @@ module PoetrydbConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "linecount",
           "op" => {
             "list" => {
@@ -761,16 +865,22 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/linecount/{linecount}/{outputFields}.{format}",
-                  "parts" => [
-                    "linecount",
-                    "{linecount}",
-                    "{output_fields}_{format}",
-                  ],
                   "rename" => {
                     "param" => {
                       "outputFields}.{format" => "output_fields}_{format",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "linecount",
+                    },
+                    {
+                      "var" => "linecount",
+                    },
+                    {
+                      "lit" => "{outputFields}.{format}",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "format",
@@ -782,6 +892,11 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "linecount",
+                    "{linecount}",
+                    "{outputFields}.{format}",
+                  ],
                 },
                 {
                   "args" => {
@@ -807,16 +922,22 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/linecount/{linecount}/{outputFields}",
-                  "parts" => [
-                    "linecount",
-                    "{linecount}",
-                    "{output_field}",
-                  ],
                   "rename" => {
                     "param" => {
                       "outputFields" => "output_field",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "linecount",
+                    },
+                    {
+                      "var" => "linecount",
+                    },
+                    {
+                      "var" => "output_field",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "linecount",
@@ -827,6 +948,11 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "linecount",
+                    "{linecount}",
+                    "{output_field}",
+                  ],
                 },
               ],
             },
@@ -850,15 +976,19 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/linecount/{linecount}",
-                  "parts" => [
-                    "linecount",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "linecount" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "linecount",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -868,6 +998,10 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "linecount",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -907,6 +1041,10 @@ module PoetrydbConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "poemcount",
           "op" => {
             "load" => {
@@ -929,15 +1067,19 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/poemcount/{count}",
-                  "parts" => [
-                    "poemcount",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "count" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "poemcount",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -947,6 +1089,10 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "poemcount",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -982,6 +1128,10 @@ module PoetrydbConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "random",
           "op" => {
             "list" => {
@@ -1012,16 +1162,22 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/random/{count}/{outputFields}",
-                  "parts" => [
-                    "random",
-                    "{count}",
-                    "{output_field}",
-                  ],
                   "rename" => {
                     "param" => {
                       "outputFields" => "output_field",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "random",
+                    },
+                    {
+                      "var" => "count",
+                    },
+                    {
+                      "var" => "output_field",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "count",
@@ -1032,6 +1188,11 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "random",
+                    "{count}",
+                    "{output_field}",
+                  ],
                 },
               ],
             },
@@ -1055,15 +1216,19 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/random/{count}",
-                  "parts" => [
-                    "random",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "count" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "random",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -1073,6 +1238,10 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "random",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -1116,6 +1285,10 @@ module PoetrydbConfig
               "type" => "`$ARRAY`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "title",
           "op" => {
             "list" => {
@@ -1154,16 +1327,22 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/title/{title}/{outputFields}.{format}",
-                  "parts" => [
-                    "title",
-                    "{title}",
-                    "{output_fields}_{format}",
-                  ],
                   "rename" => {
                     "param" => {
                       "outputFields}.{format" => "output_fields}_{format",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "title",
+                    },
+                    {
+                      "var" => "title",
+                    },
+                    {
+                      "lit" => "{outputFields}.{format}",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "format",
@@ -1175,6 +1354,11 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "title",
+                    "{title}",
+                    "{outputFields}.{format}",
+                  ],
                 },
                 {
                   "args" => {
@@ -1200,16 +1384,22 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/title/{title}/{outputFields}",
-                  "parts" => [
-                    "title",
-                    "{title}",
-                    "{output_field}",
-                  ],
                   "rename" => {
                     "param" => {
                       "outputFields" => "output_field",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "title",
+                    },
+                    {
+                      "var" => "title",
+                    },
+                    {
+                      "var" => "output_field",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "output_field",
@@ -1220,20 +1410,30 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "title",
+                    "{title}",
+                    "{output_field}",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/title",
-                  "parts" => [
-                    "title",
+                  "segments" => [
+                    {
+                      "lit" => "title",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.titles`",
                   },
+                  "parts" => [
+                    "title",
+                  ],
                 },
               ],
             },
@@ -1257,15 +1457,19 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/title/{title}",
-                  "parts" => [
-                    "title",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "title" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "title",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -1275,6 +1479,10 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "title",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -1332,9 +1540,13 @@ module PoetrydbConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/title/{title}:abs",
-                  "parts" => [
-                    "title",
-                    "{title}:abs",
+                  "segments" => [
+                    {
+                      "lit" => "title",
+                    },
+                    {
+                      "lit" => "{title}:abs",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1345,16 +1557,16 @@ module PoetrydbConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "title",
+                    "{title}:abs",
+                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "title",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
       },

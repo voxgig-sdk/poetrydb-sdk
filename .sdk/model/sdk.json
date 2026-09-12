@@ -119,16 +119,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/author/{author}/{outputFields}.{format}",
-                  "parts": [
-                    "author",
-                    "{author}",
-                    "{output_fields}_{format}"
-                  ],
                   "rename": {
                     "param": {
                       "outputFields}.{format": "output_fields}_{format"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "author"
+                    },
+                    {
+                      "var": "author"
+                    },
+                    {
+                      "lit": "{outputFields}.{format}"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "author",
@@ -168,16 +174,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/author/{author}/{outputFields}",
-                  "parts": [
-                    "author",
-                    "{author}",
-                    "{output_field}"
-                  ],
                   "rename": {
                     "param": {
                       "outputFields": "output_field"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "author"
+                    },
+                    {
+                      "var": "author"
+                    },
+                    {
+                      "var": "output_field"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "author",
@@ -195,8 +207,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/author",
-                  "parts": [
-                    "author"
+                  "segments": [
+                    {
+                      "lit": "author"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -228,15 +242,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/author/{author}",
-                  "parts": [
-                    "author",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "author": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "author"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -317,9 +335,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/author/{author}:abs",
-                  "parts": [
-                    "author",
-                    "{author}:abs"
+                  "segments": [
+                    {
+                      "lit": "author"
+                    },
+                    {
+                      "lit": "{author}:abs"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -335,11 +357,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "author"
-              ]
-            ]
+            "ancestors": []
           }
         },
         "combined_search": {
@@ -428,16 +446,20 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}",
-                  "parts": [
-                    "{input_field1},{input_field2}",
-                    "{search_term1};{search_term2}"
-                  ],
                   "rename": {
                     "param": {
                       "inputField1},{inputField2": "input_field1},{input_field2",
                       "searchTerm1};{searchTerm2": "search_term1};{search_term2"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "{inputField1},{inputField2}"
+                    },
+                    {
+                      "lit": "{searchTerm1};{searchTerm2}"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "input_field1",
@@ -524,11 +546,6 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputFields}",
-                  "parts": [
-                    "{input_field1},{input_field2}",
-                    "{search_term1};{search_term2}",
-                    "{output_field}"
-                  ],
                   "rename": {
                     "param": {
                       "inputField1},{inputField2": "input_field1},{input_field2",
@@ -536,6 +553,17 @@
                       "searchTerm1};{searchTerm2": "search_term1};{search_term2"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "{inputField1},{inputField2}"
+                    },
+                    {
+                      "lit": "{searchTerm1};{searchTerm2}"
+                    },
+                    {
+                      "var": "output_field"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "input_field1",
@@ -554,7 +582,11 @@
             }
           },
           "relations": {
-            "ancestors": []
+            "ancestors": [
+              [
+                "{search_term1};{search_term2}"
+              ]
+            ]
           }
         },
         "line": {
@@ -644,17 +676,23 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/lines/{lines}/{outputFields}.{format}",
-                  "parts": [
-                    "lines",
-                    "{line}",
-                    "{output_fields}_{format}"
-                  ],
                   "rename": {
                     "param": {
                       "lines": "line",
                       "outputFields}.{format": "output_fields}_{format"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "lines"
+                    },
+                    {
+                      "var": "line"
+                    },
+                    {
+                      "lit": "{outputFields}.{format}"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "format",
@@ -694,17 +732,23 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/lines/{lines}/{outputFields}",
-                  "parts": [
-                    "lines",
-                    "{line}",
-                    "{output_field}"
-                  ],
                   "rename": {
                     "param": {
                       "lines": "line",
                       "outputFields": "output_field"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "lines"
+                    },
+                    {
+                      "var": "line"
+                    },
+                    {
+                      "var": "output_field"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "line",
@@ -740,15 +784,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/lines/{lines}",
-                  "parts": [
-                    "lines",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "lines": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "lines"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -857,16 +905,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/linecount/{linecount}/{outputFields}.{format}",
-                  "parts": [
-                    "linecount",
-                    "{linecount}",
-                    "{output_fields}_{format}"
-                  ],
                   "rename": {
                     "param": {
                       "outputFields}.{format": "output_fields}_{format"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "linecount"
+                    },
+                    {
+                      "var": "linecount"
+                    },
+                    {
+                      "lit": "{outputFields}.{format}"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "format",
@@ -906,16 +960,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/linecount/{linecount}/{outputFields}",
-                  "parts": [
-                    "linecount",
-                    "{linecount}",
-                    "{output_field}"
-                  ],
                   "rename": {
                     "param": {
                       "outputFields": "output_field"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "linecount"
+                    },
+                    {
+                      "var": "linecount"
+                    },
+                    {
+                      "var": "output_field"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "linecount",
@@ -951,15 +1011,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/linecount/{linecount}",
-                  "parts": [
-                    "linecount",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "linecount": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "linecount"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -1050,15 +1114,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/poemcount/{count}",
-                  "parts": [
-                    "poemcount",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "count": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "poemcount"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -1154,16 +1222,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/random/{count}/{outputFields}",
-                  "parts": [
-                    "random",
-                    "{count}",
-                    "{output_field}"
-                  ],
                   "rename": {
                     "param": {
                       "outputFields": "output_field"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "random"
+                    },
+                    {
+                      "var": "count"
+                    },
+                    {
+                      "var": "output_field"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "count",
@@ -1199,15 +1273,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/random/{count}",
-                  "parts": [
-                    "random",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "count": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "random"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -1322,16 +1400,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/title/{title}/{outputFields}.{format}",
-                  "parts": [
-                    "title",
-                    "{title}",
-                    "{output_fields}_{format}"
-                  ],
                   "rename": {
                     "param": {
                       "outputFields}.{format": "output_fields}_{format"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "title"
+                    },
+                    {
+                      "var": "title"
+                    },
+                    {
+                      "lit": "{outputFields}.{format}"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "format",
@@ -1371,16 +1455,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/title/{title}/{outputFields}",
-                  "parts": [
-                    "title",
-                    "{title}",
-                    "{output_field}"
-                  ],
                   "rename": {
                     "param": {
                       "outputFields": "output_field"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "title"
+                    },
+                    {
+                      "var": "title"
+                    },
+                    {
+                      "var": "output_field"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "output_field",
@@ -1398,8 +1488,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/title",
-                  "parts": [
-                    "title"
+                  "segments": [
+                    {
+                      "lit": "title"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -1431,15 +1523,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/title/{title}",
-                  "parts": [
-                    "title",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "title": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "title"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -1520,9 +1616,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/title/{title}:abs",
-                  "parts": [
-                    "title",
-                    "{title}:abs"
+                  "segments": [
+                    {
+                      "lit": "title"
+                    },
+                    {
+                      "lit": "{title}:abs"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1538,11 +1638,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "title"
-              ]
-            ]
+            "ancestors": []
           }
         }
       },
@@ -1610,8 +1706,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -2107,6 +2206,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2132,6 +2234,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -2183,6 +2289,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -2207,6 +2314,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -2258,6 +2366,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -2282,6 +2391,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -2322,6 +2432,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2347,6 +2460,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -2381,6 +2497,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2406,6 +2525,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -2446,6 +2568,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2471,6 +2596,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -2516,6 +2644,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2541,6 +2672,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -2558,11 +2692,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -2591,6 +2720,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2615,6 +2747,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

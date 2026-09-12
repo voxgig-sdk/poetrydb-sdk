@@ -77,16 +77,22 @@ main: kit: entity: linecount: {
           }
           method: "GET"
           orig: "/linecount/{linecount}/{outputFields}.{format}"
-          parts: [
-            "linecount"
-            "{linecount}"
-            "{output_fields}_{format}"
-          ]
           rename: {
             param: {
               "outputFields}.{format": "output_fields}_{format"
             }
           }
+          segments: [
+            {
+              lit: "linecount"
+            }
+            {
+              var: "linecount"
+            }
+            {
+              lit: "{outputFields}.{format}"
+            }
+          ]
           select: {
             exist: [
               "format"
@@ -122,16 +128,22 @@ main: kit: entity: linecount: {
           }
           method: "GET"
           orig: "/linecount/{linecount}/{outputFields}"
-          parts: [
-            "linecount"
-            "{linecount}"
-            "{output_field}"
-          ]
           rename: {
             param: {
               outputFields: "output_field"
             }
           }
+          segments: [
+            {
+              lit: "linecount"
+            }
+            {
+              var: "linecount"
+            }
+            {
+              var: "output_field"
+            }
+          ]
           select: {
             exist: [
               "linecount"
@@ -163,15 +175,19 @@ main: kit: entity: linecount: {
           }
           method: "GET"
           orig: "/linecount/{linecount}"
-          parts: [
-            "linecount"
-            "{id}"
-          ]
           rename: {
             param: {
               linecount: "id"
             }
           }
+          segments: [
+            {
+              lit: "linecount"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

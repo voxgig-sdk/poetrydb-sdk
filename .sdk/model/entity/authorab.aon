@@ -51,9 +51,13 @@ main: kit: entity: authorab: {
           }
           method: "GET"
           orig: "/author/{author}:abs"
-          parts: [
-            "author"
-            "{author}:abs"
+          segments: [
+            {
+              lit: "author"
+            }
+            {
+              lit: "{author}:abs"
+            }
           ]
           select: {
             exist: [
@@ -67,14 +71,6 @@ main: kit: entity: authorab: {
         }
       ]
     }
-  }
-
-  relations: {
-    ancestors: [
-      [
-        "author"
-      ]
-    ]
   }
 
 

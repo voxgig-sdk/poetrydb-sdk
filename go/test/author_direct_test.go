@@ -55,7 +55,7 @@ func TestAuthorDirect(t *testing.T) {
 		}
 
 		result, err := client.Direct(map[string]any{
-			"path":   "author/{author}/{output_field}_{format}",
+			"path":   "author/{author}/{output_field}.{format}",
 			"method": "GET",
 			"params": params,
 		})
@@ -223,7 +223,15 @@ func authorDirectSetup(mockres any) *authorDirectSetupResult {
 	live := env["POETRYDB_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewPoetrydbSDK(mergedOpts)
 

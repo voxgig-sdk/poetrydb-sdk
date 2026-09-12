@@ -61,15 +61,19 @@ main: kit: entity: poemcount: {
           }
           method: "GET"
           orig: "/poemcount/{count}"
-          parts: [
-            "poemcount"
-            "{id}"
-          ]
           rename: {
             param: {
               count: "id"
             }
           }
+          segments: [
+            {
+              lit: "poemcount"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
