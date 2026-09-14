@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { PoetrydbSDK } from '@voxgig-sdk/poetrydb'
+import { PoetrydbSDK } from '@voxgig-sdk/poetrydb-sdk'
 
 const client = new PoetrydbSDK()
 ```
@@ -822,7 +822,7 @@ poetrydb/
 Import the SDK from the package root:
 
 ```ts
-import { PoetrydbSDK } from '@voxgig-sdk/poetrydb'
+import { PoetrydbSDK } from '@voxgig-sdk/poetrydb-sdk'
 ```
 
 ### Entity state

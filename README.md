@@ -105,7 +105,7 @@ local results, err = client:Linecount():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/poetrydb` | publish pending — [install from git tag](https://github.com/voxgig-sdk/poetrydb-sdk/releases) |
+| TypeScript | `@voxgig-sdk/poetrydb-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/poetrydb-sdk/releases) |
 | Python | `voxgig-sdk-poetrydb` | publish pending — [install from git tag](https://github.com/voxgig-sdk/poetrydb-sdk/releases) |
 | PHP | `voxgig-sdk/poetrydb` | publish pending — [install from git tag](https://github.com/voxgig-sdk/poetrydb-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/poetrydb-sdk/go` | `go get github.com/voxgig-sdk/poetrydb-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Linecount():list()
 ### TypeScript
 
 ```ts
-import { PoetrydbSDK } from '@voxgig-sdk/poetrydb'
+import { PoetrydbSDK } from '@voxgig-sdk/poetrydb-sdk'
 
 const client = new PoetrydbSDK()
 
