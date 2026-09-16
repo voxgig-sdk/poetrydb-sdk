@@ -4,7 +4,7 @@
       "LINE00": {
         "author": "s32",
         "id": "LINE00",
-        "linecount": "s34",
+        "linecount": 52,
         "lines": [],
         "title": "s36",
         "format": "FORMAT01",
@@ -14,7 +14,7 @@
       "LINE01": {
         "author": "s64",
         "id": "LINE01",
-        "linecount": "s66",
+        "linecount": 102,
         "lines": [],
         "title": "s68",
         "format": "FORMAT01",
@@ -24,7 +24,7 @@
       "LINE02": {
         "author": "s96",
         "id": "LINE02",
-        "linecount": "s98",
+        "linecount": 152,
         "lines": [],
         "title": "s9a",
         "format": "FORMAT01",
@@ -37,9 +37,244 @@
     "line": {
       "line_ref01": {
         "author": "sc8",
-        "linecount": "sca",
+        "linecount": 202,
         "lines": [],
         "title": "scc"
+      }
+    }
+  },
+  "requests": {
+    "GET /lines/{lines}/{outputFields}.{format}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchByLinesWithFieldsAndFormat",
+        "parameters": [
+          {
+            "description": "Part of a line or lines of a poem",
+            "example": "Latitudeless Place",
+            "in": "path",
+            "name": "lines",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of output fields (author, title, lines, linecount, all)",
+            "example": "author,title,linecount",
+            "in": "path",
+            "name": "outputFields",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Output format (json or text)",
+            "example": "text",
+            "in": "path",
+            "name": "format",
+            "required": true,
+            "schema": {
+              "enum": [
+                "json",
+                "text"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "reason": {
+                      "example": "Not found",
+                      "type": "string"
+                    },
+                    "status": {
+                      "example": 404,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "No poems found"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /lines/{lines}/{outputFields}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchByLinesWithFields",
+        "parameters": [
+          {
+            "description": "Part of a line or lines of a poem",
+            "example": "Latitudeless Place",
+            "in": "path",
+            "name": "lines",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of output fields (author, title, lines, linecount, all)",
+            "example": "author,title,linecount",
+            "in": "path",
+            "name": "outputFields",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "reason": {
+                      "example": "Not found",
+                      "type": "string"
+                    },
+                    "status": {
+                      "example": 404,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "No poems found"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /lines/{lines}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchByLines",
+        "parameters": [
+          {
+            "description": "Part of a line or lines of a poem",
+            "example": "Latitudeless Place",
+            "in": "path",
+            "name": "lines",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "author": {
+                        "description": "The author of the poem",
+                        "example": "Percy Bysshe Shelley",
+                        "type": "string"
+                      },
+                      "linecount": {
+                        "description": "The number of lines in the poem (including section headings, excluding empty lines)",
+                        "example": 14,
+                        "type": "integer"
+                      },
+                      "lines": {
+                        "description": "The lines of the poem",
+                        "example": [
+                          "I met a traveller from an antique land",
+                          "Who said: \"Two vast and trunkless legs of stone",
+                          "Stand in the desert. Near them on the sand,"
+                        ],
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "title": {
+                        "description": "The title of the poem",
+                        "example": "Ozymandias",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "reason": {
+                      "example": "Not found",
+                      "type": "string"
+                    },
+                    "status": {
+                      "example": 404,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "No poems found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

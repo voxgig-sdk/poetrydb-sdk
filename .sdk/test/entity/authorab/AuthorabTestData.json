@@ -3,19 +3,19 @@
     "authorab": {
       "AUTHORAB00": {
         "author": "s28",
-        "linecount": "s29",
+        "linecount": 41,
         "lines": [],
         "title": "s2b"
       },
       "AUTHORAB01": {
         "author": "s50",
-        "linecount": "s51",
+        "linecount": 81,
         "lines": [],
         "title": "s53"
       },
       "AUTHORAB02": {
         "author": "s78",
-        "linecount": "s79",
+        "linecount": 121,
         "lines": [],
         "title": "s7b"
       }
@@ -25,9 +25,95 @@
     "authorab": {
       "authorab_ref01": {
         "author": "sa0",
-        "linecount": "sa1",
+        "linecount": 161,
         "lines": [],
         "title": "sa3"
+      }
+    }
+  },
+  "requests": {
+    "GET /author/{author}:abs": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchByAuthorExact",
+        "parameters": [
+          {
+            "description": "The exact name of the author",
+            "example": "Ernest Dowson",
+            "in": "path",
+            "name": "author",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "author": {
+                        "description": "The author of the poem",
+                        "example": "Percy Bysshe Shelley",
+                        "type": "string"
+                      },
+                      "linecount": {
+                        "description": "The number of lines in the poem (including section headings, excluding empty lines)",
+                        "example": 14,
+                        "type": "integer"
+                      },
+                      "lines": {
+                        "description": "The lines of the poem",
+                        "example": [
+                          "I met a traveller from an antique land",
+                          "Who said: \"Two vast and trunkless legs of stone",
+                          "Stand in the desert. Near them on the sand,"
+                        ],
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "title": {
+                        "description": "The title of the poem",
+                        "example": "Ozymandias",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "reason": {
+                      "example": "Not found",
+                      "type": "string"
+                    },
+                    "status": {
+                      "example": 404,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "No poems found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

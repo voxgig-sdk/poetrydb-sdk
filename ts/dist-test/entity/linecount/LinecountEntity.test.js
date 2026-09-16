@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.POETRYDB_TEST_LIVE;
         for (const op of ['list', 'load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'linecount.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'linecount.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set POETRYDB_TEST_LINECOUNT_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "author", "req": false, "short": "The author of the poem", "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "id", "req": false, "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "linecount", "req": false, "short": "The number of lines in the poem (including section headings, excluding empty lines)", "type": "`$INTEGER`", "index$": 2 }, { "active": true, "name": "lines", "req": false, "short": "The lines of the poem", "type": "`$ARRAY`", "index$": 3 }, { "active": true, "name": "title", "req": false, "short": "The title of the poem", "type": "`$STRING`", "index$": 4 }], "id": { "field": "id", "name": "id" }, "name": "linecount", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": { "params": [{ "active": true, "example": "text", "kind": "param", "name": "format", "orig": "format", "reqd": true, "type": "`$STRING`", "index$": 0 }, { "active": true, "example": 14, "kind": "param", "name": "linecount", "orig": "linecount", "reqd": true, "type": "`$INTEGER`", "index$": 1 }, { "active": true, "example": "author,title", "kind": "param", "name": "output_field", "orig": "output_field", "reqd": true, "type": "`$STRING`", "index$": 2 }] }, "contract": { "id": "GET /linecount/{linecount}/{outputFields}.{format}", "json": "{\"operationId\":\"searchByLinecountWithFieldsAndFormat\",\"parameters\":[{\"description\":\"The exact number of lines in the poem\",\"example\":14,\"in\":\"path\",\"name\":\"linecount\",\"required\":true,\"schema\":{\"type\":\"integer\"}},{\"description\":\"Comma-separated list of output fields (author, title, lines, linecount, all)\",\"example\":\"author,title\",\"in\":\"path\",\"name\":\"outputFields\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Output format (json or text)\",\"example\":\"text\",\"in\":\"path\",\"name\":\"format\",\"required\":true,\"schema\":{\"enum\":[\"json\",\"text\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}},\"text/plain\":{\"schema\":{\"type\":\"string\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"reason\":{\"example\":\"Not found\",\"type\":\"string\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"No poems found\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/linecount/{linecount}/{outputFields}.{format}", "rename": { "param": { "outputFields}.{format": "output_fields}_{format" } }, "segments": [{ "lit": "linecount" }, { "var": "linecount" }, { "lit": "{outputFields}.{format}" }], "select": { "exist": ["format", "linecount", "output_field"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }, { "active": true, "args": { "params": [{ "active": true, "example": 14, "kind": "param", "name": "linecount", "orig": "linecount", "reqd": true, "type": "`$INTEGER`", "index$": 0 }, { "active": true, "example": "author,title", "kind": "param", "name": "output_field", "orig": "output_field", "reqd": true, "type": "`$STRING`", "index$": 1 }] }, "contract": { "id": "GET /linecount/{linecount}/{outputFields}", "json": "{\"operationId\":\"searchByLinecountWithFields\",\"parameters\":[{\"description\":\"The exact number of lines in the poem\",\"example\":14,\"in\":\"path\",\"name\":\"linecount\",\"required\":true,\"schema\":{\"type\":\"integer\"}},{\"description\":\"Comma-separated list of output fields (author, title, lines, linecount, all)\",\"example\":\"author,title\",\"in\":\"path\",\"name\":\"outputFields\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"reason\":{\"example\":\"Not found\",\"type\":\"string\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"No poems found\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/linecount/{linecount}/{outputFields}", "rename": { "param": { "outputFields": "output_field" } }, "segments": [{ "lit": "linecount" }, { "var": "linecount" }, { "var": "output_field" }], "select": { "exist": ["linecount", "output_field"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 1 }], "key$": "list" }, "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "params": [{ "active": true, "example": 14, "kind": "param", "name": "id", "orig": "linecount", "reqd": true, "type": "`$INTEGER`", "index$": 0 }] }, "contract": { "id": "GET /linecount/{linecount}", "json": "{\"operationId\":\"searchByLinecount\",\"parameters\":[{\"description\":\"The exact number of lines in the poem\",\"example\":14,\"in\":\"path\",\"name\":\"linecount\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"author\":{\"description\":\"The author of the poem\",\"example\":\"Percy Bysshe Shelley\",\"type\":\"string\"},\"linecount\":{\"description\":\"The number of lines in the poem (including section headings, excluding empty lines)\",\"example\":14,\"type\":\"integer\"},\"lines\":{\"description\":\"The lines of the poem\",\"example\":[\"I met a traveller from an antique land\",\"Who said: \\\"Two vast and trunkless legs of stone\",\"Stand in the desert. Near them on the sand,\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"title\":{\"description\":\"The title of the poem\",\"example\":\"Ozymandias\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"reason\":{\"example\":\"Not found\",\"type\":\"string\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"No poems found\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/linecount/{linecount}", "rename": { "param": { "linecount": "id" } }, "segments": [{ "lit": "linecount" }, { "var": "id" }], "select": { "exist": ["id"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [["linecount"]] }, "key$": "linecount", "name__orig": "linecount", "Name": "Linecount", "name_": "linecount", "name-": "linecount", "NAME": "LINECOUNT", "index$": 5 }, { "active": true, "entity": "linecount", "key$": "BasicLinecountFlow", "kind": "basic", "name": "BasicLinecountFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": { "linecount": "linecount01", "output_field": "output_field01" }, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "linecount_ref01" } }], "index$": 0 }, { "active": true, "data": {}, "input": { "ref": "linecount_ref01", "srcdatavar": "linecount_ref01_data", "suffix": "_dt0" }, "match": { "id": "linecount01" }, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-linecount_ref01" } }], "index$": 1 }] }, 'Linecount');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -108,12 +106,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['POETRYDB_TEST_LINECOUNT_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'POETRYDB_TEST_LINECOUNT_ENTID': idmap,
         'POETRYDB_TEST_LIVE': 'FALSE',
@@ -121,7 +113,13 @@ function basicSetup(extra) {
     });
     idmap = env['POETRYDB_TEST_LINECOUNT_ENTID'];
     const live = 'TRUE' === env.POETRYDB_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['POETRYDB_TEST_LINECOUNT_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.PoetrydbSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -132,7 +130,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -144,7 +143,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.POETRYDB_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

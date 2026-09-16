@@ -54,6 +54,12 @@ main: kit: entity: combined_search_with_field: {
               }
             ]
           }
+          contract: {
+            id: "GET /{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputFields}"
+            json: "{\"operationId\":\"combinedSearchWithFields\",\"parameters\":[{\"description\":\"First input field (author, title, lines, linecount)\",\"example\":\"author\",\"in\":\"path\",\"name\":\"inputField1\",\"required\":true,\"schema\":{\"enum\":[\"author\",\"title\",\"lines\",\"linecount\"],\"type\":\"string\"}},{\"description\":\"Second input field (author, title, lines, linecount)\",\"example\":\"linecount\",\"in\":\"path\",\"name\":\"inputField2\",\"required\":true,\"schema\":{\"enum\":[\"author\",\"title\",\"lines\",\"linecount\"],\"type\":\"string\"}},{\"description\":\"Search term for first input field\",\"example\":\"Shakespeare\",\"in\":\"path\",\"name\":\"searchTerm1\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Search term for second input field\",\"example\":\"14\",\"in\":\"path\",\"name\":\"searchTerm2\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Comma-separated list of output fields (author, title, lines, linecount, all)\",\"example\":\"lines\",\"in\":\"path\",\"name\":\"outputFields\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"reason\":{\"example\":\"Not found\",\"type\":\"string\"},\"status\":{\"example\":404,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"No poems found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/{inputField1},{inputField2}/{searchTerm1};{searchTerm2}/{outputFields}"
           rename: {

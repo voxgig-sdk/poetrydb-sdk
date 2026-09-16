@@ -4,7 +4,7 @@
       "RANDOM00": {
         "author": "s32",
         "id": "RANDOM00",
-        "linecount": "s34",
+        "linecount": 52,
         "lines": [],
         "title": "s36",
         "count": "COUNT01",
@@ -13,7 +13,7 @@
       "RANDOM01": {
         "author": "s64",
         "id": "RANDOM01",
-        "linecount": "s66",
+        "linecount": 102,
         "lines": [],
         "title": "s68",
         "count": "COUNT01",
@@ -22,7 +22,7 @@
       "RANDOM02": {
         "author": "s96",
         "id": "RANDOM02",
-        "linecount": "s98",
+        "linecount": 152,
         "lines": [],
         "title": "s9a",
         "count": "COUNT01",
@@ -34,9 +34,122 @@
     "random": {
       "random_ref01": {
         "author": "sc8",
-        "linecount": "sca",
+        "linecount": 202,
         "lines": [],
         "title": "scc"
+      }
+    }
+  },
+  "requests": {
+    "GET /random/{count}/{outputFields}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRandomPoemsWithFields",
+        "parameters": [
+          {
+            "description": "The number of random poems to return",
+            "example": 5,
+            "in": "path",
+            "name": "count",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Comma-separated list of output fields (author, title, lines, linecount, all)",
+            "example": "author,title",
+            "in": "path",
+            "name": "outputFields",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /random/{count}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRandomPoems",
+        "parameters": [
+          {
+            "description": "The number of random poems to return",
+            "example": 5,
+            "in": "path",
+            "name": "count",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "author": {
+                        "description": "The author of the poem",
+                        "example": "Percy Bysshe Shelley",
+                        "type": "string"
+                      },
+                      "linecount": {
+                        "description": "The number of lines in the poem (including section headings, excluding empty lines)",
+                        "example": 14,
+                        "type": "integer"
+                      },
+                      "lines": {
+                        "description": "The lines of the poem",
+                        "example": [
+                          "I met a traveller from an antique land",
+                          "Who said: \"Two vast and trunkless legs of stone",
+                          "Stand in the desert. Near them on the sand,"
+                        ],
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "title": {
+                        "description": "The title of the poem",
+                        "example": "Ozymandias",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

@@ -4,21 +4,21 @@
       "POEMCOUNT00": {
         "author": "s32",
         "id": "POEMCOUNT00",
-        "linecount": "s34",
+        "linecount": 52,
         "lines": [],
         "title": "s36"
       },
       "POEMCOUNT01": {
         "author": "s64",
         "id": "POEMCOUNT01",
-        "linecount": "s66",
+        "linecount": 102,
         "lines": [],
         "title": "s68"
       },
       "POEMCOUNT02": {
         "author": "s96",
         "id": "POEMCOUNT02",
-        "linecount": "s98",
+        "linecount": 152,
         "lines": [],
         "title": "s9a"
       }
@@ -28,9 +28,76 @@
     "poemcount": {
       "poemcount_ref01": {
         "author": "sc8",
-        "linecount": "sca",
+        "linecount": 202,
         "lines": [],
         "title": "scc"
+      }
+    }
+  },
+  "requests": {
+    "GET /poemcount/{count}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getPoemCount",
+        "parameters": [
+          {
+            "description": "The number of poems to return",
+            "example": 10,
+            "in": "path",
+            "name": "count",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "author": {
+                        "description": "The author of the poem",
+                        "example": "Percy Bysshe Shelley",
+                        "type": "string"
+                      },
+                      "linecount": {
+                        "description": "The number of lines in the poem (including section headings, excluding empty lines)",
+                        "example": 14,
+                        "type": "integer"
+                      },
+                      "lines": {
+                        "description": "The lines of the poem",
+                        "example": [
+                          "I met a traveller from an antique land",
+                          "Who said: \"Two vast and trunkless legs of stone",
+                          "Stand in the desert. Near them on the sand,"
+                        ],
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "title": {
+                        "description": "The title of the poem",
+                        "example": "Ozymandias",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

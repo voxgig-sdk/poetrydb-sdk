@@ -1,12 +1,18 @@
 # Poetrydb SDK feature factory
 
 from poetrydb_sdk.feature.base_feature import PoetrydbBaseFeature
+from poetrydb_sdk.feature.ratelimit_feature import PoetrydbRatelimitFeature
+from poetrydb_sdk.feature.retry_feature import PoetrydbRetryFeature
 from poetrydb_sdk.feature.test_feature import PoetrydbTestFeature
+from poetrydb_sdk.feature.timeout_feature import PoetrydbTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: PoetrydbBaseFeature(),
+    "ratelimit": lambda: PoetrydbRatelimitFeature(),
+    "retry": lambda: PoetrydbRetryFeature(),
     "test": lambda: PoetrydbTestFeature(),
+    "timeout": lambda: PoetrydbTimeoutFeature(),
 }
 
 

@@ -67,6 +67,12 @@ main: kit: entity: random: {
               }
             ]
           }
+          contract: {
+            id: "GET /random/{count}/{outputFields}"
+            json: "{\"operationId\":\"getRandomPoemsWithFields\",\"parameters\":[{\"description\":\"The number of random poems to return\",\"example\":5,\"in\":\"path\",\"name\":\"count\",\"required\":true,\"schema\":{\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Comma-separated list of output fields (author, title, lines, linecount, all)\",\"example\":\"author,title\",\"in\":\"path\",\"name\":\"outputFields\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/random/{count}/{outputFields}"
           rename: {
@@ -113,6 +119,12 @@ main: kit: entity: random: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "GET /random/{count}"
+            json: "{\"operationId\":\"getRandomPoems\",\"parameters\":[{\"description\":\"The number of random poems to return\",\"example\":5,\"in\":\"path\",\"name\":\"count\",\"required\":true,\"schema\":{\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"author\":{\"description\":\"The author of the poem\",\"example\":\"Percy Bysshe Shelley\",\"type\":\"string\"},\"linecount\":{\"description\":\"The number of lines in the poem (including section headings, excluding empty lines)\",\"example\":14,\"type\":\"integer\"},\"lines\":{\"description\":\"The lines of the poem\",\"example\":[\"I met a traveller from an antique land\",\"Who said: \\\"Two vast and trunkless legs of stone\",\"Stand in the desert. Near them on the sand,\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"title\":{\"description\":\"The title of the poem\",\"example\":\"Ozymandias\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/random/{count}"
