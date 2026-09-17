@@ -105,12 +105,12 @@ local results, err = client:Linecount():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/poetrydb-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/poetrydb-sdk/releases) |
-| Python | `voxgig-sdk-poetrydb` | publish pending — [install from git tag](https://github.com/voxgig-sdk/poetrydb-sdk/releases) |
-| PHP | `voxgig-sdk/poetrydb` | publish pending — [install from git tag](https://github.com/voxgig-sdk/poetrydb-sdk/releases) |
+| TypeScript | `@voxgig-sdk/poetrydb-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/poetrydb-sdk/tags) |
+| Python | `voxgig-sdk-poetrydb` | publish pending — [install from git tag](https://github.com/voxgig-sdk/poetrydb-sdk/tags) |
+| PHP | `voxgig-sdk/poetrydb` | publish pending — [install from git tag](https://github.com/voxgig-sdk/poetrydb-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/poetrydb-sdk/go` | `go get github.com/voxgig-sdk/poetrydb-sdk/go@latest` |
-| Ruby | `voxgig-sdk-poetrydb` | publish pending — [install from git tag](https://github.com/voxgig-sdk/poetrydb-sdk/releases) |
-| Lua | `voxgig-sdk-poetrydb` | publish pending — [install from git tag](https://github.com/voxgig-sdk/poetrydb-sdk/releases) |
+| Ruby | `voxgig-sdk-poetrydb` | publish pending — [install from git tag](https://github.com/voxgig-sdk/poetrydb-sdk/tags) |
+| Lua | `voxgig-sdk-poetrydb` | publish pending — [install from git tag](https://github.com/voxgig-sdk/poetrydb-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/poetrydb-sdk/go-cli` | `go install github.com/voxgig-sdk/poetrydb-sdk/go-cli/cmd/poetrydb@latest` |
 | Go MCP server | `github.com/voxgig-sdk/poetrydb-sdk/go-mcp` | `go get github.com/voxgig-sdk/poetrydb-sdk/go-mcp@latest` |
 

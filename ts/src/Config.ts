@@ -127,36 +127,36 @@ class Config {
 
     entity: {
       
-      author: {
-      },
-
-      authorab: {
-      },
-
-      combined_search: {
-      },
-
-      combined_search_with_field: {
-      },
-
-      line: {
-      },
-
-      linecount: {
-      },
-
-      poemcount: {
-      },
-
-      random: {
-      },
-
-      title: {
-      },
-
-      titleab: {
-      },
-
+        author: {
+        },
+  
+        authorab: {
+        },
+  
+        combined_search: {
+        },
+  
+        combined_search_with_field: {
+        },
+  
+        line: {
+        },
+  
+        linecount: {
+        },
+  
+        poemcount: {
+        },
+  
+        random: {
+        },
+  
+        title: {
+        },
+  
+        titleab: {
+        },
+  
     }
   }
 
